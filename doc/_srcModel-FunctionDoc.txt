@@ -1,0 +1,36 @@
+/*
+* +--+-------------------------------------------{ Function Definition }-------------------------------------------+--+ *
+* |  |                                                  __Model__                                                  |  | *
+* +--+-------------------------------------------------------------------------------------------------------------+--+ *
+*                                                                                                                       *
+* → Author     : [Feyza/Luna/Mathis/Miguel]                                                                             *
+* → Created on : yyyy/mm/dd                                                                                             *
+* → Last modif : yyyy/mm/dd                                                                                             *
+* → Version    : 1.0.0.0                                                                                                *
+*                                                                                                                       *
+*  • • • • • • • • • • • • • • • • • • • • • • • • • • [ Utility ] • • • • • • • • • • • • • • • • • • • • • • • • • •  *
+* {explain in few lines the utility of the functions and the hypothesis considered for this function}                   *
+*                                                                                                                       *
+*  • • • • • • • • • • • • • • • • • • • • • • • • • •[ Parameter ]• • • • • • • • • • • • • • • • • • • • • • • • • •  *
+* This function has # argument(s):                                                                                      *
+*   • arg0            → explain in few words the utility of the parameter and its range of use/limits                   *
+*   |                   for example, what are the possibilities and/or the limits.                                      *
+*   | type: ...       | ex: {few examples with values}, ...                                                             *
+*                                                                                                                       *
+*   • arg1            → explain in few words the utility of the parameter and its range of use/limits.                  *
+*   | type: ...       | ex: {few examples with values}, ...                                                             *
+*                                                                                                                       *
+*  • • • • • • • • • • • • • • • • • • • • • • • • • • [ Returns ] • • • • • • • • • • • • • • • • • • • • • • • • • •  *
+* This function returns {explain in few lines the type of return the function will return and for which utility}.       *
+*   ex: __Model__(arg0_ExampleValue, arg1_ExampleValue) returns __Model___ExampleReturnValue.                           *
+*                                                                                                                       *
+*  • • • • • • • • • • • • • • • • • • • • • • • • • • [ History ] • • • • • • • • • • • • • • • • • • • • • • • • • •  *
+* See below the version table:                                                                                          *
+* +-------------+------------+--------+-------------------------------------------------------------------------------+ *
+* |   Version   |    Date    | Author |                                  Description                                  | *
+* +-------------+------------+--------+-------------------------------------------------------------------------------+ *
+* | ##.##.##.## | yyyy/mm/dd |        |                                                                               | *
+* +-------------+------------+--------+-------------------------------------------------------------------------------+ *
+* |     1.0.0.0 | 2025/mm/dd |        | Creation of the function                                                      | *
+* +-------------+------------+--------+-------------------------------------------------------------------------------+ *
+*/
