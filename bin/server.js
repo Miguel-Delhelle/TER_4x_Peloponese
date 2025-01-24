@@ -1,5 +1,6 @@
 "use strict";
 // chargement des modules node avec require()
+console.log("Serveur prêt");
 const cors = require("cors");
 var express = require("express");
 const url = require('url');
