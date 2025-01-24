@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF8"/>
+        <title> Projet Web </title>
+        <link rel="stylesheet" href="http://localhost:8888/files/index.css"/>
+
+        <!-- Leaftlet map library -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+        <!-- Leaftlet map library -->
+         
+        <script defer src="http://localhost:8888/files/login.js" type="module"></script>
+        <script defer src="http://localhost:8888/files/index.js" type="module"></script>
+    </head>
+
+    <body>
+        <header id="banner">
+                <div class="leftBox">
+                    <div class="no-visibility shadowed-blue pill-button" id="newActivityButton">
+                        <img class="pill-button-icon" src="http://localhost:8888/files/icons/new-white.svg"></img>
+                        <label class="pill-button-label">Nouvelle activité</label>
+                    </div>
+                    <div class="no-visibility shadowed-blue pill-button" id="newTypeActivityButton">
+                        <img class="pill-button-icon" src="http://localhost:8888/files/icons/new-white.svg"></img>
+                        <label class="pill-button-label">Nouveau type</label>
+                    </div>
+                </div>
+                <div class="shadowed rounded" id="inputBox">
+                    <div class="rounded dateInputBox" id="dateDebutBox" role="button">
+                        <label class="label-title" id="dateDebutBox_title">Début</label>
+                        <label class="label-subtitle" id="dateDebutBox_subtitle">Quand?</label>
+                        <input class="dateInputBox-picker" type="date" id="dateDebutBox_picker">
+                    </div>
+                    <div class="rounded dateInputBox" id="dateFinBox" role="button">
+                        <label class="label-title" id="dateFinBox_title">Fin</label>
+                        <label class="label-subtitle" id="dateFinBox_subtitle">Quand?</label>
+                        <input class="dateInputBox-picker" type="date" id="dateFinBox_picker">
+                    </div>
+                    <div class="rounded typeActiviteInputBox" id="typeActiviteBox" role="button">
+                        <label class="label-title" id="typeActiviteLabel">Type d'activité</label>
+                        <select class="typeActiviteInputBox-select" id="typeActivite_select">
+                            <option value="">Sélectionnez le type d'activité</option>
+                        </select>
+                    </div>
+                    <div class="round-buttonBox">
+                        <input class="round-button" type="button" id="searchButton">
+                    </div>
+                </div>
+                <div class="shadowed-blue rounded" id="loginBox">
+                    <div class="pill-button" id="loginButton">
+                        <img class="pill-button-icon" src="http://localhost:8888/files/icons/login.svg"></img>
+                        <label class="pill-button-label">Se connecter</label>
+                    </div>
+                    <div class="pill-button" id="registerButton">
+                        <img class="pill-button-icon" src="http://localhost:8888/files/icons/user-white.svg"></img>
+                        <label class="pill-button-label">S'inscrire</label>
+                    </div>
+                    <div class="pill-button no-visibility" id="userConnectedDiv">
+                        <img class="pill-button-icon" src="http://localhost:8888/files/icons/user-white.svg"></img>
+                        <label class="pill-button-label" id="userConnected">Utilisateur</label>
+                    </div> 
+                </div>
+        </header>
+        <main>
+            <div id ="overlay" class="overlay"></div>
+            <div class="content-box">
+
+                <div class="bottom-box">
+                    <div class="shadowed rounded list" id="listActivites">
+                    </div>
+                </div>
+                <div class="content-box-horizontal-spacer">
+                    
+                </div>
+            </div>
+            
+            <div id="modalLogin" class="shadowed rounded-small dialog-box-small">
+                <div class="dialog-box-small-title">
+                    <label class="label-title-nomargin">Connexion</label>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-text-input-user dialog-box-text-input" id="userNameInput" placeholder="Adresse mail">
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="password" class="dialog-box-text-input-password dialog-box-text-input" id="passwordInput" placeholder="Mot de passe">
+                </div>
+
+                <div class="horizontal-separator"></div>
+                
+                <div class="dialog-box-small-item test">
+                    <div id ="cancelLog" class="dialog-box-small-cancel-button">
+                        <label class="label-title-nomargin">Annuler</label>
+                    </div>
+
+                    <div id ="submitLog" class="dialog-box-small-submit-button">
+                        <label class="label-title-nomargin">Se connecter</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalRegister" class="shadowed rounded-small dialog-box-small">
+                <div class="dialog-box-small-title">
+                    <label class="label-title-nomargin">Inscription</label>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-text-input-user dialog-box-text-input" id="nameRegisterInput" placeholder="Nom">
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-text-input-user dialog-box-text-input" id="firstNameRegisterInput" placeholder="Prenom">
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-text-input-mail dialog-box-text-input" id="usernameRegisterInput" placeholder="Adresse mail">
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-text-input-phone dialog-box-text-input" id="phonenumberRegisterInput" placeholder="Téléphone">
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="password" class="dialog-box-text-input-password dialog-box-text-input" id="passwordRegisterInput" placeholder="Mot de passe">
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="password" class="dialog-box-text-input-password dialog-box-text-input" id="passwordRegisterInputConfirmation" placeholder="Confirmez le mot de passe">
+                </div>
+
+                <div class="horizontal-separator"></div>
+                
+                <div class="dialog-box-small-item test">
+                    <div id ="cancelRegister" class="dialog-box-small-cancel-button">
+                        <label class="label-title-nomargin">Annuler</label>
+                    </div>
+
+                    <div id ="submitRegister" class="dialog-box-small-submit-button">
+                        <label class="label-title-nomargin">S'inscrire</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="modalNewActivity" class="shadowed rounded-small dialog-box-small">
+                <div class="dialog-box-small-title">
+                    <label class="label-title-nomargin">Nouvelle activité</label>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    
+                    <!-- <input type="text" class="dialog-box-text-input-category dialog-box-text-input" id="newActivityCategoryInput" placeholder="Catégorie"> -->
+                    <select class="dialog-box-select-input dialog-box-select-input-activity" id="newActivityTypeActiviteInput">
+                        <option value="">Type d'activité</option>
+                    </select>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    
+                    <!-- <input type="text" class="dialog-box-text-input-category dialog-box-text-input" id="newActivityCategoryInput" placeholder="Catégorie"> -->
+                    <select class="dialog-box-select-input dialog-box-select-input-category" id="newActivityCategoryInput">
+                        <option value="">Activité Générique</option>
+                    </select>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="date" class="dialog-box-text-input-date dialog-box-text-input" id="newActivityDateInput">
+                </div>
+                
+                <div class="dialog-box-small-description-item">
+                    <textarea class="dialog-box-text-input-multiline-description dialog-box-text-input-multiline" id="newActivityDescriptionInput" rows="5" placeholder="Description"></textarea>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-text-input-city dialog-box-text-input" id="newActivityCityInput" placeholder="Commune (Pays)">
+                </div>
+
+                <div class="horizontal-separator"></div>
+                
+                <div class="dialog-box-small-item test">
+                    <div id ="cancelNewActivity" class="dialog-box-small-cancel-button">
+                        <label class="label-title-nomargin">Annuler</label>
+                    </div>
+
+                    <div id ="submitNewActivity" class="dialog-box-small-submit-button">
+                        <label class="label-title-nomargin">Ajouter</label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalNewTypeActivity" class="shadowed rounded-small dialog-box-small">
+                <div class="dialog-box-small-title">
+                    <label class="label-title-nomargin">Nouveau type activité</label>
+                </div>
+
+                <div class="dialog-box-small-item">
+                    
+                    <!-- <input type="text" class="dialog-box-text-input-category dialog-box-text-input" id="newActivityCategoryInput" placeholder="Catégorie"> -->
+                    <input type="text" class="dialog-box-select-input-activity dialog-box-text-input" id="newTypeActivityInput" placeholder="Nouveau type d'activité">
+
+                </div>
+
+                <div class="dialog-box-small-item">
+                    <input type="text" class="dialog-box-select-input-activity dialog-box-text-input" id="newCommonActivity" placeholder="Nouvelle catégorie d'activité">
+                </div>
+
+                <div class="horizontal-separator"></div>
+                
+                <div class="dialog-box-small-item test">
+                    <div id ="cancelNewTypeActivity" class="dialog-box-small-cancel-button">
+                        <label class="label-title-nomargin">Annuler</label>
+                    </div>
+
+                    <div id ="submitNewTypeActivity" class="dialog-box-small-submit-button">
+                        <label class="label-title-nomargin">Ajouter</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded dialog-box" id="moreActivityDialogBox">
+                <div class="rounded dialog-box-item">
+                    <div class="rounded dialog-box-item-sub-box dialog-box-item-sub-box-user">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/user.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldName">Prénom NomNomNomNom</label>
+                    </div>
+                    <div class="rounded dialog-box-item-sub-box dialog-box-item-sub-box-mail">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/email.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldMail">prenom.nomnomnom@etu.umontpellier.fr</label>
+                    </div>
+                    <div class="rounded dialog-box-item-sub-box dialog-box-item-sub-box-phone">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/phone.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldPhone">+33 12 34 56 78 90 00</label>
+                    </div>
+                </div>
+
+                <div class="rounded dialog-box-item">
+                    <div class="rounded dialog-box-item-sub-box dialog-box-item-sub-box-activityType">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/activite.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldActivityType">Cyclisme</label>
+                    </div>
+                    <div class="rounded dialog-box-item-sub-box dialog-box-item-sub-box-category">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/categorie.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldCategory">Category</label>
+                    </div>
+                    <div class="rounded dialog-box-item-sub-box dialog-box-item-sub-box-date">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/date.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldDate">01/01/1970</label>
+                    </div>
+                </div>
+
+                <div class="rounded dialog-box-item">
+                    <div class="rounded dialog-box-item-sub-box">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/description.svg"></img>
+                        <label class="dialog-box-label">Description</label>
+                    </div>
+                </div>
+
+                <div class="rounded dialog-box-description-box">
+                    <div class="dialog-box-description-text" id="dialogBoxFieldDescription">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt purus eu est eg
+                        estas, et eleifend nibh convallis. Ut id sodales nibh. Suspendisse ac orci nibh. Nunc s
+                        ed aliquam ligula, non malesuada odio. Maecenas ut risus aliquam, condimentum 
+                        urna quis, cursus lacus. Morbi non turpis in ligula vulputate euismod eget non libero
+                        . Vivamus fringilla ex ut facilisis sagittis. Aliquam vitae diam dui. Praesent ac metus 
+                    </div>
+                </div>
+
+                <div class="rounded dialog-box-location-box">
+                    <div class="rounded dialog-box-city-box">
+                        <img class="dialog-box-icon" src="http://localhost:8888/files/icons/location.svg"></img>
+                        <label class="dialog-box-label" id="dialogBoxFieldCity">Montpellier</label>
+                    </div>
+                    <div class="rounded dialog-box-map-box">
+                        <div class="rounded" id="dialogBoxMap"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shadowed-blue pill-button-floating" id="showAll">
+                <label class="pill-button-label-centered">Afficher toutes les activités</label>
+            </div>
+        </main>
+    </body>
+</html>
