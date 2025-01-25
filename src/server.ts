@@ -1,5 +1,4 @@
 // chargement des modules node avec require()
-console.log("Serveur prêt");
 const cors = require("cors");
 var express = require("express");
 const url = require('url');
@@ -24,6 +23,7 @@ app.listen(8888);
 app.use(cors());
 app.use(express.json());
 
+console.log("Serveur prêt");
 
 app.get('/', function (req:any, response:any) {
     response.sendFile('index.html', { root: __dirname});
