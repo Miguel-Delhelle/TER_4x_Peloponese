@@ -10,9 +10,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev2": "ts-node src/*.ts",
-    "dev": "nodemon --watch src --exec ts-node src/*.ts",
-    "start": "tsc --project tsconfig.server.json && npx webpack --config webpack.config.js && node dist/Server/server.js"
+    "dev2": "ts-node src/**/*.ts",
+    "start": "node ./dist/Server/server.js",
+    "devNodeMon": "nodemon --watch src --exec ts-node src/**/*.ts",
+    "dev": "webpack --watch --config webpack.config.js",
+    "build": "cp ./src/Client/*.html ./dist/Client/ && cp ./src/Client/*.css ./dist/Client/ && tsc --project tsconfig.server.json && npx webpack --config webpack.config.js && node dist/Server/server.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +47,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/socket.io-client": "^1.4.36",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "webpack": "^5.97.1",

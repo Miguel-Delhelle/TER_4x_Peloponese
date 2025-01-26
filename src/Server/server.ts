@@ -1,4 +1,3 @@
-// chargement des modules node avec require()
 import path from 'path';
 import cors from 'cors';
 import express from 'express';
@@ -19,6 +18,25 @@ const clientDistDir:any = path.resolve(rootDir,'..','Client');
 
 console.log("Serveur prêt");
 
+
+io.on('connection', (socket) => {
+    console.log('Client connecté');
+
+    // Émettre un message au client
+    socket.emit('message', 'Bienvenue sur le serveur Socket.IO');
+
+    // Écouter les messages du client
+    socket.on('clientMessage', (data) => {
+        console.log('Message du client:', data);
+        socket.emit('message', 'Message reçu par le serveur');
+    });
+
+    socket.on('disconnect', () => {
+        console.log('Client déconnecté');
+    });
+});
+
+
 app.get('/', function (req:any, response:any) {
     response.sendFile(path.resolve(clientDistDir,'index.html'));
 });
@@ -32,5 +50,5 @@ app.get('/src', function(req:any, response:any) {
     response.sendFile('./'+req.params.nom, {root: rootDir});
 }); */
 
-app.use('/dist/Client', express.static(path.resolve(rootDir,'..','Client'))); 
+//app.use('/dist/Client', express.static(path.resolve(rootDir,'..','Client'))); 
 app.use('/src/Client', express.static(path.resolve(rootDir,'..','..','src','Client'))); 
