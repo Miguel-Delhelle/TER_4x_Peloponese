@@ -5,15 +5,17 @@ import http from 'http';
 import { Server } from "socket.io";
 import { fileURLToPath } from 'url';
 const app = express();
-app.listen(8888);
 app.use(cors());
 app.use(express.json());
 const httpServer = http.createServer(app);
-const io = new Server(httpServer);
+const io = new Server(httpServer, {
+    cors: {
+        origin: '*',
+    }
+});
 const __fileName = fileURLToPath(import.meta.url);
 const rootDir = path.dirname(__fileName);
 const clientDistDir = path.resolve(rootDir, '..', 'Client');
-console.log("Serveur prêt");
 io.on('connection', (socket) => {
     console.log('Client connecté');
     // Émettre un message au client
@@ -39,4 +41,7 @@ app.get('/src', function(req:any, response:any) {
 }); */
 //app.use('/dist/Client', express.static(path.resolve(rootDir,'..','Client'))); 
 app.use('/src/Client', express.static(path.resolve(rootDir, '..', '..', 'src', 'Client')));
+httpServer.listen(8888, () => {
+    console.log("Serveur prêt");
+});
 //# sourceMappingURL=server.js.map

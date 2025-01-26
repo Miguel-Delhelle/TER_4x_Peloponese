@@ -19,14 +19,19 @@ export default {
   },
 
   resolve: {
-    extensions: ['.ts','.js'],           // Extensions à résoudre
+    extensions: ['.tsx','.ts','.js'],           // Extensions à résoudre
     //modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    alias: {'socket.io-client': path.resolve(__dirname, 'node_modules/socket.io-client')},
+    alias: {
+      'socket.io-client': path.resolve(__dirname, 'node_modules/socket.io-client')},
   },
 
   output: {
     filename: 'bundle.js',               // Le fichier final généré
     path: path.resolve(__dirname, 'dist', 'Client'), // Le répertoire de sortie
+  },
+
+  devServer: {
+    static: './dist/Server/server.js'
   },
 
   devtool:'source-map',

@@ -13,7 +13,7 @@
     "dev2": "ts-node src/**/*.ts",
     "start": "node ./dist/Server/server.js",
     "devNodeMon": "nodemon --watch src --exec ts-node src/**/*.ts",
-    "dev": "webpack --watch --config webpack.config.js",
+    "dev": "webpack serve --watch --config webpack.config.js",
     "build": "cp ./src/Client/*.html ./dist/Client/ && cp ./src/Client/*.css ./dist/Client/ && tsc --project tsconfig.server.json && npx webpack --config webpack.config.js && node dist/Server/server.js"
   },
   "repository": {
@@ -38,12 +38,15 @@
   "homepage": "https://github.com/Miguel-Delhelle/TER_4x_Peloponese#readme",
   "dependencies": {
     "@types/node": "^22.10.10",
+    "bufferutil": "^4.0.9",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "nodemon": "^3.1.9",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "utf-8-validate": "^6.0.5",
+    "webpack-dev-server": "^5.2.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
