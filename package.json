@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Wargame de fou",
   "type": "module",
-  "main": "/bin/server.js",
+  "main": "/dist/Server/server.js",
   "directories": {
     "doc": "doc",
     "test": "test"
@@ -12,8 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev2": "ts-node src/*.ts",
     "dev": "nodemon --watch src --exec ts-node src/*.ts",
-    "start": "tsc && node dist/server.js",
-    "build": "tsc"
+    "start": "tsc --project tsconfig.server.json && npx webpack --config webpack.config.js && node dist/Server/server.js"
   },
   "repository": {
     "type": "git",
@@ -46,6 +45,9 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "ts-node": "^10.9.2"
+    "ts-loader": "^9.5.2",
+    "ts-node": "^10.9.2",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1"
   }
 }
