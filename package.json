@@ -2,6 +2,7 @@
   "name": "ter_4x_peloponese",
   "version": "1.0.0",
   "description": "Wargame de fou",
+  "type": "module",
   "main": "/bin/server.js",
   "directories": {
     "doc": "doc",
@@ -36,6 +37,7 @@
   "homepage": "https://github.com/Miguel-Delhelle/TER_4x_Peloponese#readme",
   "dependencies": {
     "@types/node": "^22.10.10",
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "nodemon": "^3.1.9",
     "socket.io": "^4.8.1",
@@ -43,6 +45,7 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "ts-node": "^10.9.2"
   }
 }
