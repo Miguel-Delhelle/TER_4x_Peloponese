@@ -20,7 +20,7 @@ export default {
 
   resolve: {
     extensions: ['.tsx','.ts','.js'],           // Extensions à résoudre
-    //modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       'socket.io-client': path.resolve(__dirname, 'node_modules/socket.io-client')},
   },
@@ -28,6 +28,10 @@ export default {
   output: {
     filename: 'bundle.js',               // Le fichier final généré
     path: path.resolve(__dirname, 'dist', 'Client'), // Le répertoire de sortie
+    libraryTarget: 'module', // Utiliser les modules ES6
+  },
+  experiments: {
+    outputModule: true, // Activer les modules ES6 dans la sortie
   },
 
   devServer: {
@@ -35,6 +39,6 @@ export default {
   },
 
   devtool:'source-map',
-  target: 'node',
+  target: 'web',
   mode: 'development',                    // Mode développement
 };
