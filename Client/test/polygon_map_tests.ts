@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { polygonMap } from './../src/Map_GenerativeFunctions';
+import { polygonMap } from '../src/Map/Map_GenerativeFunctions';
 
 type TestParams = {
   fromPt: [number, number];

@@ -3,7 +3,10 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { User } from './User';
 import * as d3 from 'd3';
-import * as map from './Map_GenerativeFunctions';
+import { listTiles } from './Map/Map_GenerativeFunctions';
+import * as map from './Map/Map_GenerativeFunctions';
+import { Unit } from './Entity/Unity/Unit';
+import { Tiles } from './Map/Tiles';
 
 
 bootstrapApplication(AppComponent, appConfig)
@@ -29,5 +32,12 @@ function main(){
     
     clientTest.listenForMessages();
     clientTest.sendMessage("Bien connectée");
+
+    let uniteTest:Unit = new Unit();
+
+    for (let obj of listTiles){
+      console.log(obj);
+    }
+
 }
 

@@ -1,5 +1,8 @@
 import * as d3 from "d3";
-import * as mapMath from "./Map_MathsFunctions";
+import * as mapMath from "../Common/Map_MathsFunctions";
+import { Tiles } from "./Tiles";
+
+export var listTiles:Array<Tiles> = new Array<Tiles>(); 
 
 export function generateSquareMatrix(
   svg: any,
@@ -53,21 +56,32 @@ export function polygonMap(
   for (let y=0 ; y<nbTilesY ; y++) {
     var centerPt: [number, number] = mapMath.polar(fromPt, Math.PI/2., 2*innerCircleRadius*y) ;
     for (let x=0 ; x<nbTilesX ; x++) {
-      let polygonPts: [number, number][] = mapMath.polygonCircumscribing(centerPt, innerCircleRadius, nbVertex) ;
+      /*let polygonPts: [number, number][] = mapMath.polygonCircumscribing(centerPt, innerCircleRadius, nbVertex) ;
       console.log(`Polygon x=${x}|y=${y} :`) ;
       for (let i=0 ; i<polygonPts.length ; i++) {
         console.log(`   Pt_${i} = ${polygonPts[i]}`) ;
       }
       let path: string = polygonPtsToString(polygonPts) ;
-      console.log(`   -> path: ${path}`) ;
-      centerPt = mapMath.polar(centerPt, (x%2==1)?anglePolygon:-anglePolygon, 2*innerCircleRadius) ;
-      svg.append("path")
+      console.log(`   -> path: ${path}`) ;*/
+      let tmpTiles:Tiles = new Tiles(y,x,centerPt,innerCircleRadius,nbVertex);
+      tmpTiles.appendTileOn(svg);
+      listTiles.push(tmpTiles);
+
+       /*let g:any = svg.append('g')
+        .attr("id", "t"+x+"."+y)!;
+      g.append("path")
         .attr("class", "map tile")
-        .attr("id", "t"+x+","+y)
         .attr("d", path)
         .attr("fill", "none")
         .attr("stroke", "black")
         .attr("stroke-width","1");
+      g.append("text")
+        .attr("x",centerPt[0])
+        .attr("y",centerPt[1])
+        .style("font","5px times")
+        .style("text-anchor","middle")
+        .text(x+"."+y); */
+      centerPt = mapMath.polar(centerPt, (x%2==1)?anglePolygon:-anglePolygon, 2*innerCircleRadius) ;
     }
   }
 }
