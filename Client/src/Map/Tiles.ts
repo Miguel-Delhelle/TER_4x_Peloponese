@@ -5,13 +5,18 @@ export class Tiles{
     private id:string = "0.0"; // from x/y
     private x:number = 0;
     private y:number = 0;
+    private centerPt:[number,number];
+
+    // A factoriser -- class TilePolygone 
+
     private path:string; // from polygonPts
     private polygonPts:Array<[number,number]> = new Array<[number,number]>();
-    private centerPt:[number,number];
     private innerCircleRadius:number;
     private outerCircleRadius:number = 0;
     private nbVertex:number; // from
     private angleBetweenAxe:number;
+
+    // A factoriser -- class TileDocument
     private htmlOwner:d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
     private htmlGroup:d3.Selection<SVGGElement, unknown, HTMLElement, undefined>;
     private htmlPath!:d3.Selection<SVGPathElement, unknown, HTMLElement, undefined>;
