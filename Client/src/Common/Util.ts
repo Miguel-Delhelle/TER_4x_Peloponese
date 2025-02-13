@@ -1,0 +1,2 @@
+// Fichier crée pour y ajouter toutes les fonctions, qui ne pourrait trouver leurs place dans un seul fichier
+// On évite de crée trop de fonctions dans le main hormis, ceux vraiment propre aux main, pour ne pas surcharger la page

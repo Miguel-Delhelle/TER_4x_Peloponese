@@ -63,8 +63,7 @@ export function polygonMap(
       }
       let path: string = polygonPtsToString(polygonPts) ;
       console.log(`   -> path: ${path}`) ;*/
-      let tmpTiles:Tiles = new Tiles(y,x,centerPt,innerCircleRadius,nbVertex);
-      tmpTiles.appendTileOn(svg);
+      let tmpTiles:Tiles = new Tiles(svg,y,x,centerPt,innerCircleRadius,nbVertex);
       listTiles.push(tmpTiles);
 
        /*let g:any = svg.append('g')

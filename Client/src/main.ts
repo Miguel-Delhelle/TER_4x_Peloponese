@@ -7,6 +7,7 @@ import { listTiles } from './Map/Map_GenerativeFunctions';
 import * as map from './Map/Map_GenerativeFunctions';
 import { Unit } from './Entity/Unity/Unit';
 import { Tiles } from './Map/Tiles';
+//import * as utilGA from './Common/Util';
 
 
 bootstrapApplication(AppComponent, appConfig)
@@ -19,7 +20,7 @@ window.addEventListener("load",main);
 function main(){
     console.log("Coucou toi");
     let clientTest = new User();
-
+    var bodyElement = document.getElementById("body");
     
     const svg = d3.select("body")
       .append("svg")
@@ -27,7 +28,7 @@ function main(){
       .attr("height",3000);
     
     //map.helloWorld();
-    map.polygonMap(svg,[0,0],25,6,50,20);
+    map.polygonMap(svg,[10,50],25,6,60,60);
     
     
     clientTest.listenForMessages();
@@ -35,9 +36,9 @@ function main(){
 
     let uniteTest:Unit = new Unit();
 
-    for (let obj of listTiles){
-      console.log(obj);
-    }
+    //utilGA.exportToJson(listTiles,"listTile.json");
 
 }
+
+
 

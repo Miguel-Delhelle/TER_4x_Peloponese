@@ -14,11 +14,12 @@ export class Tiles{
     private angleBetweenAxe:number;
     private htmlOwner:any;
     private htmlGroup:any;
+
     /*
     private terrain_type:TerrainType;
     */
 
-    constructor(svg:any, row:number, col:number, centerPt:[number,number], innerCircleRadius:number, nbVertex:number){
+    public constructor(svg:any, row:number, col:number, centerPt:[number,number], innerCircleRadius:number, nbVertex:number){
         this.y = row;
         this.x = col;
         this.id = this.initID();
@@ -27,9 +28,11 @@ export class Tiles{
         this.nbVertex = nbVertex;
         this.angleBetweenAxe = this.initAngleBetweenAxe();
         this.generatePtsFromInnerCircle();
-        this.path = this.generatePathFromPts();
         this.htmlOwner = svg;
         this.htmlGroup = this.createGroup();
+        this.path = this.generatePathFromPts();
+        this.appendTileOn();
+
     }
 
 
@@ -73,7 +76,7 @@ export class Tiles{
         return this.htmlOwner.append("g")
             .attr("id", this._id);
     }
-
+/*
     private addHTMLElement(
         parent:any,
         element:string,
@@ -85,7 +88,7 @@ export class Tiles{
         if (style.length>0) {child.style(style);}
         if (text.length>0) {child.text(text);}
     }
-
+*/
     private generatePtsFromInnerCircle():void {
       const angleMidAxe: number = this.angleBetweenAxe / 2. ;
       const angleStart: number = angleMidAxe + Math.PI/2 ;
@@ -96,8 +99,7 @@ export class Tiles{
     }
 
     public appendTileOn(){
-        this.addHTMLElement(this.htmlGroup,"path",)
-        /*
+        //this.addHTMLElement(this.htmlGroup,"path",)
         this.htmlGroup.append("path")
             .attr("class", "map tile")
             .attr("d", this._path)
@@ -110,7 +112,6 @@ export class Tiles{
             .style("font","5px times")
             .style("text-anchor","middle")
             .text(this._x+"."+this._y);
-        */
     }
     public putInCenter(){
 
