@@ -12,14 +12,17 @@ export class Tiles{
     private outerCircleRadius:number = 0;
     private nbVertex:number; // from
     private angleBetweenAxe:number;
-    private htmlOwner:any;
-    private htmlGroup:any;
+    private htmlOwner:d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
+    private htmlGroup:d3.Selection<SVGGElement, unknown, HTMLElement, undefined>;
+    private htmlPath!:d3.Selection<SVGPathElement, unknown, HTMLElement, undefined>;
 
     /*
     private terrain_type:TerrainType;
     */
 
-    public constructor(svg:any, row:number, col:number, centerPt:[number,number], innerCircleRadius:number, nbVertex:number){
+    public constructor(svg:d3.Selection<SVGSVGElement, unknown, HTMLElement, any>,
+         row:number, col:number, centerPt:[number,number], innerCircleRadius:number, nbVertex:number){
+
         this.y = row;
         this.x = col;
         this.id = this.initID();
@@ -32,6 +35,7 @@ export class Tiles{
         this.htmlGroup = this.createGroup();
         this.path = this.generatePathFromPts();
         this.appendTileOn();
+        this.initListener();
 
     }
 
@@ -72,8 +76,9 @@ export class Tiles{
         }
     }
 
-    private createGroup():HTMLElement {
+    private createGroup():d3.Selection<SVGGElement, unknown, HTMLElement, undefined> {
         return this.htmlOwner.append("g")
+            //.attr("class", "map tile")
             .attr("id", this._id);
     }
 /*
@@ -100,10 +105,10 @@ export class Tiles{
 
     public appendTileOn(){
         //this.addHTMLElement(this.htmlGroup,"path",)
-        this.htmlGroup.append("path")
+        this.htmlPath = this.htmlGroup.append("path")
             .attr("class", "map tile")
             .attr("d", this._path)
-            .attr("fill", "none")
+            .attr("fill", "grey")
             .attr("stroke", "black")
             .attr("stroke-width","1");
         this.htmlGroup.append("text")
@@ -113,6 +118,16 @@ export class Tiles{
             .style("text-anchor","middle")
             .text(this._x+"."+this._y);
     }
+
+    private getDocument():HTMLElement{
+        
+        return document.getElementById(this._id)!;
+    }
+
+    private initListener(){
+        this.getDocument().addEventListener("click", e => console.log("j'ai cliqué sur ma Tile "+this._id+" youhou"));
+    }
+
     public putInCenter(){
 
     }

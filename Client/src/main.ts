@@ -7,6 +7,7 @@ import { listTiles } from './Map/Map_GenerativeFunctions';
 import * as map from './Map/Map_GenerativeFunctions';
 import { Unit } from './Entity/Unity/Unit';
 import { Tiles } from './Map/Tiles';
+import { JsonpClientBackend } from '@angular/common/http';
 //import * as utilGA from './Common/Util';
 
 
