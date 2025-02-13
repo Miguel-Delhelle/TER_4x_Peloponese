@@ -7,7 +7,8 @@ export class Tiles{
     private y:number = 0;
     private centerPt:[number,number];
 
-    // A factoriser -- class TilePolygone 
+    
+    // A factoriser -- class TilePolygone
 
     private path:string; // from polygonPts
     private polygonPts:Array<[number,number]> = new Array<[number,number]>();
@@ -16,17 +17,24 @@ export class Tiles{
     private nbVertex:number; // from
     private angleBetweenAxe:number;
 
-    // A factoriser -- class TileDocument
-    private htmlOwner:d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
-    private htmlGroup:d3.Selection<SVGGElement, unknown, HTMLElement, undefined>;
-    private htmlPath!:d3.Selection<SVGPathElement, unknown, HTMLElement, undefined>;
+    // A factoriser -- class TileD3
+    private htmlOwner: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
+    private htmlGroup: d3.Selection<SVGGElement, unknown, HTMLElement, undefined>;
+    private htmlPath!: d3.Selection<SVGPathElement, unknown, HTMLElement, undefined>;
+
+
+    private domElement: HTMLElement;
 
     /*
     private terrain_type:TerrainType;
     */
 
     public constructor(svg:d3.Selection<SVGSVGElement, unknown, HTMLElement, any>,
-         row:number, col:number, centerPt:[number,number], innerCircleRadius:number, nbVertex:number){
+        row:number,
+        col:number, 
+        centerPt:[number,number],
+        innerCircleRadius:number,
+        nbVertex:number){
 
         this.y = row;
         this.x = col;
@@ -41,6 +49,7 @@ export class Tiles{
         this.path = this.generatePathFromPts();
         this.appendTileOn();
         this.initListener();
+        this.domElement = this.getDocument();
 
     }
 
@@ -83,7 +92,7 @@ export class Tiles{
 
     private createGroup():d3.Selection<SVGGElement, unknown, HTMLElement, undefined> {
         return this.htmlOwner.append("g")
-            //.attr("class", "map tile")
+            .attr("class", "map tile")
             .attr("id", this._id);
     }
 /*
@@ -111,7 +120,7 @@ export class Tiles{
     public appendTileOn(){
         //this.addHTMLElement(this.htmlGroup,"path",)
         this.htmlPath = this.htmlGroup.append("path")
-            .attr("class", "map tile")
+            .attr("class", "map path")
             .attr("d", this._path)
             .attr("fill", "grey")
             .attr("stroke", "black")
@@ -124,13 +133,17 @@ export class Tiles{
             .text(this._x+"."+this._y);
     }
 
-    private getDocument():HTMLElement{
-        
+    public getDocument():HTMLElement{
+
         return document.getElementById(this._id)!;
     }
 
     private initListener(){
-        this.getDocument().addEventListener("click", e => console.log("j'ai cliqué sur ma Tile "+this._id+" youhou"));
+        this.getDocument().addEventListener("click", e => {
+            
+            console.log("j'ai cliqué sur ma Tile "+this._id+" youhou");
+        }
+        )
     }
 
     public putInCenter(){
