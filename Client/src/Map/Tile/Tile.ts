@@ -51,6 +51,7 @@ export class Tile {
 //       +----------------------------------------------{ Derived }----------------------------------------------+     //
   private _d3Element!: d3.Selection<SVGGElement, unknown, HTMLElement, undefined>;
   private _id!: string;
+  private _docHtml:HTMLElement;
 //       +----------------------------------------------{ Static }-----------------------------------------------+     //
   private static readonly $class: string = "tile";
 
@@ -72,6 +73,7 @@ export class Tile {
     this.setID();
     this.createSVGElement(svg);
     this.svgPolygon = new TileBorder(this, points);
+    this._docHtml = this.getHTMLDoc();
   }
 
 /*
@@ -109,8 +111,21 @@ export class Tile {
 
     let d3Element: d3.Selection<SVGElement,unknown,HTMLElement,undefined> = this.$d3Element.append(d3ElementName);
     for (let att in attributes) {
-      d3Element.attr(att,attributes[att]);
+      d3Element.attr(att,attributes[att]).attr("x",this.centerPt.$x).attr("y",this.centerPt.$y);
     }
     return d3Element;
+  }
+
+  public getHTMLDoc():HTMLElement{
+    let element = document.getElementById(this.$id);
+    if (element == null){
+      throw "Element inexistant"
+    }
+
+    return element;
+  }
+
+  public appendChild(elementHtml:HTMLElement){
+    this._docHtml.appendChild(elementHtml);
   }
 }

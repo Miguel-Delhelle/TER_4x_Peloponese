@@ -2,7 +2,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { User } from './User';
-import * as d3 from 'd3';
+import * as d3 from "d3";
 import { Unit } from './Entity/Unity/Unit';
 import { Map } from './Map/Map';
 import { Tile } from './Map/Tile/Tile';
@@ -15,7 +15,7 @@ import { polar } from './Common/Map_MathsFunctions';
 
 
 bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+  .catch((err:any) => console.error(err));
 
 
 window.addEventListener("load",main);
@@ -41,7 +41,8 @@ function main(){
   */
   var map: Map = new Map("body","SuperMap",undefined,10,10,75,6); console.log(map);
   mapTable = map.$mapTable;
-  //let uniteTest:Unit = new Unit();
+  let uniteTest:Unit = new Unit();
+  uniteTest.appendOnTile(1,1);
 
   //utilGA.exportToJson(listTiles,"listTile.json");
   document.documentElement.setAttribute("player","1");
