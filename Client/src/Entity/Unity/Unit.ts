@@ -4,13 +4,13 @@ export class Unit extends Entity {
     
     private nomUnite:string;
 
-    constructor(){
-        super("1");
-        this.nomUnite = "NOM_DE_MON_UNITE";
+    constructor(nomUnite:string){
+        super(nomUnite);
+        this.nomUnite = nomUnite;
         this.editHtml();
     }
 
-    getNomUnite(){
+    public getNomUnite(){
         return this.nomUnite;
     }
 

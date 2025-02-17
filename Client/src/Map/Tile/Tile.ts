@@ -115,6 +115,14 @@ export class Tile {
     }
     return d3Element;
   }
+  public appendTextD3Element(d3ElementName: string, attributes: string):d3.Selection<SVGElement,unknown,HTMLElement,undefined> {
+
+    let d3Element: d3.Selection<SVGElement,unknown,HTMLElement,undefined> = this.$d3Element.append(d3ElementName);
+      d3Element.text(attributes).attr("x",this.centerPt.$x).attr("y",this.centerPt.$y);
+    
+    return d3Element;
+
+  }
 
   public getHTMLDoc():HTMLElement{
     let element = document.getElementById(this.$id);

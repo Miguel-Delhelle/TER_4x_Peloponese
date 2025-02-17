@@ -15,7 +15,7 @@ export class Entity{
 
   public appendOnTile(tile_row:number, tile_col:number):void{
     let tile = this.foundTile(tile_row,tile_col);
-    tile.appendD3Element("text",{text:this.id})
+    tile.appendTextD3Element("text",this.id)
     
     //let element = this.getElementHtml();
 
