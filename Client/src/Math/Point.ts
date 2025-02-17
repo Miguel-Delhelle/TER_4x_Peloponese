@@ -36,15 +36,15 @@ export class Point {
 * |  |                                            ATTRIBUTES DEFINITION                                            |  | *
 * +--+-------------------------------------------------------------------------------------------------------------+--+ *
 */
-  private x: number = 0;
-  private y: number = 0;
+  private x: number;
+  private y: number;
 
 /*
 * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
 * |  |                                           CONSTRUCTORS DEFINITION                                           |  | *
 * +--+-------------------------------------------------------------------------------------------------------------+--+ *
 */
-  public constructor($x: number , $y: number ) {
+  public constructor($x: number = 0, $y: number = 0) {
     this.x = $x;
     this.y = $y;
   }
@@ -78,8 +78,8 @@ export class Point {
   }
 
   // Calculate the distance between 'this' Point and 'that' Point coordinates
-  public distanceFrom(that: Point): number {
-    return util.round(Math.sqrt(Math.pow(this.Dx(that), 2) + Math.pow(this.Dy(that), 2)), 1E6);
+  public distanceFrom(that: Point, fuzz: number = 1E6): number {
+    return util.round(Math.sqrt(Math.pow(this.Dx(that), 2) + Math.pow(this.Dy(that), 2)), fuzz);
   }
 
   // Calculate the angle between the X(0+) axis and the segment going from 'this' Point and 'that' Point coordinates
@@ -89,18 +89,18 @@ export class Point {
 
 //       +-------------------------------{ Create a new Point  from 'this' Point }-------------------------------+     //
   // Create a new Point based on vector polar coordinates calculations given an origin Point('this'), an 'angle' and a 'distance'
-  public ptPolar(angle: number, distance: number): Point {
+  public ptPolar(angle: number, distance: number, fuzz: number = 1E6): Point {
     return new Point(
-      util.round(this.$x + distance + Math.cos(angle), 1E6),
-      util.round(this.$y + distance + Math.sin(angle), 1E6),
+      util.round(this.$x + distance * Math.cos(angle), fuzz),
+      util.round(this.$y + distance * Math.sin(angle), fuzz),
     );
   }
 
   // Create a new Point based on vector absolute coordinates calculations given an origin Point('this'), an Delta-X and Delta-Y
-  public ptAbsolute(Dx: number, Dy: number): Point {
+  public ptAbsolute(Dx: number, Dy: number, fuzz: number = 1E6): Point {
     return new Point(
-      util.round(this.$x + Dx, 1E6),
-      util.round(this.$y + Dy, 1E6),
+      util.round(this.$x + Dx, fuzz),
+      util.round(this.$y + Dy, fuzz),
     )
   }
 

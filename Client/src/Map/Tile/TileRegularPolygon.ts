@@ -1,4 +1,5 @@
-import { Point } from '../Math/Point';
+import { Point } from '../../Math/Point';
+import { Tile } from './Tile';
 /*
 * → Author     : FLeMMe                                                                                                 *
 * → Created on : 2025/02/14                                                                                             *
@@ -26,23 +27,24 @@ export class TileRegularPolygon {
 * +--+-------------------------------------------------------------------------------------------------------------+--+ *
 */
 //       +--------------------------------------------{ Constructor }--------------------------------------------+     //
-  private centerPt!: Point;
   private nbVertex!: number;
   private innerCircleRadius!: number;
+  private centerPt!: Point;
 //       +----------------------------------------------{ Derived }----------------------------------------------+     //
   private _angleBetweenAxe!: number;
   private _outerCircleRadius!: number;
   private _polygonPts: Point[] = new Array<Point>();
+  private _polygonStr!: string;
 
 /*
 * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
 * |  |                                           CONSTRUCTORS DEFINITION                                           |  | *
 * +--+-------------------------------------------------------------------------------------------------------------+--+ *
 */
-  public constructor($fromCenterPt: Point, $nbVertex: number, $innerCircleRadius: number) {
-    this.centerPt = $fromCenterPt;
-    this.nbVertex = $nbVertex;
-    this.innerCircleRadius = $innerCircleRadius;
+  public constructor(fromCenterPt: Point, nbVertex: number, innerCircleRadius: number) {
+    this.nbVertex = nbVertex;
+    this.innerCircleRadius = innerCircleRadius;
+    this.centerPt = fromCenterPt;
     this.redraw(0);
   }
 
@@ -51,30 +53,53 @@ export class TileRegularPolygon {
 * |  |                                            ACCESSORS  DEFINITION                                            |  | *
 * +--+-------------------------------------------------------------------------------------------------------------+--+ *
 */
-//       +----------------------------------------------{ centerPt }---------------------------------------------+     //
-	public get $centerPt(): Point {return this.centerPt;}
-	public set $centerPt(value: Point) {
-    this.centerPt = value;
-    this.redraw(2);
-  }
 //       +---------------------------------------------{ nbVertex }----------------------------------------------+     //
 	public get $nbVertex(): number  {return this.nbVertex;}
 	public set $nbVertex(value: number ) {
-    this.nbVertex = value;
+    this.nbVertex = value>2?value:4;
     this.redraw(0);
   }
+
 //       +-----------------------------------------{ innerCircleRadius }-----------------------------------------+     //
 	public get $innerCircleRadius(): number  {return this.innerCircleRadius;}
 	public set $innerCircleRadius(value: number ) {
     this.innerCircleRadius = value;
     this.redraw(1);
   }
+
+//       +----------------------------------------------{ centerPt }---------------------------------------------+     //
+  public get $centerPt(): Point {return this.centerPt;}
+  public set $centerPt(value: Point) {
+    this.centerPt = value;
+    this.redraw(2);
+  }
+
 //       +------------------------------------------{ angleBetweenAxe }------------------------------------------+     //
 	public get $angleBetweenAxe(): number  {return this._angleBetweenAxe;}
-	private setAngleBetweenAxe(): void {this._angleBetweenAxe = 2*Math.PI / this.$nbVertex;}
+  public static getAngleBetweenAxe(nbVertex: number): number {
+    return ((2*Math.PI) / (nbVertex>2?nbVertex:3));
+  }
+	private setAngleBetweenAxe(nbVertex: number = this.$nbVertex): void {
+    this._angleBetweenAxe = TileRegularPolygon.getAngleBetweenAxe(nbVertex);
+  }
+
 //       +-----------------------------------------{ outerCircleRadius }-----------------------------------------+     //
 	public get $outerCircleRadius(): number  {return this._outerCircleRadius;}
-	private setOuterCircleRadius(): void {this._outerCircleRadius = this.$innerCircleRadius / Math.cos(this.$angleBetweenAxe / 2.);}
+  public static getOuterCircleRadius(
+    nbVertex: number,
+    innerCircleRadius: number,
+    angleBetweenAxe: number = TileRegularPolygon.getAngleBetweenAxe(nbVertex)
+  ): number {
+    return ((innerCircleRadius>0?innerCircleRadius:1) / (Math.cos(angleBetweenAxe / 2.)));
+  }
+	private setOuterCircleRadius(
+    nbVertex: number = this.$nbVertex,
+    innerCircleRadius: number = this.$innerCircleRadius,
+    angleBetweenAxe: number = this.$angleBetweenAxe
+  ): void {
+    this._outerCircleRadius = TileRegularPolygon.getOuterCircleRadius(nbVertex, innerCircleRadius, angleBetweenAxe);
+  }
+
 //       +--------------------------------------------{ polygonPts }---------------------------------------------+     //
 	public get $polygonPts(): Point[]  {return this._polygonPts;}
 	private setPolygonPts(): void {
@@ -84,25 +109,51 @@ export class TileRegularPolygon {
     }
   }
 
-/*
+//       +--------------------------------------------{ polygonStr }---------------------------------------------+     //
+  public get $polygonStr(): string  {return this._polygonStr;}
+  public static getPolygonStr(polygonPts: Point[], centerPt: Point = new Point(0,0)): string {
+    let str: string = "";
+    for (let pt of polygonPts) {str += `${pt.$x+centerPt.$x},${pt.$y+centerPt.$y} `;}
+    return str.trimEnd();
+  }
+  private setPolygonStr(): void {this._polygonStr = TileRegularPolygon.getPolygonStr(this.$polygonPts);}
+
+  /*
 * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
 * |  |                                             METHODS  DEFINITION                                             |  | *
 * +--+-------------------------------------------------------------------------------------------------------------+--+ *
 */
 
-  public redraw(flag: number): void {
+  private redraw(flag: number): void {
     flag = Math.abs(Math.floor(flag)%3);
-    if (flag==0) {this.setAngleBetweenAxe();this.setOuterCircleRadius();this.setPolygonPts();}
-    else if (flag==1) {this.setOuterCircleRadius();this.setPolygonPts();}
-    else if (flag==2) {this.setPolygonPts();}
+    if (flag==0) {this.setAngleBetweenAxe();this.setOuterCircleRadius();this.setPolygonPts();this.setPolygonStr()}
+    else if (flag==1) {this.setOuterCircleRadius();this.setPolygonPts();this.setPolygonStr();}
+    else if (flag==2) {this.setPolygonPts();this.setPolygonStr();}
   }
 
   public distanceFrom(that: TileRegularPolygon): number {
     return this.$centerPt.distanceFrom(that.$centerPt);
   }
 
+  public static distanceFrom($this: TileRegularPolygon, $that: TileRegularPolygon): number {
+    return $this.$centerPt.distanceFrom($that.$centerPt);
+  }
+
   public angleFrom(that: TileRegularPolygon): number {
     return this.$centerPt.angleFrom(that.$centerPt);
+  }
+
+  public static angleFrom($this: TileRegularPolygon, $that: TileRegularPolygon): number {
+    return $this.$centerPt.distanceFrom($that.$centerPt);
+  }
+
+  public static getInRadFromOutDiam(nbVertex: number, outerCircleDiameter: number): number {
+    let outerCircleRadius: number = Math.abs(outerCircleDiameter) / 2.;
+    return (outerCircleRadius * Math.cos(TileRegularPolygon.getAngleBetweenAxe(nbVertex)/2.));
+  }
+
+  public copy(centerPt: Point = this.$centerPt): TileRegularPolygon {
+    return new TileRegularPolygon(centerPt, this.$nbVertex, this.$innerCircleRadius);
   }
 
 }

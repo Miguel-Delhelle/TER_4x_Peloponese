@@ -1,8 +1,8 @@
 import * as d3 from "d3";
 import * as mapMath from "../Common/Map_MathsFunctions";
-import { Tiles } from "./Tiles";
+import { Tile } from "./Tile/Tile";
 
-export var listTiles:Array<Tiles> = new Array<Tiles>(); 
+export var listTiles:Array<Tile> = new Array<Tile>(); 
 
 export function generateSquareMatrix(
   svg: any,
@@ -63,7 +63,7 @@ export function polygonMap(
       }
       let path: string = polygonPtsToString(polygonPts) ;
       console.log(`   -> path: ${path}`) ;*/
-      let tmpTiles:Tiles = new Tiles(svg,y,x,centerPt,innerCircleRadius,nbVertex);
+      let tmpTiles:Tile = new Tile(svg,y,x,centerPt,innerCircleRadius,nbVertex);
       listTiles.push(tmpTiles);
 
        /*let g:any = svg.append('g')

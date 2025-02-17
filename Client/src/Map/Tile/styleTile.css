@@ -1,0 +1,125 @@
+/*
+ * 'clr' -> Color
+ * 'bgc' -> BackGround Color
+ * 'bgi' -> BackGround Image
+ * 'ftc' -> FonT Color
+ * 'fth' -> FonT Height
+ * 'fts' -> FonT Style
+ * 'fte' -> FonT Effect
+ * 'eth' -> ElemenT Height
+ * 'etw' -> ElemenT Width
+ * 'ebc' -> Element Border Color
+ * 'ebr' -> Element Border Radius
+ * 'ebw' -> Element Border Width
+ * 'bsc' -> Box Shadow Color
+ * 'bsh' -> Box Shadow Horizontal offset
+ * 'bsv' -> Box Shadow Vertical offset
+ * 'bsb' -> Box Shadow Blur
+ * 'bss' -> Box Shadow Spread
+ * 'mgg' -> MarGin General
+ * 'mgh' -> MarGin Horizontal
+ * 'mgv' -> MarGin Vertical
+ * 'pdg' -> PadDing General
+ * 'pdh' -> PadDing Horizontal
+ * 'pdv' -> PadDing Vertical
+*/
+:root {
+  /*       +-----------------------------------------{ 'clr' -> Color }------------------------------------------+     */
+  /*--clr-:; /* expected value -> ColorName, rgb(), rgba() gradient(), ... */
+  --clr-light-h: 0;
+  --clr-light-s: 0%;
+  --clr-light-l: 40%;
+  --clr-light-a: 0.8;
+  --clr-dark-h: var(--clr-light-h);
+  --clr-dark-s: var(--clr-light-s);
+  --clr-dark-l: calc(var(--clr-light-l) * 0.6);
+  --clr-dark-a: calc(var(--clr-light-a) + 0.1);
+  /*       +------------------------------------{ 'bgc' -> BackGround Color }------------------------------------+     */
+  /*--bgc-:; /* expected value -> ColorName, rgb(), rgba() gradient(), ... */
+  --bgc-tile-fill-hsl: hsl(var(--clr-light-h),var(--clr-light-s),var(--clr-light-l));
+  --bgc-tile-fill-hover-hsl: hsl(var(--clr-dark-h),var(--clr-dark-s),var(--clr-dark-l));
+  --bgc-tile-fill: hsla(var(--bgc-tile-fill-hsl),var(--clr-light-a));
+  --bgc-tile-fill-hover: hsla(var(--bgc-tile-fill-hover-hsl),var(--clr-dark-a));
+  /*       +------------------------------------{ 'bgi' -> BackGround Image }------------------------------------+     */
+  /*--bgi-:; /* expected value -> url() */
+  /*       +---------------------------------------{ 'ftc' -> FonT Color }---------------------------------------+     */
+  /*--ftc-:; /* expected value -> ColorName, rgb(), rgba() gradient(), ... */
+  /*       +--------------------------------------{ 'fth' -> FonT Height }---------------------------------------+     */
+  /*--fth-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +---------------------------------------{ 'fts' -> FonT Style }---------------------------------------+     */
+  /*--fts-:; /* expected value -> font-family or url() */
+  /*       +--------------------------------------{ 'fte' -> FonT Effect }---------------------------------------+     */
+  /*--fte-:; /* expected value -> font-weight, etc... */
+  /*       +-------------------------------------{ 'eth' -> ElemenT Height }-------------------------------------+     */
+  /*--eth-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +-------------------------------------{ 'etw' -> ElemenT Width }--------------------------------------+     */
+  /*--etw-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +----------------------------------{ 'ebc' -> Element Border Color }----------------------------------+     */
+  /*--ebc-:; /* expected value -> ColorName, rgb(), rgba() gradient(), ... */
+  --ebc-tile-border: rgb(31,31,31);
+  /*       +---------------------------------{ 'ebr' -> Element Border Radius }----------------------------------+     */
+  /*--ebr-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +----------------------------------{ 'ebw' -> Element Border Width }----------------------------------+     */
+  /*--ebw-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  --ebw-tile-border: 1px;
+  /*       +------------------------------------{ 'bsc' -> Box Shadow Color }------------------------------------+     */
+  /*--bsc-:; /* expected value -> ColorName, rgb(), rgba() gradient(), ... */
+  /*       +------------------------------{ 'bsh' -> Box Shadow Horizontal offset }------------------------------+     */
+  /*--bsh-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +-------------------------------{ 'bsv' -> Box Shadow Vertical offset }-------------------------------+     */
+  /*--bsv-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +------------------------------------{ 'bsb' -> Box Shadow Blur }-------------------------------------+     */
+  /*--bsb-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +-----------------------------------{ 'bss' -> Box Shadow Spread }------------------------------------+     */
+  /*--bss-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +-------------------------------------{ 'mgg' -> MarGin General }-------------------------------------+     */
+  /*--mgg-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +-----------------------------------{ 'mgh' -> MarGin Horizontal }------------------------------------+     */
+  /*--mgh-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +------------------------------------{ 'mgv' -> MarGin Vertical }-------------------------------------+     */
+  /*--mgv-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +------------------------------------{ 'pdg' -> PadDing General }-------------------------------------+     */
+  /*--pdg-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +-----------------------------------{ 'pdh' -> PadDing Horizontal }-----------------------------------+     */
+  /*--pdh-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+  /*       +------------------------------------{ 'pdv' -> PadDing Vertical }------------------------------------+     */
+  /*--pdv-:; /* expected value -> Integer or Float (px, %, rem, ...) */
+}
+
+[player="1"] {
+  --clr-light-h: 278;
+  --clr-light-s: 90%;
+  --clr-light-l: 50%;
+  /* -------- */
+}
+
+[player="2"] {
+  --clr-light-h: 100;
+  --clr-light-s: 75%;
+  --clr-light-l: 50%;
+  /* -------- */
+}
+
+[player="3"] {
+  --clr-light-h: 20;
+  --clr-light-s: 90%;
+  --clr-light-l: 60%;
+  /* -------- */
+}
+
+.tile.border {
+  fill: var(--bgc-tile-fill-hsl);
+  stroke: var(--ebc-tile-border);
+  stroke-width: var(--ebw-tile-border);
+}
+
+.tile:hover .tile.border {
+  cursor: pointer;
+  fill: var(--bgc-tile-fill-hover-hsl);
+  stroke-width: calc(var(--ebw-tile-border) * 2);
+}
+
+.map {
+  background-color: whitesmoke;
+  overflow: scroll;
+}
