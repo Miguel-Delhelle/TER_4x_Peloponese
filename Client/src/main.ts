@@ -41,7 +41,8 @@ function main(){
   */
   var map: Map = new Map("body","SuperMap",undefined,10,10,75,6); console.log(map);
   mapTable = map.$mapTable;
-  //let uniteTest:Unit = new Unit();
+  let uniteTest:Unit = new Unit();
+  uniteTest.appendOnTile(1,1);
 
   //utilGA.exportToJson(listTiles,"listTile.json");
   document.documentElement.setAttribute("player","1");

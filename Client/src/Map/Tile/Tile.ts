@@ -92,7 +92,7 @@ export class Tile {
       .attr("id", this.$id);
   }
   public get $id(): string {return this._id;}
-  private setID(): void {this._id = `${this.$row}.${this.$col}`;}
+  private setID(): void {this._id = `T${this.$row}_${this.$col}`;}
   public get $centerPt(): Point {return this.centerPt;}
   public set $centerPt(value: Point) {this.centerPt = value;}
 

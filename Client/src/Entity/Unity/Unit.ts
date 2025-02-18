@@ -4,7 +4,7 @@ export class Unit extends Entity {
     private nomUnite:string;
 
     constructor(){
-        super("1");
+        super("E1");
         this.nomUnite = "NOM_DE_MON_UNITE";
     }
 
