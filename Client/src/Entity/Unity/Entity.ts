@@ -1,20 +1,21 @@
 import { Tile } from "../../Map/Tile/Tile";
 import { mapTable } from "../../main";
+import * as d3 from "d3";
 
 export class Entity{
 
   private id:string;
+  private graphicEntity:HTMLElement
 
   constructor(id:string){
     this.id = id;
+    this.graphicEntity = document.createElement("svg");
   }
 
   public appendOnTile(tile_row:number, tile_col:number){
     let tile = this.foundTile(tile_row,tile_col);
     
-    let element = this.getElement();
-
-    tile.$d3Element.append(element);
+    d3.select(this.graphicEntity)
 
   }
 
