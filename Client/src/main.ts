@@ -45,7 +45,7 @@ function main(){
   uniteTest.appendOnTile(1,1);
 
   //utilGA.exportToJson(listTiles,"listTile.json");
-  document.documentElement.setAttribute("player","1");
+  //document.documentElement.setAttribute("player","1");
 }
 
 
