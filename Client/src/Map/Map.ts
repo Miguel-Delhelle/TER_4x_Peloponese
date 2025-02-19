@@ -123,6 +123,7 @@ export class Map {
     let owner: d3.Selection<d3.BaseType, unknown, HTMLElement, any> = d3.select(containerID);
     if (owner.empty()) {return;}
     this.$svgMap = owner.append("svg")
+      .attr("id",this.$name)
       .attr("class",Map.$class)
       .attr("width",this.$nbTilesX * this.$dimTile)
       .attr("height", this.$nbTilesY * this.$dimTile);

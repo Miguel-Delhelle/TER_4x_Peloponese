@@ -17,7 +17,7 @@ export class Entity{
 
   public appendOnTile(tile_row:number, tile_col:number){
     let tile = this.foundTile(tile_row,tile_col);
-    document.getElementById(tile.$id)!.appendChild(this.graphicEntity);
+    document.getElementById(map.$name)!.appendChild(this.graphicEntity);
     console.log(tile,this);
 
     d3.select(this.graphicEntity).attr("x",tile.$centerPt.$x).attr("y",tile.$centerPt.$y);
@@ -56,8 +56,8 @@ export class Entity{
 
     return element;
   }
-  private initListener():void{
-    
+
+  private initListener():void{  
     this.graphicEntity.addEventListener("click", e => {
       console.log("t'as cliqué sur l'entité "+this.id)
     }
