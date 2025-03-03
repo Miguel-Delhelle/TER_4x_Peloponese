@@ -72,6 +72,12 @@ export class Tile {
     this.setID();
     this.createSVGElement(svg);
     this.svgPolygon = new TileBorder(this, points);
+    this.$d3Element.append("text")
+      .attr("x",this.$centerPt.$x)
+      .attr("y",this.$centerPt.$y)
+      .style("font","5px times")
+      .style("text-anchor","middle")
+      .text(this.$id);
   }
 
 /*

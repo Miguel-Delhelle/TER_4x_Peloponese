@@ -94,14 +94,14 @@
 }
 
 [player="2"] {
-  --clr-light-h: 100;
+  --clr-light-h: 136;
   --clr-light-s: 75%;
   --clr-light-l: 50%;
   /* -------- */
 }
 
 [player="3"] {
-  --clr-light-h: 20;
+  --clr-light-h: 38;
   --clr-light-s: 90%;
   --clr-light-l: 60%;
   /* -------- */
@@ -117,6 +117,11 @@
   cursor: pointer;
   fill: var(--bgc-tile-fill-hover-hsl);
   stroke-width: calc(var(--ebw-tile-border) * 2);
+}
+
+.tile:not(:hover) .tile.border {
+  fill: var(--bgc-tile-fill-hsl);
+  transition: fill 0.2s;
 }
 
 .map {

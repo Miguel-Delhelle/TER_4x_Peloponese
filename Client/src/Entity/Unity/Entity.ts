@@ -20,7 +20,9 @@ export class Entity{
     document.getElementById(tile.$id)!.appendChild(this.graphicEntity);
     console.log(tile,this);
 
-    d3.select(this.graphicEntity).attr("x",tile.$centerPt.$x).attr("y",tile.$centerPt.$y);
+    d3.select(this.graphicEntity)
+    .attr("x",tile.$centerPt.$x+12)
+    .attr("y",tile.$centerPt.$y);
     //d3.select("#"+tile.$id).append("g").append(this.graphicEntity);
 
   }

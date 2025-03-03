@@ -40,14 +40,23 @@ function main(){
   console.log(TileRegularPolygon.getInRadFromOutDiam(4,75));
   console.log(TileRegularPolygon.getAngleBetweenAxe(4));
   */
-  map = new Map("body","SuperMap",undefined,10,10,75,6); console.log(map);
+  map = new Map("body","SuperMap",undefined,60,60,75,6); console.log(map);
   mapTable = map.$mapTable;
   let uniteTest:Unit = new Unit();
-  uniteTest.appendOnTile(1,1);
+  uniteTest.appendOnTile(9,9);
 
   //utilGA.exportToJson(listTiles,"listTile.json");
-  document.documentElement.setAttribute("player","1");
+  var isOn: boolean = false;
+  var pch: any;
+  bodyElement?.addEventListener("click",player);
+
+  function player(): void {
+    if (isOn) {isOn=false; pch=clearInterval(pch);}
+    else {isOn=true; pch=setInterval(changePlayer,1500);}
+  }
 }
 
-
-
+function changePlayer(): void {
+  let i: number = +document.documentElement.getAttribute("player")!;
+  document.documentElement.setAttribute("player",""+((i%3)+1));
+}
