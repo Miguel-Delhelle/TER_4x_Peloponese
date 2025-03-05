@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GatewayServer = void 0;
 const websockets_1 = require("@nestjs/websockets");
@@ -22,9 +25,9 @@ let GatewayServer = class GatewayServer {
     handleDisconnect(client) {
         console.log(`Client déconnecté: ${client.id}`);
     }
-    handleMessage(client, payload) {
-        console.log('Message reçu:', payload);
-        this.server.emit('message', payload);
+    handleMessage(message, client) {
+        console.log(`Message reçu de ${client.id}: ${message}`);
+        this.server.emit('message', { clientId: client.id, message });
     }
 };
 exports.GatewayServer = GatewayServer;
@@ -34,8 +37,10 @@ __decorate([
 ], GatewayServer.prototype, "server", void 0);
 __decorate([
     (0, websockets_1.SubscribeMessage)('message'),
+    __param(0, (0, websockets_1.MessageBody)()),
+    __param(1, (0, websockets_1.ConnectedSocket)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [socket_io_1.Socket, String]),
+    __metadata("design:paramtypes", [String, socket_io_1.Socket]),
     __metadata("design:returntype", void 0)
 ], GatewayServer.prototype, "handleMessage", null);
 exports.GatewayServer = GatewayServer = __decorate([

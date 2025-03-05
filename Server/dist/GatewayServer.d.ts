@@ -5,5 +5,5 @@ export declare class GatewayServer implements OnGatewayInit, OnGatewayConnection
     afterInit(server: Server): void;
     handleConnection(client: Socket): void;
     handleDisconnect(client: Socket): void;
-    handleMessage(client: Socket, payload: string): void;
+    handleMessage(message: string, client: Socket): void;
 }

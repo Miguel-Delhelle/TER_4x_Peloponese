@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import Game from "./components/Game.vue";
+import ChatComponent from "./components/ChatComponent.vue"
+
 </script>
 
 <template>
   <Game/>
+  <ChatComponent/>
 </template>
 
 <style scoped>
