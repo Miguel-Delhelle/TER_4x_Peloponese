@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Phaser from 'phaser';
 import {onMounted} from "vue";
 import skyImage from '@/assets/sky.png';
 import groundImage from '@/assets/platform.png';
@@ -6,7 +7,13 @@ import starImage from '@/assets/star.png';
 import bombImage from '@/assets/bomb.png';
 import dudeSprite from '@/assets/dude.png';
 
-    function preload () {
+class MainGame extends Phaser.Scene{
+
+    constructor(){
+        super('GreatGame');
+    }
+
+    preload () {
         this.load.image('sky', skyImage);
         this.load.image('ground', groundImage);
         this.load.image('star', starImage);
@@ -16,27 +23,26 @@ import dudeSprite from '@/assets/dude.png';
             { frameWidth: 32, frameHeight: 48 }
         );}
     
-    function create () {        
+    create () {        
         this.add.image(400, 300, 'sky');
     }
     
-    function update () {}
+    update () {}
     
     
-    
+}
 
 const config:Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scene: {
-        preload,create,update
-    },
+    width: 1920,
+    height: 1080,
+    scene: MainGame,
     //parent: 'game-container',
   };
 
 onMounted(() => {
-    var game = new Phaser.Game(config);
+    // @ts-ignore
+    var _game:Phaser.Game = new Phaser.Game(config);
 });
 
 </script>

@@ -52,7 +52,7 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [serve_static_1.ServeStaticModule.forRoot({
-                rootPath: path.resolve(__dirname, '..', '..', 'Client', 'dist', 'client', 'browser'),
+                rootPath: path.resolve(__dirname, '..', '..', 'Client', 'dist'),
                 exclude: ['/api*', '/socket.io/*'],
             }),],
         controllers: [app_controller_1.AppController],

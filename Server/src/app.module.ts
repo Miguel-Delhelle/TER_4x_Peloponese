@@ -7,7 +7,7 @@ import {GatewayServer} from './GatewayServer';
 
 @Module({
   imports: [ServeStaticModule.forRoot({
-    rootPath: path.resolve(__dirname, '..', '..', 'Client', 'dist','client','browser'),
+    rootPath: path.resolve(__dirname, '..', '..', 'Client', 'dist'),
     exclude: ['/api*', '/socket.io/*'],
     }),],
   controllers: [AppController],
