@@ -1,16 +1,14 @@
 import { Socket } from "socket.io";
-
+import { mainUserManager } from "src/main";
 
 export class User{
 
-    private static compteurInstance = 0; //Compteur d'instance d'user
     private socket:Socket;
-    private username:string;
+    private username:string ="";
 
     constructor(socket:Socket){
-        User.compteurInstance = User.compteurInstance+1;
         this.socket = socket;
-        this.username = "Player"+ User.compteurInstance;
+        this.username = "Player"+ mainUserManager.size();
     }
 
     __username():string{

@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const main_1 = require("../main");
 class User {
     constructor(socket) {
-        User.compteurInstance = User.compteurInstance + 1;
+        this.username = "";
         this.socket = socket;
-        this.username = "Player" + User.compteurInstance;
+        this.username = "Player" + main_1.mainUserManager.size();
     }
     __username() {
         return this.username;
@@ -15,5 +16,4 @@ class User {
     }
 }
 exports.User = User;
-User.compteurInstance = 0;
 //# sourceMappingURL=User.js.map

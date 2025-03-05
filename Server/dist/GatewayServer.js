@@ -15,27 +15,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GatewayServer = void 0;
 const websockets_1 = require("@nestjs/websockets");
 const socket_io_1 = require("socket.io");
-const User_1 = require("./User");
+const User_1 = require("./User/User");
+const main_1 = require("./main");
 let GatewayServer = class GatewayServer {
-    constructor() {
-        this.listSocket = new Map;
-        this.listUser = [];
-    }
     afterInit(server) {
         console.log('WebSocket initialisé');
     }
     handleConnection(client) {
         let newUser = new User_1.User(client);
-        this.listUser.push(newUser);
-        this.listSocket.set(client, newUser);
+        main_1.mainUserManager.addUser(newUser);
         console.log(`Client connecté: ${newUser.__username()}`);
     }
     handleDisconnect(client) {
-        console.log(`Client déconnecté: ${this.listSocket.get(client).__username()}`);
+        console.log(`Client déconnecté: ${main_1.mainUserManager.getUsername(client)}`);
+        main_1.mainUserManager.listSocket.delete(client);
     }
     handleMessage(message, client) {
-        console.log(`Message reçu de ${this.listSocket.get(client).__username()}: ${message}`);
-        this.server.emit('message', { clientId: this.listSocket.get(client)?.__username(), message });
+        console.log(`Message reçu de ${main_1.mainUserManager.getUsername(client)}: ${message}`);
+        this.server.emit('message', { clientId: main_1.mainUserManager.getUsername(client), message });
     }
 };
 exports.GatewayServer = GatewayServer;
