@@ -36,7 +36,7 @@ async function bootServ() {
   console.log(`Application is running on: http://localhost:${port}`);
 
 
-
+/*
   io.on('connection', (socket) => {
     console.log('Client connecté');
 
@@ -51,8 +51,8 @@ async function bootServ() {
 
     socket.on('disconnect', () => {
         console.log('Client déconnecté');
-    });
-});
+    }); 
+}); */
 
 
 

@@ -16,16 +16,5 @@ async function bootServ() {
     const port = process.env.PORT ?? 3000;
     await app.listen(port);
     console.log(`Application is running on: http://localhost:${port}`);
-    io.on('connection', (socket) => {
-        console.log('Client connecté');
-        socket.emit('message', 'Bienvenue sur le serveur Socket.IO');
-        socket.on('clientMessage', (data) => {
-            console.log('Message du client:', data);
-            socket.emit('message', 'Message reçu par le serveur');
-        });
-        socket.on('disconnect', () => {
-            console.log('Client déconnecté');
-        });
-    });
 }
 //# sourceMappingURL=main.js.map

@@ -15,19 +15,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.GatewayServer = void 0;
 const websockets_1 = require("@nestjs/websockets");
 const socket_io_1 = require("socket.io");
+const User_1 = require("./User");
 let GatewayServer = class GatewayServer {
+    constructor() {
+        this.listSocket = new Map;
+        this.listUser = [];
+    }
     afterInit(server) {
         console.log('WebSocket initialisé');
     }
     handleConnection(client) {
-        console.log(`Client connecté: ${client.id}`);
+        let newUser = new User_1.User(client);
+        this.listUser.push(newUser);
+        this.listSocket.set(client, newUser);
+        console.log(`Client connecté: ${newUser.__username()}`);
     }
     handleDisconnect(client) {
-        console.log(`Client déconnecté: ${client.id}`);
+        console.log(`Client déconnecté: ${this.listSocket.get(client).__username()}`);
     }
     handleMessage(message, client) {
-        console.log(`Message reçu de ${client.id}: ${message}`);
-        this.server.emit('message', { clientId: client.id, message });
+        console.log(`Message reçu de ${this.listSocket.get(client).__username()}: ${message}`);
+        this.server.emit('message', { clientId: this.listSocket.get(client)?.__username(), message });
     }
 };
 exports.GatewayServer = GatewayServer;
