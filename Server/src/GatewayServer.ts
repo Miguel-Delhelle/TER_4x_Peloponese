@@ -3,7 +3,7 @@ import { Server, Socket } from 'socket.io';
 import { User } from './User/User';
 import { mainUserManager } from './main';
 
-@WebSocketGateway({ cors: true }) // Active le CORS pour le client
+@WebSocketGateway({ cors: true })
 export class GatewayServer implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   
   @WebSocketServer()
@@ -18,10 +18,10 @@ export class GatewayServer implements OnGatewayInit, OnGatewayConnection, OnGate
   handleConnection(client: Socket) {
     let newUser = new User(client);
     mainUserManager.addUser(newUser);
-    console.log(`Client connecté: ${newUser.__username()}`);
+    console.log(`Client connecté: ${mainUserManager.getUsername(client)}`);
   }
 
-  // Lorsqu'un client se déconnecte
+  // Lorsqu'un client se déconnecte  
   handleDisconnect(client: Socket) {
     console.log(`Client déconnecté: ${mainUserManager.getUsername(client)}`);
     mainUserManager.listSocket.delete(client);

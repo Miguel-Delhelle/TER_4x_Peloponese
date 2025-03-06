@@ -1,11 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import path from 'path';
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { UserManager } from './User/UserManager';
 
-
-const clientDistDir:any = path.resolve(__dirname, '..', '..', 'Client', 'dist','client','browser');
 
 export var mainUserManager;
 
