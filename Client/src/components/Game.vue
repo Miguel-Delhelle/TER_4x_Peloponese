@@ -50,8 +50,8 @@ const config:Phaser.Types.Core.GameConfig = {
   };
 
 onMounted(() => {
-    // @ts-ignore
-    var _game:Phaser.Game = new Phaser.Game(config);
+
+    var __game:Phaser.Game = new Phaser.Game(config);
 });
 
 </script>
