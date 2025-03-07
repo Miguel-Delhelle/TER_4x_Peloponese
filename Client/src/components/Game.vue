@@ -6,6 +6,8 @@ import groundImage from '@/assets/platform.png';
 import starImage from '@/assets/star.png';
 import bombImage from '@/assets/bomb.png';
 import dudeSprite from '@/assets/dude.png';
+import jsonMap from '@/assets/tiled/maps/Greece.json'
+import ground from '@/assets/tiled/tilesets/Ground.png'
 
 class MainGame extends Phaser.Scene{
 
@@ -14,6 +16,9 @@ class MainGame extends Phaser.Scene{
     }
 
     preload () {
+      this.load.image('tiles', ground);
+      this.load.tilemapTiledJSON('map', jsonMap);
+      /*
         this.load.image('sky', skyImage);
         this.load.image('ground', groundImage);
         this.load.image('star', starImage);
@@ -21,10 +26,14 @@ class MainGame extends Phaser.Scene{
         this.load.spritesheet('dude', 
             dudeSprite,
             { frameWidth: 32, frameHeight: 48 }
-        );}
+        );*/
+    }
     
     create () {        
-        this.add.image(400, 300, 'sky');
+        this.map = this.make.tilemap({ key: 'map' });
+        const tiles = this.map.addTilesetImage('Ground', 'tiles');
+        const layer0 = this.map.createLayer('Plains', tiles, 0, 0);
+        const layer1 = this.map.createLayer('Cliff', tiles, 0, 0);
     }
     
     update () {}
