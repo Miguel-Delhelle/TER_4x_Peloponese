@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import Phaser from 'phaser';
 import {onMounted} from "vue";
-import jsonMap from '../../public/assets/tiled/maps/Greece.json';
-import ground from '../../public/assets/tiled/tilesets/Ground.png';
 
 class MainGame extends Phaser.Scene{
 
@@ -13,8 +11,8 @@ class MainGame extends Phaser.Scene{
     }
 
     preload () {
-      this.load.image('tiles', "../../public/assets/tiled/tilesets/Ground.png");
-      this.load.tilemapTiledJSON('map', '../../public/assets/tiled/maps/Greece.json');
+      this.load.image('tiles', "./assets/tiled/tilesets/Ground.png");
+      this.load.tilemapTiledJSON('map', './assets/tiled/maps/Greece.json');
     }
     
     create () {        

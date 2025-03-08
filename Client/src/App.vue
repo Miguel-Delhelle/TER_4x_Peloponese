@@ -6,9 +6,7 @@ import Game_test from "./components/Game_test.vue";
 </script>
 
 <template>
-  <Game_test/>
   <Game/>
-  <ChatComponent/>
 </template>
 
 <style scoped>
