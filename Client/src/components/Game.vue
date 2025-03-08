@@ -1,32 +1,20 @@
 <script setup lang="ts">
 import Phaser from 'phaser';
 import {onMounted} from "vue";
-import skyImage from '@/assets/sky.png';
-import groundImage from '@/assets/platform.png';
-import starImage from '@/assets/star.png';
-import bombImage from '@/assets/bomb.png';
-import dudeSprite from '@/assets/dude.png';
-import jsonMap from '@/assets/tiled/maps/Greece.json'
-import ground from '@/assets/tiled/tilesets/Ground.png'
+import jsonMap from '../../public/assets/tiled/maps/Greece.json';
+import ground from '../../public/assets/tiled/tilesets/Ground.png';
 
 class MainGame extends Phaser.Scene{
+
+    map:Phaser.Tilemaps.Tilemap;
 
     constructor(){
         super('GreatGame');
     }
 
     preload () {
-      this.load.image('tiles', ground);
-      this.load.tilemapTiledJSON('map', jsonMap);
-      /*
-        this.load.image('sky', skyImage);
-        this.load.image('ground', groundImage);
-        this.load.image('star', starImage);
-        this.load.image('bomb', bombImage);
-        this.load.spritesheet('dude', 
-            dudeSprite,
-            { frameWidth: 32, frameHeight: 48 }
-        );*/
+      this.load.image('tiles', "../../public/assets/tiled/tilesets/Ground.png");
+      this.load.tilemapTiledJSON('map', '../../public/assets/tiled/maps/Greece.json');
     }
     
     create () {        

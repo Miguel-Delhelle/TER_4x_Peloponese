@@ -24,7 +24,7 @@ let GatewayServer = class GatewayServer {
     handleConnection(client) {
         let newUser = new User_1.User(client);
         main_1.mainUserManager.addUser(newUser);
-        console.log(`Client connecté: ${newUser.__username()}`);
+        console.log(`Client connecté: ${main_1.mainUserManager.getUsername(client)}`);
     }
     handleDisconnect(client) {
         console.log(`Client déconnecté: ${main_1.mainUserManager.getUsername(client)}`);
