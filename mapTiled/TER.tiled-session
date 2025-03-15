@@ -38,8 +38,11 @@
             "scaleInEditor": 1
         }
     },
+    "last.exportedFilePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Maps",
     "last.imagePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Tileset/MiniWorldSprites",
     "map.fixedSize": false,
+    "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
     "map.orientation": "1",
     "map.renderOrder": "3",
     "map.tileHeight": 16,
