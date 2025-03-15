@@ -40,6 +40,7 @@ export class MainScene extends Phaser.Scene{
       this.input.on('pointerdown', this.mapController.dragStart);
       this.input.on('pointerup', this.mapController.dragStop);
       this.input.on('pointermove', this.mapController.dragMove);
+      this.input.on('wheel',this.mapController.zoom)
     }
     
     update () {

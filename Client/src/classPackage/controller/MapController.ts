@@ -35,11 +35,18 @@ export class MapController {
         }
     };
 
-    zoomIn = (pointer: Phaser.Input.Pointer): void => {
-        this.camera.zoom;
-    }
-
-    zoomOut = (pointer: Phaser.Input.Pointer): void => {
-
-    }
+    zoom = (pointer, gameObjects, deltaX, deltaY, deltaZ) => {
+        // Get the current world point under pointer.
+        const worldPoint = this.camera.getWorldPoint(pointer.x, pointer.y);
+        const newZoom = this.camera.zoom - this.camera.zoom * 0.001 * deltaY;
+        this.camera.zoom = Phaser.Math.Clamp(newZoom, 0.25, 2);
+        console.log("fonction zoom lancée")
+        // Update camera matrix, so `getWorldPoint` returns zoom-adjusted coordinates.
+        this.camera.preRender();
+        
+        /*const newWorldPoint = camera.getWorldPoint(pointer.x, pointer.y);
+        // Scroll the camera to keep the pointer under the same world point.
+        camera.scrollX -= newWorldPoint.x - worldPoint.x;
+        camera.scrollY -= newWorldPoint.y - worldPoint.y; */
+    };
 }
