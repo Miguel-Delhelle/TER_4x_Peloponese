@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import Phaser from 'phaser';
 import {onMounted} from "vue";
-import mainTile from '../assets/tiled/Tileset/Ground.png';
-import mapJson from '../assets/tiled/Greece.json';
-import treeTile from '../assets/tiled/Tileset/MiniWorldSprites/Nature/Trees.png'
-import allAssetsTile from '../assets/tiled/Tileset/MiniWorldSprites/AllAssetsPreview.png'
-import { MapController } from '../classPackage/controller/MapController';
 import { MainScene } from '../classPackage/phaserScene/MainScene';
 
 var mainScene:MainScene = new MainScene();

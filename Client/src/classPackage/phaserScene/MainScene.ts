@@ -15,7 +15,7 @@ export class MainScene extends Phaser.Scene{
     }
 
     preload () {
-      this.mapController = new MapController(this.cameras.main);
+      this.mapController = new MapController(this);
       this.load.image('tiles', mainTile);
       this.load.image('tileTree', treeTile);
       this.load.image('allAssetsTile', allAssetsTile);
@@ -43,10 +43,6 @@ export class MainScene extends Phaser.Scene{
     }
     
     update () {
-    }
-
-    public get _camera(){
-        return this.cameras;
     }
     
 

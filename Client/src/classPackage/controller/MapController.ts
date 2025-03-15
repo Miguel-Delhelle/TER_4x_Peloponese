@@ -6,8 +6,13 @@ export class MapController {
     private isDragging: boolean = false;
     private dragStartX: number = 0;
     private dragStartY: number = 0;
+    private scene:MainScene;
+    private camera:Phaser.Cameras.Scene2D.Camera;
 
-    constructor(private camera: Phaser.Cameras.Scene2D.Camera) {}
+    constructor(scene:MainScene) {
+        this.scene = scene;
+        this.camera = this.scene.cameras.main;
+    }
 
     dragStart = (pointer: Phaser.Input.Pointer): void => {
         this.isDragging = true;
@@ -29,4 +34,12 @@ export class MapController {
             this.dragStartY = pointer.y;
         }
     };
+
+    zoomIn = (pointer: Phaser.Input.Pointer): void => {
+        this.camera.zoom;
+    }
+
+    zoomOut = (pointer: Phaser.Input.Pointer): void => {
+
+    }
 }
