@@ -12,8 +12,8 @@ var mainScene:MainScene = new MainScene();
 
 const config:Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 80*16,
-    height: 80*16,
+    width: 120*16,
+    height: 60*16,
     //parent: 'game-container',
   };
 
