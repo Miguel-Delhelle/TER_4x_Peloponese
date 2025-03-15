@@ -44,9 +44,9 @@ export class MapController {
         // Update camera matrix, so `getWorldPoint` returns zoom-adjusted coordinates.
         this.camera.preRender();
         
-        /*const newWorldPoint = camera.getWorldPoint(pointer.x, pointer.y);
+        const newWorldPoint = this.camera.getWorldPoint(pointer.x, pointer.y);
         // Scroll the camera to keep the pointer under the same world point.
-        camera.scrollX -= newWorldPoint.x - worldPoint.x;
-        camera.scrollY -= newWorldPoint.y - worldPoint.y; */
+        this.camera.scrollX -= newWorldPoint.x - worldPoint.x;
+        this.camera.scrollY -= newWorldPoint.y - worldPoint.y; 
     };
 }
