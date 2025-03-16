@@ -41,18 +41,29 @@ export class MainScene extends Phaser.Scene{
     this.layers[i] = this.map.createBlankLayer(name, tiles);
     this.layers[i].setName(name);
 
+    // Create a graphics object for the grid
+    const graphics = this.add.graphics();
+    graphics.lineStyle(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.2); // White, semi-transparent grid
+    const tileWidth = this.map.tileWidth;
+    const tileHeight = this.map.tileHeight;
+    const mapWidth = this.map.width;
+    const mapHeight = this.map.height;
+    // Draw vertical grid lines
+    for (let x = 0; x <= mapWidth; x++) {
+      graphics.moveTo(x * tileWidth, 0);
+      graphics.lineTo(x * tileWidth, mapHeight * tileHeight);
+    }
+    // Draw horizontal grid lines
+    for (let y = 0; y <= mapHeight; y++) {
+      graphics.moveTo(0, y * tileHeight);
+      graphics.lineTo(mapWidth * tileWidth, y * tileHeight);
+    }
+    graphics.strokePath();
+
     this.marker = this.add.sprite(0,0,"spritePNG",4336);
     this.marker.setOrigin(0, 0);
 
     this.setupEvent();
-  }
-  
-  setupEvent(){
-    this.input.on('pointerdown', this.mapController.dragStart);
-    this.input.on('pointerup', this.mapController.dragStop);
-    this.input.on('pointermove', this.mapController.dragMove);
-    this.input.on('wheel',this.mapController.zoom);;
-    this.input.on("pointerdown",this.toolsController.build)
   }
   
   update (tile, delta) {
@@ -71,26 +82,35 @@ export class MainScene extends Phaser.Scene{
         console.log(`Properties (x:${pointerTileX}, y:${pointerTileY}, layer:${tile.layer.name}): ${JSON.stringify(tile.properties)}`);
       }
     } 
-  } 
+  }
+   
   public get _camera(){
-      return this.cameras;
+    return this.cameras;
   }
 
-    public get _map(){
-      return this.map;
-    }
+  public get _map(){
+    return this.map;
+  }
 
-    public get _pointer(){
-      let worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
-      let pointerTileX = this.map.worldToTileX(worldPoint.x);
-      let pointerTileY = this.map.worldToTileY(worldPoint.y);
+  public get _pointer(){
+    let worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
+    let pointerTileX = this.map.worldToTileX(worldPoint.x);
+    let pointerTileY = this.map.worldToTileY(worldPoint.y);
+    return {"x":pointerTileX,"y":pointerTileY}
+  }
 
-      return {"x":pointerTileX,"y":pointerTileY}
-    }
+  public get _mapController(){
+    return this.mapController;
+  }
 
-    public get _mapController(){
-      return this.mapController;
-    }
+  setupEvent(){
+    this.input.on('pointerdown', this.mapController.dragStart);
+    this.input.on('pointerup', this.mapController.dragStop);
+    this.input.on('pointermove', this.mapController.dragMove);
+    this.input.on('wheel',this.mapController.zoom);;
+    this.input.on("pointerdown",this.toolsController.build)
+  }
+
   public getFirstTileAt(tileX: number, tileY: number, nonNull?: boolean, layer?: string | number | Phaser.Tilemaps.TilemapLayer): Phaser.Tilemaps.Tile | null {
     let find: boolean = layer!=null?false:true;
     let pos: number = this.layers.length-1;
