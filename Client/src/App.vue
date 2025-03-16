@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import Game from "./components/Game.vue";
 import ChatComponent from "./components/ChatComponent.vue"
+import ToolsBar from "./components/ToolsBar.vue";
 
 </script>
 
 <template>
-  <Game/>
+  <Game id="game">  
+  </Game>
+  <ToolsBar id="toolsBar" class="ui"/>
 </template>
 
 <style scoped>
+
 .logo {
   height: 6em;
   padding: 1.5em;

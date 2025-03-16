@@ -59,14 +59,28 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+}
+
+canvas{
+  z-index: 1;
+}
+
+#toolsBar{
+  z-index: 5;
+  opacity: 95%;
+  position:absolute;
+  margin:10px;
+  padding: 6px;
+  bottom: 0;
+}
+.on{
+  border-width: 3px;
+  border-color:darkgreen;
 }
 
 @media (prefers-color-scheme: light) {
@@ -80,4 +94,5 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
 }

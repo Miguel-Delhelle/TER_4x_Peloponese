@@ -49,4 +49,8 @@ export class MapController {
         this.camera.scrollX -= newWorldPoint.x - worldPoint.x;
         this.camera.scrollY -= newWorldPoint.y - worldPoint.y; 
     };
+
+    public get _isDragging(){
+        return this.isDragging;
+    }
 }

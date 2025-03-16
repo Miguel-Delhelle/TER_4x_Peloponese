@@ -1,12 +1,14 @@
 import mapPng from '../../../../mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png';
 import mapJson from '../../../../mapTiled/Maps/Test.json';
 import { MapController } from '../controller/MapController';
+import { ToolsController } from '../controller/ToolsController';
 
 
 export class MainScene extends Phaser.Scene{
 
     private map: Phaser.Tilemaps.Tilemap;
     private mapController: MapController;
+    private toolsController: ToolsController;
     private marker;
     private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 
@@ -16,6 +18,7 @@ export class MainScene extends Phaser.Scene{
 
     preload () {
       this.mapController = new MapController(this);
+      this.toolsController = new ToolsController(this);
       this.load.tilemapTiledJSON('map', mapJson);
       this.load.image('mapPNG', mapPng);
       this.load.tilemapTiledJSON('mapJSON', mapJson);
@@ -45,7 +48,8 @@ export class MainScene extends Phaser.Scene{
       this.input.on('pointerdown', this.mapController.dragStart);
       this.input.on('pointerup', this.mapController.dragStop);
       this.input.on('pointermove', this.mapController.dragMove);
-      this.input.on('wheel',this.mapController.zoom)
+      this.input.on('wheel',this.mapController.zoom);
+      this.input.on("pointerdown",this.toolsController.build)
     }
     
     update (tile, delta) {
@@ -67,11 +71,27 @@ export class MainScene extends Phaser.Scene{
         //const tile = this.map.getTileAt(pointerTileX,pointerTileY, false, this.layers[0]);
         //console.log(`Properties (x:${pointerTileX}, y:${pointerTileY}, layer:${this.layers[0].name}): ${JSON.stringify(tile.properties)}`);
 
-      }
-    }
+      } 
+    } 
 
     public get _camera(){
         return this.cameras;
+    }
+
+    public get _map(){
+      return this.map;
+    }
+
+    public get _pointer(){
+      let worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
+      let pointerTileX = this.map.worldToTileX(worldPoint.x);
+      let pointerTileY = this.map.worldToTileY(worldPoint.y);
+
+      return {"x":pointerTileX,"y":pointerTileY}
+    }
+
+    public get _mapController(){
+      return this.mapController;
     }
 
     public getFirstTileAt(tileX: number, tileY: number, nonNull?: boolean, layer?: string | number | Phaser.Tilemaps.TilemapLayer): Phaser.Tilemaps.Tile | null {
