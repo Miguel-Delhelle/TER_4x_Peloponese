@@ -33,9 +33,11 @@ export class ToolsController{
     if (newValue) {
       this.toolbarHTML.classList.add("isActive");
       console.log("Building mode: on");
+      this.openSubToolB();
     } else {
       this.toolbarHTML.classList.remove("isActive");
       console.log("Building mode: off");
+      this.openSubToolB();
     }
   }
 
@@ -69,7 +71,9 @@ export class ToolsController{
   */
   
   private setupEvent(): void {
-    this.itemHTML.get("build").addEventListener("click", () => {this.toggleInBuilding();});
+    this.itemHTML.get("build").addEventListener("click", () => {
+      this.toggleInBuilding();    
+    });
   }
 
   build = () => {
@@ -78,6 +82,15 @@ export class ToolsController{
       console.log("A tile has been added!")
     }
     //mainscene.map.putTileAt()
+  }
+
+  openSubToolB(){
+    let subTool = document.getElementById("subToolBuild");
+    if (subTool.style.visibility =="visible"){
+        subTool.style.visibility="hidden";
+    }else{
+      subTool.style.visibility="visible";
+    }
   }
 
 }

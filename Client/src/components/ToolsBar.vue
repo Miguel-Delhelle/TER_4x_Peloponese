@@ -6,12 +6,17 @@ import { ToolsController } from '../classPackage/controller/ToolsController';
 <template>
     <div id="toolsBarContent" class="ui container">
         <div id = "build" class = "item">Construire</div>
+            <div id="subToolBuild" class="item subTool">Option1/Option2/Option3/Option4</div>
         <div id = "recruit" class = "item">Recruter</div>
         <div id = "stats" class = "item">Voir unités</div>
     </div>
 </template>
 
 <style lang="css" scoped>
+
+.subTool{
+    visibility:hidden;
+}
 
 .container{
     background-color: rgba(255, 20, 150, 0.85);
