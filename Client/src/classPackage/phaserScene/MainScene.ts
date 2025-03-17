@@ -3,47 +3,198 @@ import mapJson from '../../../../mapTiled/Maps/Test.json';
 import { MapController } from '../controller/MapController';
 import { ToolsController } from '../controller/ToolsController';
 
-
 export class MainScene extends Phaser.Scene{
-
+  /*
+  * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
+  * |  |                                            ATTRIBUTES DEFINITION                                            |  | *
+  * +--+-------------------------------------------------------------------------------------------------------------+--+ *
+  */
   private map: Phaser.Tilemaps.Tilemap;
   private mapController: MapController;
   private toolsController: ToolsController;
   private marker: Phaser.GameObjects.Sprite;
   private layers: Phaser.Tilemaps.TilemapLayer[] = [];
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+  private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
+  private spritesets: string[] = [];
+  
+  /*
+  * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
+  * |  |                                           CONSTRUCTORS DEFINITION                                           |  | *
+  * +--+-------------------------------------------------------------------------------------------------------------+--+ *
+  */
+  public constructor(){
+    super();
+  }
+  
+  /*
+  * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
+  * |  |                                            ACCESSORS  DEFINITION                                            |  | *
+  * +--+-------------------------------------------------------------------------------------------------------------+--+ *
+  */
+  public get _map(): Phaser.Tilemaps.Tilemap {return this.map;}
+  public set _map(newValue: Phaser.Tilemaps.Tilemap) {this.map = newValue;}
 
-  constructor(){
-      super();
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+  public get _mapController(): MapController {return this.mapController;}
+  public set _mapController(newValue: MapController) {this.mapController = newValue;}
+  
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+  public get _toolsController(): ToolsController {return this.toolsController;}
+  public set _toolsController(newValue: ToolsController) {this.toolsController = newValue;}
+
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public get _marker(): Phaser.GameObjects.Sprite {return this.marker;}
+
+  private setMarker(spriteID: number, spriteSheet: string): Phaser.GameObjects.Sprite {
+    this.marker = this.add.sprite(0,0,spriteSheet,spriteID);
+    this.marker.setOrigin(0, 0);
+    return this.marker;
+  }
+  private updateMarkerPosition(): void {
+    const pointer = this._pointer;
+    this.marker.setPosition(
+      this.map.tileToWorldX(pointer.x),
+      this.map.tileToWorldY(pointer.y)
+    );
   }
 
-  preload () {
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public get _layers(): Phaser.Tilemaps.TilemapLayer[] {return this.layers;}
+  public set _layers(newValue: Phaser.Tilemaps.TilemapLayer[]) {this.layers = newValue;}
+
+  public addAllTiledLayers(tileset?: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[]): void {
+    this.map.getTileLayerNames().forEach(layerID => {
+      const tilemapLayer: Phaser.Tilemaps.TilemapLayer = this.map.createLayer(layerID, tileset?tileset:Array.from(this.tilesets.keys()));
+      tilemapLayer.setName(layerID);
+      this.layers.push(tilemapLayer);
+    });
+  }
+  public addTiledLayer(
+    layerID: string | number,
+    tileset?: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[]
+  ): Phaser.Tilemaps.TilemapLayer {
+    const tiledLayers: string[] = this.map.getTileLayerNames();
+    const nbLayers: number = tiledLayers.length;
+    if (typeof(layerID)==="number") {
+      if (0<layerID && layerID<=nbLayers) 
+        layerID = tiledLayers[layerID];
+      else return;
+    } else if (!tiledLayers.includes(layerID)) return;
+    const tilemapLayer: Phaser.Tilemaps.TilemapLayer = this.map.createLayer(layerID, tileset?tileset:Array.from(this.tilesets.keys()));
+    if (tilemapLayer) {
+      tilemapLayer.setName(layerID);
+      this.layers.push(tilemapLayer);
+      return tilemapLayer;
+    }
+  }
+  public addNewLayer(
+    layerName: string,
+    tileset?: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[]
+  ): Phaser.Tilemaps.TilemapLayer {
+    const tilemapLayer: Phaser.Tilemaps.TilemapLayer = this.map.createBlankLayer(layerName, tileset?tileset:Array.from(this.tilesets.keys()));
+    tilemapLayer.setName(layerName);
+    this.layers.push(tilemapLayer);
+    return tilemapLayer;
+  }
+
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public get _tilesets(): Map<string,Phaser.Tilemaps.Tileset> {return this.tilesets;}
+  
+  private loadTilesets(path: string | string[]): void {
+    if (typeof(path)==="string") {path = [path];}
+    path.forEach(p => {
+      let name: string = p.split('/').reverse()[0];
+      name = name.substring(0, name.length-4);
+      let sname: string = 'sprite_'+name;
+      this.load.image(name, p);
+      this.load.spritesheet(sname, p, {
+        frameWidth: 16,
+        frameHeight: 16,
+      });
+      this.tilesets.set(name, null);
+      this.spritesets.push(sname);
+    });
+  }
+  private setTilesets(): void {
+    for (let tileset of this.tilesets.keys()) {
+      this.tilesets.set(tileset, this.map.addTilesetImage(tileset, tileset));
+    }
+  }
+
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public get _pointer(): {x: number, y: number} {
+    const worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
+    return {
+      x: this.map.worldToTileX(worldPoint.x),
+      y: this.map.worldToTileY(worldPoint.y),
+    };
+  }
+  
+  /*
+  * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
+  * |  |                                           PHASER EXTENDED METHODS                                           |  | *
+  * +--+-------------------------------------------------------------------------------------------------------------+--+ *
+  */
+  public preload(): void {
     this.mapController = new MapController(this);
     this.toolsController = new ToolsController(this);
     this.load.tilemapTiledJSON('map', mapJson);
-    this.load.image('mapPNG', mapPng);
+    this.loadTilesets(mapPng);/*
     this.load.spritesheet("spritePNG", mapPng, {
       frameWidth: 16,
       frameHeight: 16
-    });
+    });*/
     this.load.tilemapTiledJSON('mapJSON', mapJson);
   }
-  
-  create () {
-    this.map = this.make.tilemap({ key: 'mapJSON' });
-    const tiles = this.map.addTilesetImage('AllMiniWorldSprites', 'mapPNG');
-    let i: number = 0;
-    for (let name of this.map.getTileLayerNames()) {
-      this.layers[i] = this.map.createLayer(name, tiles);
-      this.layers[i].setName(name);
-      i++;
-    }
-    const name: string = 'User Interface';
-    this.layers[i] = this.map.createBlankLayer(name, tiles);
-    this.layers[i].setName(name);
 
-    // Create a graphics object for the grid
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public create(): void {
+    this.map = this.make.tilemap({ key: 'mapJSON' });
+    this.setTilesets();
+    this.addAllTiledLayers();
+    this.addNewLayer('User Interface');
+
+    const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
+    this.setMarker(4336, this.spritesets[0]);
+
+    this.setupEvent();
+  }
+
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public update (tile, delta): void {
+    this.updateMarkerPosition();
+  }
+
+  /*
+  * +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
+  * |  |                                             METHODS  DEFINITION                                             |  | *
+  * +--+-------------------------------------------------------------------------------------------------------------+--+ *
+  */
+  private setupEvent(): void {
+    this.input.on('pointerdown', this.mapController.dragStart);
+    this.input.on('pointerup', this.mapController.dragStop);
+    this.input.on('pointermove', this.mapController.dragMove);
+    this.input.on('wheel',this.mapController.zoom);;
+    this.input.on('pointerdown',this.toolsController.build)
+
+    this.input.on('pointerdown', e => {
+      const pointer = this._pointer;
+      console.log(this.getTileProperties(pointer.x, pointer.y));
+    })
+  }
+
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public drawMapGridLines(lineWidth: number, color: number, alpha?: number): Phaser.GameObjects.Graphics {
     const graphics = this.add.graphics();
-    graphics.lineStyle(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.2); // White, semi-transparent grid
+    graphics.lineStyle(lineWidth, color, alpha);
     const tileWidth = this.map.tileWidth;
     const tileHeight = this.map.tileHeight;
     const mapWidth = this.map.width;
@@ -58,58 +209,10 @@ export class MainScene extends Phaser.Scene{
       graphics.moveTo(0, y * tileHeight);
       graphics.lineTo(mapWidth * tileWidth, y * tileHeight);
     }
-    graphics.strokePath();
-
-    this.marker = this.add.sprite(0,0,"spritePNG",4336);
-    this.marker.setOrigin(0, 0);
-
-    this.setupEvent();
-  }
-  
-  update (tile, delta) {
-    const worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
-    // Rounds down to nearest tile
-    const pointerTileX = this.map.worldToTileX(worldPoint.x);
-    const pointerTileY = this.map.worldToTileY(worldPoint.y);
-    // Snap to tile coordinates, but in world space
-    this.marker.setPosition(
-      this.map.tileToWorldX(pointerTileX),
-      this.map.tileToWorldY(pointerTileY)
-    );
-    if (this.input.manager.activePointer.isDown) {
-      const tile = this.getFirstTileAt(pointerTileX, pointerTileY);
-      if (tile) {
-        console.log(`Properties (x:${pointerTileX}, y:${pointerTileY}, layer:${tile.layer.name}): ${JSON.stringify(tile.properties)}`);
-      }
-    } 
-  }
-   
-  public get _camera(){
-    return this.cameras;
+    return graphics.strokePath();
   }
 
-  public get _map(){
-    return this.map;
-  }
-
-  public get _pointer(){
-    let worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
-    let pointerTileX = this.map.worldToTileX(worldPoint.x);
-    let pointerTileY = this.map.worldToTileY(worldPoint.y);
-    return {"x":pointerTileX,"y":pointerTileY}
-  }
-
-  public get _mapController(){
-    return this.mapController;
-  }
-
-  setupEvent(){
-    this.input.on('pointerdown', this.mapController.dragStart);
-    this.input.on('pointerup', this.mapController.dragStop);
-    this.input.on('pointermove', this.mapController.dragMove);
-    this.input.on('wheel',this.mapController.zoom);;
-    this.input.on("pointerdown",this.toolsController.build)
-  }
+  //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
   public getFirstTileAt(tileX: number, tileY: number, nonNull?: boolean, layer?: string | number | Phaser.Tilemaps.TilemapLayer): Phaser.Tilemaps.Tile | null {
     let find: boolean = layer!=null?false:true;
@@ -131,4 +234,12 @@ export class MainScene extends Phaser.Scene{
       }
     }
   }
+
+  public getTileProperties(tileX: number, tileY: number, layer?: string | number | Phaser.Tilemaps.TilemapLayer): Object {
+    const tile: Phaser.Tilemaps.Tile = this.getFirstTileAt(tileX, tileY, false, layer);
+    let properties: Object = tile.properties;
+    Object.assign(properties, {ID: tile.index}, tile.getTileData());
+    if (tile) return properties;
+  }
+
 }

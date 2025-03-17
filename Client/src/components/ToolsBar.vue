@@ -5,22 +5,30 @@ import { ToolsController } from '../classPackage/controller/ToolsController';
 
 <template>
     <div id="toolsBarContent" class="ui container">
-        <div id = "build" class = "item">Construire//</div>
-        <div id = "recruit" class = "item">Recruter//</div>
-        <div id = "stats" class = "item">Voir unités//</div>
+        <div id = "build" class = "item">Construire</div>
+        <div id = "recruit" class = "item">Recruter</div>
+        <div id = "stats" class = "item">Voir unités</div>
     </div>
 </template>
 
 <style lang="css" scoped>
 
 .container{
-    background-color: deeppink;
+    background-color: rgba(255, 20, 150, 0.85);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    padding: 0px;
 }
 .item{
     align-self: center;
+    padding: 3px;
+    margin: 5px;
+}
+
+.item:hover {
+  background-color: rgb(180, 20, 150);
+  cursor: pointer;
 }
 
 </style>

@@ -70,12 +70,15 @@ canvas{
   z-index: 1;
 }
 
+canvas:hover {
+  cursor: none;
+}
+
 #toolsBar{
   z-index: 5;
   opacity: 95%;
   position:absolute;
   margin:10px;
-  padding: 6px;
   bottom: 0;
 }
 .on{
