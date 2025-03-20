@@ -148,11 +148,7 @@ export class MainScene extends Phaser.Scene{
       this.mapController = new MapController(this);
       this.toolsController = new ToolsController(this);
       this.load.tilemapTiledJSON('map', mapJson);
-      this.loadTilesets(mapPng);/*
-      this.load.spritesheet("spritePNG", mapPng, {
-         frameWidth: 16,
-         frameHeight: 16
-      });*/
+      this.loadTilesets(mapPng);
       this.load.tilemapTiledJSON('mapJSON', mapJson);
    }
 

@@ -25,7 +25,7 @@
   }
   
   // Connexion au serveur backend (ajustez l'URL si besoin)
-  const socket: Socket = io('http://localhost:3000');
+  const socket: Socket = io("http://localhost:"+window.location.port);
   
   const messages = ref<ChatMessage[]>([]);
   const newMessage = ref<string>('');

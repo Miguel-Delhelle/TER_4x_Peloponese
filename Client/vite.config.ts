@@ -12,7 +12,7 @@ export default defineConfig({
   },
   // Autres configurations...
   server: {
-    port: 3000, // Spécifiez le port par défaut ici
+    port: 5000, // Spécifiez le port par défaut ici
   },
 
 });
