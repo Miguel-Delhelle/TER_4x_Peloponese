@@ -1,7 +1,10 @@
-import mapPng from '../../../../mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png';
-import mapJson from '../../../../mapTiled/Maps/Test.json';
+//import mapPng from '../../../res/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png';
+//import mapJson from '/mapTiled/Maps/Test.json';
+//import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
 import { MapController } from '../controller/MapController';
 import { ToolsController } from '../controller/ToolsController';
+
+
 
 export class MainScene extends Phaser.Scene{
    /*
@@ -147,9 +150,9 @@ export class MainScene extends Phaser.Scene{
    public preload(): void {
       this.mapController = new MapController(this);
       this.toolsController = new ToolsController(this);
-      this.load.tilemapTiledJSON('map', mapJson);
-      this.loadTilesets(mapPng);
-      this.load.tilemapTiledJSON('mapJSON', mapJson);
+      this.load.tilemapTiledJSON('map', '/mapTiled/Maps/Test.json');
+      this.loadTilesets("/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png");
+      this.load.tilemapTiledJSON('mapJSON', "/mapTiled/Maps/Test.json");
    }
 
    //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //

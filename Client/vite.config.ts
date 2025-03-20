@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
+      '@map': path.resolve(__dirname,"./public/mapTiled"),
       '@': path.resolve(__dirname, './src'),
     },
   },
