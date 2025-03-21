@@ -13,7 +13,7 @@ export class MainScene extends Phaser.Scene{
 	private mapController: MapController;
 	private toolsController: ToolsController;
 	private marker: Phaser.GameObjects.Sprite;
-   private markerDefaultID: number | string = 4336;
+   private static markerDefaultID: number | string = 4336;
 	private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 	private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
@@ -61,14 +61,14 @@ export class MainScene extends Phaser.Scene{
 		this.marker = this.add.sprite(
          0, 0,
          spriteSheet?spriteSheet:this.spritesets[0],
-         spriteID?spriteID:this.markerDefaultID
+         spriteID?spriteID:MainScene.markerDefaultID
       );
 		this.marker.setOrigin(0, 0);
 		return this.marker;
 	}
 
 	public changeMarker(spriteID?: number | string | Phaser.Textures.Frame) {
-		this.marker.setFrame(spriteID?spriteID:this.markerDefaultID);
+		this.marker.setFrame(spriteID?spriteID:MainScene.markerDefaultID);
 	}
 
 	private updateMarkerPosition(): void {
@@ -82,7 +82,7 @@ export class MainScene extends Phaser.Scene{
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
-	public get _markerDefaultID(): number | string {return this.markerDefaultID;}
+	public get _markerDefaultID(): number | string {return MainScene.markerDefaultID;}
 
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
