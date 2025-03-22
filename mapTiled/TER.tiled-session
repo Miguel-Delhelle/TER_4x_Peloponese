@@ -116,6 +116,7 @@
         "Tileset/ColoredBuildingsPreview.tsx",
         "Tileset/BoxSelector.tsx"
     ],
+    "resizeMap.removeObjects": false,
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,
