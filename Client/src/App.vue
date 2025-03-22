@@ -8,7 +8,7 @@ import ToolsBar from "./components/ToolsBar.vue";
 <template>
   <Game id="game">  
   </Game>
-  <ToolsBar id="toolsBar" class="ui"/>
+  <ToolsBar id="toolBarBox" class="ui"/>
 </template>
 
 <style scoped>

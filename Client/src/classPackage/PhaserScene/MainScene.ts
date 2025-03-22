@@ -1,8 +1,8 @@
 //import mapPng from '../../../res/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png';
 //import mapJson from '/mapTiled/Maps/Test.json';
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
-import { MapController } from '../controller/MapController';
-import { ToolsController } from '../controller/ToolsController';
+import { MapController } from '../Controller/MapController';
+import { ToolsController } from '../Controller/ToolsController';
 
 
 
@@ -192,8 +192,8 @@ export class MainScene extends Phaser.Scene{
 	public preload(): void {
 		this.mapController = new MapController(this);
 		this.toolsController = new ToolsController(this);
-		this.load.tilemapTiledJSON('map', mapJson);
-		this.loadTilesets(mapPng);
+		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/Test.json");
+		this.loadTilesets("/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png");
 	}
 
 

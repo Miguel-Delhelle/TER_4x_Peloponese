@@ -1,0 +1,98 @@
+@startuml
+
+!theme sandstone
+
+skinparam BackgroundColor #E0F7FA
+
+class Player {
+   - id:number
+   - pseudo:string
+   - faction:Faction
+   - listeDeCommandement:List<Entity>
+   --
+   + donnerOrdre():void
+   + recruter():void
+   + availableForNew():List<Entity>
+}
+
+class MapController {
+   - isDragging: boolean
+   - dragStartX: number
+   - dragStartY: number
+   - scene:MainScene
+   - camera:Phaser_Cameras_Scene2D_Camera
+   --
+   + dragStart():void
+   + dragStop(): void
+   + dragMove():void
+   + zoom():void
+}
+
+class ToolsController{
+   - inBuilding: boolean
+   - toolbarHTML: HTMLElement
+   - subToolHTML: HTMLElement
+   - itemHTML: "Map<string,Element>"
+   - mainScene: MainScene
+   -- 
+   + setupEvent(): void
+   + build():void
+   + openSubToolB():void
+
+}
+
+class MainScene{
+   - map: Phaser.Tilemaps.Tilemap
+   - mapController: MapController
+   - toolsController: ToolsController
+   - marker: Phaser.GameObjects.Sprite
+   - layers: Phaser.Tilemaps.TilemapLayer[]
+   - tilesets: Map<string,Phaser.Tilemaps.Tileset>
+   - spritesets: Map<string,Phaser.GameObjects.Sprite>
+   --
+   +getPointer():{x: number, y: number}
+   +setupEvent(): void
+   --
+   + addAllTiledLayers(tileset?: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[]): 
+   + addTiledLayer(layerID: string | number,tileset?: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[]): Phaser.Tilemaps.TilemapLayer
+   + addNewLayer() 
+   + updateMarkerPosition(): void
+   + loadTilesets(path: string | string[])
+   + setTilesets(): void
+   + setMarker(spriteID: number, spriteSheet: string): Phaser.GameObjects.Sprite 
+   + drawMapGridLines(lineWidth: number, color: number, alpha?: number): Phaser.GameObjects.Graphics
+   + getFirstTileAt(tileX: number, tileY: number, nonNull?: boolean, layer?: string | number | Phaser.Tilemaps.TilemapLayer): Phaser.Tilemaps.Tile
+   + getTileProperties(tileX: number, tileY: number, layer?: string | number | Phaser.Tilemaps.TilemapLayer): Object
+   --
+   + preload(): void
+   + create(): void
+   + update (tile, delta):void {this.updateMarkerPosition}
+
+}
+
+interface Entity{
+   - id:string
+   -- 
+   + move():void
+   + spawn():void
+}
+
+class Unit{
+   - nomUnite:string
+   - isRange:boolean
+   - range:number | null
+   - pv:number
+   - owner:Player | Faction
+   - position: {x,y}
+   - spriteKey: string 
+   --
+   - sprite: Phaser.GameObjects.Sprite
+   --
+   + constructor (nomUnite, range, pv, owner, spriteKey):Unit
+
+}
+
+Unit --|> Entity
+
+
+@enduml
