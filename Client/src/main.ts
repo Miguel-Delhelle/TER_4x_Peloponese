@@ -17,7 +17,7 @@ window.addEventListener("load",start);
 function start(){
     //var toolsController = new ToolsController();
 
-    mainScene.add.sprite(mainScene._pointer.x,mainScene._pointer.y,mainScene._spritesets[0],3467);
+    //mainScene.add.sprite(mainScene._pointer.x,mainScene._pointer.y,mainScene._spritesets[0],3467);
 
 
 }

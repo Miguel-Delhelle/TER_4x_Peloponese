@@ -192,8 +192,8 @@ export class MainScene extends Phaser.Scene{
 	public preload(): void {
 		this.mapController = new MapController(this);
 		this.toolsController = new ToolsController(this);
-		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/Test.json");
-		this.loadTilesets("/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png");
+		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/AncientGreece.json");
+		this.loadTilesets(["/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png","/mapTiled/Tileset/MiniWorldSprites/Ground/AllGround.png"]);
 	}
 
 
