@@ -1,0 +1,18 @@
+@startuml "Backend"
+
+node "Serveur" as Server
+database "Database" as BD
+actor "Player" as Player
+
+rectangle "Backend" {
+
+   (Connecter à la base de donnée) as Connect
+   (Faire une image du jeu) as Save
+   (Gérer l'assyncronisme) as Async
+   (Stocker des informations datés) as saveDate1
+   (Ecraser l'informations daté précédente overwrite) as saveDate2
+   (Contient des instances d'objets entités) as saveEntity
+   (Permettre une connexion à une image du jeu) as goToMySave
+}
+
+@enduml

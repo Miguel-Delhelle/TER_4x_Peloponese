@@ -1,10 +1,12 @@
-@startuml "UseCase_TER"
+@startuml "Usecase_mainGame"
 
 actor "Joueur" as Player
+node "Serveur" as Server
 node "Socket.io" as So
 database "Database" as BD
 
-rectangle "Grèce Anatomy" {
+rectangle "Jeu principale" {
+   (Connecter trois joueurs ensemble) as Connect
    (Accéder à la barre d'outil) as T0
    (Construire nouveaux batiments) as T1
    (Recruter des unités) as T2
@@ -21,6 +23,10 @@ rectangle "Grèce Anatomy" {
    (Reception de message) as C2
    (Visionner l'assyncronisme) as AV0
 }
+
+Server --> So <<include>>
+Server --> BD <<include>>
+Server --> Connect
 
 Player --> T0
 Player --> U0
@@ -39,11 +45,11 @@ A0 --> A2 <<include>>
 A0 --> A3 <<include>>
 A0 --> AV0 <<include>>
 
-BD --> A0
-BD --> U3
+Server --> A0
+Server --> U3
 
 Player --> C0
-So --> C0
+Server --> C0
 C0 --> C1 <<include>>
 C0 --> C2 <<include>>
 
