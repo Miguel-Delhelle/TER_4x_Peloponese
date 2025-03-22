@@ -1,5 +1,10 @@
 @startuml "Usecase_mainGame"
 
+skinparam ActorBorderColor DarkBlue
+skinparam ActorBackgroundColor LightBlue
+skinparam UsecaseBorderColor Navy
+skinparam UsecaseBackgroundColor #E0F7FA
+
 actor "Joueur" as Player
 node "Serveur" as Server
 node "Socket.io" as So
@@ -18,40 +23,40 @@ rectangle "Jeu principale" {
    (Envoyez des messages) as A1
    (Recevoir des messages) as A2
    (Traiter les messages) as A3
-   (Gestion d'un chat instantanée) as C0
+   (Gestion d'un tchat instantanée) as C0
    (Envoie de message) as C1
    (Reception de message) as C2
    (Visionner l'assyncronisme) as AV0
 }
 
-Server --> So <<include>>
-Server --> BD <<include>>
+Server --> So : <<include>>
+Server --> BD : <<include>>
 Server --> Connect
 
 Player --> T0
 Player --> U0
 Player --> A0
 
-T0 --> T1 <<include>>
-T0 --> T2 <<include>>
-T0 --> AV0 <<include>>
+T0 ..> T1 : <<include>>
+T0 ..> T2 : <<include>>
+T0 ..> AV0 : <<include>>
 
-U0 --> U1 <<include>>
-U0 --> U2 <<include>>
-U0 --> U3 <<include>>
+U0 ..> U1 : <<include>>
+U0 ..> U2 : <<include>>
+U0 ..> U3 : <<include>>
 
-A0 --> A1 <<include>>
-A0 --> A2 <<include>>
-A0 --> A3 <<include>>
-A0 --> AV0 <<include>>
+A0 ..> A1 : <<include>>
+A0 ..> A2 : <<include>>
+A0 ..> A3 : <<include>>
+A0 ..> AV0 : <<include>>
 
 Server --> A0
 Server --> U3
 
 Player --> C0
 Server --> C0
-C0 --> C1 <<include>>
-C0 --> C2 <<include>>
+C0 ..> C1 : <<include>>
+C0 ..> C2 : <<include>>
 
 
 

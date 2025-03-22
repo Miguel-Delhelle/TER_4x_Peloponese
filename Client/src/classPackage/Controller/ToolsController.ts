@@ -1,4 +1,4 @@
-import type { MainScene } from "../phaserScene/MainScene";
+import type { MainScene } from "../PhaserScene/MainScene";
 
 export class ToolsController{
   /*
@@ -8,6 +8,7 @@ export class ToolsController{
   */
   private inBuilding: boolean = false;
   private toolbarHTML: HTMLElement = document.getElementById("toolsBar");
+  private subToolHTML: HTMLElement = document.getElementById("subTool");
   private itemHTML: Map<string,Element> = new Map<string,Element>();
   private mainScene: MainScene;
 
@@ -85,7 +86,7 @@ export class ToolsController{
   }
 
   openSubToolB(){
-    let subTool = document.getElementById("subToolBuild");
+    let subTool = document.getElementById("subTool");
     if (subTool.style.visibility =="visible"){
         subTool.style.visibility="hidden";
     }else{

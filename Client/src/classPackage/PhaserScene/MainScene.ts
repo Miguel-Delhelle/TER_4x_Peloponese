@@ -1,8 +1,8 @@
 //import mapPng from '../../../res/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png';
 //import mapJson from '/mapTiled/Maps/Test.json';
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
-import { MapController } from '../controller/MapController';
-import { ToolsController } from '../controller/ToolsController';
+import { MapController } from '../Controller/MapController';
+import { ToolsController } from '../Controller/ToolsController';
 
 
 
@@ -50,6 +50,10 @@ export class MainScene extends Phaser.Scene{
    //       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
    public get _marker(): Phaser.GameObjects.Sprite {return this.marker;}
+
+   public get _spritesets(){
+      return this.spritesets;
+   }
 
    private setMarker(spriteID: number, spriteSheet: string): Phaser.GameObjects.Sprite {
       this.marker = this.add.sprite(0,0,spriteSheet,spriteID);

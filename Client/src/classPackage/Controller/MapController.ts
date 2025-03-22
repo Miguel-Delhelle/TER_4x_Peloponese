@@ -1,4 +1,4 @@
-import { MainScene } from "../phaserScene/MainScene";
+import { MainScene } from "../PhaserScene/MainScene";
 import Phaser from "phaser";
 
 
