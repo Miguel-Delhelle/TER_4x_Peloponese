@@ -11,18 +11,18 @@
     ],
     "fileStates": {
         "Maps/AncientGreece.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 1,
+            "scale": 0.125,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 3539.393939393939,
-                "y": 1104.5454545454545
+                "x": 4528,
+                "y": 3140
             }
         },
         "Maps/Test.tmx": {
             "scale": 8,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 772.625,
+                "x": 783.75,
                 "y": 193.6875
             }
         },
