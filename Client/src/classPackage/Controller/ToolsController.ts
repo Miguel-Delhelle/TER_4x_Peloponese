@@ -7,7 +7,7 @@ export class ToolsController{
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
 	private inBuilding: boolean = false;
-	private currentBuildingID: number = 4594;
+	private currentBuildingID: number = 120;
 	private toolbarHTML: HTMLElement = document.getElementById("toolsBar");
 	private subToolHTML: HTMLElement = document.getElementById("subTool");
 	private itemHTML: Map<string,Element> = new Map<string,Element>();
