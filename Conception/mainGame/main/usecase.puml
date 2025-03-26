@@ -1,5 +1,7 @@
 @startuml "Usecase_mainGame"
 
+left to right direction
+
 skinparam ActorBorderColor DarkBlue
 skinparam ActorBackgroundColor LightBlue
 skinparam UsecaseBorderColor Navy
