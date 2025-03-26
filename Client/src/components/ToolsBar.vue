@@ -1,17 +1,29 @@
 <script setup lang="ts">
-import { ToolsController } from '../classPackage/controller/ToolsController';
+import { ToolsController } from '../classPackage/Controller/ToolsController';
 
 </script>
 
 <template>
-    <div id="toolsBarContent" class="ui container">
-        <div id = "build" class = "item">Construire</div>
-        <div id = "recruit" class = "item">Recruter</div>
-        <div id = "stats" class = "item">Voir unités</div>
+    <div id="toolBarBox" class="ui">
+        <div id ="subTool" class ="container">
+            <div id = "test" class = "item">Option1</div>
+            <div id = "test2" class = "item">Option2</div>
+            <div id = "test3" class = "item">Option3</div>
+            <div id = "test4" class = "item">Option3</div>
+            <div id = "test5" class = "item">Option3</div>
+
+        </div>
+        <div id="toolsBar" class="container">
+            <div id = "build" class = "item">Construire</div>
+            <div id = "recruit" class = "item">Recruter</div>
+            <div id = "stats" class = "item">Voir unités</div>
+        </div>
     </div>
 </template>
 
 <style lang="css" scoped>
+
+
 
 .container{
     background-color: rgba(255, 20, 150, 0.85);

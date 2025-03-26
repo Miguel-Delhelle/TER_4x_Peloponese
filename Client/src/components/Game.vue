@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Phaser from 'phaser';
 import {onMounted} from "vue";
-import { MainScene } from '../classPackage/phaserScene/MainScene';
+import { MainScene } from '../classPackage/PhaserScene/MainScene';
 import { mainScene } from '../main';
 
 const config:Phaser.Types.Core.GameConfig = {
