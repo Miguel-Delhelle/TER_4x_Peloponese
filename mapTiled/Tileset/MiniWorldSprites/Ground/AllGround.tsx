@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="AllGround" tilewidth="16" tileheight="16" tilecount="160" columns="16">
- <image source="AllGround.png" width="256" height="160"/>
+<tileset version="1.10" tiledversion="1.11.2" name="AllGround" tilewidth="16" tileheight="16" tilecount="176" columns="16">
+ <image source="AllGround.png" width="256" height="176"/>
  <tile id="0" type="Terrain">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
@@ -79,6 +79,30 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
+ <tile id="7">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="8">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
  <tile id="9" type="Hills">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
@@ -137,6 +161,30 @@
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="SubClass" value=""/>
+  </properties>
+ </tile>
+ <tile id="14">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="15">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="16" type="Terrain" probability="0.8">
@@ -206,6 +254,30 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
+ <tile id="23">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="24">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
  <tile id="25" type="Hills">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
@@ -253,6 +325,30 @@
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="SubClass" value=""/>
+  </properties>
+ </tile>
+ <tile id="30">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="31">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="32" type="Terrain">
@@ -333,6 +429,30 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
+ <tile id="39">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="40">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
  <tile id="41" type="Roads">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
@@ -391,6 +511,30 @@
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="SubClass" value=""/>
+  </properties>
+ </tile>
+ <tile id="46">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="47">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="48" type="Terrain">
@@ -471,6 +615,30 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
+ <tile id="55">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="56">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
  <tile id="57" type="Roads">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
@@ -529,6 +697,30 @@
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="SubClass" value=""/>
+  </properties>
+ </tile>
+ <tile id="62">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="63">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="64" type="Terrain">
@@ -616,7 +808,7 @@
    <property name="IsConnected_East" type="bool" value="true"/>
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
-   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
    <property name="SubClass" value="Stone"/>
@@ -689,7 +881,7 @@
    <property name="IsConnected_East" type="bool" value="true"/>
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
-   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
    <property name="SubClass" value="Dirt"/>
@@ -777,7 +969,7 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
    <property name="IsConnected_East" type="bool" value="false"/>
-   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
@@ -789,9 +981,9 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
    <property name="IsConnected_East" type="bool" value="true"/>
-   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
-   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
    <property name="SubClass" value="Stone"/>
@@ -861,7 +1053,7 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
    <property name="IsConnected_East" type="bool" value="false"/>
-   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
@@ -873,9 +1065,9 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
    <property name="IsConnected_East" type="bool" value="true"/>
-   <property name="IsConnected_North" type="bool" value="false"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
-   <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
    <property name="SubClass" value="Dirt"/>
@@ -1517,6 +1709,30 @@
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
+ <tile id="151">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="152">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
  <tile id="153" type="Roads">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="false"/>
@@ -1560,6 +1776,78 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="158">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="159">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="167">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="168">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Stone"/>
+  </properties>
+ </tile>
+ <tile id="174">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
+   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="SubClass" value="Dirt"/>
+  </properties>
+ </tile>
+ <tile id="175">
+  <properties>
+   <property name="IsBuildingEnabled" type="bool" value="false"/>
+   <property name="IsConnected_East" type="bool" value="true"/>
+   <property name="IsConnected_North" type="bool" value="true"/>
+   <property name="IsConnected_South" type="bool" value="true"/>
+   <property name="IsConnected_West" type="bool" value="true"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
    <property name="SubClass" value="Dirt"/>
@@ -1638,9 +1926,17 @@
    <wangtile tileid="146" wangid="0,0,1,0,0,0,0,0"/>
    <wangtile tileid="147" wangid="0,0,1,0,0,0,1,0"/>
    <wangtile tileid="148" wangid="0,0,0,0,0,0,1,0"/>
+   <wangtile tileid="151" wangid="1,1,1,0,1,0,1,1"/>
+   <wangtile tileid="152" wangid="1,1,1,1,1,0,1,0"/>
    <wangtile tileid="153" wangid="0,0,2,0,0,0,0,0"/>
    <wangtile tileid="154" wangid="0,0,2,0,0,0,2,0"/>
    <wangtile tileid="155" wangid="0,0,0,0,0,0,2,0"/>
+   <wangtile tileid="158" wangid="2,2,2,0,2,0,2,2"/>
+   <wangtile tileid="159" wangid="2,2,2,2,2,0,2,0"/>
+   <wangtile tileid="167" wangid="1,0,1,0,1,1,1,1"/>
+   <wangtile tileid="168" wangid="1,0,1,1,1,1,1,0"/>
+   <wangtile tileid="174" wangid="2,0,2,0,2,2,2,2"/>
+   <wangtile tileid="175" wangid="2,0,2,2,2,2,2,0"/>
   </wangset>
   <wangset name="Hills" type="mixed" tile="44">
    <wangcolor name="Dirt" color="#805a42" tile="126" probability="1"/>

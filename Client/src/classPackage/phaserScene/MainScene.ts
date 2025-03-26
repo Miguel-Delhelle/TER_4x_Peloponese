@@ -18,6 +18,8 @@ export class MainScene extends Phaser.Scene{
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 	private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
 	private spritesets: string[] = [];
+   private mapSizeXpx: number;
+   private mapSizeYpx: number;
 
 
 	/*
@@ -197,14 +199,7 @@ export class MainScene extends Phaser.Scene{
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
 	public create(): void {
-		this.map = this.make.tilemap({ key: 'map' });
-		this.setTilesets();
-		this.addAllTiledLayers();
-		this.addNewLayer('User Interface');
-
-		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
-		this.setMarker();
-
+      this.setupMap();
 		this.setupEvent();
 	}
 
@@ -221,6 +216,19 @@ export class MainScene extends Phaser.Scene{
 	* |  |                                             METHODS  DEFINITION                                             |  | *
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
+   private setupMap(): void {
+		this.map = this.make.tilemap({ key: 'map' });
+      this.mapSizeXpx = this.map.widthInPixels;
+      this.mapSizeYpx = this.map.heightInPixels;
+		this.setTilesets();
+		this.addAllTiledLayers();
+		this.addNewLayer('User Interface');
+
+		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
+		this.setMarker();
+   }
+
+
 	private setupEvent(): void {
 		this.input.on('pointerdown', this.mapController.dragStart);
 		this.input.on('pointerup', this.mapController.dragStop);

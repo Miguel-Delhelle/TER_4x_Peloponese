@@ -11,19 +11,19 @@
     ],
     "fileStates": {
         "Maps/AncientGreece.tmx": {
-            "scale": 0.125,
-            "selectedLayer": 0,
+            "scale": 0.33,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 4528,
-                "y": 3140
+                "x": 8062.121212121212,
+                "y": 2943.939393939394
             }
         },
         "Maps/Test.tmx": {
-            "scale": 8,
+            "scale": 0.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 783.75,
-                "y": 193.6875
+                "x": 951,
+                "y": 533
             }
         },
         "Tileset/AllAssetsPreview.tsx": {
