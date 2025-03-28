@@ -16,14 +16,15 @@ export class MainScene extends Phaser.Scene{
 	private mapController: MapController;
 	private toolsController: ToolsController;
 	private marker: Phaser.GameObjects.Sprite;
-   private static markerDefaultID: number | string = 4336;
+	 private static markerDefaultID: number | string = 4336;
 	private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+	private mapSizeXpx: number;
+	private mapSizeYpx: number;
 	private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
 	private spritesets: string[] = [];
-   private mapSizeXpx: number;
-   private mapSizeYpx: number;
 
+	private controls;
 
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
@@ -64,10 +65,10 @@ export class MainScene extends Phaser.Scene{
 
 	private setMarker(spriteID?: number | string, spriteSheet?: string): Phaser.GameObjects.Sprite {
 		this.marker = this.add.sprite(
-         0, 0,
-         spriteSheet?spriteSheet:this.spritesets[0],
-         spriteID?spriteID:MainScene.markerDefaultID
-      );
+			0, 0,
+			spriteSheet?spriteSheet:this.spritesets[0],
+			spriteID?spriteID:MainScene.markerDefaultID
+		);
 		this.marker.setOrigin(0, 0);
 		return this.marker;
 	}
@@ -105,6 +106,7 @@ export class MainScene extends Phaser.Scene{
 				);
 			tilemapLayer.setName(layerID);
 			this.layers.push(tilemapLayer);
+			console.log("A new layer from Tiled has been added to the map:",tilemapLayer)
 		});
 	}
 
@@ -127,6 +129,7 @@ export class MainScene extends Phaser.Scene{
 		if (tilemapLayer) {
 			tilemapLayer.setName(layerID);
 			this.layers.push(tilemapLayer);
+			console.log("A new layer from Tiled has been added to the map:",tilemapLayer)
 			return tilemapLayer;
 		}
 	}
@@ -142,7 +145,30 @@ export class MainScene extends Phaser.Scene{
 			);
 		tilemapLayer.setName(layerName);
 		this.layers.push(tilemapLayer);
+		console.log("A new layer has been created:",tilemapLayer)
 		return tilemapLayer;
+	}
+
+
+	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+	public get _mapSizeXpx(): number {return this.mapSizeXpx;}
+
+
+	public setMapSizeXpx(): void {
+		this.mapSizeXpx = this.map.widthInPixels;
+		console.log(`Map Dimension: ${this.mapSizeXpx}px (${this.mapSizeXpx/this.map.tileWidth} x ${this.map.tileWidth}px)`);
+	}
+
+
+	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+	public get _mapSizeYpx(): number {return this.mapSizeYpx;}
+
+	
+	public setMapSizeYpx(): void {
+		this.mapSizeYpx = this.map.heightInPixels;
+		console.log(`Map Dimension: ${this.mapSizeYpx}px (${this.mapSizeYpx/this.map.tileHeight} x ${this.map.tileHeight}px)`);
 	}
 
 
@@ -152,6 +178,7 @@ export class MainScene extends Phaser.Scene{
 
 
 	private loadTilesets(path: string | string[]): void {
+		console.log("Loading Tilesets...");
 		if (typeof(path)==="string") {path = [path];}
 		path.forEach(p => {
 			let name: string = p.split('/').reverse()[0];
@@ -164,6 +191,7 @@ export class MainScene extends Phaser.Scene{
 			});
 			this.tilesets.set(name, null);
 			this.spritesets.push(sname);
+			console.log(`  → ${name} (+ '${sname}')`);
 		});
 	}
 
@@ -171,6 +199,8 @@ export class MainScene extends Phaser.Scene{
 		for (let tileset of this.tilesets.keys()) {
 			this.tilesets.set(tileset, this.map.addTilesetImage(tileset, tileset));
 		}
+		console.log("Loaded Tilesets:\n",this.tilesets);
+		console.log("Loaded SpriteSheets:\n",this.spritesets);
 	}
 
 
@@ -183,7 +213,7 @@ export class MainScene extends Phaser.Scene{
 			y: this.map.worldToTileY(worldPoint.y),
 		};
 	}
-  
+	
 
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
@@ -192,8 +222,6 @@ export class MainScene extends Phaser.Scene{
 	*/
 
 	public preload(): void {
-		this.mapController = new MapController(this);
-		this.toolsController = new ToolsController(this);
 		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/AncientGreece.json");
 		this.loadTilesets(["/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png","/mapTiled/Tileset/MiniWorldSprites/Ground/AllGround.png"]);
 	}
@@ -202,8 +230,22 @@ export class MainScene extends Phaser.Scene{
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
 	public create(): void {
-      this.setupMap();
+		this.setupMap();
 		this.setupEvent();
+
+		const cursors = this.input.keyboard.createCursorKeys();
+		const controlConfig = {
+			camera: this.cameras.main,
+			left: cursors.left,
+			right: cursors.right,
+			up: cursors.up,
+			down: cursors.down,
+			speed: 1.0,
+			zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_SUBTRACT),
+			zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ADD),
+			zoomSpeed: 0.015
+		};
+		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
 	}
 
 
@@ -211,6 +253,7 @@ export class MainScene extends Phaser.Scene{
 
 	public update (tile, delta): void {
 		this.updateMarkerPosition();
+		this.controls.update(delta);
 	}
 
 
@@ -219,29 +262,37 @@ export class MainScene extends Phaser.Scene{
 	* |  |                                             METHODS  DEFINITION                                             |  | *
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
-   private setupMap(): void {
+	private setupMap(): void {
 		this.map = this.make.tilemap({ key: 'map' });
-      this.mapSizeXpx = this.map.widthInPixels;
-      this.mapSizeYpx = this.map.heightInPixels;
 		this.setTilesets();
 		this.addAllTiledLayers();
 		this.addNewLayer('User Interface');
+		this.setMapSizeXpx();
+		this.setMapSizeYpx();
 
 		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
 		this.setMarker();
-   }
+	}
 
 
 	private setupEvent(): void {
-		this.input.on('pointerdown', this.mapController.dragStart);
-		this.input.on('pointerup', this.mapController.dragStop);
-		this.input.on('pointermove', this.mapController.dragMove);
+		this.mapController = new MapController(this);
+		this.toolsController = new ToolsController(this);
+		this.input.on('pointerdown', this.mapController.panningStart);
+		this.input.on('pointerup', this.mapController.panningStop);
+		this.input.on('pointermove', this.mapController.panningMove);
+		
+		//this.input.on('pointerdown', this.mapController.dragStart);
+		//this.input.on('pointerup', this.mapController.dragStop);
+		//this.input.on('pointermove', this.mapController.dragMove);
 		this.input.on('wheel',this.mapController.zoom);
 		this.input.on('pointerdown',this.toolsController.build);
 
-		this.input.on('pointerdown', e => {
-			const pointer = this._pointer;
-			console.log(this.getTileProperties(pointer.x, pointer.y));
+		this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
+			if (pointer.leftButtonDown()) {
+				const cursor = this._pointer;
+				console.log(this.getTileProperties(cursor.x, cursor.y));
+			}
 		});
 	}
 
