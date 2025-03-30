@@ -3,27 +3,28 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Maps/Test.tmx",
+    "activeFile": "Maps/AncientGreece.tmx",
     "expandedProjectPaths": [
+        "Tileset",
         ".",
-        "Tileset/MiniWorldSprites",
-        "Tileset"
+        "Maps",
+        "Tileset/MiniWorldSprites"
     ],
     "fileStates": {
         "Maps/AncientGreece.tmx": {
-            "scale": 0.33,
+            "scale": 4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 8062.121212121212,
-                "y": 2943.939393939394
+                "x": 4148.75,
+                "y": 4338.875
             }
         },
         "Maps/Test.tmx": {
             "scale": 0.5,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 951,
-                "y": 533
+                "x": 960,
+                "y": 479
             }
         },
         "Tileset/AllAssetsPreview.tsx": {
@@ -72,7 +73,7 @@
         },
         "Tileset/MiniWorldSprites/Ground/AllGround.tsx": {
             "scaleInDock": 1,
-            "scaleInEditor": 0.75
+            "scaleInEditor": 1.5
         },
         "Tileset/MiniWorldSprites/Nature/AllNature.tsx": {
             "scaleInDock": 1,
@@ -88,7 +89,7 @@
         }
     },
     "last.exportedFilePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Maps",
-    "last.imagePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Tileset/MiniWorldSprites/Ground",
+    "last.imagePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Tileset/MiniWorldSprites/Miscellaneous",
     "map.fixedSize": false,
     "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
@@ -97,24 +98,25 @@
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "openFiles": [
-        "Tileset/MiniWorldSprites/AllMiniWorldSprites.tsx",
-        "Maps/Test.tmx"
+        "Maps/AncientGreece.tmx",
+        "Maps/Test.tmx",
+        "Tileset/MiniWorldSprites/Ground/AllGround.tsx"
     ],
     "project": "TER.tiled-project",
-    "property.type": "bool",
+    "property.type": "string",
     "recentFiles": [
-        "Tileset/MiniWorldSprites/Animals/AllAnimals.tsx",
-        "Tileset/MiniWorldSprites/Nature/AllNature.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Athens/Athens_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Others/Others_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Sparta/Sparta_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Thebes/Thebes_Buildings.tsx",
         "Tileset/MiniWorldSprites/Units/Ships/Athens/Athens_Ships.tsx",
-        "Tileset/MiniWorldSprites/Ground/AllGround.tsx",
+        "Tileset/MiniWorldSprites/Buildings/Thebes/Thebes_Buildings.tsx",
+        "Tileset/MiniWorldSprites/Buildings/Sparta/Sparta_Buildings.tsx",
+        "Tileset/MiniWorldSprites/Buildings/Others/Others_Buildings.tsx",
+        "Tileset/MiniWorldSprites/Buildings/Athens/Athens_Buildings.tsx",
+        "Tileset/MiniWorldSprites/Animals/AllAnimals.tsx",
         "Maps/Test.tmx",
+        "Tileset/MiniWorldSprites/Ground/AllGround.tsx",
+        "Maps/AncientGreece.tmx",
+        "Tileset/MiniWorldSprites/Nature/AllNature.tsx",
         "Tileset/MiniWorldSprites/AllMiniWorldSprites.tsx",
-        "Tileset/ColoredBuildingsPreview.tsx",
-        "Tileset/BoxSelector.tsx"
+        "Tileset/ColoredBuildingsPreview.tsx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFormat": "tsx",
