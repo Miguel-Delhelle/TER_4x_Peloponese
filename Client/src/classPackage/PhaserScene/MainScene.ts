@@ -16,7 +16,7 @@ export class MainScene extends Phaser.Scene{
 	private mapController: MapController;
 	private toolsController: ToolsController;
 	private marker: Phaser.GameObjects.Sprite;
-	 private static markerDefaultID: number | string = 4336;
+	 private static markerDefaultID: number | string = 91;
 	private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 	private mapSizeXpx: number;
@@ -223,7 +223,38 @@ export class MainScene extends Phaser.Scene{
 
 	public preload(): void {
 		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/AncientGreece.json");
-		this.loadTilesets(["/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png","/mapTiled/Tileset/MiniWorldSprites/Ground/AllGround.png"]);
+		this.loadTilesets([
+			"/mapTiled/Tileset/Common/User Interface/AllUI.png",
+			"/mapTiled/Tileset/Common/Ground/AllGround.png",
+			"/mapTiled/Tileset/Common/Miscellaneous/AllMiscellaneous.png",
+			"/mapTiled/Tileset/Common/Nature/AllNature.png",
+			"/mapTiled/Tileset/Common/Animals/AllAnimals.png",
+			"/mapTiled/Tileset/Common/Projectiles/AllProjectiles.png",
+			"/mapTiled/Tileset/Others/Buildings/Others_Buildings.png",
+			"/mapTiled/Tileset/Others/Units/Ships/Others_Ships.png",
+			"/mapTiled/Tileset/Others/Units/Workers/Others_Workers.png",
+			"/mapTiled/Tileset/Others/Units/Soldiers/Melee/Others_MeleeSoldiers.png",
+			"/mapTiled/Tileset/Others/Units/Soldiers/Mounted/Others_MountedSoldiers.png",
+			"/mapTiled/Tileset/Others/Units/Soldiers/Ranged/Others_RangedSoldiers.png",
+			"/mapTiled/Tileset/Athens/Buildings/Athens_Buildings.png",
+			"/mapTiled/Tileset/Athens/Units/Ships/Athens_Ships.png",
+			"/mapTiled/Tileset/Athens/Units/Workers/Athens_Workers.png",
+			"/mapTiled/Tileset/Athens/Units/Soldiers/Melee/Athens_MeleeSoldiers.png",
+			"/mapTiled/Tileset/Athens/Units/Soldiers/Mounted/Athens_MountedSoldiers.png",
+			"/mapTiled/Tileset/Athens/Units/Soldiers/Ranged/Athens_RangedSoldiers.png",
+			"/mapTiled/Tileset/Sparta/Buildings/Sparta_Buildings.png",
+			"/mapTiled/Tileset/Sparta/Units/Ships/Sparta_Ships.png",
+			"/mapTiled/Tileset/Sparta/Units/Workers/Sparta_Workers.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/Sparta_MeleeSoldiers.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Mounted/Sparta_MountedSoldiers.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Ranged/Sparta_RangedSoldiers.png",
+			"/mapTiled/Tileset/Thebes/Buildings/Thebes_Buildings.png",
+			"/mapTiled/Tileset/Thebes/Units/Ships/Thebes_Ships.png",
+			"/mapTiled/Tileset/Thebes/Units/Workers/Thebes_Workers.png",
+			"/mapTiled/Tileset/Thebes/Units/Soldiers/Melee/Thebes_MeleeSoldiers.png",
+			"/mapTiled/Tileset/Thebes/Units/Soldiers/Mounted/Thebes_MountedSoldiers.png",
+			"/mapTiled/Tileset/Thebes/Units/Soldiers/Ranged/Thebes_RangedSoldiers.png",
+		]);
 	}
 
 
