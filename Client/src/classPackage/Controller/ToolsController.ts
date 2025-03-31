@@ -7,7 +7,7 @@ export class ToolsController{
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
 	private inBuilding: boolean = false;
-	private currentBuildingID: number = 120;
+	private currentBuildingID: number = 4;
 	private inRecruitment: boolean = false;
 	private currentUnitId: number = 2;
 	private toolbarHTML: HTMLElement = document.getElementById("toolsBar");
@@ -41,7 +41,7 @@ export class ToolsController{
 		if (newValue) {
 			this.toolbarHTML.classList.add("isActive");
 			console.log("Building mode: on");
-			this._mainScene.changeMarker(this.currentBuildingID-1);
+			this._mainScene.changeMarker(this.currentBuildingID);
       	this.openSubToolB();
 		} else {
 			this.toolbarHTML.classList.remove("isActive");

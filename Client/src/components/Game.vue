@@ -6,8 +6,8 @@ import { mainScene } from '../main';
 
 const config:Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 120*16,
-    height: 60*16,
+    width: window.innerWidth,
+    height: window.innerHeight,
     parent: 'app',
   };
 
