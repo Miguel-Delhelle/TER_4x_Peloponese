@@ -1,5 +1,5 @@
 import { mainScene } from "../../../main";
-import { Player } from "../../Player/player";
+import type { Player } from "../../Player/player";
 import type { Point } from "../../Math/Point";
 import type { Entity } from "../Entity";
 

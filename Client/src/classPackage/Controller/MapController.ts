@@ -15,7 +15,7 @@ export class MapController {
     this.camera = this.scene.cameras.main;
   }
 
-  dragStart = (pointer: Phaser.Input.Pointer): void => {
+  dragStart = (pointer: Phaser.Input.Pointer):void => {
     this.isDragging = true;
     this.dragStartX = pointer.x;
     this.dragStartY = pointer.y;

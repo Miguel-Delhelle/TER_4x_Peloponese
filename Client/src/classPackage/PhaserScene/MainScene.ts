@@ -3,6 +3,8 @@
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
+import { SpriteLoaded } from './AssetManager/SpriteLoaded';
+import { AssetsEnum } from './AssetManager/AssetsEnum';
 
 
 
@@ -171,6 +173,8 @@ export class MainScene extends Phaser.Scene{
 		}
 	}
 
+	public get _spritesets():string[]{return this.spritesets;}
+
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
@@ -193,7 +197,10 @@ export class MainScene extends Phaser.Scene{
 		this.mapController = new MapController(this);
 		this.toolsController = new ToolsController(this);
 		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/AncientGreece.json");
-		this.loadTilesets(["/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png","/mapTiled/Tileset/MiniWorldSprites/Ground/AllGround.png"]);
+		this.loadTilesets(
+			[//"/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png",
+			"/mapTiled/Tileset/MiniWorldSprites/Ground/AllGround.png",
+			"/mapTiled/Tileset/MiniWorldSprites/Units/Soldiers/Melee/Athens/Athens_MeleeSoldiers.png"]);
 	}
 
 
@@ -230,7 +237,7 @@ export class MainScene extends Phaser.Scene{
 		this.input.on('pointermove', this.mapController.dragMove);
 		this.input.on('wheel',this.mapController.zoom);
 		this.input.on('pointerdown',this.toolsController.build);
-
+		this.input.on('pointerdown',this.toolsController.recruit);
 		this.input.on('pointerdown', e => {
 			const pointer = this._pointer;
 			console.log(this.getTileProperties(pointer.x, pointer.y));

@@ -8,6 +8,8 @@ export class ToolsController{
 	*/
 	private inBuilding: boolean = false;
 	private currentBuildingID: number = 120;
+	private inRecruitment: boolean = false;
+	private currentUnitId: number = 2;
 	private toolbarHTML: HTMLElement = document.getElementById("toolsBar");
 	private subToolHTML: HTMLElement = document.getElementById("subTool");
 	private itemHTML: Map<string,Element> = new Map<string,Element>();
@@ -54,6 +56,26 @@ export class ToolsController{
 		return this.inBuilding;
 	}
 
+	public setInRecruitment(newValue: boolean) {
+		this.inRecruitment = newValue;
+		if (newValue) {
+			this.toolbarHTML.classList.add("isActive");
+			console.log("Recruit mode: on");
+			this._mainScene.changeMarker(this.currentUnitId);
+      	this.openSubToolB();
+		} else {
+			this.toolbarHTML.classList.remove("isActive");
+			console.log("Recruit mode: off");
+			this._mainScene.changeMarker();
+      	this.openSubToolB();
+		}
+	}
+
+	public toggleInRecruitment(): boolean {
+		this.setInRecruitment(!this.inRecruitment);
+		return this.inRecruitment;
+	}
+
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
@@ -93,12 +115,26 @@ export class ToolsController{
 
 	private setupEvent(): void {
 		this.itemHTML.get("build").addEventListener("click", () => {this.toggleInBuilding();});
+		this.itemHTML.get("recruit").addEventListener("click", () => {this.toggleInRecruitment();})
+	}
+
+	recruit = () => {
+
+		if (this.inRecruitment){
+			console.log("recrutement lancé pour de vrai");
+			this.mainScene.add.sprite(this.mainScene._pointer.x,this.mainScene._pointer.y,this.mainScene._spritesets[1],this.currentUnitId);
+			console.log("L'unité à a été ajouté!");
+			console.log(this.mainScene._spritesets)
+		}else {		
+		console.log("recruit lancé et bloqué");
+		}
+		//mainscene.map.putTileAt()
 	}
 
 	build = () => {
 		if (this.inBuilding){
 			this.mainScene._map.putTileAt(this.currentBuildingID,this.mainScene._pointer.x,this.mainScene._pointer.y);
-			console.log("A tile has been added!")
+			console.log("A tile has been added!") //this.currentBuildingID,
 		}
 		//mainscene.map.putTileAt()
 	}
