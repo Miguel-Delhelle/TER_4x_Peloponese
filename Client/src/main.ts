@@ -22,7 +22,7 @@ function start(){
         type: Phaser.AUTO,
         width: window.innerWidth,
         height: window.innerHeight,
-        parent: 'app',
+        parent: 'game',
       };
     
     
