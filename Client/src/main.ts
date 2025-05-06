@@ -1,6 +1,5 @@
 import { createApp} from 'vue'
 import './style.css'
-import App from './App.vue'
 import { ToolsController } from './classPackage/Controller/ToolsController'
 import { MainScene } from './classPackage/PhaserScene/MainScene'
 import { Unit } from './classPackage/Entity/units/Unit'
@@ -14,7 +13,6 @@ export var mainScene:MainScene = new MainScene();
 // pinia singleton
 // vuex
 
-createApp(App).mount('#app')
 
 window.addEventListener("load",start);
 
