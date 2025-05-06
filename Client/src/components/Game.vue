@@ -5,7 +5,7 @@ import { MainScene } from '../classPackage/PhaserScene/MainScene';
 import { mainScene } from '../main';
 
 const config:Phaser.Types.Core.GameConfig = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     width: window.innerWidth,
     height: window.innerHeight,
     parent: 'app',

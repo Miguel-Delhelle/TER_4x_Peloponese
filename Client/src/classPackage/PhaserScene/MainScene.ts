@@ -19,6 +19,8 @@ export class MainScene extends Phaser.Scene{
 	 private static markerDefaultID: number | string = 91;
 	private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+  private mapgrid: Phaser.GameObjects.Graphics;
+  private isGridVisible: boolean = false;
 	private mapSizeXpx: number;
 	private mapSizeYpx: number;
 	private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
@@ -148,6 +150,17 @@ export class MainScene extends Phaser.Scene{
 		console.log("A new layer has been created:",tilemapLayer)
 		return tilemapLayer;
 	}
+
+
+	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+  public get _mapgrid(): Phaser.GameObjects.Graphics {return this.mapgrid;}
+
+  
+  public toggleMapgrid(value: boolean = true): boolean {
+    if(this.mapgrid) return this.mapgrid.visible = value?value:!this.isGridVisible;
+    return this.isGridVisible;
+  }
 
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
@@ -301,7 +314,9 @@ export class MainScene extends Phaser.Scene{
 		this.setMapSizeXpx();
 		this.setMapSizeYpx();
 
-		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
+		this.mapgrid = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
+    //this.mapgrid.generateTexture(document.getElementById('mainscene') as HTMLCanvasElement);
+    this.isGridVisible = true;
 		this.setMarker();
 	}
 

@@ -64,7 +64,7 @@ export class MapController {
 		this.zoomOutMax = Math.max(
 			this.camera.width / this.scene._mapSizeXpx,
 			this.camera.height / this.scene._mapSizeYpx
-		);
+		)*2;
 		this.zoomInMax = 2;
 	}
 	
@@ -110,9 +110,17 @@ export class MapController {
 		if (!this.isMousewheelDown) {
 			const worldPointBefore = this.camera.getWorldPoint(pointer.x, pointer.y);
 			let zoomFactor = 1.13;
+      const zoomPrevious: number = this.camera.zoom;
 			this.camera.zoom = deltaY > 0
 				? Math.max(this.zoomOutMax, this.camera.zoom / zoomFactor) // Zoom OUT
 				: Math.min(this.zoomInMax, this.camera.zoom * zoomFactor); // Zoom IN
+      const zoomNext: number = this.camera.zoom;
+      const isChanged: boolean = 
+        (Math.min(zoomPrevious,zoomNext) < (this.zoomOutMax+this.zoomInMax)/2) && 
+        (Math.max(zoomPrevious,zoomNext) >= (this.zoomOutMax+this.zoomInMax)/2);
+      if (isChanged) {
+        this._scene.toggleMapgrid(zoomNext>zoomPrevious);
+      }
 			this.camera.preRender();
 
 			const worldPointAfter = this.camera.getWorldPoint(pointer.x, pointer.y);

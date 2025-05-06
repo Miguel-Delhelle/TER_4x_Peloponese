@@ -11,6 +11,7 @@ export var mainScene:MainScene = new MainScene();
 
 
 createApp(App).mount('#app')
+document.querySelector('canvas').setAttribute('id', 'mainscene');
 
 window.addEventListener("load",start);
 
