@@ -15,7 +15,7 @@ export class Point{
    public set _y(newY:number){this.y = newY;}
 
    public get _Tile():Phaser.Tilemaps.Tile{
-      return mainScene._map.getTileAt(this._x,this._y);
+      return mainScene._map.getTileAt(this._x,this._y)!;
    }
 
 }

@@ -12,19 +12,19 @@ export class MainScene extends Phaser.Scene{
 	* |  |                                            ATTRIBUTES DEFINITION                                            |  | *
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
-	private map: Phaser.Tilemaps.Tilemap;
-	private mapController: MapController;
-	private toolsController: ToolsController;
-	private marker: Phaser.GameObjects.Sprite;
+	private map!: Phaser.Tilemaps.Tilemap;
+	private mapController!: MapController;
+	private toolsController!: ToolsController;
+	private marker!: Phaser.GameObjects.Sprite;
 	 private static markerDefaultID: number | string = 91;
 	private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
-	private mapSizeXpx: number;
-	private mapSizeYpx: number;
+	private mapSizeXpx!: number;
+	private mapSizeYpx!: number;
 	private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
 	private spritesets: string[] = [];
 
-	private controls;
+	private controls!:Phaser.Cameras.Controls.FixedKeyControl;
 
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
@@ -80,8 +80,8 @@ export class MainScene extends Phaser.Scene{
 	private updateMarkerPosition(): void {
 		const pointer = this._pointer;
 		this.marker.setPosition(
-			this.map.tileToWorldX(pointer.x),
-			this.map.tileToWorldY(pointer.y)
+			this.map.tileToWorldX(pointer.x)!,
+			this.map.tileToWorldY(pointer.y)!
 		);
 	}
 
@@ -103,7 +103,7 @@ export class MainScene extends Phaser.Scene{
 				this.map.createLayer(
 					layerID,
 					tileset?tileset:Array.from(this.tilesets.keys())
-				);
+				)!;
 			tilemapLayer.setName(layerID);
 			this.layers.push(tilemapLayer);
 			console.log("A new layer from Tiled has been added to the map:",tilemapLayer)
@@ -113,19 +113,19 @@ export class MainScene extends Phaser.Scene{
 	public addTiledLayer(
 		layerID: string | number,
 		tileset?: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[]
-	): Phaser.Tilemaps.TilemapLayer {
+	): Phaser.Tilemaps.TilemapLayer | undefined {
 		const tiledLayers: string[] = this.map.getTileLayerNames();
 		const nbLayers: number = tiledLayers.length;
 		if (typeof(layerID)==="number") {
 			if (0<layerID && layerID<=nbLayers) 
 				layerID = tiledLayers[layerID];
 			else return;
-		} else if (!tiledLayers.includes(layerID)) return;
+		} else if (!tiledLayers.includes(layerID)) return ;
 		const tilemapLayer: Phaser.Tilemaps.TilemapLayer =
 			this.map.createLayer(
 				layerID,
 				tileset?tileset:Array.from(this.tilesets.keys())
-			);
+			)!;
 		if (tilemapLayer) {
 			tilemapLayer.setName(layerID);
 			this.layers.push(tilemapLayer);
@@ -142,7 +142,7 @@ export class MainScene extends Phaser.Scene{
 			this.map.createBlankLayer(
 				layerName,
 				tileset?tileset:Array.from(this.tilesets.keys())
-			);
+			)!;
 		tilemapLayer.setName(layerName);
 		this.layers.push(tilemapLayer);
 		console.log("A new layer has been created:",tilemapLayer)
@@ -189,7 +189,7 @@ export class MainScene extends Phaser.Scene{
 				frameWidth: 16,
 				frameHeight: 16,
 			});
-			this.tilesets.set(name, null);
+			this.tilesets.set(name, null!);
 			this.spritesets.push(sname);
 			console.log(`  → ${name} (+ '${sname}')`);
 		});
@@ -197,7 +197,7 @@ export class MainScene extends Phaser.Scene{
 
 	private setTilesets(): void {
 		for (let tileset of this.tilesets.keys()) {
-			this.tilesets.set(tileset, this.map.addTilesetImage(tileset, tileset));
+			this.tilesets.set(tileset, this.map.addTilesetImage(tileset, tileset)!);
 		}
 		console.log("Loaded Tilesets:\n",this.tilesets);
 		console.log("Loaded SpriteSheets:\n",this.spritesets);
@@ -209,8 +209,8 @@ export class MainScene extends Phaser.Scene{
 	public get _pointer(): {x: number, y: number} {
 		const worldPoint: any = this.input.activePointer.positionToCamera(this.cameras.main);
 		return {
-			x: this.map.worldToTileX(worldPoint.x),
-			y: this.map.worldToTileY(worldPoint.y),
+			x: this.map.worldToTileX(worldPoint.x)!,
+			y: this.map.worldToTileY(worldPoint.y)!,
 		};
 	}
 	
@@ -264,7 +264,7 @@ export class MainScene extends Phaser.Scene{
 		this.setupMap();
 		this.setupEvent();
 
-		const cursors = this.input.keyboard.createCursorKeys();
+		const cursors = this.input.keyboard!.createCursorKeys();
 		const controlConfig = {
 			camera: this.cameras.main,
 			left: cursors.left,
@@ -272,8 +272,8 @@ export class MainScene extends Phaser.Scene{
 			up: cursors.up,
 			down: cursors.down,
 			speed: 1.0,
-			zoomIn: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_SUBTRACT),
-			zoomOut: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ADD),
+			zoomIn: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_SUBTRACT),
+			zoomOut: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ADD),
 			zoomSpeed: 0.015
 		};
 		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
@@ -282,7 +282,7 @@ export class MainScene extends Phaser.Scene{
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
-	public update (tile, delta): void {
+	public update (tile:any, delta:any): void {
 		this.updateMarkerPosition();
 		this.controls.update(delta);
 	}
@@ -361,7 +361,7 @@ export class MainScene extends Phaser.Scene{
 		tileX: number,
 		tileY: number,
 		layer?: string | number | Phaser.Tilemaps.TilemapLayer
-	): Phaser.Tilemaps.Tile | null {
+	): Phaser.Tilemaps.Tile | null | undefined {
 
 		let find: boolean = layer!=null?false:true;
 		let pos: number = this.layers.length-1;
@@ -387,8 +387,8 @@ export class MainScene extends Phaser.Scene{
 		tileX: number,
 		tileY: number,
 		layer?: string | number | Phaser.Tilemaps.TilemapLayer
-	): Object {
-		const tile: Phaser.Tilemaps.Tile = this.getFirstTileAt(tileX, tileY, layer);
+	): Object | undefined {
+		const tile: Phaser.Tilemaps.Tile = this.getFirstTileAt(tileX, tileY, layer)!;
 		let properties: Object = tile.properties;
 		Object.assign(properties, {ID: tile.index}, tile.getTileData());
 		if (tile) return properties;

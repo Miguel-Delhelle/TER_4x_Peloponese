@@ -2,7 +2,6 @@ import { createApp} from 'vue'
 import './style.css'
 import { ToolsController } from './classPackage/Controller/ToolsController'
 import { MainScene } from './classPackage/PhaserScene/MainScene'
-import { Unit } from './classPackage/Entity/units/Unit'
 import { SpriteLoaded } from './classPackage/PhaserScene/AssetManager/SpriteLoaded'
 import { AssetsEnum } from './classPackage/PhaserScene/AssetManager/AssetsEnum'
 

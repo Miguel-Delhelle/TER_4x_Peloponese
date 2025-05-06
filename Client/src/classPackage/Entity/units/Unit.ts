@@ -1,12 +1,11 @@
 import { mainScene } from "../../../main";
-import type { Player } from "../../player/player";
 import type { Point } from "../../Math/Point";
 import type { Entity } from "../Entity";
 
-export class Unit implements Entity{
+/*export class Unit implements Entity{
 
-    id:string
-    private nomUnite:string;
+    //id:string
+    /*private nomUnite:string;
     private range:number;
     private hp:number;
     private static nbrInstance:number = 0;
@@ -16,7 +15,7 @@ export class Unit implements Entity{
 
     constructor(){
         Unit.nbrInstance++;
-        this.id = "Unit"+Unit.nbrInstance;
+        this.id = "Unit"+Unit.nbrInstance; 
     }
 
 
@@ -29,5 +28,4 @@ export class Unit implements Entity{
 
     }
 
-}
-
+}  */
