@@ -3,8 +3,6 @@
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
-import { SpriteLoaded } from './AssetManager/SpriteLoaded';
-import { AssetsEnum } from './AssetManager/AssetsEnum';
 
 
 
@@ -205,8 +203,6 @@ export class MainScene extends Phaser.Scene{
 		console.log("Loaded SpriteSheets:\n",this.spritesets);
 	}
 
-	public get _spritesets():string[]{return this.spritesets;}
-
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
@@ -322,7 +318,7 @@ export class MainScene extends Phaser.Scene{
 		//this.input.on('pointermove', this.mapController.dragMove);
 		this.input.on('wheel',this.mapController.zoom);
 		this.input.on('pointerdown',this.toolsController.build);
-		this.input.on('pointerdown',this.toolsController.recruit);
+
 		this.input.on('pointerdown', (pointer: Phaser.Input.Pointer) => {
 			if (pointer.leftButtonDown()) {
 				const cursor = this._pointer;
