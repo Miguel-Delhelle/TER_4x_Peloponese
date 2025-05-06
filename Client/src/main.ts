@@ -17,8 +17,17 @@ export var mainScene:MainScene = new MainScene();
 window.addEventListener("load",start);
 
 function start(){
-    //var toolsController = new ToolsController();
-    //mainScene.add.sprite(mainScene._pointer.x,mainScene._pointer.y,mainScene._spritesets[0],3467);
+
+    const config:Phaser.Types.Core.GameConfig = {
+        type: Phaser.AUTO,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        parent: 'app',
+      };
+    
+    
+      var __game:Phaser.Game = new Phaser.Game(config);
+      __game.scene.add('mainScene', mainScene, true);
 
 
 }
