@@ -204,6 +204,7 @@ export class MainScene extends Phaser.Scene{
 			});
 			this.tilesets.set(name, null);
 			this.spritesets.push(sname);
+      this.textures.get(name).setFilter(Phaser.Textures.FilterMode.NEAREST);
 			console.log(`  → ${name} (+ '${sname}')`);
 		});
 	}

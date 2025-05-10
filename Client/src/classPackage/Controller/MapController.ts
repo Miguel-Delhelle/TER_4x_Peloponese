@@ -59,6 +59,7 @@ export class MapController {
 	*/
 	private setupCamera(): void {
 		this.camera = this.scene.cameras.main;
+    this.camera.roundPixels = true;
 		this.camera.setBounds(0,0,this.scene._mapSizeXpx,this.scene._mapSizeYpx);
 		console.log(this.camera.getBounds());
 		this.zoomOutMax = Math.max(
