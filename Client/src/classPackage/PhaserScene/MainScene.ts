@@ -3,6 +3,7 @@
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
+import Phaser from 'phaser';
 
 
 

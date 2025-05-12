@@ -4,6 +4,7 @@ import { ToolsController } from './classPackage/Controller/ToolsController'
 import { MainScene } from './classPackage/PhaserScene/MainScene'
 import { SpriteLoaded } from './classPackage/PhaserScene/AssetManager/SpriteLoaded'
 import { AssetsEnum } from './classPackage/PhaserScene/AssetManager/AssetsEnum'
+import Phaser from 'phaser'
 
 //Toutes les variables globales 
 
