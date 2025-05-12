@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grèce Anatolie</title>
-  <link rel="stylesheet" href="index.css" />
-</head>
-<body>
-  <header>
-    <div class="left-title">
-      <div class="game-title">Grèce<br>Anatolie</div>
-    </div>
-
-    <div class="right-top">
-      <div class="right-line">
-        <div class="username" id="username">NomUtilisateur</div>
-        <img id="logout-icon" src="images/logout.png" alt="Se déconnecter" />
-        <img src="images/profile.png" alt="Profil" class="profile-icon" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grèce Anatolie</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link href="https://fonts.cdnfonts.com/css/ancient-geek" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/greek-mythology" rel="stylesheet">
+  </head>
+  <body class="columns">
+    <div class="left-panel rows">
+      <h1 id="game-title">GREECE<br>ANATOMY</h1>
+      <h1 id="test">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+        abcdefghijklmnopqrstuvwxyz<br>
+        0123456789<br>
+        ?,.;/:§!&é"'(-è_çà)=~#{[|`\^@]}$*%<br>
+        ]]]]]]]]]]]]]]]]]]]]]]<br>
+      </h1>
+      <span></span>
+      <div id="menu rows">
+        <div class="rows">
+          <button id="btn-host" class="round">New Game</button>
+        </div>
+        <div class="rows">
+          <button id="btn-join" class="round">Join a Game</button>
+          <p>Enter room code:</p>
+          <input id="room-code" type="text" placeholder="paste your room code here"/>
+        </div>
       </div>
     </div>
-  </header>
-
-  <main>
-    <div class="left-column">
-      <button class="main-button">Host Game</button>
-
-      <div class="join-box">
-        <button class="main-button">Join Game</button>
-        <p>Entrer code</p>
-        <input type="text" placeholder="Code du jeu" />
+    <div class="right-panel rows">
+      <div class="columns">
+        <p id="username"></p>
+        <button id="profile" class="round"></button>
       </div>
     </div>
-  </main>
 
-  <footer>
-    <span>Achille</span>
-    <span>Hector</span>
-    <span>Ulysse</span>
-    <span>Agamemnon</span>
-  </footer>
+    <footer>
+      <span>KARADENIZ Feyza</span>
+      <span>PHILIP Luna</span>
+      <span>DELHELLE Miguel</span>
+      <span>ROSIER Mathis</span>
+    </footer>
 
-  <script src="index.js"></script>
-</body>
+    <script src="./menu.ts"></script>
+  </body>
 </html>
