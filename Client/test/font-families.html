@@ -10,6 +10,7 @@
         background-color: #1e1e1e;
         color: white;
         font-family: sans-serif;
+        font-size: 16px;
         padding: 1em;
       }
       table {
@@ -20,6 +21,7 @@
         border: 1px solid #444;
         padding: 4px 8px;
         text-align: center;
+        font-size: 18px;
       }
       th {
         background-color: #2a2a2a;
@@ -40,7 +42,7 @@
         "Ancient Geek": "https://fonts.cdnfonts.com/css/ancient-geek",
         "Greek Mythology": "https://fonts.cdnfonts.com/css/greek-mythology"
       };
-
+    
       // Dynamically import fonts
       const styleElement = document.getElementById("dynamic-fonts");
       for (const [fontName, url] of Object.entries(ff)) {
@@ -48,48 +50,54 @@
           styleElement.textContent += `@import url('${url}');\n`;
         }
       }
-
-      // Create the table
+    
+      // Generate the table
       function generateTable() {
         const table = document.createElement('table');
+    
+        // Table head
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
-        const emptyHeader = document.createElement('th');
-        emptyHeader.textContent = 'ASCII';
-        headerRow.appendChild(emptyHeader);
-
-        // Font headers
+        const asciiHeader = document.createElement('th');
+        asciiHeader.textContent = 'ASCII';
+        headerRow.appendChild(asciiHeader);
+    
         for (const fontName in ff) {
           const th = document.createElement('th');
           th.textContent = fontName;
           headerRow.appendChild(th);
         }
+    
         thead.appendChild(headerRow);
         table.appendChild(thead);
-
+    
         // Table body
         const tbody = document.createElement('tbody');
-        for (let i = 0; i < 256; i++) {
-          const row = document.createElement('tr');
-
-          // First column: ASCII code
-          const codeCell = document.createElement('td');
-          codeCell.textContent = i;
-          row.appendChild(codeCell);
-
-          // Other columns: ASCII character in each font
-          for (const fontName in ff) {
-            const charCell = document.createElement('td');
-            charCell.textContent = String.fromCharCode(i);
-            charCell.style.fontFamily = `'${fontName}', sans-serif`;
-            row.appendChild(charCell);
-          }
-          tbody.appendChild(row);
-        }
+    
+        for (let i = 32; i <= 126; i++) addRow(i, tbody);
+        for (let i = 161; i <= 255; i++) addRow(i, tbody);
+    
         table.appendChild(tbody);
         return table;
       }
-
+    
+      function addRow(i, tbody) {
+        const row = document.createElement('tr');
+    
+        const codeCell = document.createElement('td');
+        codeCell.textContent = i;
+        row.appendChild(codeCell);
+    
+        for (const fontName in ff) {
+          const charCell = document.createElement('td');
+          charCell.textContent = String.fromCharCode(i);
+          charCell.style.fontFamily = `'${fontName}', sans-serif`;
+          row.appendChild(charCell);
+        }
+    
+        tbody.appendChild(row);
+      }
+    
       // Inject table into the body
       document.body.innerHTML = '';
       document.body.appendChild(generateTable());
