@@ -73,11 +73,19 @@ canvas{
 canvas:hover {
   cursor: none;
 }
+.hidden{
+  visibility: hidden;
+}
+#toolBarBox{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-#toolsBar{
+}
+.ui{
+  position:absolute;
   z-index: 5;
   opacity: 95%;
-  position:absolute;
   margin:10px;
   bottom: 0;
 }

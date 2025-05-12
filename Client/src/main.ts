@@ -1,21 +1,37 @@
 import { createApp} from 'vue'
 import './style.css'
-import App from './App.vue'
-import { ToolsController } from './classPackage/controller/ToolsController'
-import { MainScene } from './classPackage/phaserScene/MainScene'
+import { ToolsController } from './classPackage/Controller/ToolsController'
+import { MainScene } from './classPackage/PhaserScene/MainScene'
+import { SpriteLoaded } from './classPackage/PhaserScene/AssetManager/SpriteLoaded'
+import { AssetsEnum } from './classPackage/PhaserScene/AssetManager/AssetsEnum'
+import Phaser from 'phaser'
 
 //Toutes les variables globales 
 
 export var mainScene:MainScene = new MainScene();
 
+// pinia singleton
+// vuex
 
-createApp(App).mount('#app')
 
 window.addEventListener("load",start);
 
 function start(){
-    //var toolsController = new ToolsController();
+
+    const config:Phaser.Types.Core.GameConfig = {
+        type: Phaser.AUTO,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        parent: 'game',
+      };
+    
+    
+      var __game:Phaser.Game = new Phaser.Game(config);
+      __game.scene.add('mainScene', mainScene, true);
+
 
 }
+
+
 
 /**/
