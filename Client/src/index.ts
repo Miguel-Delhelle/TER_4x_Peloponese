@@ -19,7 +19,6 @@ const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
 var socket:SocketIOClient.Socket;
 
 
-btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
 btnProfile.addEventListener("click", () => {toggleModal(modal)});
 document.addEventListener("click", e => {
   if (
@@ -86,6 +85,8 @@ async function postLogin(): Promise<Response> {
 }
 
 btnLogin.addEventListener("click", postLogin);
+
+
 btnHost.addEventListener("click", async () => {
   toggleDisplay(modalHost);
   socket.emit("hostRoom");
@@ -95,10 +96,19 @@ btnHost.addEventListener("click", async () => {
 
     
   });
-
-  
-
 });
+
+btnJoin.addEventListener("click", () => {
+  toggleModal(roomCodeDiv);
+});
+
+let btnJoinRoomValid:HTMLElement = document.getElementById("btn-joinRoomValid")!;
+let valueRoomCode:HTMLInputElement = document.getElementById("room-code") as HTMLInputElement;
+btnJoinRoomValid.addEventListener("click", async (valueRoomCode) => {
+  socket.emit("joinRoom",valueRoomCode);
+})
+
+
 
 export var mainScene:MainScene = new MainScene();
 
