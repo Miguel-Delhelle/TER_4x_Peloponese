@@ -158,8 +158,10 @@ input {
 }
 
 #username {
+  text-align: right;
   margin-right: 10px;
   color: #111;
+  font-size: 1.5em;
 }
 
 #profile {

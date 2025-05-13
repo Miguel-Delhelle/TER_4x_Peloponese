@@ -5,6 +5,12 @@ const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
 const btnProfile = document.getElementById("profile") as HTMLButtonElement;
 const modal = document.querySelector(".modal") as HTMLDivElement;
 const btnRegister = document.getElementById('btn-register') as HTMLButtonElement;
+const btnLogin = document.getElementById('btn-login') as HTMLButtonElement;
+const inpMail = document.getElementById('mail') as HTMLInputElement;
+const inpUsername = document.getElementById('pseudo') as HTMLInputElement;
+const inpPassword = document.getElementById('password') as HTMLInputElement;
+const inpRoom = document.getElementById('room-code') as HTMLInputElement;
+const user = document.getElementById('username') as HTMLParagraphElement;
 
 btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
 btnProfile.addEventListener("click", () => {toggleModal(modal)});
@@ -27,26 +33,40 @@ function toggleModal(obj: HTMLElement, value?: boolean): boolean {
 }
 
 async function postRegister(): Promise<Response> {
-  const mail: string = (document.getElementById('mail') as HTMLInputElement).value;
-  const user: string = (document.getElementById('pseudo') as HTMLInputElement).value;
-  const pass: string = (document.getElementById('password') as HTMLInputElement).value;
-
   const res: Response = await fetch('/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      mail: mail,
-      username: user,
-      password: pass
+      mail: inpMail.value,
+      username: inpUsername.value,
+      password: inpPassword.value
     })
   });
-  if (res.ok) alert(`Welcome on board ${user} !`);
+  if (res.ok) alert(`Welcome on board ${inpUsername.value} !`);
   else alert(`An error occured during your registration..`);
   return res;
 }
 
 btnRegister.addEventListener("click", postRegister);
 
-(async () => {console.log(await fetch('/coucou'));})();
+async function postLogin(): Promise<Response> {
+  const res: Response = await fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      mail: inpMail.value,
+      password: inpPassword.value
+    })
+  });
+  if (res.ok) {
+    const data = await res.json();
+    user.textContent = data.username;
+  } else user.textContent = '';
+  return res;
+}
+
+btnLogin.addEventListener("click", postLogin);
