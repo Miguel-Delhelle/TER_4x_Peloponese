@@ -26,6 +26,8 @@ export class MainScene extends Phaser.Scene{
 	private spritesets: string[] = [];
 
 	private controls!:Phaser.Cameras.Controls.FixedKeyControl;
+	private gameSound!:Phaser.Sound.BaseSound;
+	private clickSound!:Phaser.Sound.BaseSound;
 
 
 	/*
@@ -257,6 +259,8 @@ export class MainScene extends Phaser.Scene{
 			"/mapTiled/Tileset/Thebes/Units/Soldiers/Mounted/Thebes_MountedSoldiers.png",
 			"/mapTiled/Tileset/Thebes/Units/Soldiers/Ranged/Thebes_RangedSoldiers.png",
 		]);
+		this.load.audio('gameSound', '../../../public/audio/audio.mp3');
+		this.load.audio('clickSound', '../../../public/audio/clickEffect.mp3');
 	}
 
 
@@ -265,6 +269,10 @@ export class MainScene extends Phaser.Scene{
 	public create(): void {
 		this.setupMap();
 		this.setupEvent();
+
+		this.gameSound = this.sound.add('gameSound', {loop:true, volume: 0.5});
+		this.clickSound = this.sound.add('clickSound', { volume: 0.8 });
+		this.gameSound.play();
 
 		const cursors = this.input.keyboard!.createCursorKeys();
 		const controlConfig = {
@@ -325,6 +333,7 @@ export class MainScene extends Phaser.Scene{
 			if (pointer.leftButtonDown()) {
 				const cursor = this._pointer;
 				console.log(this.getTileProperties(cursor.x, cursor.y));
+				this.clickSound.play();
 			}
 		});
 	}
