@@ -27,6 +27,7 @@ export class MainScene extends Phaser.Scene{
 
 	private controls!:Phaser.Cameras.Controls.FixedKeyControl;
 
+
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
 	* |  |                                           CONSTRUCTORS DEFINITION                                           |  | *
