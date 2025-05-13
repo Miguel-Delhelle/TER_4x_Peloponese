@@ -287,6 +287,12 @@ export class MainScene extends Phaser.Scene{
 			zoomSpeed: 0.015
 		};
 		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
+		let gameHtml:HTMLElement = document.getElementById("game")!;
+      let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
+
+      gameHtml.classList.toggle("hidden",false);
+      mainMenu.classList.toggle("hidden",true);
+
 	}
 
 

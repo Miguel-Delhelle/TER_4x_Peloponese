@@ -113,6 +113,40 @@ try {
 }
 }
 
+// Web Socket
 
 
+io.on("connection", (socket) => {
 
+  var dataSocketUser:{[socket: string]: number};
+
+  socket.on("loginOk",async ({idUser}) => {
+    const user:User = await AppDataSource.manager.findOneBy(User, {id: idUser});
+    console.log(user._username,"s'est connecté !!");
+
+    //dataSocketUser[socket.id] = user.id;
+    socket.data.user = user;
+
+  })
+
+  console.log(socket.id);
+
+  socket.on("hostRoom",() => {
+    console.log(socket.rooms); // Set { <socket.id> }
+    const chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let idGame:string = '';
+    for (let i = 0; i<6; i++) {idGame+=chars.charAt(Math.floor(Math.random()*chars.length));}
+    socket.data.roomIdHosted = idGame;
+    socket.join(idGame);
+    socket.data.inRoom = idGame;
+
+  })
+
+  socket.on("joinRoom", ({roomId}) => {
+    socket.join(roomId);
+    socket.data.inRoom = roomId;
+
+  })
+
+
+});

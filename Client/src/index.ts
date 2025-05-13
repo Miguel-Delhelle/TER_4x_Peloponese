@@ -1,6 +1,8 @@
-export {};
+import { MainScene } from "./classPackage/PhaserScene/MainScene";
+import { io, WebSocket } from "socket.io-client";
 
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
+const btnHost = document.getElementById("btn-host") as HTMLButtonElement;
 const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
 const btnProfile = document.getElementById("profile") as HTMLButtonElement;
 const modal = document.querySelector(".modal") as HTMLDivElement;
@@ -11,6 +13,9 @@ const inpUsername = document.getElementById('pseudo') as HTMLInputElement;
 const inpPassword = document.getElementById('password') as HTMLInputElement;
 const inpRoom = document.getElementById('room-code') as HTMLInputElement;
 const user = document.getElementById('username') as HTMLParagraphElement;
+const modalHost = document.getElementById("modalHost") as HTMLDivElement;
+var socket:any;
+
 
 btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
 btnProfile.addEventListener("click", () => {toggleModal(modal)});
@@ -30,6 +35,10 @@ document.addEventListener("click", e => {
 function toggleModal(obj: HTMLElement, value?: boolean): boolean {
   obj.classList.toggle('active', value);
   return obj.classList.contains('active');
+}
+function toggleDisplay(obj: HTMLElement, value?: boolean): boolean {
+  obj.classList.toggle('hidden', value);
+  return obj.classList.contains('hidden');
 }
 
 async function postRegister(): Promise<Response> {
@@ -65,8 +74,49 @@ async function postLogin(): Promise<Response> {
   if (res.ok) {
     const data = await res.json();
     user.textContent = data.username;
+    socket = io("http://localhost:3000");
+    socket.emit("loginOk",{
+      idUser: data.id
+    })
   } else user.textContent = '';
   return res;
 }
 
 btnLogin.addEventListener("click", postLogin);
+btnHost.addEventListener("click", () => {
+  toggleDisplay(modalHost);
+  let idGame:string = socket.data.roomIdHosted as string;
+
+  let idGameHTML:HTMLElement = document.getElementById("idGame")!;
+  idGameHTML.innerHTML = idGame;
+
+});
+
+export var mainScene:MainScene = new MainScene();
+
+// pinia singleton
+// vuex
+
+// Modal Host
+
+
+
+
+function startGame(){
+
+    const config:Phaser.Types.Core.GameConfig = {
+        type: Phaser.AUTO,
+        width: window.innerWidth,
+        height: window.innerHeight,
+        parent: 'game',
+      };
+    
+    
+      var __game:Phaser.Game = new Phaser.Game(config);
+      __game.scene.add('mainScene', mainScene, true);
+
+
+
+
+
+}

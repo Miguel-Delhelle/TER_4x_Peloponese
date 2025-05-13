@@ -1,4 +1,5 @@
-import { mainScene } from "../../main";
+import { mainScene} from "../..";
+
 
 export class Point{
    private x:number
