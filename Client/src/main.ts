@@ -1,9 +1,8 @@
-import { createApp} from 'vue'
 import './style.css'
-import { ToolsController } from './classPackage/Controller/ToolsController'
+//import { ToolsController } from './classPackage/Controller/ToolsController'
 import { MainScene } from './classPackage/PhaserScene/MainScene'
-import { SpriteLoaded } from './classPackage/PhaserScene/AssetManager/SpriteLoaded'
-import { AssetsEnum } from './classPackage/PhaserScene/AssetManager/AssetsEnum'
+//import { SpriteLoaded } from './classPackage/PhaserScene/AssetManager/SpriteLoaded'
+//import { AssetsEnum } from './classPackage/PhaserScene/AssetManager/AssetsEnum'
 import Phaser from 'phaser'
 
 //Toutes les variables globales 
@@ -30,6 +29,15 @@ function start(){
       __game.scene.add('mainScene', mainScene, true);
 
 
+
+
+}
+
+await hello();
+
+
+async function hello() {
+  console.log("hello")
 }
 
 

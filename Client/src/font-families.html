@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Font Family Tester</title>
+    <style id="dynamic-fonts"></style>
+    <style>
+      body {
+        margin: 0;
+        background-color: #1e1e1e;
+        color: white;
+        font-family: sans-serif;
+        font-size: 16px;
+        padding: 1em;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        border: 1px solid #444;
+        padding: 4px 8px;
+        text-align: center;
+        font-size: 18px;
+      }
+      th {
+        background-color: #2a2a2a;
+      }
+      tr:nth-child(even) {
+        background-color: #2b2b2b;
+      }
+      tr:nth-child(odd) {
+        background-color: #252525;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Global font-family dictionary
+      const ff = {
+        "Arial": "",
+        "Trajan-Regular": "https://fonts.cdnfonts.com/css/trajan",
+        "TaraType": "https://fonts.cdnfonts.com/css/taratype",
+        "Ancient Geek": "https://fonts.cdnfonts.com/css/ancient-geek",
+        "Greek Mythology": "https://fonts.cdnfonts.com/css/greek-mythology"
+      };
+    
+      // Dynamically import fonts
+      const styleElement = document.getElementById("dynamic-fonts");
+      for (const [fontName, url] of Object.entries(ff)) {
+        if (url) {
+          styleElement.textContent += `@import url('${url}');\n`;
+        }
+      }
+    
+      // Generate the table
+      function generateTable() {
+        const table = document.createElement('table');
+    
+        // Table head
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const asciiHeader = document.createElement('th');
+        asciiHeader.textContent = 'ASCII';
+        headerRow.appendChild(asciiHeader);
+    
+        for (const fontName in ff) {
+          const th = document.createElement('th');
+          th.textContent = fontName;
+          headerRow.appendChild(th);
+        }
+    
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+    
+        // Table body
+        const tbody = document.createElement('tbody');
+    
+        for (let i = 33; i <= 126; i++) addRow(i, tbody);
+        for (let i = 161; i <= 255; i++) addRow(i, tbody);
+    
+        table.appendChild(tbody);
+        return table;
+      }
+    
+      function addRow(i, tbody) {
+        const row = document.createElement('tr');
+    
+        const codeCell = document.createElement('td');
+        codeCell.textContent = i;
+        row.appendChild(codeCell);
+    
+        for (const fontName in ff) {
+          const charCell = document.createElement('td');
+          charCell.textContent = String.fromCharCode(i);
+          charCell.style.fontFamily = `'${fontName}', sans-serif`;
+          row.appendChild(charCell);
+        }
+    
+        tbody.appendChild(row);
+      }
+    
+      // Inject table into the body
+      document.body.innerHTML = '';
+      document.body.appendChild(generateTable());
+    </script>
+  </body>
+</html>
