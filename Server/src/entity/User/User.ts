@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 export class User {
 
     @PrimaryGeneratedColumn()
-    id: number
+    public id: number
 
     @Column({ unique: true })
     public mail:string
@@ -13,12 +13,13 @@ export class User {
     public username:string
 
     @Column()
-    public hashedPassword:string
+    public hashedPassword?:string
  
-    public constructor (mail:string,username:string,password:string){
+    public constructor (mail:string,username:string,password:string = "default",id?:number){
         this.mail = mail;
         this.username = username;
         this.hashedPassword = password;
+        if (id !== null){this.id = id}
     }
  
  
@@ -35,6 +36,10 @@ export class User {
     }
     public get _mail(){
        return this.mail;
+    }
+
+    public toString(){
+      return `mail : ${this.mail}, username: ${this.username}, id: ${this.id}`
     }
 
 }

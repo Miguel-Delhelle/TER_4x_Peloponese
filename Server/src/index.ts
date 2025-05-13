@@ -4,17 +4,21 @@ import path from "path";
 import os from "os";
 import { fileURLToPath } from 'url';
 import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
+import { User } from "./entity/User/User"
 import { Database } from "sqlite3";
 import * as bcrypt from 'bcrypt';
-import { Server as SocketIOServer } from 'socket.io';
+import { RemoteSocket, Socket, Server as SocketIOServer } from 'socket.io';
 import { createServer } from "http";
+import { UserConnected } from "./entity/User/UserConnected";
+import { DecorateAcknowledgementsWithMultipleResponses, DefaultEventsMap } from "socket.io/dist/typed-events";
+
+export var listUsersConnected:Map<string,UserConnected> = new Map();
 
 const app = express();
 const port = "3000";
 
 const server = createServer(app);
-const io = new SocketIOServer(server, {
+export const io = new SocketIOServer(server, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST']
@@ -126,38 +130,80 @@ function setRoomID(length: number = 8, alphabet: string = 'ABCDEFGHIJKLMNOPQRSTU
 io.on("connection", (socket) => {
 
   var dataSocketUser:{[socket: string]: number};
+  let idSocket = socket.id;
+
 
   socket.on("loginOk",async ({idUser}) => {
-    const user:User = await AppDataSource.manager.findOneBy(User, {id: idUser});
+    try{
+    let user:User = await AppDataSource.manager.findOneBy(User, {id: idUser});
     console.log(user._username,"s'est connecté !!");
+    socket.data.user = user;    
+    let userCon:UserConnected = new UserConnected(user,socket);
+    listUsersConnected.set((idSocket),userCon);
+    listUsersConnected.forEach(element => {
+      console.log(element._username,element.id,element._mail)
+    });
+    }catch(error){
+    console.error(error);
+    }
+  });
 
-    //dataSocketUser[socket.id] = user.id;
-    socket.data.user = user;
-
+  socket.on("disconnect",(reason) => {
+    console.log(listUsersConnected.get(idSocket).username,"c'est déconnecté")
+    listUsersConnected.delete(idSocket);
   })
 
-  console.log(socket.id);
 
-  socket.on("hostRoom",() => {
-    console.log(socket.rooms); // Set { <socket.id> }
-    const chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let idGame:string = '';
-    for (let i = 0; i<6; i++) {idGame+=chars.charAt(Math.floor(Math.random()*chars.length));}
+
+  //console.log(socket);
+
+
+  socket.on("hostRoom",() => { // Set { <socket.id> }
+    let idGame:string = setRoomID()
     hostedRooms.push(idGame);
     socket.data.roomIdHosted = idGame;
     socket.join(idGame);
     socket.data.inRoom = idGame;
     socket.emit("roomId", idGame);
   })
+  //console.log(socket.rooms);
 
-  socket.on("joinRoom", ({roomId}) => {
+  socket.on("joinRoom", async ({roomId}) => {
     socket.join(roomId);
     socket.data.inRoom = roomId;
-
-    //
-    //socket.emit()
-
+    console.log(await getUserInRoom(roomId));
   })
+
+  socket.on("getUsersInRoom", ({roomId}) => console.log(getUserInRoom (roomId)));
+    
 
 
 });
+async function getUserInRoom(idRoom:string):Promise<UserConnected[]>{
+  try {
+    let socketsInRoom:RemoteSocket<DecorateAcknowledgementsWithMultipleResponses<DefaultEventsMap>, any>[] = await io.in(idRoom).fetchSockets();
+
+    let idSocketsInRoom:string[];
+
+    socketsInRoom.forEach(e => {
+      let socketId:string = e.id;
+      idSocketsInRoom.push(socketId);
+    });
+    let usersInRoom:UserConnected[];
+
+    idSocketsInRoom.forEach(soc => {
+      if (listUsersConnected.has(soc)){
+        usersInRoom.push(listUsersConnected.get(soc));
+      }
+    });
+
+    return usersInRoom;
+  } catch (error) {
+    console.error("Erreur lors de la récupération des utilisateurs dans la salle :", error);
+  }
+}
+
+async function getUserBySocket(socket):Promise<User> {
+  let user:User = await AppDataSource.manager.findOneBy(User, { id: socket.data.user});
+  return user;
+}
