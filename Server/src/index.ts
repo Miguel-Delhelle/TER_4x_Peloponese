@@ -139,6 +139,7 @@ io.on("connection", (socket) => {
     socket.data.roomIdHosted = idGame;
     socket.join(idGame);
     socket.data.inRoom = idGame;
+    socket.emit("roomIdHosted", idGame);
 
   })
 

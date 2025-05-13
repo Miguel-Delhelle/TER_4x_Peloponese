@@ -1,5 +1,5 @@
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
-import { io, WebSocket } from "socket.io-client";
+import io from "socket.io-client";
 
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
 const btnHost = document.getElementById("btn-host") as HTMLButtonElement;
@@ -14,7 +14,8 @@ const inpPassword = document.getElementById('password') as HTMLInputElement;
 const inpRoom = document.getElementById('room-code') as HTMLInputElement;
 const user = document.getElementById('username') as HTMLParagraphElement;
 const modalHost = document.getElementById("modalHost") as HTMLDivElement;
-var socket:any;
+const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
+var socket:SocketIOClient.Socket;
 
 
 btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
@@ -78,17 +79,22 @@ async function postLogin(): Promise<Response> {
     socket.emit("loginOk",{
       idUser: data.id
     })
+    console.log(socket.id);
   } else user.textContent = '';
   return res;
 }
 
 btnLogin.addEventListener("click", postLogin);
-btnHost.addEventListener("click", () => {
+btnHost.addEventListener("click", async () => {
   toggleDisplay(modalHost);
-  let idGame:string = socket.data.roomIdHosted as string;
+  socket.emit("hostRoom");
+
+  
+
+  //let idGame:string = socket data.roomIdHosted as string;
 
   let idGameHTML:HTMLElement = document.getElementById("idGame")!;
-  idGameHTML.innerHTML = idGame;
+  //idGameHTML.innerHTML = idGame;
 
 });
 
