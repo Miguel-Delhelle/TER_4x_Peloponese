@@ -2,20 +2,29 @@ export {};
 
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
 const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
-const profileBtn = document.getElementById("profile") as HTMLButtonElement;
+const btnProfile = document.getElementById("profile") as HTMLButtonElement;
 const modal = document.querySelector(".modal") as HTMLDivElement;
 const btnRegister = document.getElementById('btn-register') as HTMLButtonElement;
 
-btnJoin.addEventListener("click", () => {
-  const isVisible = roomCodeDiv.classList.contains("visible");
-  roomCodeDiv.classList.toggle("visible", !isVisible);
-  roomCodeDiv.classList.toggle("hidden", isVisible);
+btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
+btnProfile.addEventListener("click", () => {toggleModal(modal)});
+document.addEventListener("click", e => {
+  if (
+    !btnJoin.contains(e.target as Node) &&
+    !btnProfile.contains(e.target as Node) &&
+    !roomCodeDiv.contains(e.target as Node) &&
+    !modal.contains(e.target as Node)
+  ) {
+    e.stopPropagation();
+    toggleModal(roomCodeDiv, false);
+    toggleModal(modal, false);
+  }
 });
 
-profileBtn.addEventListener("click", () => {
-  const isHidden = modal.classList.contains("hidden");
-  modal.classList.toggle("hidden", !isHidden);
-});
+function toggleModal(obj: HTMLElement, value?: boolean): boolean {
+  obj.classList.toggle('active', value);
+  return obj.classList.contains('active');
+}
 
 async function postRegister(): Promise<Response> {
   const mail: string = (document.getElementById('mail') as HTMLInputElement).value;
@@ -33,7 +42,8 @@ async function postRegister(): Promise<Response> {
       password: pass
     })
   });
-  console.log(res);
+  if (res.ok) alert(`Welcome on board ${user} !`);
+  else alert(`An error occured during your registration..`);
   return res;
 }
 

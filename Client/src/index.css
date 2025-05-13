@@ -1,3 +1,13 @@
+:root {
+  --clr-menu-input: #fff9e4;
+  --clr-menu-background: #e8d4b2;
+  --clr-menu-: #b99d6c;
+  --clr-menu-: #816738;
+  --clr-font-primary: #50391c;
+  --clr-font-secondary: var(--clr-menu-input);
+  --clr-font-accent: #1b1002;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'TaraType', sans-serif;
@@ -8,7 +18,7 @@ body, html {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background: url('./../res/img/main-menu_1.gif');
+  background: url('/res/img/main-menu_1.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -72,16 +82,23 @@ footer {
   font-family: 'Ancient Geek', sans-serif;
 }
 
+.small-btn {
+  font-size: 1em;
+}
+
+.big-btn {
+  font-size: 1.5em;
+}
+
 button.round {
   border-radius: 40px;
   padding: auto;
   height: 80px;
   margin: 10px 0;
   background-color: #222;
-  box-shadow: 0px 0px 30px 5px white;
+  box-shadow: 0px 0px 20px 5px white;
   color: white;
   font-weight: bold;
-  font-size: 1.5em;
   border: 2px solid #555;
   cursor: pointer;
   z-index: 2;
@@ -89,6 +106,14 @@ button.round {
 
 button.round:hover {
   background-color: #333;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
 }
 
 #btn-join {
@@ -106,17 +131,11 @@ button.round:hover {
   padding-top: 40px;
   background-color: #1a1a1a;
   transform: translateY(-40px);
+  visibility: hidden;
   z-index: 1;
 }
 
-.room-code.hidden {
-  max-height: 0;
-  padding: 0;
-  border: none;
-  visibility: hidden;
-}
-
-.room-code.visible {
+.room-code.active {
   max-height: 200px;
   visibility: visible;
 }
@@ -125,17 +144,10 @@ button.round:hover {
   margin: 10px 0;
 }
 
-.room-code input {
-  padding: 8px;
-  border-radius: 6px;
-  border: none;
-  background-color: #2a2a2a;
-  color: white;
-}
-
 #btn-ok {
   width: 50%;
   align-self: center;
+  box-shadow: 0px 0px 10px 1px white;
 }
 
 .user-info {
@@ -162,7 +174,7 @@ button.round:hover {
   cursor: pointer;
 }
 
-.modal {
+.modal.active {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -174,21 +186,13 @@ button.round:hover {
   gap: 10px;
 }
 
-.modal input {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  background-color: #2a2a2a;
-  color: white;
-}
-
-.modal .buttons-row {
+.modal.active .buttons-row {
   display: flex;
   justify-content: space-evenly;
   margin-top: 10px;
 }
 
-.modal button {
+.modal.active button {
   height: 40px;
   width: 100px;
   border-radius: 20px;
@@ -196,7 +200,7 @@ button.round:hover {
   cursor: pointer;
 }
 
-.modal.hidden {
+.modal {
   display: none;
 }
 
