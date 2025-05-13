@@ -115,6 +115,13 @@ try {
 
 // Web Socket
 
+var hostedRooms: string[] = [];
+
+function setRoomID(length: number = 8, alphabet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'): string {
+  let s: string = '';
+  for (let i = 0; i<length; i++) {s+=alphabet.charAt(Math.floor(Math.random()*alphabet.length));}
+  return s;
+}
 
 io.on("connection", (socket) => {
 
@@ -136,16 +143,19 @@ io.on("connection", (socket) => {
     const chars: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let idGame:string = '';
     for (let i = 0; i<6; i++) {idGame+=chars.charAt(Math.floor(Math.random()*chars.length));}
+    hostedRooms.push(idGame);
     socket.data.roomIdHosted = idGame;
     socket.join(idGame);
     socket.data.inRoom = idGame;
-    socket.emit("roomIdHosted", idGame);
-
+    socket.emit("roomId", idGame);
   })
 
   socket.on("joinRoom", ({roomId}) => {
     socket.join(roomId);
     socket.data.inRoom = roomId;
+
+    //
+    //socket.emit()
 
   })
 

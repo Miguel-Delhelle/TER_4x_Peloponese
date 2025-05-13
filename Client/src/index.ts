@@ -15,6 +15,7 @@ const inpRoom = document.getElementById('room-code') as HTMLInputElement;
 const user = document.getElementById('username') as HTMLParagraphElement;
 const modalHost = document.getElementById("modalHost") as HTMLDivElement;
 const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
+//var idUserConnected:number;
 var socket:SocketIOClient.Socket;
 
 
@@ -88,13 +89,14 @@ btnLogin.addEventListener("click", postLogin);
 btnHost.addEventListener("click", async () => {
   toggleDisplay(modalHost);
   socket.emit("hostRoom");
+  socket.on("roomId", (idGame:string) => {
+    let idGameHTML:HTMLElement = document.getElementById("idGame")!;
+    idGameHTML.innerHTML = idGame;
+
+    
+  });
 
   
-
-  //let idGame:string = socket data.roomIdHosted as string;
-
-  let idGameHTML:HTMLElement = document.getElementById("idGame")!;
-  //idGameHTML.innerHTML = idGame;
 
 });
 
