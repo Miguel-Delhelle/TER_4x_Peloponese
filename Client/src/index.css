@@ -1,28 +1,41 @@
 :root {
   --clr-menu-input: #fff9e4;
-  --clr-menu-background: #e8d4b2;
-  --clr-menu-: #b99d6c;
-  --clr-menu-: #816738;
-  --clr-font-primary: #50391c;
-  --clr-font-secondary: var(--clr-menu-input);
-  --clr-font-accent: #1b1002;
+  --clr-menu-window: #e8d4b2;
+  --clr-menu-iborder: #b99d6c;
+  --clr-menu-wborder: #816738;
+
+  --ftc-primary: #50391c;
+  --ftc-primary-accent: #1b1002;
+  --ftc-secondary: var(--clr-menu-input);
+  --ftc-secondary-accent: var(--clr-menu-iborder);
+
+  --fts-title: bold 5em 'Ancient Geek', sans-serif;
+  --fts-text: 1em 'TaraType', sans-serif;
+  --fts-icon: 2em 'Greek Mythology', sans-serif;
+
+  --fth-button: 1.5em;
+
+  --pdg-button: auto;
+  
+  --mgn-button: 10px;
+  --mgn-text: 10px;
 }
 
 * {
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
-  font-family: 'TaraType', sans-serif;
+  font: var(--fts-text);
+  color: var(--ftc-primary);
 }
 
 body, html {
-  margin: 0;
-  padding: 0;
   width: 100vw;
   height: 100vh;
   background: url('/res/img/main-menu_1.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  color: white;
   display: flex;
   flex-direction: column;
 }
@@ -39,8 +52,7 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #111;
-  font-size: 0.9em;
+  background-color: var(--clr-menu-window);
 }
 
 .columns {
@@ -78,16 +90,12 @@ footer {
   height: 50%;
   font-size: 5em;
   margin-bottom: 5%;
-  color: #111;
-  font-family: 'Ancient Geek', sans-serif;
-}
-
-.small-btn {
-  font-size: 1em;
+  color: var(--ftc-primary-accent);
+  font: var(--fts-title);
 }
 
 .big-btn {
-  font-size: 1.5em;
+  font-size: var(--fth-button);
 }
 
 button.round {
@@ -95,25 +103,25 @@ button.round {
   padding: auto;
   height: 80px;
   margin: 10px 0;
-  background-color: #222;
-  box-shadow: 0px 0px 20px 5px white;
-  color: white;
+  background-color: var(--clr-menu-input);
+  box-shadow: 0px 0px 20px 5px var(--clr-menu-input);
+  color: var(--ftc-primary);
   font-weight: bold;
-  border: 2px solid #555;
+  border: 2px solid var(--clr-menu-iborder);
   cursor: pointer;
   z-index: 2;
 }
 
 button.round:hover {
-  background-color: #333;
+  background: linear-gradient(to bottom, var(--clr-menu-input), var(--clr-menu-window));
 }
 
 input {
   padding: 8px;
   border-radius: 6px;
   border: none;
-  background-color: #2a2a2a;
-  color: white;
+  background-color: var(--clr-menu-input);
+  color: var(--ftc-primary);
 }
 
 #btn-join {
@@ -125,11 +133,11 @@ input {
   flex-direction: column;
   transition: max-height 0.5s ease;
   overflow: hidden;
-  border: 1px solid #555;
+  border: 1px solid var(--clr-menu-wborder);
   border-radius: 8px;
   padding: 10px;
   padding-top: 40px;
-  background-color: #1a1a1a;
+  background-color: var(--clr-menu-window);
   transform: translateY(-40px);
   visibility: hidden;
   z-index: 1;
@@ -147,7 +155,7 @@ input {
 #btn-ok {
   width: 50%;
   align-self: center;
-  box-shadow: 0px 0px 10px 1px white;
+  box-shadow: 0px 0px 10px 1px var(--clr-menu-input);
 }
 
 .user-info {
@@ -160,7 +168,7 @@ input {
 #username {
   text-align: right;
   margin-right: 10px;
-  color: #111;
+  color: var(--ftc-primary-accent);
   font-size: 1.5em;
 }
 
@@ -168,11 +176,10 @@ input {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: #555;
+  background-color: var(--clr-menu-window);
   border: none;
-  color: white;
-  font-family: 'Greek Mythology', sans-serif;
-  font-size: 2em;
+  color: var(--ftc-secondary);
+  font: var(--fts-icon);
   cursor: pointer;
 }
 
@@ -182,9 +189,9 @@ input {
   width: 100%;
   margin: 20px;
   padding: 20px;
-  background-color: #1f1f1f;
+  background-color: var(--clr-menu-window);
   border-radius: 10px;
-  border: 1px solid #444;
+  border: 1px solid var(--clr-menu-wborder);
   gap: 10px;
 }
 
@@ -198,7 +205,7 @@ input {
   height: 40px;
   width: 100px;
   border-radius: 20px;
-  box-shadow: 0px 0px 10px 1px white;
+  box-shadow: 0px 0px 10px 1px var(--clr-menu-input);
   cursor: pointer;
 }
 
