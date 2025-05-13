@@ -103,8 +103,9 @@ btnJoin.addEventListener("click", () => {
 });
 
 let btnJoinRoomValid:HTMLElement = document.getElementById("btn-joinRoomValid")!;
-let valueRoomCode:HTMLInputElement = document.getElementById("room-code") as HTMLInputElement;
-btnJoinRoomValid.addEventListener("click", async (valueRoomCode) => {
+
+btnJoinRoomValid.addEventListener("click", () => {
+  let valueRoomCode:HTMLInputElement = document.getElementById("room-code") as HTMLInputElement;
   socket.emit("joinRoom",valueRoomCode);
 })
 

@@ -172,24 +172,27 @@ io.on("connection", (socket) => {
   // 
   socket.on("disconnect",(reason) => {
     try{
-      console.log(listUsersConnected.get(idSocket).username,"c'est déconnecté")
+      console.log(listUsersConnected.get(idSocket).username,"c'est déconnecté",reason)
       listUsersConnected.delete(idSocket);
     }catch(error){
       console.error(error);
     }
   })
 
+
   //console.log(socket); Décommentez cette ligne si vous voulez analyser à quoi ressemble tout les attributs d'un socket
   // On peut lui stocker un user par ailleurs, je le fais mais doute de l'utilité puisqu'on stock déjà ça dans listUserConnected.
 
 
-  socket.on("hostRoom",() => { // Set { <socket.id> }
+  socket.on("hostRoom",async() => { // Set { <socket.id> }
     let idGame:string = setRoomID()
     hostedRooms.push(idGame);
     socket.data.roomIdHosted = idGame;
     socket.join(idGame);
     socket.data.inRoom = idGame;
     socket.emit("roomId", idGame);
+    console.log(idGame);
+    console.log(await getUserInRoom(idGame));
   })
 
   socket.on("joinRoom", async ({roomId}) => {
@@ -202,9 +205,10 @@ io.on("connection", (socket) => {
   // Je peux m'empêcher de trouver ça étrange
 
 
-  socket.on("getUsersInRoom", ({roomId}) => console.log(getUserInRoom (roomId)));
+  //socket.on("getUsersInRoom", ({roomId}) => console.log(getUserInRoom (roomId)));
   // Pas essayé le front  mais à faire
 
+  console.log("Room:",Array.from(io.sockets.adapter.rooms.keys()));
 
 });
 
@@ -218,16 +222,16 @@ async function getUserInRoom(idRoom:string):Promise<UserConnected[]>{
     socketsInRoom.forEach(e => {
       
       let remoteSocketId:string = e.id;
-      console.log(remoteSocketId);
+      //console.log(remoteSocketId);
 
       idSocketsInRoom.push(remoteSocketId);
     });
     let usersInRoom:UserConnected[] = [];
 
     idSocketsInRoom.forEach(soc => {
-      if (listUsersConnected.has(soc)){
+      //if (listUsersConnected.has(soc)){
         usersInRoom.push(listUsersConnected.get(soc));
-      }
+      //}
     });
 
     return usersInRoom;
