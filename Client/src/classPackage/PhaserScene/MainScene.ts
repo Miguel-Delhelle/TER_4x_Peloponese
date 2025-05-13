@@ -259,8 +259,8 @@ export class MainScene extends Phaser.Scene{
 			"/mapTiled/Tileset/Thebes/Units/Soldiers/Mounted/Thebes_MountedSoldiers.png",
 			"/mapTiled/Tileset/Thebes/Units/Soldiers/Ranged/Thebes_RangedSoldiers.png",
 		]);
-		this.load.audio('gameSound', '../../../public/audio/audio.mp3');
-		this.load.audio('clickSound', '../../../public/audio/clickEffect.mp3');
+		this.load.audio('gameSound', '/audio/audio.mp3');
+		this.load.audio('clickSound', '/audio/clickEffect.mp3');
 	}
 
 
