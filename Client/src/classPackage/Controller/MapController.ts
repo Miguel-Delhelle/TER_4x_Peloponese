@@ -9,11 +9,11 @@ export class MapController {
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
 	private scene:MainScene;
-	private camera:Phaser.Cameras.Scene2D.Camera;
+	private camera!:Phaser.Cameras.Scene2D.Camera;
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 	private isMousewheelDown: boolean = false;
-	private zoomInMax: number;
-	private zoomOutMax: number;
+	private zoomInMax!: number;
+	private zoomOutMax!: number;
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 	private isDragging: boolean = false;
 	private dragStartX: number = 0;

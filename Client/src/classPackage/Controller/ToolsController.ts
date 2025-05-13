@@ -8,8 +8,8 @@ export class ToolsController{
 	*/
 	private inBuilding: boolean = false;
 	private currentBuildingID: number = 4;
-	private toolbarHTML: HTMLElement = document.getElementById("toolsBar");
-	private subToolHTML: HTMLElement = document.getElementById("subTool");
+	private toolbarHTML: HTMLElement = document.getElementById("toolsBar")!;
+	private subToolHTML: HTMLElement = document.getElementById("subTool")!;
 	private itemHTML: Map<string,Element> = new Map<string,Element>();
 	private mainScene: MainScene;
 
@@ -74,7 +74,7 @@ export class ToolsController{
 
 	private initItemHTML(toolbar:HTMLElement): void {
 		for (let i=0; i<toolbar.children.length; i++){
-			this.itemHTML.set((toolbar.children.item(i).id),((toolbar.children.item(i))));
+			this.itemHTML.set((toolbar.children.item(i)!.id),((toolbar.children.item(i)!)));
 		}
 		console.log(this.itemHTML);
 	}
@@ -92,7 +92,7 @@ export class ToolsController{
 	*/
 
 	private setupEvent(): void {
-		this.itemHTML.get("build").addEventListener("click", () => {this.toggleInBuilding();});
+		this.itemHTML.get("build")!.addEventListener("click", () => {this.toggleInBuilding();});
 	}
 
 	build = () => {
@@ -105,10 +105,10 @@ export class ToolsController{
 
   openSubToolB(){
     let subTool = document.getElementById("subTool");
-    if (subTool.style.visibility =="visible"){
-        subTool.style.visibility="hidden";
+    if (subTool!.style.visibility =="visible"){
+        subTool!.style.visibility="hidden";
     }else{
-      subTool.style.visibility="visible";
+      subTool!.style.visibility="visible";
     }
   }
 
