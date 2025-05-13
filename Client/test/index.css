@@ -1,3 +1,13 @@
+:root {
+  --clr-menu-input: #fff9e4;
+  --clr-menu-background: #e8d4b2;
+  --clr-menu-: #b99d6c;
+  --clr-menu-: #816738;
+  --clr-font-primary: #50391c;
+  --clr-font-secondary: var(--clr-menu-input);
+  --clr-font-accent: #1b1002;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'TaraType', sans-serif;
@@ -8,7 +18,7 @@ body, html {
   padding: 0;
   width: 100vw;
   height: 100vh;
-  background: url('./../res/img/main-menu_1.gif');
+  background: url('/res/img/main-menu_1.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
