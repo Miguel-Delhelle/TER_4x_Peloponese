@@ -39,6 +39,8 @@
       // Global font-family dictionary
       const ff = {
         "Arial": "",
+        "Trajan-Regular": "https://fonts.cdnfonts.com/css/trajan",
+        "TaraType": "https://fonts.cdnfonts.com/css/taratype",
         "Ancient Geek": "https://fonts.cdnfonts.com/css/ancient-geek",
         "Greek Mythology": "https://fonts.cdnfonts.com/css/greek-mythology"
       };
@@ -74,7 +76,7 @@
         // Table body
         const tbody = document.createElement('tbody');
     
-        for (let i = 32; i <= 126; i++) addRow(i, tbody);
+        for (let i = 33; i <= 126; i++) addRow(i, tbody);
         for (let i = 161; i <= 255; i++) addRow(i, tbody);
     
         table.appendChild(tbody);

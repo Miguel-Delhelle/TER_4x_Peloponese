@@ -1,130 +1,205 @@
-body {
+* {
+  box-sizing: border-box;
+  font-family: 'TaraType', sans-serif;
+}
+
+body, html {
   margin: 0;
-  font-family: 'Ancient Geek', sans-serif;
-  background-color: #0e0e0e;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('./../res/img/main-menu_1.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: white;
-  min-height: 100vh;
-}
-
-header {
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
+  flex-direction: column;
 }
 
-#test {
-  font-family: 'Greek Mythology', sans-serif;
+.main {
+  display: flex;
+  width: 100%;
+  height: 95vh;
+}
+
+footer {
+  bottom: 0;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #111;
+  font-size: 0.9em;
 }
 
 .columns {
-  width: 100%;
   display: flex;
   flex-direction: row;
-  margin: 10px;
-  padding: 20px;
+  width: 100%;
 }
 
 .rows {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  padding: 20px;
 }
-/*
-.left-title {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+
+.left-panel {
+  width: 66%;
+  height: 95vh;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.right-panel {
+  width: 34%;
+  height: 95vh;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 #game-title {
-  font-size: 4rem;
-  font-weight: bold;
-  line-height: 1.1;
+  width: 100%;
+  height: 50%;
+  font-size: 5em;
+  margin-bottom: 5%;
+  color: #111;
+  font-family: 'Ancient Geek', sans-serif;
 }
 
-.right-top {
+button.round {
+  border-radius: 40px;
+  padding: auto;
+  height: 80px;
+  margin: 10px 0;
+  background-color: #222;
+  box-shadow: 0px 0px 30px 5px white;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: 2px solid #555;
+  cursor: pointer;
+  z-index: 2;
+}
+
+button.round:hover {
+  background-color: #333;
+}
+
+#btn-join {
+  margin-bottom: 0;
+}
+
+.room-code {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 10px;
+  padding-top: 40px;
+  background-color: #1a1a1a;
+  transform: translateY(-40px);
+  z-index: 1;
 }
 
-.right-line {
-  display: flex;
+.room-code.hidden {
+  max-height: 0;
+  padding: 0;
+  border: none;
+  visibility: hidden;
+}
+
+.room-code.visible {
+  max-height: 200px;
+  visibility: visible;
+}
+
+.room-code p, .room-code input, #btn-ok {
+  margin: 10px 0;
+}
+
+.room-code input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+#btn-ok {
+  width: 50%;
+  align-self: center;
+}
+
+.user-info {
+  width: 100%;
+  height: 10%;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
 }
 
-.username {
-  font-size: 1rem;
-  font-weight: bold;
+#username {
+  margin-right: 10px;
+  color: #111;
 }
 
-.profile-icon,
-#logout-icon {
+#profile {
   width: 40px;
   height: 40px;
-  cursor: pointer;
-}
-
-
-main {
-  flex: 1;
-  display: flex;
-  padding-left: 40px;
-  padding-top: 20px;
-}
-
-.left-column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: flex-start;
-  margin-bottom: 40px;
-}
-
-.main-button {
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  background-color: #007bff;
+  border-radius: 20px;
+  background-color: #555;
   border: none;
-  border-radius: 8px;
   color: white;
+  font-family: 'Greek Mythology', sans-serif;
+  font-size: 2em;
   cursor: pointer;
-  width: 250px;
-  text-align: center;
 }
 
-.join-box {
-  background-color: #1f1f1f;
-  border: 1px solid #444;
-  border-radius: 10px;
-  padding: 20px;
+.modal {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 250px;
-}
-
-.join-box p {
-  margin: 0;
-  font-size: 0.9rem;
-}
-
-.join-box input {
-  padding: 10px;
   width: 100%;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #1a1a1a;
-  color: white;
-}*/
+  margin: 20px;
+  padding: 20px;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  border: 1px solid #444;
+  gap: 10px;
+}
 
-footer {
-  margin-top: auto;
+.modal input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.modal .buttons-row {
   display: flex;
-  justify-content: space-around;
-  padding: 15px;
-  background-color: #1a1a1a;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.modal button {
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 1px white;
+  cursor: pointer;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.main-btn {
+  width: 50%;
 }
