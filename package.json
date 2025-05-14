@@ -1,0 +1,25 @@
+{
+  "name": "ter_4x_peloponese",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run dev --prefix Server\" \"npm run dev --prefix Client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miguel-Delhelle/TER_4x_Peloponese.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Miguel-Delhelle/TER_4x_Peloponese/issues"
+  },
+  "homepage": "https://github.com/Miguel-Delhelle/TER_4x_Peloponese#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

@@ -1,0 +1,79 @@
+.
+├── arbo.txt
+├── Client
+│   ├── index.html
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── public
+│   │   ├── audio
+│   │   ├── mapTiled
+│   │   └── vite.svg
+│   ├── res
+│   │   └── img
+│   ├── src
+│   │   ├── assets
+│   │   ├── classPackage
+│   │   ├── font-families.html
+│   │   ├── index.css
+│   │   ├── index.ts
+│   │   ├── Network
+│   │   ├── style.css
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.json
+│   └── vite.config.js
+├── Conception
+│   ├── mainGame
+│   │   ├── Backend
+│   │   ├── ideeSeparation
+│   │   ├── main
+│   │   └── recrutement
+│   ├── mainMenu
+│   ├── puml-theme-cyborg.puml
+│   ├── Spec.docx
+│   └── UI
+│       └── interface_luna.jpeg
+├── GameDesign
+│   └── Zoom
+├── mapTiled
+│   ├── Greece.json
+│   ├── Maps
+│   │   ├── AncientGreece.json
+│   │   ├── AncientGreece.tmx
+│   │   ├── Background.png
+│   │   ├── Background_Roads.png
+│   │   ├── Test.json
+│   │   └── Test.tmx
+│   ├── TER.tiled-project
+│   ├── TER.tiled-session
+│   └── Tileset
+│       └── MiniWorldSprites
+├── _model-class.txt
+├── _model-function.txt
+└── Server
+    ├── build
+    │   ├── data-source.js
+    │   ├── data-source.js.map
+    │   ├── entity
+    │   ├── index.js
+    │   ├── index.js.map
+    │   └── socket
+    ├── greekAnatomic.sqlite
+    ├── package.json
+    ├── package-lock.json
+    ├── README.md
+    ├── src
+    │   ├── data-source.ts
+    │   ├── entity
+    │   ├── index.ts
+    │   ├── migration
+    │   └── socket
+    └── tsconfig.json
+
+30 directories, 39 files
+
+
+
+/*"dev": "ts-node src/index.ts",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "build": "npx tsc",
+      "start": "node dist/index.js " */

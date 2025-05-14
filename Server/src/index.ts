@@ -11,6 +11,7 @@ import { RemoteSocket, Socket, Server as SocketIOServer } from 'socket.io';
 import { createServer } from "http";
 import { UserConnected } from "./entity/User/UserConnected";
 import { DecorateAcknowledgementsWithMultipleResponses, DefaultEventsMap } from "socket.io/dist/typed-events";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 export var listUsersConnected:Map<string,UserConnected> = new Map();
 
@@ -24,6 +25,7 @@ export const io = new SocketIOServer(server, {
     methods: ['GET', 'POST']
   }
 });
+app.use(express.json());
 
 
 const db = new Database('greekAnatomic.sqlite');
@@ -41,12 +43,12 @@ AppDataSource.initialize().then(async () => {
 
 }).catch(error => console.log(error))
 
-app.get("/", (req, res) => {
-  //res.send("Hello World!");
-  res.sendFile(path.resolve(__dirname,"..","..","Client","dist","index.html"));
-});
 
-app.get("/coucou", (req,res)=> {
+
+
+
+
+app.get("/api/coucou", (req,res)=> {
   res.status(200).json({
     areYouInTruth:"yes",
     whoAreYou:"My team enfin j'espère",
@@ -54,18 +56,12 @@ app.get("/coucou", (req,res)=> {
   })
 })
 
-app.use(express.json());
-
-app.use(express.static(path.resolve(__dirname, "../../Client/dist")));
-
-
-server.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
 
 
 
-app.post('/register', async function(req,response){
+
+
+app.post('/api/register', async function(req,response){
   let mail:string = req.body.mail;
   let username:string = req.body.username;
   let password:string = req.body.password;
@@ -77,7 +73,7 @@ app.post('/register', async function(req,response){
   response.status(200).json("Inscription réussi");
 });
 
-app.post('/login', async function(req,response) {
+app.post('/api/login', async function(req,response) {
 let mailReq = req.body.mail;
 let password = req.body.password;
 
@@ -98,6 +94,33 @@ try {
 }
 
 });
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(
+    '/',
+    createProxyMiddleware({
+      target: 'http://localhost:5173',
+      changeOrigin: true,
+      ws: true,
+    })
+  );
+}else{
+
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname,"..","..","Client","dist","index.html"));
+  });
+
+  app.use(express.static(path.resolve(__dirname, "../../Client/dist")));
+}
+
+server.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
+
+
+
+
 
 
 

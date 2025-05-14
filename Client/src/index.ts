@@ -19,7 +19,8 @@ const modalHost = document.getElementById("modalHost") as HTMLDivElement;
 const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
 const loadingModal = document.getElementById("loadingModal") as HTMLDivElement;
 
-btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
+//btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
+
 //var idUserConnected:number;
 
 export var socket:SocketIOClient.Socket;
@@ -53,7 +54,7 @@ function toggleDisplay(obj: HTMLElement, value?: boolean): boolean {
 }
 
 async function postRegister(): Promise<Response> {
-  const res: Response = await fetch(`/register`, {
+  const res: Response = await fetch(`/api/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -75,7 +76,7 @@ async function postRegister(): Promise<Response> {
 btnRegister.addEventListener("click", postRegister);
 
 async function postLogin(): Promise<Response> {
-  const res: Response = await fetch(`/login`, {
+  const res: Response = await fetch(`/api/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -118,8 +119,8 @@ window.addEventListener("DOMContentLoaded",start);
 
 function start(){
   console.log("start lancé");
-  btnHost.disabled = true;
-  btnJoin.disabled = true;
+  //btnHost.disabled = false;
+  //btnJoin.disabled = false;
 
     btnHost.addEventListener("click", async () => {
       toggleDisplay(modalHost);
@@ -183,22 +184,13 @@ export function roomDisplay(dataOfRoom:string[]):void{
 
 
 
-
 // pinia singleton
 // vuex
 
 // Modal Host
 export var mainScene:MainScene = new MainScene();
 
-let dev_BUTTON_START:HTMLButtonElement = document.getElementById("DEV_LAUNCH_GAME") as HTMLButtonElement;
 
-dev_BUTTON_START.addEventListener("click", () => {
-  const loadingModal = document.getElementById("loadingModal");
-  const mainMenu = document.getElementById("mainMenu");
-  if (loadingModal) loadingModal.classList.remove("hidden");
-
-  startGame();
-});
 
 
 btnStartGame.addEventListener("click", () => {
