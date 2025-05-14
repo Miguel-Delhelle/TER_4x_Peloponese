@@ -149,7 +149,7 @@ io.on("connection", (socket) => {
   // Mais faut rendre cette partie la plus résiliente possible, tout de même, on peut pas la faire crash en permanence
 
   let idSocket = socket.id;
-
+  //let roomOfUser:string;
 
   // Envoyé au front après que la connexion est ok pour l'utilisateur (User) --> UserConnected, instancié à chaque socket
   // Si le user tartanpion se déconnecte il reste dans la base de donnée, mais le userConnected se deconnecte il est désinstancié
@@ -172,7 +172,7 @@ io.on("connection", (socket) => {
   // 
   socket.on("disconnect",(reason) => {
     try{
-      console.log(listUsersConnected.get(idSocket).username,"c'est déconnecté",reason)
+      console.log(listUsersConnected.get(idSocket).username,"s'est déconnecté",reason)
       listUsersConnected.delete(idSocket);
     }catch(error){
       console.error(error);
@@ -190,16 +190,24 @@ io.on("connection", (socket) => {
     socket.data.roomIdHosted = idGame;
     socket.join(idGame);
     socket.data.inRoom = idGame;
-    console.log(idGame);
-    console.log(await getUserInRoom(idGame));
+    //console.log(idGame);
+    //console.log(await getUserInRoom(idGame));
     callback(await getRoomInfo(idGame));
+  
   })
 
   socket.on("joinRoom", async ({roomId},callback) => {
     socket.join(roomId);
     socket.data.inRoom = roomId;
     callback(await getRoomInfo(roomId));
-    console.log("l'information envoyé en callback est: ",callback);
+    console.log("l'information envoyé en callback est: ",callback); ///// 
+
+    let infoRoom:string[] = await getRoomInfo(roomId);
+    console.log(infoRoom);
+
+    io.to(roomId).emit("playerJoined", {
+      tabOfRoomInfo: infoRoom
+    });
 
   })
   // NOTE POUR DEMAIN (14 MAI), LE HOST ROOM N'A PAS L'AIR DE REJOINDRE DIRECTEMENT
@@ -209,6 +217,7 @@ io.on("connection", (socket) => {
   socket.on("getRoomInfo", async (idGame:string) => {
     let tabInfo:string[] = await getRoomInfo(idGame);
   });
+
 
 
   socket.emit("getUsersInRoom", ({roomId}) => getUserInRoom (roomId));

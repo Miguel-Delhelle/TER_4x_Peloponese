@@ -1,6 +1,9 @@
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
 import io from "socket.io-client";
 
+
+
+
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
 const btnHost = document.getElementById("btn-host") as HTMLButtonElement;
 const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
@@ -16,7 +19,11 @@ const user = document.getElementById('username') as HTMLParagraphElement;
 const modalHost = document.getElementById("modalHost") as HTMLDivElement;
 const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
 //var idUserConnected:number;
-var socket:SocketIOClient.Socket;
+
+export var socket:SocketIOClient.Socket;
+export var roomOfUser:string;
+export var hasSocket:boolean = false;
+export var hasRoom:boolean = false;
 
 
 btnProfile.addEventListener("click", () => {toggleModal(modal)});
@@ -54,7 +61,10 @@ async function postRegister(): Promise<Response> {
       password: inpPassword.value
     })
   });
-  if (res.ok) alert(`Welcome on board ${inpUsername.value} !`);
+  if (res.ok) {
+    alert(`Welcome on board ${inpUsername.value} !`);
+    await postLogin();
+  }
   else alert(`An error occured during your registration..`);
   return res;
 }
@@ -73,65 +83,104 @@ async function postLogin(): Promise<Response> {
     })
   });
   if (res.ok) {
-    const data = await res.json();
-    user.textContent = data.username;
-    socket = io("http://localhost:3000");
-    socket.emit("loginOk",{
-      idUser: data.id
-    })
-    console.log(socket.id);
+    
+    try {
+      const data = await res.json();
+      user.textContent = data.username;
+      socket = io("http://localhost:3000");
+      socket.emit("loginOk",{idUser: data.id})
+      console.log("socket établie");
+      hasSocket = true;
+      console.log("Connected: ",hasSocket,"\nOn: ",socket); ////
+      toggleModal(modal, false);
+      btnHost.disabled = false;
+      btnJoin.disabled = false;
+
+  } catch (error) {
+    console.error(error);
+  }
+   
+    
   } else user.textContent = '';
+  if (hasSocket){
+    startListenerSocket();
+  }
   return res;
 }
 
 btnLogin.addEventListener("click", postLogin);
 
 
-btnHost.addEventListener("click", async () => {
-  toggleDisplay(modalHost);
-  socket.emit("hostRoom", (roomInfo:string[]) => {
-    let idGameHTML:HTMLElement = document.getElementById("idGame")!;
-    idGameHTML.innerHTML = roomInfo[0];
-    let player1:HTMLElement = document.getElementById("Player1")!;
-    player1.innerHTML = `Joueur 1: ${roomInfo[1]}`;
-    try {
-      let player2:HTMLElement = document.getElementById("Player2")!;
-      let player3:HTMLElement = document.getElementById("Player3")!;
-      player2.innerHTML = `Joueur 2: ${roomInfo[2]}`;
-      player3.innerHTML = `Joueur 3: ${roomInfo[3]}`;
-    } catch (error) {
-      console.error(error);
-    }
-  });
-  });
+window.addEventListener("DOMContentLoaded",start);
 
-btnJoin.addEventListener("click", () => {
-  toggleModal(roomCodeDiv);
-});
+function start(){
+  console.log("start lancé");
+  btnHost.disabled = true;
+  btnJoin.disabled = true;
 
-let btnJoinRoomValid:HTMLElement = document.getElementById("btn-joinRoomValid")!;
-
-btnJoinRoomValid.addEventListener("click", () => {
-  let valueRoomCode:string = (document.getElementById("room-code") as HTMLInputElement)!.value ;
-
-  socket.emit("joinRoom", { roomId: valueRoomCode }, (response:string[]) => {
+    btnHost.addEventListener("click", async () => {
       toggleDisplay(modalHost);
-      console.log("l'information recu en callback est: ",response);
+      socket.emit("hostRoom", (roomInfo:string[]) => {
+        roomDisplay(roomInfo);
+        hasRoom = true;
+      });
+    });
+    
+    btnJoin.addEventListener("click", () => {
+      toggleModal(roomCodeDiv);
+    });
+    
+    
+    
+    
+    let btnJoinRoomValid:HTMLElement = document.getElementById("btn-joinRoomValid")!;
+    
+    btnJoinRoomValid.addEventListener("click", () => {
+      let valueRoomCode:string = (document.getElementById("room-code") as HTMLInputElement)!.value ;
+      toggleDisplay(modalHost);
 
-      let idGameHTML:HTMLElement = document.getElementById("idGame")!;
-      idGameHTML.innerHTML = response[0];
-      let player1:HTMLElement = document.getElementById("Player1")!;
-      let player2:HTMLElement = document.getElementById("Player2")!;
-      player1.innerHTML = `Joueur 1: ${response[1]}`;
-      player2.innerHTML = `Joueur 2: ${response[2]}`;
-      try {
-        let player3:HTMLElement = document.getElementById("Player3")!;
-        player3.innerHTML = `Joueur 3: ${response[3]}`;
-      } catch (error) {
-        console.error(error);
-      }
-    })
-  });
+      socket.emit("joinRoom", { roomId: valueRoomCode }, (response:string[]) => {
+          console.log("l'information recu en callback est: ",response);
+          hasRoom = true;
+          roomDisplay(response);
+        })
+      });
+
+      
+  
+}
+
+async function listenerSocketIo(){
+}
+
+
+function toggleDisable(obj: HTMLButtonElement|HTMLFieldSetElement|HTMLInputElement|HTMLOptGroupElement|HTMLOptionElement|HTMLSelectElement|HTMLTextAreaElement, value?: boolean): boolean {
+  obj.disabled = value?value:!obj.disabled;
+  return obj.disabled;
+}
+
+
+
+
+
+
+
+function roomDisplay(dataOfRoom:string[]):void{
+  let idGameHTML:HTMLElement = document.getElementById("idGame")!;
+  try {
+  idGameHTML.innerHTML = dataOfRoom[0];
+  let player1:HTMLElement = document.getElementById("Player1")!;
+  let player2:HTMLElement = document.getElementById("Player2")!;
+  player1.innerHTML = `Joueur 1: ${dataOfRoom[1]}`;
+  player2.innerHTML = `Joueur 2: ${dataOfRoom[2]}`;
+  let player3:HTMLElement = document.getElementById("Player3")!;
+  player3.innerHTML = `Joueur 3: ${dataOfRoom[3]}`;
+  } catch (error) {
+    console.error(error);
+  }
+// Les données sont toujours [0] = roomId [1] = joueur 1 roomId[2] = joueur 2 .. etc 
+
+}
 
 
 
@@ -143,7 +192,13 @@ export var mainScene:MainScene = new MainScene();
 // Modal Host
 
 
-
+function startListenerSocket(){
+  socket!.on("playerJoined", (response:any) => {
+    console.log("socket on playerJoined data",response);
+    const tabOfRoomInfo:string[] = response.tabOfRoomInfo;
+    roomDisplay(tabOfRoomInfo);
+  })
+}
 
 function startGame(){
 
