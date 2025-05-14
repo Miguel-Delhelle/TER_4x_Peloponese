@@ -3,8 +3,6 @@ import io from "socket.io-client";
 import { startListenerSocket } from "./Network/ListenerSocket";
 
 
-
-
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
 const btnHost = document.getElementById("btn-host") as HTMLButtonElement;
 const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
@@ -19,6 +17,9 @@ const inpRoom = document.getElementById('room-code') as HTMLInputElement;
 const user = document.getElementById('username') as HTMLParagraphElement;
 const modalHost = document.getElementById("modalHost") as HTMLDivElement;
 const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
+const loadingModal = document.getElementById("loadingModal") as HTMLDivElement;
+
+btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
 //var idUserConnected:number;
 
 export var socket:SocketIOClient.Socket;
@@ -181,15 +182,20 @@ export function roomDisplay(dataOfRoom:string[]):void{
 
 
 
-export var mainScene:MainScene = new MainScene();
 
 // pinia singleton
 // vuex
 
 // Modal Host
+export var mainScene:MainScene = new MainScene();
 
+btnStartGame.addEventListener("click", () => {
+  const loadingModal = document.getElementById("loadingModal");
+  const mainMenu = document.getElementById("mainMenu");
+  if (loadingModal) loadingModal.classList.remove("hidden");
 
-
+  startGame();
+});
 
 function startGame(){
 
