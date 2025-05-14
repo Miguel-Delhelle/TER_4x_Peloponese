@@ -190,6 +190,17 @@ export function roomDisplay(dataOfRoom:string[]):void{
 // Modal Host
 export var mainScene:MainScene = new MainScene();
 
+let dev_BUTTON_START:HTMLButtonElement = document.getElementById("DEV_LAUNCH_GAME") as HTMLButtonElement;
+
+dev_BUTTON_START.addEventListener("click", () => {
+  const loadingModal = document.getElementById("loadingModal");
+  const mainMenu = document.getElementById("mainMenu");
+  if (loadingModal) loadingModal.classList.remove("hidden");
+
+  startGame();
+});
+
+
 btnStartGame.addEventListener("click", () => {
   const loadingModal = document.getElementById("loadingModal");
   const mainMenu = document.getElementById("mainMenu");

@@ -82,10 +82,9 @@ let mailReq = req.body.mail;
 let password = req.body.password;
 
 try {
-  let userLogins = await AppDataSource.manager.findBy(User, {mail: mailReq});
-  let userLogin = userLogins[0];
+  let userLogin = await AppDataSource.manager.findOneBy(User, {mail: mailReq});
 
-  let passwordOk:boolean = await verifyPassword(password, userLogin._hashedPassword);
+  let passwordOk:boolean = await verifyPassword(password, userLogin.hashedPassword);
 
   if (passwordOk){
     delete userLogin.hashedPassword;
@@ -130,30 +129,8 @@ function setRoomID(length: number = 8, alphabet: string = 'ABCDEFGHIJKLMNOPQRSTU
 io.on("connection", (socket) => {
 
 
-  // Note Miguel 13 Mai 23h45, Batiment 16, Capitale de l'informatique dans l'hérault.. enfin surtout de mon début d'absence de vie sociale
-  // Initialisation de socket.io, si quelqu'un s'amuse à reprendre ça pour le reste du sprint normalement vous avez les idées de pourquoi j'ai fais comme celà
-
-  //var dataSocketUser:{[socket: string]: number};
-  // Ancienne sdd, remplacé par listUserConnected en haut
-
-  // listUserConnected, prend en clé, le socket.id, et en valeur l'objet UserConnected qui hérite de User (et se construit avec)
-  // Et un socket
-  // L'idée est qu'un User peut se connecter et il est persévérant, l'insription reste une fois
-  // Mais lorsqu'un socket se deconnecte on désinstancie UserConnected
-
-  // A savoir pour tout le monde, je stock l'id du socket directement ici, j'ai eu des problèmes pour faire socket.id,
-  // Pas trop compris pourquoi dans un premier temps, mais il semblerait que ça venait du faite que je n'initialiser pas mes SDD
-  // Mais pas sûr, en tout cas j'ai l'impression que stocker la variable une fois avant fait du bien
-  // Pour ceux qui travaillent sur le web Socket, pensait à toujours tout mettre dans des try catch
-  // Surtout qu'il y a des scénario qui peuvent se passer en Dev qui font de la merde qui sont pas censé se passer en prod
-  // Mais faut rendre cette partie la plus résiliente possible, tout de même, on peut pas la faire crash en permanence
-
   let idSocket = socket.id;
-  //let roomOfUser:string;
-
-  // Envoyé au front après que la connexion est ok pour l'utilisateur (User) --> UserConnected, instancié à chaque socket
-  // Si le user tartanpion se déconnecte il reste dans la base de donnée, mais le userConnected se deconnecte il est désinstancié
-
+  
   socket.on("loginOk",async ({idUser}) => {
     try{
     let user:User = await AppDataSource.manager.findOneBy(User, {id: idUser});
@@ -199,33 +176,35 @@ io.on("connection", (socket) => {
   socket.on("joinRoom", async ({roomId},callback) => {
     socket.join(roomId);
     socket.data.inRoom = roomId;
-    callback(await getRoomInfo(roomId));
-    console.log("l'information envoyé en callback est: ",callback); ///// 
-
     let infoRoom:string[] = await getRoomInfo(roomId);
+    console.log("l'information envoyé en callback est: ",infoRoom); 
+    callback(infoRoom);
     console.log(infoRoom);
-
+    
     io.to(roomId).emit("playerJoined", {
       tabOfRoomInfo: infoRoom
     });
 
   })
-  // NOTE POUR DEMAIN (14 MAI), LE HOST ROOM N'A PAS L'AIR DE REJOINDRE DIRECTEMENT
-  // Du moins d'après le getUserInRoom. Cependant si il rejoint après l'avoir crée (étrange), les deux userConnected sont affiché
-  // Je peux m'empêcher de trouver ça étrange
 
   socket.on("getRoomInfo", async (idGame:string) => {
     let tabInfo:string[] = await getRoomInfo(idGame);
   });
 
 
-
-  socket.emit("getUsersInRoom", ({roomId}) => getUserInRoom (roomId));
-  // Pas essayé le front  mais à faire
+  // Déprécié
+  //socket.emit("getUsersInRoom", ({roomId}) => getUserInRoom (roomId));
 
   console.log("Room:",Array.from(io.sockets.adapter.rooms.keys()));
 
 });
+
+// ***********************************************************************************
+
+
+
+// Fonction
+
 
 async function getRoomInfo(idRoom:string):Promise<string[]>{
   let tabInfo:string[] = [];
