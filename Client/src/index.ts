@@ -1,6 +1,7 @@
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
 import io from "socket.io-client";
 
+export var mainScene = new MainScene();
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
 const btnHost = document.getElementById("btn-host") as HTMLButtonElement;
 const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
@@ -15,6 +16,8 @@ const inpRoom = document.getElementById('room-code') as HTMLInputElement;
 const user = document.getElementById('username') as HTMLParagraphElement;
 const modalHost = document.getElementById("modalHost") as HTMLDivElement;
 const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
+const loadingModal = document.getElementById("loadingModal") as HTMLDivElement;
+
 var socket:SocketIOClient.Socket;
 
 
@@ -98,15 +101,18 @@ btnHost.addEventListener("click", async () => {
 
 });
 
-export var mainScene:MainScene = new MainScene();
-
 // pinia singleton
 // vuex
 
 // Modal Host
 
+btnStartGame.addEventListener("click", () => {
+  const loadingModal = document.getElementById("loadingModal");
+  const mainMenu = document.getElementById("mainMenu");
+  if (loadingModal) loadingModal.classList.remove("hidden");
 
-
+  startGame();
+});
 
 function startGame(){
 

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/src/index.css" />
   </head>
   <body>
-<<<<<<< HEAD
     <div id="game" class="hidden">
       <div id="scene"></div>
       <div id="toolBarBox" class="ui">
@@ -27,44 +26,13 @@
           <div id = "build" class = "item">Construire</div>
           <div id = "recruit" class = "item">Recruter</div>
           <div id = "stats" class = "item">Voir unités</div>
-=======
-    <div class="main columns">
-      <div class="left-panel rows">
-        <h1 id="game-title">GREECE<br>ANATOMY</h1>
-        <div class="main-btn rows">
-          <button id="btn-host" class="big-btn round" href="./game.html">New Game</button>
-        </div>
-        <div class="main-btn rows join-container">
-          <button id="btn-join" class="big-btn round">Join a Game</button>
-          <div class="room-code">
-            <p>Enter room code:</p>
-            <input id="room-code" type="text" placeholder="paste your room code here" />
-            <button id="btn-ok" class="small-btn round">OK</button>
-          </div>
-        </div>
-      </div>
-      <div class="right-panel rows">
-        <div class="columns user-info">
-          <p id="username">Not connected...</p>
-          <button id="profile" class="round">"</button>
-        </div>
-        <div class="modal">
-          <input id="mail" type="email" placeholder="Email" />
-          <input id="pseudo" type="text" placeholder="Pseudo" />
-          <input id="password" type="password" placeholder="Password" />
-          <div class="columns buttons-row">
-            <button id="btn-register" class="small-btn round">Register</button>
-            <button id="btn-login" class="small-btn round">Login</button>
-          </div>
-        </div>
->>>>>>> origin/Menu
       </div>
     </div>
   </div>
     <div id="mainMenu">
       <div class="main columns">
         <div class="left-panel rows">
-          <h1 id="game-title">GREECE<br>ANATOMY</h1>
+          <h1 id="game-title" class="title">GREECE<br>ANATOMY</h1>
           <div class="main-btn rows" style="margin-top: 10%">
             <button id="btn-host" class="big-btn round">New Game</button>
           </div>
@@ -116,5 +84,9 @@
     </div>
 
     <script script type="module" src="/src/index.ts"></script>
+    <div id="loadingModal" class=" rows hidden">
+      <img src="/res/img/loading.gif" alt="Loading..." />
+      <h1 class="title">Loading...</h1>
+    </div>
   </body>
 </html>
