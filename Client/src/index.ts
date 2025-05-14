@@ -1,5 +1,6 @@
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
 import io from "socket.io-client";
+import { startListenerSocket } from "./Network/ListenerSocket";
 
 
 
@@ -150,10 +151,6 @@ function start(){
   
 }
 
-async function listenerSocketIo(){
-}
-
-
 function toggleDisable(obj: HTMLButtonElement|HTMLFieldSetElement|HTMLInputElement|HTMLOptGroupElement|HTMLOptionElement|HTMLSelectElement|HTMLTextAreaElement, value?: boolean): boolean {
   obj.disabled = value?value:!obj.disabled;
   return obj.disabled;
@@ -165,7 +162,7 @@ function toggleDisable(obj: HTMLButtonElement|HTMLFieldSetElement|HTMLInputEleme
 
 
 
-function roomDisplay(dataOfRoom:string[]):void{
+export function roomDisplay(dataOfRoom:string[]):void{
   let idGameHTML:HTMLElement = document.getElementById("idGame")!;
   try {
   idGameHTML.innerHTML = dataOfRoom[0];
@@ -192,13 +189,7 @@ export var mainScene:MainScene = new MainScene();
 // Modal Host
 
 
-function startListenerSocket(){
-  socket!.on("playerJoined", (response:any) => {
-    console.log("socket on playerJoined data",response);
-    const tabOfRoomInfo:string[] = response.tabOfRoomInfo;
-    roomDisplay(tabOfRoomInfo);
-  })
-}
+
 
 function startGame(){
 
