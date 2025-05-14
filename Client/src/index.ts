@@ -191,15 +191,18 @@ export function roomDisplay(dataOfRoom:string[]):void{
 export var mainScene:MainScene = new MainScene();
 
 
+const btnDevLaunchGame:HTMLButtonElement = (document.getElementById("DEV_LAUNCH_GAME") as HTMLButtonElement)!;
 
-
-btnStartGame.addEventListener("click", () => {
+function manageStartGame(){
   const loadingModal = document.getElementById("loadingModal");
   const mainMenu = document.getElementById("mainMenu");
   if (loadingModal) loadingModal.classList.remove("hidden");
 
   startGame();
-});
+}
+
+btnDevLaunchGame.addEventListener("click", manageStartGame);
+btnStartGame.addEventListener("click", manageStartGame);
 
 function startGame(){
 
