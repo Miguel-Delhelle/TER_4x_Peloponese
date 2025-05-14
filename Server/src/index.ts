@@ -184,34 +184,49 @@ io.on("connection", (socket) => {
   // On peut lui stocker un user par ailleurs, je le fais mais doute de l'utilité puisqu'on stock déjà ça dans listUserConnected.
 
 
-  socket.on("hostRoom",async() => { // Set { <socket.id> }
+  socket.on("hostRoom",async(callback) => { // Set { <socket.id> }
     let idGame:string = setRoomID()
     hostedRooms.push(idGame);
     socket.data.roomIdHosted = idGame;
     socket.join(idGame);
     socket.data.inRoom = idGame;
-    socket.emit("roomId", idGame);
     console.log(idGame);
     console.log(await getUserInRoom(idGame));
+    callback(await getRoomInfo(idGame));
   })
 
-  socket.on("joinRoom", async ({roomId}) => {
+  socket.on("joinRoom", async ({roomId},callback) => {
     socket.join(roomId);
     socket.data.inRoom = roomId;
-    console.log(await getUserInRoom(roomId));
+    callback(await getRoomInfo(roomId));
+    console.log("l'information envoyé en callback est: ",callback);
+
   })
   // NOTE POUR DEMAIN (14 MAI), LE HOST ROOM N'A PAS L'AIR DE REJOINDRE DIRECTEMENT
   // Du moins d'après le getUserInRoom. Cependant si il rejoint après l'avoir crée (étrange), les deux userConnected sont affiché
   // Je peux m'empêcher de trouver ça étrange
 
+  socket.on("getRoomInfo", async (idGame:string) => {
+    let tabInfo:string[] = await getRoomInfo(idGame);
+  });
 
-  //socket.on("getUsersInRoom", ({roomId}) => console.log(getUserInRoom (roomId)));
+
+  socket.emit("getUsersInRoom", ({roomId}) => getUserInRoom (roomId));
   // Pas essayé le front  mais à faire
 
   console.log("Room:",Array.from(io.sockets.adapter.rooms.keys()));
 
 });
 
+async function getRoomInfo(idRoom:string):Promise<string[]>{
+  let tabInfo:string[] = [];
+  tabInfo[0] = idRoom;
+  let usernames:string[] = getUsernameInTab(await getUserInRoom(idRoom));
+  usernames.forEach(username => {
+    tabInfo.push(username);
+  });
+  return tabInfo;
+}
 
 async function getUserInRoom(idRoom:string):Promise<UserConnected[]>{
   try {
@@ -238,6 +253,15 @@ async function getUserInRoom(idRoom:string):Promise<UserConnected[]>{
   } catch (error) {
     console.error("Erreur lors de la récupération des utilisateurs dans la salle :", error);
   }
+}
+
+function getUsernameInTab(tabOfUser:UserConnected[]):string[]{
+  let tabOfUsername:string[] = [];
+  tabOfUser.forEach(element => {
+    tabOfUsername.push(element._username)
+  });
+  return tabOfUsername;
+
 }
 
 // Déprécié, encore là au cas ou 

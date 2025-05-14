@@ -89,14 +89,21 @@ btnLogin.addEventListener("click", postLogin);
 
 btnHost.addEventListener("click", async () => {
   toggleDisplay(modalHost);
-  socket.emit("hostRoom");
-  socket.on("roomId", (idGame:string) => {
+  socket.emit("hostRoom", (roomInfo:string[]) => {
     let idGameHTML:HTMLElement = document.getElementById("idGame")!;
-    idGameHTML.innerHTML = idGame;
-
-    
+    idGameHTML.innerHTML = roomInfo[0];
+    let player1:HTMLElement = document.getElementById("Player1")!;
+    player1.innerHTML = `Joueur 1: ${roomInfo[1]}`;
+    try {
+      let player2:HTMLElement = document.getElementById("Player2")!;
+      let player3:HTMLElement = document.getElementById("Player3")!;
+      player2.innerHTML = `Joueur 2: ${roomInfo[2]}`;
+      player3.innerHTML = `Joueur 3: ${roomInfo[3]}`;
+    } catch (error) {
+      console.error(error);
+    }
   });
-});
+  });
 
 btnJoin.addEventListener("click", () => {
   toggleModal(roomCodeDiv);
@@ -105,9 +112,26 @@ btnJoin.addEventListener("click", () => {
 let btnJoinRoomValid:HTMLElement = document.getElementById("btn-joinRoomValid")!;
 
 btnJoinRoomValid.addEventListener("click", () => {
-  let valueRoomCode:HTMLInputElement = document.getElementById("room-code") as HTMLInputElement;
-  socket.emit("joinRoom",valueRoomCode);
-})
+  let valueRoomCode:string = (document.getElementById("room-code") as HTMLInputElement)!.value ;
+
+  socket.emit("joinRoom", { roomId: valueRoomCode }, (response:string[]) => {
+      toggleDisplay(modalHost);
+      console.log("l'information recu en callback est: ",response);
+
+      let idGameHTML:HTMLElement = document.getElementById("idGame")!;
+      idGameHTML.innerHTML = response[0];
+      let player1:HTMLElement = document.getElementById("Player1")!;
+      let player2:HTMLElement = document.getElementById("Player2")!;
+      player1.innerHTML = `Joueur 1: ${response[1]}`;
+      player2.innerHTML = `Joueur 2: ${response[2]}`;
+      try {
+        let player3:HTMLElement = document.getElementById("Player3")!;
+        player3.innerHTML = `Joueur 3: ${response[3]}`;
+      } catch (error) {
+        console.error(error);
+      }
+    })
+  });
 
 
 
