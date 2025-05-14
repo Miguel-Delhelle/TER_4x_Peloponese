@@ -1,44 +1,145 @@
 :root {
-  --clr-menu-input: #fff9e4;
-  --clr-menu-window: #e8d4b2;
-  --clr-menu-iborder: #b99d6c;
-  --clr-menu-wborder: #816738;
+  /* Colors [clr] */
+  --clr-primary: #fff9e4;
+  --clr-secondary: #e8d4b2;
+  --clr-primary-accent: #b99d6c;
+  --clr-secondary-accent: #816738;
+  --clr-complement: #50391c;
+  --clr-complement-accent: #1b1002;
 
-  --ftc-primary: #50391c;
-  --ftc-primary-accent: #1b1002;
-  --ftc-secondary: var(--clr-menu-input);
-  --ftc-secondary-accent: var(--clr-menu-iborder);
+  /* Font Colors [ftc] */
+  --ftc-light: var(--clr-complement);
+  --ftc-light-accent: var(--clr-complement-accent);
+  --ftc-dark: var(--clr-primary);
+  --ftc-dark-accent: var(--clr-primary-accent);
 
-  --fts-title: bold 5em 'Ancient Geek', sans-serif;
-  --fts-text: 1em 'TaraType', sans-serif;
+  /* Size Coefficients [szc] */
+  --szc-smaller: 0.5;
+  --szc-small: 0.8;
+  --szc-normal: 1.0;
+  --szc-big: 1.5;
+  --szc-bigger: 2.0;
+
+  /* Font Height [fth] */
+  --fth-text: 1em;
+  --fth-title: 3em;
+
+  /* Font Families [ftf] */
+  --ftf-text: 'TaraType', sans-serif;
+  --ftf-title: 'Ancient Geek', sans-serif;
+  --ftf-icon: 'Greek Mythology', sans-serif;
+
+  /* Font Styles [fts] */
+  --fts-text: calc(var(--szc-normal)*var(--fth-text)) var(--ftf-text);
+  --fts-title: bold calc(var(--szc-normal)*var(--fth-title)) var(--ftf-title);
   --fts-icon: 2em 'Greek Mythology', sans-serif;
 
-  --fth-button: 1.5em;
+  /* Padding [pdg] */
+  --pdg-fixed: calc(0.5 * var(--fth-text));
+  --pdg-auto: auto;
 
-  --pdg-button: auto;
+  /* Margin [mrg] */
+  --mrg-fixed: var(--fth-text);
+
+  /* Mouse Pointer [msp] */
+  --msp-cursor: url('/res/img/cursor.png'), auto;
+  --msp-pointer: url('/res/img/pointer.png'), auto;
+
+
+
+
+
+  --fth-button: 1.5em;
   
   --mgn-button: 10px;
   --mgn-text: 10px;
 }
 
 * {
-  margin: 0px;
-  padding: 0px;
   box-sizing: border-box;
+  color: var(--clr-complement);
+  cursor: var(--msp-cursor);
   font: var(--fts-text);
-  color: var(--ftc-primary);
+  margin: var(--mrg-fixed);
+  padding: var(--pdg-auto);
 }
 
 body, html {
+  margin: 0px;
+  padding: 0px;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  align-self: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+}
+
+header, footer {
+  width: 100vw;
+  max-height: 10vh;
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+}
+header {
+  top: 0vh;
+}
+
+footer {
+  bottom: 0vh;
+}
+
+#mainMenu {
   background: url('/res/img/main-menu_1.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  display: flex;
-  flex-direction: column;
 }
+
+.disabled {
+  filter: grayscale(100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .main {
   display: flex;
@@ -46,13 +147,25 @@ body, html {
   height: 95vh;
 }
 
+#mascot {
+  bottom: 4vh;
+  position:fixed;
+  max-width: 100px;
+  max-height: 100px;
+  z-index: 10;
+}
+
 footer {
-  bottom: 0;
+  /*bottom: 0;*/
   height: 5vh;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--clr-menu-window);
+  background-color: var(--clr-secondary);
+}
+
+footer span {
+  padding: 5px 20px;
 }
 
 .columns {
@@ -90,8 +203,23 @@ footer {
   height: 50%;
   font-size: 5em;
   margin-bottom: 5%;
-  color: var(--ftc-primary-accent);
+  background: -webkit-linear-gradient(var(--ftc-dark), var(--ftc-dark-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(2px 2px var(--clr-complement-accent));
   font: var(--fts-title);
+}
+
+.breathing {
+  animation: breathe 3s ease-in-out infinite;
+  transform-origin: top left;
+}
+
+@keyframes breathe {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
 .big-btn {
@@ -103,25 +231,25 @@ button.round {
   padding: auto;
   height: 80px;
   margin: 10px 0;
-  background-color: var(--clr-menu-input);
-  box-shadow: 0px 0px 20px 5px var(--clr-menu-input);
-  color: var(--ftc-primary);
+  background-color: var(--clr-primary);
+  box-shadow: 0px 0px 20px 5px var(--clr-primary);
+  color: var(--clr-complement);
   font-weight: bold;
-  border: 2px solid var(--clr-menu-iborder);
-  cursor: pointer;
+  border: 2px solid var(--clr-primary-accent);
+  cursor: var(--msp-pointer);
   z-index: 2;
 }
 
 button.round:hover {
-  background: linear-gradient(to bottom, var(--clr-menu-input), var(--clr-menu-window));
+  background: linear-gradient(to bottom, var(--clr-primary), var(--clr-secondary));
 }
 
 input {
   padding: 8px;
   border-radius: 6px;
   border: none;
-  background-color: var(--clr-menu-input);
-  color: var(--ftc-primary);
+  background-color: var(--clr-primary);
+  color: var(--clr-complement);
 }
 
 #btn-join {
@@ -133,11 +261,11 @@ input {
   flex-direction: column;
   transition: max-height 0.5s ease;
   overflow: hidden;
-  border: 1px solid var(--clr-menu-wborder);
+  border: 1px solid var(--clr-secondary-accent);
   border-radius: 8px;
   padding: 10px;
   padding-top: 40px;
-  background-color: var(--clr-menu-window);
+  background-color: var(--clr-secondary);
   transform: translateY(-40px);
   visibility: hidden;
   z-index: 1;
@@ -155,7 +283,7 @@ input {
 #btn-ok {
   width: 50%;
   align-self: center;
-  box-shadow: 0px 0px 10px 1px var(--clr-menu-input);
+  box-shadow: 0px 0px 10px 1px var(--clr-primary);
 }
 
 .user-info {
@@ -168,7 +296,7 @@ input {
 #username {
   text-align: right;
   margin-right: 10px;
-  color: var(--ftc-primary-accent);
+  color: var(--clr-complement-accent);
   font-size: 1.5em;
 }
 
@@ -176,11 +304,11 @@ input {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: var(--clr-menu-window);
+  background-color: var(--clr-secondary);
   border: none;
-  color: var(--ftc-secondary);
+  color: var(--ftc-dark);
   font: var(--fts-icon);
-  cursor: pointer;
+  cursor: var(--msp-pointer);
 }
 
 .modal.active {
@@ -189,9 +317,9 @@ input {
   width: 100%;
   margin: 20px;
   padding: 20px;
-  background-color: var(--clr-menu-window);
+  background-color: var(--clr-secondary);
   border-radius: 10px;
-  border: 1px solid var(--clr-menu-wborder);
+  border: 1px solid var(--clr-secondary-accent);
   gap: 10px;
 }
 
@@ -205,8 +333,8 @@ input {
   height: 40px;
   width: 100px;
   border-radius: 20px;
-  box-shadow: 0px 0px 10px 1px var(--clr-menu-input);
-  cursor: pointer;
+  box-shadow: 0px 0px 10px 1px var(--clr-primary);
+  cursor: var(--msp-pointer);
 }
 
 .modal {
