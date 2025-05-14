@@ -26,6 +26,7 @@ export var socket:SocketIOClient.Socket;
 export var roomOfUser:string;
 export var hasSocket:boolean = false;
 export var hasRoom:boolean = false;
+const URI = "http://localhost:3000";
 
 
 btnProfile.addEventListener("click", () => {toggleModal(modal)});
@@ -52,7 +53,7 @@ function toggleDisplay(obj: HTMLElement, value?: boolean): boolean {
 }
 
 async function postRegister(): Promise<Response> {
-  const res: Response = await fetch('/register', {
+  const res: Response = await fetch(`/register`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -74,7 +75,7 @@ async function postRegister(): Promise<Response> {
 btnRegister.addEventListener("click", postRegister);
 
 async function postLogin(): Promise<Response> {
-  const res: Response = await fetch('/login', {
+  const res: Response = await fetch(`/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -89,7 +90,7 @@ async function postLogin(): Promise<Response> {
     try {
       const data = await res.json();
       user.textContent = data.username;
-      socket = io("http://localhost:3000");
+      socket = io(URI);
       socket.emit("loginOk",{idUser: data.id})
       console.log("socket établie");
       hasSocket = true;

@@ -19,7 +19,7 @@ export class User {
         this.mail = mail;
         this.username = username;
         this.hashedPassword = password;
-        if (id !== null){this.id = id}
+        if ((id !== undefined) && (id !== null)){this.id = id}
     }
  
  

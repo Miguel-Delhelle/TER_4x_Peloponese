@@ -11,10 +11,8 @@ export class UserConnected extends User{
       this.socket;
    }
 
-   public getSocket():Socket{
-      
+   public getSocket():Socket{      
       return this.socket;
-      //return io.sockets.sockets.get(this.socketId);
    }
 
 }
