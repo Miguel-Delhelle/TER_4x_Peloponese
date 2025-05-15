@@ -4,6 +4,7 @@
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
 import Phaser from 'phaser';
+import Easystar from 'easystarjs';
 
 
 
@@ -28,7 +29,8 @@ export class MainScene extends Phaser.Scene{
 	private controls!:Phaser.Cameras.Controls.FixedKeyControl;
 	private gameSound!:Phaser.Sound.BaseSound;
 	private clickSound!:Phaser.Sound.BaseSound;
-
+	private pathfinder!:Easystar.js;
+	private grid:number[][] = [];
 
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
@@ -268,7 +270,6 @@ export class MainScene extends Phaser.Scene{
 
 	public create(): void {
 		this.setupMap();
-		this.setupEvent();
 
 		this.gameSound = this.sound.add('gameSound', {loop:true, volume: 0.5});
 		this.clickSound = this.sound.add('clickSound', { volume: 0.8 });
@@ -288,18 +289,21 @@ export class MainScene extends Phaser.Scene{
 		};
 		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
 		let gameHtml:HTMLElement = document.getElementById("game")!;
-      	let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
-	  	let loadingModal:HTMLElement = document.getElementById("loadingModal")!;
+      let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
 
       gameHtml.classList.toggle("hidden",false);
       mainMenu.classList.toggle("hidden",true);
-	  loadingModal.classList.toggle("hidden",true);
+	  
+	  const loadingModal = document.getElementById("loadingModal");
+		if (loadingModal) loadingModal.classList.add("hidden");
+		mainMenu.classList.remove("blur");
 	}
 
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
 	public update (tile:any, delta:any): void {
+		this.setupEvent();
 		this.updateMarkerPosition();
 		this.controls.update(delta);
 	}
@@ -411,5 +415,4 @@ export class MainScene extends Phaser.Scene{
 		Object.assign(properties, {ID: tile.index}, tile.getTileData());
 		if (tile) return properties;
 	}
-
 }
