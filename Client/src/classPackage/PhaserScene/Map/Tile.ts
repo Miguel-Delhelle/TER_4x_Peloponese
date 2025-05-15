@@ -1,17 +1,19 @@
 import type { Point } from "../../Math/Point";
-import type { FACTION } from "../../Player/faction";
+import { FACTION } from "../../Player/EFaction";
 import type { Terrain } from "./Terrain";
 
 export class Tile{
 
    public id:Point;
    public terrain:Terrain;
-   //private faction:FACTION;
+   private faction:FACTION;
 
-   constructor(id: Point, terrain: Terrain) {
+   constructor(id: Point, terrain: Terrain, faction:FACTION = FACTION.WILDERNESS) {
       this.id = id;
       this.terrain = terrain;
+      this.faction = faction
    }
 
 
 }
+

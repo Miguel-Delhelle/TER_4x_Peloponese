@@ -1,6 +1,7 @@
 import { Tile } from "./Tile";
 import { Point } from "../../Math/Point";
 import { Terrain } from "./Terrain";
+import { FACTION } from "../../Player/EFaction";
 
 export class GreekMap{
    
@@ -14,7 +15,8 @@ export class GreekMap{
    constructor(map:Phaser.Tilemaps.Tilemap){
       this.map = map;
       this.initStaticMatrice();
-      //downloadJSON(this.staticMatrice);
+      this.initDynamicMatrice();
+      downloadJSON(this.dynamicMatrice);
       //this.initDynamicMatrice();
 
    }
@@ -35,7 +37,7 @@ export class GreekMap{
          if(!this.staticMatrice[x]) this.staticMatrice[x] = [];
 
          let props:any = tile.tileset?.getTileProperties(tile.index);
-         console.log(props);
+         //console.log(props);
          let dataProps:any = tile.getTileData()!;
          //if(props) {
             let tileID:Point = new Point(tile.x, tile.y);
@@ -53,9 +55,39 @@ export class GreekMap{
    }
 
    public initDynamicMatrice():void{
+      this.map.getLayer("Units")?.tilemapLayer.forEachTile(tile => {
+         const x: number = tile.x;
+         const y: number = tile.y;
+         if(tile.index === -1) {
+            const tmp = this.map.getTileAt(x,y,false,"Nature");
+            if(tmp) tile = tmp;
+            else tile = this.map.getTileAt(x,y,false,"Road")!;
+         }
+        
+         if(!this.dynamicMatrice[x]) this.dynamicMatrice[x] = [];
+         let props:any;
+         let dataProps:any;
+         if (tile)
+            {
+               props = tile.tileset?.getTileProperties(tile.index);
+               dataProps = tile.getTileData()!;
 
+            }
+         //console.log(props);
+         if(props) {
+            let tileID:Point = new Point(tile.x, tile.y);
+            const terrain: Terrain = new Terrain(
+               props.IsBuildingEnabled ?? false,
+               props.IsFarmingEnabled ?? false,
+               props.IsWalkingEnabled ?? false,
+               props.MovementCost ?? -1,
+               dataProps.type ?? "error cc"
+            )
+            this.dynamicMatrice[x][y] = new Tile(tileID, terrain);  
+         }//else //this.dynamicMatrice[x][y] = null;
+         //return null;
+      });
    }
-
 }
 
 
