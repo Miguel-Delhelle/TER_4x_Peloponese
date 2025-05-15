@@ -4,7 +4,6 @@
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
 import Phaser from 'phaser';
-import Easystar from 'easystarjs';
 
 
 
@@ -29,8 +28,7 @@ export class MainScene extends Phaser.Scene{
 	private controls!:Phaser.Cameras.Controls.FixedKeyControl;
 	private gameSound!:Phaser.Sound.BaseSound;
 	private clickSound!:Phaser.Sound.BaseSound;
-	private pathfinder!:Easystar.js;
-	private grid:number[][] = [];
+
 
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
@@ -290,14 +288,12 @@ export class MainScene extends Phaser.Scene{
 		};
 		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
 		let gameHtml:HTMLElement = document.getElementById("game")!;
-      let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
+      	let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
+	  	let loadingModal:HTMLElement = document.getElementById("loadingModal")!;
 
       gameHtml.classList.toggle("hidden",false);
       mainMenu.classList.toggle("hidden",true);
-	  
-	  const loadingModal = document.getElementById("loadingModal");
-		if (loadingModal) loadingModal.classList.add("hidden");
-		mainMenu.classList.remove("blur");
+	  loadingModal.classList.toggle("hidden",true);
 	}
 
 
@@ -415,4 +411,5 @@ export class MainScene extends Phaser.Scene{
 		Object.assign(properties, {ID: tile.index}, tile.getTileData());
 		if (tile) return properties;
 	}
+
 }
