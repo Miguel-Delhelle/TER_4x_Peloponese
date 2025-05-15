@@ -19,4 +19,11 @@ export class Point{
       return mainScene._map.getTileAt(this._x,this._y)!;
    }
 
+   public equals(that:Point):boolean{
+      if ((this.x === that.x) && (this.y === that.y)){
+         return true;
+      }
+      else return false;
+   }
+
 }

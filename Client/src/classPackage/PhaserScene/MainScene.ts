@@ -5,6 +5,7 @@ import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
 import Phaser from 'phaser';
 import Easystar from 'easystarjs';
+import { GreekMap } from './Map/GreekMap';
 
 
 
@@ -321,6 +322,7 @@ export class MainScene extends Phaser.Scene{
 		this.addNewLayer('User Interface');
 		this.setMapSizeXpx();
 		this.setMapSizeYpx();
+		new GreekMap(this.map);
 
 		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
 		this.setMarker();
@@ -390,8 +392,10 @@ export class MainScene extends Phaser.Scene{
 		if (typeof layer === "string") {
 			pos = this.layers.findIndex(l => l.name === layer);
 		} else if (typeof layer === "number") {
+
 			pos = (layer<0)?0:(layer>pos)?pos:layer;
-		} else if (layer instanceof Phaser.Tilemaps.TilemapLayer) {
+		} 
+		else if (layer instanceof Phaser.Tilemaps.TilemapLayer) {
 			pos = this.layers.indexOf(layer);
 		}
 		for (let i: integer = this.layers.length-1; i>=0; i--) {
