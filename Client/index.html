@@ -32,7 +32,7 @@
     <section id="mainMenu">
       <div class="left-panel rows">
         <h1 id="game-title" class="breathing">GREECE<br>ANATOMY</h1>
-        <div class="main-btn rows" style="margin-top: 10%">
+        <div class="main-btn rows">
           <button id="btn-host" class="big-btn round">New Game</button>
         </div>
         <div class="main-btn rows join-container">
@@ -40,7 +40,7 @@
           <div class="room-code">
             <p>Enter room code:</p>
             <input id="room-code" type="text" placeholder="paste your room code here" />
-            <button id="btn-ok" class="small-btn round">OK</button>
+            <button id="btn-joinRoomValid" class="small-btn round">OK</button>
           </div>
         </div>
       </div>
@@ -70,16 +70,21 @@
             <ul id="Player2">2</ul>
             <ul id="Player3">3</ul>
           </div>
-          <button id="StartGame" class="small-btn">Start Game</button>
+          <button id="StartGame" class="small-btn">Ready</button>
         </div>
       </div>
       <img id="mascot" src="/res/img/athena.png"/>
+      <button id="DEV_LAUNCH_GAME">DEV_LAUNCH_GAME</button>
       <footer>
         <span>KARADENIZ Feyza</span>
         <span>PHILIP Luna</span>
         <span>DELHELLE Miguel</span>
         <span>ROSIER Mathis</span>
       </footer>
+    </section>
+    <section id="loadingModal" class=" rows hidden">
+      <img src="/res/img/loading.gif" alt="Loading..." />
+      <h1 class="title">Loading...</h1>
     </section>
     <script script type="module" src="/src/index.ts"></script>
   </body>

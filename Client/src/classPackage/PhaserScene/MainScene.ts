@@ -288,11 +288,12 @@ export class MainScene extends Phaser.Scene{
 		};
 		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
 		let gameHtml:HTMLElement = document.getElementById("game")!;
-      let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
+      	let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
+	  	let loadingModal:HTMLElement = document.getElementById("loadingModal")!;
 
       gameHtml.classList.toggle("hidden",false);
       mainMenu.classList.toggle("hidden",true);
-
+	  loadingModal.classList.toggle("hidden",true);
 	}
 
 

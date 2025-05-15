@@ -1,36 +1,23 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
 import { User } from "./User";
+import { UserConnected } from "./UserConnected";
 
-@Entity()
+
 export class Player {
 
-   @PrimaryColumn()
-   public id;
+   public user:UserConnected;
+   public faction:FACTION;
+   public room:string;
 
-   @OneToOne(() => User)
-   @JoinColumn({name: "id"})
-   public user:User
-
-   @Column()
-   public faction:faction
-    
-   @Column()
-   public room: any;
- 
-   @Column()
-   public socket: any;
- 
-   constructor(user: User, faction: faction, room: any, socket: any) {
-      this.id = user.id;
+   constructor(user: UserConnected, faction: FACTION, room: string) {
       this.user = user;
       this.faction = faction;
       this.room = room;
-      this.socket = socket;
     }
 
 }
 
-enum faction {
+enum FACTION {
    SPARTE,
    ATHENES,
    THEBES

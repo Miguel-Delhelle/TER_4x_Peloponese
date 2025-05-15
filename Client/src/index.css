@@ -198,7 +198,7 @@ footer span {
   justify-content: flex-start;
 }
 
-#game-title {
+.title {
   width: 100%;
   height: 50%;
   font-size: 5em;
@@ -357,4 +357,35 @@ input {
 }
 .hidden{
   display: none; 
+}
+
+/* Pour la page de rechargement */
+
+#loadingModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+#loadingModal img {
+  align-self: center;
+  top: 50vh;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+#loadingModal h1 {
+  position: relative;
+  margin-top: 50px;
+  text-align: center;
+}
+
+#loadingModal.hidden {
+  display: none;
 }
