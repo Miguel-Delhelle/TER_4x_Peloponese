@@ -270,6 +270,7 @@ export class MainScene extends Phaser.Scene{
 
 	public create(): void {
 		this.setupMap();
+		this.setupEvent();
 
 		this.gameSound = this.sound.add('gameSound', {loop:true, volume: 0.5});
 		this.clickSound = this.sound.add('clickSound', { volume: 0.8 });
@@ -303,7 +304,6 @@ export class MainScene extends Phaser.Scene{
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
 	public update (tile:any, delta:any): void {
-		this.setupEvent();
 		this.updateMarkerPosition();
 		this.controls.update(delta);
 	}
