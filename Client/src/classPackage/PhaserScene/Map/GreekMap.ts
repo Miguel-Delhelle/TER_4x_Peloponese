@@ -1,7 +1,7 @@
 import { Tile } from "./Tile";
 import { Point } from "../../Math/Point";
 import { Terrain } from "./Terrain";
-import { FACTION } from "../../Player/EFaction";
+import { FACTION } from "../../Entity/EFaction";
 
 export class GreekMap{
    
@@ -16,7 +16,7 @@ export class GreekMap{
       this.map = map;
       this.initStaticMatrice();
       this.initDynamicMatrice();
-      downloadJSON(this.dynamicMatrice);
+      //downloadJSON(this.staticMatrice);
       //this.initDynamicMatrice();
 
    }

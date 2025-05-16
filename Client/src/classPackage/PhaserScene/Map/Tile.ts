@@ -1,5 +1,5 @@
 import type { Point } from "../../Math/Point";
-import { FACTION } from "../../Player/EFaction";
+import { FACTION } from "../../Entity/EFaction";
 import type { Terrain } from "./Terrain";
 
 export class Tile{
