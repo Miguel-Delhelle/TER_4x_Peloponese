@@ -11,8 +11,58 @@
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/taratype">
     <link rel="stylesheet" href="/src/index.css">
   </head>
-  <body>
-    <section id="game" class="hidden">
+  <body class="pointer">
+    <section id="MainMenu" class="columns">
+      <div id="left-side" class="expanded tier rows">
+        <h1 id="game-title" class="enhanced breathing">GREECE<br>ANATOMY</h1>
+        <div class="big rows half">
+          <button id="btn-host" class="hover round">New Game</button>
+        </div>
+        <div class="big rows half">
+          <button id="btn-join" class="hover round">Join a Game</button>
+          <div id="db-join" class="hidden container">
+            <label for="inp-room">Enter room code:</label>
+            <input id="inp-room" type="text" placeholder="paste your room code here" />
+            <button id="btn-join-room" class="hover">Join</button>
+          </div>
+        </div>
+      </div>
+      <div id="right-side" class="tier rows">
+        <div class="container columns">
+          <h2 id="txt-username" class="tier rows"></h2>
+          <button id="btn-profile" class="hover round rows">Profile</button>
+        </div>
+        <div id="db-profile" class="hidden container expanded tier rows">
+          <input id="inp-mail" class="columns" type="email" placeholder="Email" />
+          <input id="inp-username" class="columns" type="text" placeholder="Username" />
+          <input id="inp-password" class="columns" type="password" placeholder="Password" />
+          <p id="txt-error" class="hidden error"></p>
+          <div class="columns small">
+            <button id="btn-register" class="hover half round">Register</button>
+            <button id="btn-login" class="hover half round">Login</button>
+          </div>
+        </div>
+        <div id="db-room" class="hidden container expanded tier rows">
+          <p id="txt-room"></p>
+          <select id="sel-city">
+          </select>
+          <div>
+            <ul id="player-1">1</ul>
+            <ul id="player-2">2</ul>
+            <ul id="player-3">3</ul>
+          </div>
+          <button id="btn-ready" class="hover small round">Ready</button>
+        </div>
+      </div>
+      <img id="img-mascot" src="/res/img/athena.png"/>
+      <footer>
+        <p>KARADENIZ Feyza</p>
+        <p>PHILIP Luna</p>
+        <p>DELHELLE Miguel</p>
+        <p>ROSIER Mathis</p>
+      </footer>
+    </section>
+    <section id="GameScene" class="hidden rows">
       <div id="scene"></div>
       <div id="toolBarBox" class="ui">
         <div id ="subTool" class ="container">
@@ -29,62 +79,12 @@
         </div>
       </div>
     </section>
-    <section id="mainMenu">
-      <div class="left-panel rows">
-        <h1 id="game-title" class="breathing">GREECE<br>ANATOMY</h1>
-        <div class="main-btn rows">
-          <button id="btn-host" class="big-btn round">New Game</button>
-        </div>
-        <div class="main-btn rows join-container">
-          <button id="btn-join" class="big-btn round">Join a Game</button>
-          <div class="room-code">
-            <p>Enter room code:</p>
-            <input id="room-code" type="text" placeholder="paste your room code here" />
-            <button id="btn-joinRoomValid" class="small-btn round">OK</button>
-          </div>
-        </div>
-      </div>
-      <div class="right-panel rows">
-        <div class="columns user-info">
-          <p id="username">Not connected...</p>
-          <button id="profile" class="round">"</button>
-        </div>
-        <div class="modal">
-          <input id="mail" type="email" placeholder="Email" />
-          <input id="pseudo" type="text" placeholder="Pseudo" />
-          <input id="password" type="password" placeholder="Password" />
-          <div class="columns buttons-row">
-            <button id="btn-register" class="small-btn round">Register</button>
-            <button id="btn-login" class="small-btn round">Login</button>
-          </div>
-        </div>
-        <div id="modalHost" class="dialog-box hidden">
-          <label id="idGame"></label>
-          <select>
-            <option>ATHENES</option>
-            <option>THEBES</option>
-            <option>SPARTE</option>
-          </select>
-          <div>
-            <ul id="Player1">1</ul>
-            <ul id="Player2">2</ul>
-            <ul id="Player3">3</ul>
-          </div>
-          <button id="StartGame" class="small-btn">Ready</button>
-        </div>
-      </div>
-      <img id="mascot" src="/res/img/athena.png"/>
-      <button id="DEV_LAUNCH_GAME">DEV_LAUNCH_GAME</button>
-      <footer>
-        <span>KARADENIZ Feyza</span>
-        <span>PHILIP Luna</span>
-        <span>DELHELLE Miguel</span>
-        <span>ROSIER Mathis</span>
-      </footer>
-    </section>
-    <section id="loadingModal" class=" rows hidden">
+    <section id="LoadingScreen" class="hidden rows">
       <img src="/res/img/loading.gif" alt="Loading..." />
       <h1 class="title">Loading...</h1>
+    </section>
+    <section id="AlertMessage" class="hidden rows">
+
     </section>
     <script script type="module" src="/src/index.ts"></script>
   </body>

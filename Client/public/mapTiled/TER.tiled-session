@@ -5,18 +5,22 @@
     },
     "activeFile": "Maps/AncientGreece.tmx",
     "expandedProjectPaths": [
-        "Tileset",
-        ".",
         "Maps",
-        "Tileset/MiniWorldSprites"
+        "Tileset/MiniWorldSprites",
+        "Tileset/Common",
+        "Tileset/Common/Ground",
+        ".",
+        "Tileset/Others/Buildings",
+        "Tileset",
+        "Tileset/Others"
     ],
     "fileStates": {
         "Maps/AncientGreece.tmx": {
             "scale": 0.33,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 3904.545454545455,
-                "y": 4871.212121212121
+                "x": 2086.3636363636365,
+                "y": 2974.242424242424
             }
         },
         "Maps/Test.tmx": {
@@ -42,6 +46,16 @@
         "Tileset/ColoredBuildingsPreview.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "Tileset/Common/Ground/AllGround.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset/Common/Miscellaneous/AllMiscellaneous.tsx": {
+            "scaleInDock": 1
+        },
+        "Tileset/Common/Nature/AllNature.tsx": {
+            "scaleInDock": 1
         },
         "Tileset/Ground.tsx": {
             "scaleInDock": 1,
@@ -87,6 +101,13 @@
             "scaleInDock": 1,
             "scaleInEditor": 2
         },
+        "Tileset/Others/Buildings/Others_Buildings.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset/Sparta/Buildings/Sparta_Buildings.tsx": {
+            "scaleInDock": 1
+        },
         "Tileset/Winter.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -104,24 +125,24 @@
     "map.tileWidth": 16,
     "openFiles": [
         "Maps/AncientGreece.tmx",
-        "Maps/Test.tmx",
-        "Tileset/MiniWorldSprites/Ground/AllGround.tsx"
+        "Tileset/Common/Ground/AllGround.tsx",
+        "Tileset/Others/Buildings/Others_Buildings.tsx"
     ],
     "project": "TER.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "Tileset/Others/Buildings/Others_Buildings.tsx",
+        "Tileset/Common/Ground/AllGround.tsx",
+        "Maps/AncientGreece.tmx",
         "Tileset/MiniWorldSprites/Buildings/Others/Others_Buildings.tsx",
         "Tileset/MiniWorldSprites/Buildings/Sparta/Sparta_Buildings.tsx",
         "Tileset/MiniWorldSprites/Miscellaneous/AllMiscellaneous.tsx",
         "Tileset/MiniWorldSprites/Nature/AllNature.tsx",
         "Tileset/MiniWorldSprites/Ground/AllGround.tsx",
-        "Maps/AncientGreece.tmx",
         "Tileset/MiniWorldSprites/Units/Ships/Athens/Athens_Ships.tsx",
         "Tileset/MiniWorldSprites/Buildings/Thebes/Thebes_Buildings.tsx",
         "Tileset/MiniWorldSprites/Buildings/Athens/Athens_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Animals/AllAnimals.tsx",
-        "Maps/Test.tmx",
-        "Tileset/MiniWorldSprites/AllMiniWorldSprites.tsx"
+        "Tileset/MiniWorldSprites/Animals/AllAnimals.tsx"
     ],
     "resizeMap.removeObjects": false,
     "tileset.lastUsedFormat": "tsx",
