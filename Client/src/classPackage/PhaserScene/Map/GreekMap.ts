@@ -29,6 +29,7 @@ export class GreekMap{
       this.initDynamicMatrice();
       //downloadJSON(this.dynamicMatrice);
       //this.initDynamicMatrice();
+      this.putDynamicToServ();
 
    }
 
@@ -205,6 +206,10 @@ export class GreekMap{
 
 
    putDynamicToServ(){
+      // TO DO FAIRE UN SI LA MAP EST DEJA ENVOYE NE PAS LA RENVOYEZ... Oui psk, on est plusieurs par room, faut envoyez une map de la room
+      socket.emit("sendDynamicMap",this.dynamicMatrice);
+      
+      //socket.emit("sendStaticMap",this.staticMatrice);
 
    }
 }
