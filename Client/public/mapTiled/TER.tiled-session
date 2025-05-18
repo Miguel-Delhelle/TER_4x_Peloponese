@@ -57,6 +57,16 @@
         "Tileset/Common/Nature/AllNature.tsx": {
             "scaleInDock": 1
         },
+        "Tileset/Common/Ground/AllGround.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset/Common/Miscellaneous/AllMiscellaneous.tsx": {
+            "scaleInDock": 1
+        },
+        "Tileset/Common/Nature/AllNature.tsx": {
+            "scaleInDock": 1
+        },
         "Tileset/Ground.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
