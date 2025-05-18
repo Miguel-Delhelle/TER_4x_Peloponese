@@ -6,4 +6,6 @@ export function startListenerSocket(){
      const tabOfRoomInfo:string[] = response.tabOfRoomInfo;
      roomDisplay(tabOfRoomInfo);
    })
+
+   
  }

@@ -12,6 +12,7 @@ import { createServer } from "http";
 import { UserConnected } from "./entity/User/UserConnected";
 import { DecorateAcknowledgementsWithMultipleResponses, DefaultEventsMap } from "socket.io/dist/typed-events";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import unitsData from "./data/Units.json";
 
 export var listUsersConnected:Map<string,UserConnected> = new Map();
 
@@ -123,7 +124,6 @@ server.listen(port, () => {
 
 
 
-
 async function hashedPassword(clearPassword:string):Promise<string> {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(clearPassword, salt);
@@ -138,6 +138,8 @@ try {
     throw new Error('Erreur lors de la vérification du mot de passe');
 }
 }
+// Traitement des données des unités
+
 
 // Web Socket
 
@@ -183,6 +185,11 @@ io.on("connection", (socket) => {
   //console.log(socket); Décommentez cette ligne si vous voulez analyser à quoi ressemble tout les attributs d'un socket
   // On peut lui stocker un user par ailleurs, je le fais mais doute de l'utilité puisqu'on stock déjà ça dans listUserConnected.
 
+
+  socket.on("getUnits", () => {
+    console.log("quelqu'un essaye de récupérer les unités")
+    socket.emit("unitsList", unitsData);
+  });
 
   socket.on("hostRoom",async(callback) => { // Set { <socket.id> }
     let idGame:string = setRoomID()
