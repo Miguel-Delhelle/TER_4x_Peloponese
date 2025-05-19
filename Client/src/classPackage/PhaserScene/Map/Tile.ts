@@ -6,12 +6,16 @@ export class Tile{
 
    public id:Point;
    public terrain:Terrain;
-   private faction:FACTION;
+   private faction:string;
 
-   constructor(id: Point, terrain: Terrain, faction:FACTION = FACTION.WILDERNESS) {
+   constructor(id: Point, terrain: Terrain, faction:string = "Wilderness") {
       this.id = id;
       this.terrain = terrain;
       this.faction = faction
+   }
+
+   public get _faction(){
+      return this.faction;
    }
 
 

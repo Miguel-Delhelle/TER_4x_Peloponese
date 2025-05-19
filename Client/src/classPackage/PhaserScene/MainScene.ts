@@ -15,6 +15,7 @@ export class MainScene extends Phaser.Scene{
 	* |  |                                            ATTRIBUTES DEFINITION                                            |  | *
 	* +--+-------------------------------------------------------------------------------------------------------------+--+ *
 	*/
+	private ourMap!:GreekMap;
 	private map!: Phaser.Tilemaps.Tilemap;
 	private mapController!: MapController;
 	private toolsController!: ToolsController;
@@ -307,6 +308,7 @@ export class MainScene extends Phaser.Scene{
 	public update (tile:any, delta:any): void {
 		this.updateMarkerPosition();
 		this.controls.update(delta);
+		this.ourMap.updateCityButtons(this);
 	}
 
 
@@ -322,7 +324,7 @@ export class MainScene extends Phaser.Scene{
 		this.addNewLayer('User Interface');
 		this.setMapSizeXpx();
 		this.setMapSizeYpx();
-		new GreekMap(this.map);
+		this.ourMap = new GreekMap(this.map);
 
 		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
 		this.setMarker();

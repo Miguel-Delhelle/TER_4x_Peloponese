@@ -1,0 +1,52 @@
+{
+  "units": {
+    "melee": [
+      {
+        "id": "hoplite",
+        "name": "Hoplite",
+        "stats": {
+          "pv": 100,
+          "attack": 35,
+          "defense": 25,
+          "movement": 2,
+          "range": 1
+        },
+        "cost": {
+          "production": 50
+        }
+      }
+    ],
+    "ranged": [
+      {
+        "id": "archer",
+        "name": "Archer",
+        "stats": {
+          "health": 70,
+          "attack": 25,
+          "defense": 10,
+          "movement": 2,
+          "range" : 3
+        },
+        "cost": {
+          "production": 40
+        }
+      }
+    ],
+    "mounted": [
+      {
+        "id": "cavalry",
+        "name": "Cavalry",
+        "stats": {
+          "health": 120,
+          "attack": 45,
+          "defense": 20,
+          "movement": 5,
+          "range": 1
+        },
+        "cost": {
+          "production": 80
+        }
+      }
+    ]
+  }
+}
