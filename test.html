@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <img class="spotlight" theme="ATHENS" src="./Client/res/img/ATHENS_PERICLES.png" alt="Image with transparency" />
+    <img class="spotlight" theme="SPARTA" src="./Client/res/img/SPARTA_LYSANDER.png" alt="Image with transparency" />
+    <img class="spotlight" theme="THEBES" src="./Client/res/img/THEBES_EPAMINONDAS.png" alt="Image with transparency" />
+</body>
+<style>
+  :root {
+    --clr-theme: #fff9e4;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  img {
+    max-height: 100vh;
+    max-width: 30vw;
+    border: 5px solid black;
+    background-color: black;
+  }
+
+  [theme = "ATHENS"] {
+    --clr-theme: #0968C2;
+  }
+
+  [theme = "SPARTA"] {
+    --clr-theme: #810E00;
+  }
+
+  [theme = "THEBES"] {
+    --clr-theme: #5B3683;
+  }
+
+  .spotlight:hover {
+    box-shadow: inset 0 15px 60px var(--clr-theme);
+    transform: scale(1.05);
+    transition: all 0.2s ease-out;
+  }
+</style>
+</html>
