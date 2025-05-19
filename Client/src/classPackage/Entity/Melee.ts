@@ -1,6 +1,6 @@
 import { Unit } from "./Unit";
 
-/*export class Melee extends Unit{
+export class Melee extends Unit{
 
 
    constructor(){
@@ -13,4 +13,4 @@ import { Unit } from "./Unit";
       throw new Error("Method not implemented.");
    }
    
-} */
+}

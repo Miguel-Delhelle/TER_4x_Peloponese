@@ -5,3 +5,9 @@ export enum FACTION{
    THEBES = "Thebes",
    WILDERNESS = "Wilderness"
 }
+
+export function parseEnum<T extends object>(enumObj: T,key: string): T[keyof T] | undefined {
+  
+   
+   return (enumObj as any)[key];
+}

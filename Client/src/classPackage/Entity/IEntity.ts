@@ -3,7 +3,7 @@ import type { FACTION } from "./EFaction";
 
 export interface IEntity{
    id:string;
-   faction:FACTION;
+   faction:string;
    coordonnee:Tile;   
 
    spawn():void;

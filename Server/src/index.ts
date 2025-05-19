@@ -12,8 +12,12 @@ import { createServer } from "http";
 import { UserConnected } from "./entity/User/UserConnected";
 import { DecorateAcknowledgementsWithMultipleResponses, DefaultEventsMap } from "socket.io/dist/typed-events";
 import { createProxyMiddleware } from "http-proxy-middleware";
+import unitsData from "./data/Units.json";
+import { GreekMapModel } from "./MapModel/GreekMapModel";
 
 export var listUsersConnected:Map<string,UserConnected> = new Map();
+
+var mapOfRoom:GreekMapModel; //Qu'une pour l'instant pour le test mais va falloir crée une SDD pour stocker plusieurs matrice côté serveur.
 
 const app = express();
 const port = "3000";
@@ -123,7 +127,6 @@ server.listen(port, () => {
 
 
 
-
 async function hashedPassword(clearPassword:string):Promise<string> {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(clearPassword, salt);
@@ -138,6 +141,8 @@ try {
     throw new Error('Erreur lors de la vérification du mot de passe');
 }
 }
+// Traitement des données des unités
+
 
 // Web Socket
 
@@ -184,6 +189,11 @@ io.on("connection", (socket) => {
   // On peut lui stocker un user par ailleurs, je le fais mais doute de l'utilité puisqu'on stock déjà ça dans listUserConnected.
 
 
+  socket.on("getUnits", () => {
+    console.log("quelqu'un essaye de récupérer les unités")
+    socket.emit("unitsList", unitsData);
+  });
+
   socket.on("hostRoom",async(callback) => { // Set { <socket.id> }
     let idGame:string = setRoomID()
     hostedRooms.push(idGame);
@@ -213,6 +223,13 @@ io.on("connection", (socket) => {
   socket.on("getRoomInfo", async (idGame:string) => {
     let tabInfo:string[] = await getRoomInfo(idGame);
   });
+
+  /*socket.on("sendMatriceMap",(data) => {
+    let staticMatrice = data.staticMatrice;
+    let dynamicMatrice = data.dynamicMatrice;
+    mapOfRoom = new GreekMapModel(undefined,dynamicMatrice,staticMatrice);
+    console.log(mapOfRoom);
+  }) */
 
 
   // Déprécié
