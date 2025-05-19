@@ -1,4 +1,8 @@
-import type { Direction } from '../types/Unit';
+import type { Direction } from './types/Unit';
+
+
+// dans mes test avec l'ia j'ai eu ça qui a été généré je suis vraiment pas sûr que ce soit qualitatif sachant que j'ai supprimer tout le reste mais
+// si ça peut te donner un exemple de code luna prend.
 
 export type AnimationState = 'Iddle' | 'Walk' | 'Attack' | 'Block' | 'Run';
 
