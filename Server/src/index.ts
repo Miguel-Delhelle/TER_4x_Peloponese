@@ -13,8 +13,11 @@ import { UserConnected } from "./entity/User/UserConnected";
 import { DecorateAcknowledgementsWithMultipleResponses, DefaultEventsMap } from "socket.io/dist/typed-events";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import unitsData from "./data/Units.json";
+import { GreekMapModel } from "./MapModel/GreekMapModel";
 
 export var listUsersConnected:Map<string,UserConnected> = new Map();
+
+var mapOfRoom:GreekMapModel; //Qu'une pour l'instant pour le test mais va falloir crée une SDD pour stocker plusieurs matrice côté serveur.
 
 const app = express();
 const port = "3000";
@@ -220,6 +223,13 @@ io.on("connection", (socket) => {
   socket.on("getRoomInfo", async (idGame:string) => {
     let tabInfo:string[] = await getRoomInfo(idGame);
   });
+
+  /*socket.on("sendMatriceMap",(data) => {
+    let staticMatrice = data.staticMatrice;
+    let dynamicMatrice = data.dynamicMatrice;
+    mapOfRoom = new GreekMapModel(undefined,dynamicMatrice,staticMatrice);
+    console.log(mapOfRoom);
+  }) */
 
 
   // Déprécié

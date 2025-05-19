@@ -12,7 +12,7 @@ export class GreekMapModel{
 
    //public dynamicMatrice: Tile[][]
 
-   constructor(room:string, dynamicMatrice:Tile[][], staticMatrice: (Tile|null)[][]){
+   constructor(room:string = "1222", dynamicMatrice:Tile[][], staticMatrice: (Tile|null)[][]){
       this.room = room;
       this.dynamicMatrice = dynamicMatrice;
       this.staticMatrice = staticMatrice;

@@ -27,9 +27,10 @@ export class GreekMap{
       this.map = map;
       this.initStaticMatrice();
       this.initDynamicMatrice();
-      //downloadJSON(this.dynamicMatrice);
+      //downloadJSON(this.dynamicMatrice,"startDynamicMatrice.json");
+      //downloadJSON(this.staticMatrice,"startStaticMatrice.json");
       //this.initDynamicMatrice();
-      this.putDynamicToServ();
+      //this.putDynamicToServ();
 
    }
 
@@ -177,17 +178,37 @@ export class GreekMap{
       const content = document.getElementById("city-content")!;
 
       socket!.emit("getUnits");
-      socket.on("unitsList", (data:any) => {
-            console.log("les unités sont", data)
+
+      const categories = ["melee", "ranged", "mounted"];
+      
+      socket.on("unitsList", (data: any) => {
+        let unitsHTML = "<h3>Unités recrutable :</h3>";
+      
+        categories.forEach((category) => {
+          const units = data.units[category];
+          if (units && units.length > 0) {
+            unitsHTML += `<h4>${category.toUpperCase()}</h4><ul>`;
+            units.forEach((unit: any) => {
+              unitsHTML += `
+                <li>
+                  <strong>${unit.name}</strong> (ID: ${unit.id})<br/>
+                  PV: ${unit.stats.pv ?? unit.stats.health}<br/>
+                  Attaque: ${unit.stats.attack}, Défense: ${unit.stats.defense}<br/>
+                  Mouvement: ${unit.stats.movement}, Portée: ${unit.stats.range}<br/>
+                  Coût: ${unit.cost.production} 🛠️
+                </li>
+              `;
+            });
+            unitsHTML += "</ul>";
+          }
+        });
+      
+        // ✅ Mise à jour du DOM au bon moment, quand unitsHTML est prêt
+        title.innerText = `Cité (${tile.x},${tile.y})`;
+        content.innerHTML = `
+          <p>Faction : ${ourTile._faction}</p>
+          ${unitsHTML}`;
       });
-
-      // 1) Personnalise le titre et le contenu
-      title.innerText = `Cité (${tile.x},${tile.y})`;
-      content.innerHTML = `
-         <p>Faction : ${ourTile._faction}</p>
-         <!--<p> Unité recrutable : </p>--!>
-      `;
-
       
 
       // 2) Ouvre le panneau
@@ -205,13 +226,13 @@ export class GreekMap{
 
 
 
-   putDynamicToServ(){
+   /*putDynamicToServ(){
       // TO DO FAIRE UN SI LA MAP EST DEJA ENVOYE NE PAS LA RENVOYEZ... Oui psk, on est plusieurs par room, faut envoyez une map de la room
-      socket.emit("sendDynamicMap",this.dynamicMatrice);
+      //socket.emit("sendMatriceMap",{dynamicMatrice:this.dynamicMatrice, staticMatrice:this.staticMatrice});
       
       //socket.emit("sendStaticMap",this.staticMatrice);
 
-   }
+   } */
 }
 
 

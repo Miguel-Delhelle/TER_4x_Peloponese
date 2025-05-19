@@ -6,19 +6,13 @@ import { UserConnected } from "./UserConnected";
 export class Player {
 
    public user:UserConnected;
-   public faction:FACTION;
+   public faction:string;
    public room:string;
 
-   constructor(user: UserConnected, faction: FACTION, room: string) {
+   constructor(user: UserConnected, faction: string, room: string) {
       this.user = user;
       this.faction = faction;
       this.room = room;
     }
 
-}
-
-enum FACTION {
-   SPARTE,
-   ATHENES,
-   THEBES
 }
