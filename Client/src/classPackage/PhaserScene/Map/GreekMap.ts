@@ -27,7 +27,7 @@ export class GreekMap{
       this.map = map;
       this.initStaticMatrice();
       this.initDynamicMatrice();
-      //downloadJSON(this.dynamicMatrice,"startDynamicMatrice.json");
+      downloadJSON(this.dynamicMatrice);
       //downloadJSON(this.staticMatrice,"startStaticMatrice.json");
       //this.initDynamicMatrice();
       //this.putDynamicToServ();
@@ -107,9 +107,30 @@ export class GreekMap{
             this.dynamicMatrice[x][y] = tmpOurTile;
             if (dataProps.type === "Cities"){
                this.initCitiesListener(tile,mainScene,tmpOurTile);
+
+               const radius = 30;
+               const cx = tile.x;
+               const cy = tile.y;            
+
+               for (let dx = -radius; dx <= radius; dx++) {
+                  for (let dy = -radius; dy <= radius; dy++) {
+                     const nx = cx + dx;
+                     const ny = cy + dy;
+            
+                     if (!this.dynamicMatrice[nx]) this.dynamicMatrice[nx] = [];
+            
+                     // Si la tuile existe déjà on la met à jour, sinon on en crée une nouvelle
+                     const isInCircle = (dx*dx + dy*dy <= radius*radius); // cercle
+                     if (isInCircle && this.staticMatrice[nx]?.[ny]) {
+                        const terrain = this.staticMatrice[nx][ny]._terrain; // on copie le terrain static
+                        const tileID = new Point(nx, ny);
+                        const factionTile = new Tile(tileID, terrain, faction);
+                        this.dynamicMatrice[nx][ny] = factionTile;
+                     }
+                  }
+               }
             }
-         }//else //this.dynamicMatrice[x][y] = null;
-         //return null;
+         }
       });
    }
 
@@ -238,7 +259,7 @@ export class GreekMap{
 
 
 export function downloadJSON<T extends (string | number | boolean | Tile | T | any)[][]>(data: T, filename: string = "tableau.json") {
-   const jsonString = JSON.stringify(data);
+   const jsonString = JSON.stringify(data,null,2);
    const blob = new Blob([jsonString], { type: "application/json" });
    const url = URL.createObjectURL(blob);
    
