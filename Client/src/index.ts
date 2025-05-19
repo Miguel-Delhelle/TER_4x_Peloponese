@@ -1,6 +1,7 @@
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
 import io from "socket.io-client";
 import { startListenerSocket } from "./Network/ListenerSocket";
+import type { Unit } from "./classPackage/Entity/Unit";
 
 
 const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
@@ -27,6 +28,7 @@ export var socket:SocketIOClient.Socket;
 export var roomOfUser:string;
 export var hasSocket:boolean = false;
 export var hasRoom:boolean = false;
+export var unitOfPlayer:Unit[] = [];
 const URI = "http://localhost:3000";
 
 

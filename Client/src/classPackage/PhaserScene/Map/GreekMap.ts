@@ -5,6 +5,10 @@ import { FACTION, parseEnum } from "../../Entity/EFaction";
 import type { MainScene } from "../MainScene";
 import { mainScene, socket } from "../../..";
 import { Data } from "phaser";
+import { Unit } from "../../Entity/Unit";
+import { Melee } from "../../Entity/Melee";
+//import { Range } from "../../Entity/Range";
+import { Mounted } from "../../Entity/Mounted";
 
 interface CityUIButton {
    phaserTile: Phaser.Tilemaps.Tile;
@@ -108,7 +112,7 @@ export class GreekMap{
             if (dataProps.type === "Cities"){
                this.initCitiesListener(tile,mainScene,tmpOurTile);
 
-               const radius = 30;
+               const radius = 20;
                const cx = tile.x;
                const cy = tile.y;            
 
@@ -211,14 +215,21 @@ export class GreekMap{
             unitsHTML += `<h4>${category.toUpperCase()}</h4><ul>`;
             units.forEach((unit: any) => {
               unitsHTML += `
-                <li>
-                  <strong>${unit.name}</strong> (ID: ${unit.id})<br/>
+                <li id="${unit.id}">
+                  <strong>${unit.name}</strong> <br/>
                   PV: ${unit.stats.pv ?? unit.stats.health}<br/>
                   Attaque: ${unit.stats.attack}, Défense: ${unit.stats.defense}<br/>
                   Mouvement: ${unit.stats.movement}, Portée: ${unit.stats.range}<br/>
-                  Coût: ${unit.cost.production} 🛠️
+                  Coût: ${unit.cost.production} 
                 </li>
               `;
+              let unitListener = document.getElementById(unit.id);
+               unitListener?.addEventListener("click",() => {
+                  if (category === "melee"){let unit = new Melee()}
+                  //else if (category === "ranged"){let unit = new Range()}
+                  //else if (category === "mounted"){let unit = new Mounted()};
+
+               })
             });
             unitsHTML += "</ul>";
           }
