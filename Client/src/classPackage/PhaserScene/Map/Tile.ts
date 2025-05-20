@@ -1,12 +1,13 @@
 import type { Point } from "../../Math/Point";
 import { FACTION } from "../../Entity/EFaction";
 import type { Terrain } from "./Terrain";
+import { mainScene } from "../../..";
 
 export class Tile{
 
    public id:Point;
    public terrain:Terrain;
-   private faction:string;
+   public faction:string;
 
    constructor(id: Point, terrain: Terrain, faction:string = "Wilderness") {
       this.id = id;
@@ -16,6 +17,18 @@ export class Tile{
 
    public get _faction(){
       return this.faction;
+   }
+
+   public get _terrain(){
+      return this.terrain;
+   }
+
+   public get _id(){
+      return this.id;
+   }
+   
+   public get _phaserTile(){
+      return mainScene._map.getTileAt(this.id._x,this.id._y);
    }
 
 
