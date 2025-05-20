@@ -64,8 +64,17 @@
     </section>
     <section id="GameScene" class="hidden rows">
       <div id="scene"></div>
-      <div id="toolBarBox" class="ui">
-        <div id ="subTool" class ="container">
+      <!-- Le panneau latéral -->
+        <div id="city-panel" class="city-panel">
+          <button id="city-panel-close" class="city-panel-close">×</button>
+          <h2 id="city-name">Ville</h2>
+          <div id="city-content">
+            <!-- Ici tu injecteras dynamiquement les infos de la cité -->
+          </div>
+        </div>
+
+      <div id="toolBarBox" class="ui hidden">
+      <div id ="subTool" class ="container">
           <div id = "test" class = "item">Option1</div>
           <div id = "test2" class = "item">Option2</div>
           <div id = "test3" class = "item">Option3</div>

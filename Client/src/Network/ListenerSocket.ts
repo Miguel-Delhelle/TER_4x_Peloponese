@@ -6,4 +6,6 @@ export function startListenerSocket(): void {
      console.log("socket on playerJoined data",response);
      updateRoomInfo(response.tabOfRoomInfo);
    })
+
+   
  }

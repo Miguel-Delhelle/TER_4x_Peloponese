@@ -7,7 +7,7 @@ import type { IEntity } from "./IEntity";
 export abstract class Unit implements IEntity, IAnimated {
   
    id: string;
-   faction: FACTION;
+   faction: string;
    coordonnee: Tile;
    typeAnimation: TypeAnimation;
    northAnim: AnimID[];
@@ -20,7 +20,7 @@ export abstract class Unit implements IEntity, IAnimated {
 
 
    constructor(
-      id:string,faction:FACTION,coordonnee:Tile,
+      id:string,faction:string,coordonnee:Tile,
 
       typeAnimation:TypeAnimation,spriteSheet:string[],
       northAnim:AnimID[],westAnim:AnimID[],southAnim:AnimID[],eastAnim:AnimID[],pv:number = 100){

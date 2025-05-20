@@ -21,6 +21,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"],
+  "include": ["src", "src/classPackage/PhaserScene/Map/GreekMap.ts"],
   "exclude": ["*src/assets/**/*.tsx"]
 }
