@@ -2,6 +2,7 @@ import path from "path";
 import type * as my from "../Controller/CommonTypes";
 import { Point } from "../Math/Point";
 import { Unit } from "./Unit";
+import { mainScene } from "../..";
 
 type Anima = {
   key: string,
@@ -13,7 +14,7 @@ type Anima = {
 
 }
 
-export function AnimationManager(scene: Phaser.Scene, path: string, factions: string[]): Anima[] {
+export function AnimationManager(path: string, factions: string[]): Anima[] {
   let aniMan: Anima[] = [];
   return aniMan;
 }
@@ -23,14 +24,16 @@ function DirExplore(path: string): void {
 }
 
 export function addSpriteAndAnimate(
-  scene: Phaser.Scene,
   img: string,
   tile: Point|Phaser.Tilemaps.Tile,
 ): void {
-  const x: number = tile.x;
-  const y: number = tile.y;
-  const name: string = path.basename(img,".png");
+  const x: number = mainScene._map.tileToWorldX(tile.x) as number;
+  const y: number = mainScene._map.tileToWorldY(tile.y) as number;
+  var name: string = img.split('/').reverse()[0];
+  name = name.substring(0,name.length-".png".length);
+  console.log(img,name);
   const tmp: string[] = name.split('_');
+  console.log(tmp);
   const unit: string = tmp[1];
   const anim: string = tmp[2];
   const frames: string[] = tmp[3].split('-');
@@ -40,15 +43,15 @@ export function addSpriteAndAnimate(
   const ah: number = +frames[1].substring(1,2);
 
   
-	scene.load.spritesheet(name, img, {
+	mainScene.load.spritesheet(name, img, {
 		frameWidth: 16*fw,
 		frameHeight: 16*fh,
 	});
-  scene.anims.create({
+  mainScene.anims.create({
     key: unit,
     frameRate: 8,
     repeat: -1
   });
-  const helpme = scene.add.sprite(x,y,name,0);
+  const helpme = mainScene.add.sprite(x,y,name,0);
   helpme.play(name);
 }

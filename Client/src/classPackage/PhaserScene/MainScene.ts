@@ -6,6 +6,8 @@ import { ToolsController } from '../Controller/ToolsController';
 import Phaser from 'phaser';
 import Easystar from 'easystarjs';
 import { GreekMap } from './Map/GreekMap';
+import { addSpriteAndAnimate } from '../Entity/AnimationManager';
+import { Point } from '../Math/Point';
 
 
 
@@ -92,6 +94,60 @@ export class MainScene extends Phaser.Scene{
 			this.map.tileToWorldY(pointer.y)!
 		);
 	}
+
+  private loadAnimationSprite(path: string|string[]) {
+		console.log("Loading Animations...");
+		if (typeof(path)==="string") {path = [path];}
+		path.forEach(p => {
+			let name: string = p.split('/').reverse()[0];
+			name = name.substring(0, name.length-4);
+      const tmp: string[] = name.split('_');
+      const frames: string[] = tmp[3].split('-');
+      const fw: number = +frames[0].substring(0,1);
+      const fh: number = +frames[0].substring(1,2);
+			this.load.spritesheet(name, p, {
+				frameWidth: 16*fw,
+				frameHeight: 16*fh,
+			});
+			this.spritesets.push(name);
+			console.log(`  → ${name}`);
+    });
+  }
+
+  private testSpriteAnimation(sprite: string, tile: Point|Phaser.Tilemaps.Tile): Phaser.GameObjects.Sprite {
+    const x: number = this.map.tileToWorldX(tile.x) as number;
+    const y: number = this.map.tileToWorldY(tile.y) as number;
+    const tmp: string[] = sprite.split('_');
+    const unit: string = tmp[1];
+    const anim: string = tmp[2];
+    const frames: string[] = tmp[3].split('-');
+    const fw: number = +frames[0].substring(0,1);
+    const fh: number = +frames[0].substring(1,2);
+    const aw: number = +frames[1].substring(0,1);
+    const ah: number = +frames[1].substring(1,2);
+
+    const obj: Phaser.GameObjects.Sprite = this.add.sprite(0,0,sprite,0);
+    obj.setOrigin(0,0);
+    obj.setPosition(x,y);
+
+    this.anims.create({
+      key: sprite,
+      frames: this.anims.generateFrameNumbers(sprite),
+      frameRate: 8,
+      repeat: -1
+    });
+
+    obj.play(sprite);
+    return obj;
+  }
+
+  public moveSprite(obj: Phaser.GameObjects.Sprite, tile: Point) {
+    const x: number = this.map.tileToWorldX(tile.x) ?? obj.x;
+    const y: number = this.map.tileToWorldY(tile.y) ?? obj.y;
+    const dX: number = x - obj.x;
+    const dY: number = y - obj.y;
+    obj.setPosition(x,y);
+  }
 
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
@@ -263,6 +319,17 @@ export class MainScene extends Phaser.Scene{
 			"/mapTiled/Tileset/Thebes/Units/Soldiers/Mounted/Thebes_MountedSoldiers.png",
 			"/mapTiled/Tileset/Thebes/Units/Soldiers/Ranged/Thebes_RangedSoldiers.png",
 		]);
+    this.loadAnimationSprite([
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_AttackHeavy-ENSW_11-61.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Walk-E_11-51.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Walk-N_11-51.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Walk-S_11-51.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Walk-W_11-51.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Iddle-E_11-21.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Iddle-N_11-21.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Iddle-S_11-21.png",
+			"/mapTiled/Tileset/Sparta/Units/Soldiers/Melee/A_General_Iddle-W_11-21.png",
+    ]);
 		this.load.audio('gameSound', '/audio/audio.mp3');
 		this.load.audio('clickSound', '/audio/clickEffect.mp3');
 	}
@@ -325,9 +392,14 @@ export class MainScene extends Phaser.Scene{
 		this.setMapSizeXpx();
 		this.setMapSizeYpx();
 		this.ourMap = new GreekMap(this.map);
-
-		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
+		//const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
 		this.setMarker();
+    //this.testSpriteAnimation("A_General_AttackHeavy-ENSW_11-61",new Point(35,30));
+    this.testSpriteAnimation("A_General_Iddle-S_11-21",new Point(35,35));
+    //this.testSpriteAnimation("A_General_Walk-N_11-51",new Point(35,34));
+    //this.testSpriteAnimation("A_General_Walk-S_11-51",new Point(35,36));
+    //this.testSpriteAnimation("A_General_Walk-W_11-51",new Point(34,35));
+    //this.testSpriteAnimation("A_General_Walk-E_11-51",new Point(36,35));
 	}
 
 
