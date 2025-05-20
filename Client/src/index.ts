@@ -210,9 +210,11 @@ function startGame(){
         type: Phaser.AUTO,
         width: window.innerWidth,
         height: window.innerHeight,
-        parent: 'game',
+        parent: 'game'
+        
       };
-    
+            //pixelArt: true,
+
     
       var __game:Phaser.Game = new Phaser.Game(config);
       __game.scene.add('mainScene', mainScene, true);

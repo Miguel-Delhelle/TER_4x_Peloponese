@@ -2,21 +2,21 @@ import { mainScene} from "../..";
 
 
 export class Point{
-   private x:number
-   private y:number
+   private _x:number
+   private _y:number
 
    constructor(x:number,y:number){
-      this.x = x;
-      this.y = y;
+      this._x = x;
+      this._y = y;
    }
 
-   public get _x(){return this.x}
-   public get _y(){return this.y}
-   public set _x(newX:number){this.x = newX;}
-   public set _y(newY:number){this.y = newY;}
+   public get x(){return this._x}
+   public get y(){return this._y}
+   public set x(newX:number){this._x = newX;}
+   public set y(newY:number){this._y = newY;}
 
-   public get _Tile():Phaser.Tilemaps.Tile{
-      return mainScene._map.getTileAt(this._x,this._y)!;
+   public get tile():Phaser.Tilemaps.Tile{
+      return mainScene._map.getTileAt(this.x,this.y)!;
    }
 
    public equals(that:Point):boolean{
