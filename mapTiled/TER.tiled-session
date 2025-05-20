@@ -5,21 +5,20 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
-        ".",
-        "Tileset/MiniWorldSprites/Buildings/Sparta",
+        "Maps",
+        "Tileset/MiniWorldSprites/Ground",
         "Tileset/MiniWorldSprites/Units/Ships",
+        "Tileset/MiniWorldSprites/Buildings/Thebes",
+        "Tileset/MiniWorldSprites/Buildings/Others",
+        "Tileset/MiniWorldSprites/Buildings/Sparta",
+        "Tileset/MiniWorldSprites/Nature",
         "Tileset/MiniWorldSprites/Buildings/Athens",
-        "Tileset/MiniWorldSprites/Animals",
-        "Tileset/MiniWorldSprites/Buildings",
         "Tileset/MiniWorldSprites/Units",
         "Tileset/MiniWorldSprites",
-        "Tileset/MiniWorldSprites/Ground",
-        "Tileset/MiniWorldSprites/Nature",
-        "Tileset/MiniWorldSprites/Buildings/Thebes",
-        "Tileset/MiniWorldSprites/Units/Ships/Athens",
-        "Maps",
-        "Tileset",
-        "Tileset/MiniWorldSprites/Buildings/Others"
+        ".",
+        "Tileset/MiniWorldSprites/Buildings",
+        "Tileset/MiniWorldSprites/Animals",
+        "Tileset/MiniWorldSprites/Units/Ships/Athens"
     ],
     "fileStates": {
         "Maps/AncientGreece.tmx": {
