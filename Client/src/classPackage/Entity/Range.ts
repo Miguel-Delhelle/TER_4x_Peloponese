@@ -1,13 +1,14 @@
-import { Unit } from "./Unit";
+/*import { Unit } from "./Unit";
 
-/*export class Range extends Unit{
+export class Range extends Unit{
    
 
-   constructor();
+   constructor(){
+      //super();
+   }
 
    fight(): void {
       throw new Error("Method not implemented.");
    }
 
-}
-*/
+} */
