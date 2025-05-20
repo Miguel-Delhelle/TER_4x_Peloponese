@@ -97,7 +97,7 @@ async function postLogin(): Promise<Response> {
       socket.emit("loginOk",{idUser: data.id})
       console.log("socket établie");
       hasSocket = true;
-      console.log("Connected: ",hasSocket,"\nOn: ",socket); ////
+      console.log("Connected: ",hasSocket,"\nOn: ",socket);
       toggleModal(modal, false);
       btnHost.disabled = false;
       btnJoin.disabled = false;
@@ -213,14 +213,12 @@ function startGame(){
         width: window.innerWidth,
         height: window.innerHeight,
         parent: 'game',
+        pixelArt: true
       };
     
     
       var __game:Phaser.Game = new Phaser.Game(config);
       __game.scene.add('mainScene', mainScene, true);
-
-
-
 
 
 }
