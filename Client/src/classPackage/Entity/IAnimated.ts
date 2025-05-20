@@ -16,6 +16,7 @@ export enum TypeAnimation{
    RUN = "Run",
    FIGHT = "Fight",
    WALK = "Walk"
+   
 }
 
 export enum PointCardinal{

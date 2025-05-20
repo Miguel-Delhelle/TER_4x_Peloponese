@@ -45,7 +45,7 @@ export class GreekMap {
    private initialize(): void {
       this.initStaticMatrice();
       this.initDynamicMatrice();
-      this.downloadJSON(this.dynamicMatrice);
+      //this.downloadJSON(this.dynamicMatrice);
    }
 
    public initStaticMatrice(): void {
