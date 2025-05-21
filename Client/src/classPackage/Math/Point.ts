@@ -1,4 +1,4 @@
-import { mainScene} from "../..";
+import { HTML } from "../..";
 
 
 export class Point{
@@ -16,7 +16,7 @@ export class Point{
    public set _y(newY:number){this.y = newY;}
 
    public get _Tile():Phaser.Tilemaps.Tile{
-      return mainScene._map.getTileAt(this._x,this._y)!;
+      return HTML.mainScene._map.getTileAt(this._x,this._y)!;
    }
 
    public equals(that:Point):boolean{

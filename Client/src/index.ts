@@ -95,6 +95,7 @@ export const HTML: HTML = {
       width: window.innerWidth,
       height: window.innerHeight,
       parent: 'game',
+      pixelArt: true
     };
     var game: Phaser.Game = new Phaser.Game(config);
     game.scene.add('mainScene', HTML.mainScene, true);

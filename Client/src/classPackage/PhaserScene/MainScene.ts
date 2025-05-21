@@ -291,13 +291,13 @@ export class MainScene extends Phaser.Scene{
 			zoomSpeed: 0.015
 		};
 		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
-		let gameHtml:HTMLElement = document.getElementById("game")!;
-      let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
+		let gameHtml:HTMLElement = document.getElementById("GameScene")!;
+      let mainMenu:HTMLElement = document.getElementById("MainMenu")!;
 
       gameHtml.classList.toggle("hidden",false);
       mainMenu.classList.toggle("hidden",true);
 	  
-	  const loadingModal = document.getElementById("loadingModal");
+	  const loadingModal = document.getElementById("LoadingScreen");
 		if (loadingModal) loadingModal.classList.add("hidden");
 		mainMenu.classList.remove("blur");
 	}

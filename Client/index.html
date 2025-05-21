@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <script type="module" src="/@vite/client"></script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Greece Anatomy Game</title>
@@ -11,90 +9,102 @@
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/taratype">
     <link rel="stylesheet" href="/src/index.css">
   </head>
-  <body class="pointer">
-    <section id="MainMenu" class="columns">
-      <div id="left-side" class="expanded tier rows">
-        <h1 id="game-title" class="enhanced breathing">GREECE<br>ANATOMY</h1>
-        <div class="big rows half">
-          <button id="btn-host" class="hover round">New Game</button>
+  <body>
+    <section id="MainMenu" class="flex-col">
+      <header class="flex-row flex-end">
+          <h2 id="txt-username" class="a-center text-center h-full text-lg mx-4"></h2>
+          <img id="img-profile" class="btn btn-primary p-0 h-full mx-2 scale-2" src="/res/img/profile.png"/>
+      </header>
+      
+      <div class="flex-row h-full">
+        <!-- Left side -->
+        <div id="left-side" class="w-2_3 flex-col flex-start m-8">
+          <h1 id="game-title" class="relative top-0 m-4 flex-center h-1_2 text-gradient animate-breathe">GREECE<br>ANATOMY</h1>
+          <div class="flex-col gap-8 w-1_2 h-1_2">
+            <button id="btn-host" class="btn btn-primary text-3xl w-full">New Game</button>
+            <button id="btn-join" class="btn btn-primary text-3xl w-full">Join a Game</button>
+            <div id="db-join" class="flex-gap hidden container w-full mt-0 shadow-complement">
+              <label for="inp-room">Enter room code:</label>
+              <input id="inp-room" class="input w-full my-2" type="text" placeholder="paste your room code here" />
+              <div class="flex-row flex-end">
+                <button id="btn-join-room" class="btn btn-primary w-1_2">Join</button>
+                </div>
+            </div>
+          </div>
         </div>
-        <div class="big rows half">
-          <button id="btn-join" class="hover round">Join a Game</button>
-          <div id="db-join" class="hidden container">
-            <label for="inp-room">Enter room code:</label>
-            <input id="inp-room" type="text" placeholder="paste your room code here" />
-            <button id="btn-join-room" class="hover">Join</button>
+        
+        <!-- Right side -->
+        <div id="right-side" class="w-1_3 flex-col mt-hf-1_3">
+          <div id="db-profile" class="hidden container relative top-0 m-0 bt-0 br-0">
+            <input id="inp-mail" class="input w-full my-2" type="email" placeholder="Email" />
+            <input id="inp-username" class="input w-full my-2" type="text" placeholder="Username" />
+            <input id="inp-password" class="input w-full my-2" type="password" placeholder="Password" />
+            <p id="txt-error" class="hidden error m-2"></p>
+            <div class="flex-row">
+              <button id="btn-register" class="btn btn-primary w-1_2 mx-2">Register</button>
+              <button id="btn-login" class="btn btn-primary w-1_2 mx-2">Login</button>
+            </div>
+          </div>
+          
+          <div id="db-room" class="hidden container w-full p-4 m-2 shadow-complement">
+            <p id="txt-room"></p>
+            <select id="sel-city" class="input w-full my-2">
+            </select>
+            <div class="flex-row gap-2">
+              <ul id="player-1">1</ul>
+              <ul id="player-2">2</ul>
+              <ul id="player-3">3</ul>
+            </div>
+            <button id="btn-ready" class="btn btn-primary">Ready</button>
           </div>
         </div>
       </div>
-      <div id="right-side" class="tier rows">
-        <div class="container columns">
-          <h2 id="txt-username" class="tier rows"></h2>
-          <button id="btn-profile" class="hover round rows">Profile</button>
-        </div>
-        <div id="db-profile" class="hidden container expanded tier rows">
-          <input id="inp-mail" class="columns" type="email" placeholder="Email" />
-          <input id="inp-username" class="columns" type="text" placeholder="Username" />
-          <input id="inp-password" class="columns" type="password" placeholder="Password" />
-          <p id="txt-error" class="hidden error"></p>
-          <div class="columns small">
-            <button id="btn-register" class="hover half round">Register</button>
-            <button id="btn-login" class="hover half round">Login</button>
-          </div>
-        </div>
-        <div id="db-room" class="hidden container expanded tier rows">
-          <p id="txt-room"></p>
-          <select id="sel-city">
-          </select>
-          <div>
-            <ul id="player-1">1</ul>
-            <ul id="player-2">2</ul>
-            <ul id="player-3">3</ul>
-          </div>
-          <button id="btn-ready" class="hover small round">Ready</button>
-        </div>
-      </div>
-      <img id="img-mascot" src="/res/img/athena.png"/>
-      <footer>
+      
+      <img id="img-mascot" class="scale-10" src="/res/img/athena.png"/>
+      
+      <footer class="flex-row">
         <p>KARADENIZ Feyza</p>
         <p>PHILIP Luna</p>
         <p>DELHELLE Miguel</p>
         <p>ROSIER Mathis</p>
       </footer>
     </section>
-    <section id="GameScene" class="hidden rows">
-      <div id="scene"></div>
-      <!-- Le panneau latéral -->
-        <div id="city-panel" class="city-panel">
-          <button id="city-panel-close" class="city-panel-close">×</button>
-          <h2 id="city-name">Ville</h2>
-          <div id="city-content">
-            <!-- Ici tu injecteras dynamiquement les infos de la cité -->
-          </div>
+    
+    <section id="GameScene" class="hidden flex-col">
+      <div id="game"></div>
+      <!-- City panel -->
+      <div id="city-panel" class="city-panel">
+        <button id="city-panel-close" class="city-panel-close">×</button>
+        <h2 id="city-name" class="text-xl font-title">Ville</h2>
+        <div id="city-content">
+          <!-- Dynamic city info will be injected here -->
         </div>
+      </div>
 
-      <div id="toolBarBox" class="ui hidden">
-      <div id ="subTool" class ="container">
-          <div id = "test" class = "item">Option1</div>
-          <div id = "test2" class = "item">Option2</div>
-          <div id = "test3" class = "item">Option3</div>
-          <div id = "test4" class = "item">Option3</div>
-          <div id = "test5" class = "item">Option3</div>
+      <div id="toolBarBox" class="hidden">
+        <div id="subTool" class="container flex-row">
+            <div id="test" class="p-2">Option1</div>
+            <div id="test2" class="p-2">Option2</div>
+            <div id="test3" class="p-2">Option3</div>
+            <div id="test4" class="p-2">Option4</div>
+            <div id="test5" class="p-2">Option5</div>
         </div>
-        <div id="toolsBar" class="container">
-          <div id = "build" class = "item">Construire</div>
-          <div id = "recruit" class = "item">Recruter</div>
-          <div id = "stats" class = "item">Voir unités</div>
+        <div id="toolsBar" class="container flex-row">
+          <div id="build" class="p-2">Construire</div>
+          <div id="recruit" class="p-2">Recruter</div>
+          <div id="stats" class="p-2">Voir unités</div>
         </div>
       </div>
     </section>
-    <section id="LoadingScreen" class="hidden rows">
-      <img src="/res/img/loading.gif" alt="Loading..." />
-      <h1 class="title">Loading...</h1>
+    
+    <section id="LoadingScreen" class="hidden flex-col animate-breathe bg-blur-5">
+      <img src="/res/img/loading.gif" class="flex-center" alt="Loading..." />
+      <h1 class="text-4xl text-center text-gradient-dark font-title my-2">Loading...</h1>
     </section>
-    <section id="AlertMessage" class="hidden rows">
-
+    
+    <section id="AlertMessage" class="hidden flex-col bg-blur-5">
     </section>
-    <script script type="module" src="/src/index.ts"></script>
+    
+    <script type="module" src="/src/index.ts"></script>
   </body>
 </html>

@@ -29,7 +29,7 @@ const dbJoin = section.querySelector(`#db-join`) as HTMLDivElement;
 const inpRoom = dbJoin.querySelector(`#inp-room`) as HTMLInputElement;
 const btnJoinRoom = dbJoin.querySelector(`#btn-join-room`) as HTMLButtonElement;
 
-const btnProfile = section.querySelector(`#btn-profile`) as HTMLButtonElement;
+const imgProfile = section.querySelector(`#img-profile`) as HTMLImageElement;
 const txtProfile = section.querySelector(`#txt-username`) as HTMLHeadingElement;
 const dbProfile = section.querySelector(`#db-profile`) as HTMLDivElement;
 const inpMail = dbProfile.querySelector(`#inp-mail`) as HTMLInputElement;
@@ -53,10 +53,10 @@ function initMainMenu(): void {
   HTML.toggleDisabled([btnHost, btnJoin], true);
 } initMainMenu();
 
-function errorOnRegisterLogin(isRegister: boolean): boolean {
-  HTML.toggleClass(inpMail, 'error', !inpMail.value.match(/\w+@\w+/g));
-  HTML.toggleClass(inpUsername, 'error', isRegister&&!inpUsername.value.match(/\w+/g));
-  HTML.toggleClass(inpPassword, 'error', !inpPassword.value.match(/\S+/g));
+function errorOnRegisterLogin(config?: {mail?: boolean, username?: boolean, password?: boolean}): boolean {
+  HTML.toggleClass(inpMail, 'error', config?.mail===undefined?!inpMail.value.match(/\w+@\w+/g):config.mail);
+  HTML.toggleClass(inpUsername, 'error', config?.username===undefined?!inpUsername.value.match(/\w+/g):config.username);
+  HTML.toggleClass(inpPassword, 'error', config?.password===undefined?!inpPassword.value.match(/\S+/g):config.password);
   if(![inpMail, inpUsername, inpPassword].every(e => !e.classList.contains('error'))) {
     txtError.textContent = 'Incorrect information, please check errors above';
     HTML.toggleClass(txtError, 'hidden', false);
@@ -73,7 +73,10 @@ function clearOnRegisterLogin(hasFailed: boolean): void {
 }
 
 async function handleRegister(): Promise<void> {
-  if(errorOnRegisterLogin(true)) return;
+  if(errorOnRegisterLogin()) {
+    clearOnRegisterLogin(true);
+    return;
+  }
   const res: Response = await fetch(`/api/register`, {
     method: 'POST',
     headers: {
@@ -95,7 +98,10 @@ async function handleRegister(): Promise<void> {
 }
 
 async function handleLogin(): Promise<void> {
-  if(errorOnRegisterLogin(false)) return;
+  if(errorOnRegisterLogin({username: false})) {
+    clearOnRegisterLogin(true);
+    return;
+  }
   const res: Response = await fetch(`/api/login`, {
     method: 'POST',
     headers: {
@@ -120,16 +126,18 @@ async function handleLogin(): Promise<void> {
         HTML.toggleDisabled([btnHost, btnJoin], false);
         clearOnRegisterLogin(false);
         HTML.toggleClass(dbProfile, 'hidden');
-        startEventListener;
-        startListenerSocket;
+        startEventListener();
+        startListenerSocket();
       }
     } catch (error) {
       clearOnRegisterLogin(true);
+      errorOnRegisterLogin({mail: true, password: true});
       console.error(error);
     }
   } else {
     txtProfile.textContent = HTML.currentUser as string|null ?? HTML.defaultUser;
     clearOnRegisterLogin(true);
+    errorOnRegisterLogin({mail: true, password: true});
   }
 }
 
@@ -167,7 +175,7 @@ section?.addEventListener("click", event => {
   const triggerElements: Node[] = [
     btnHost, dbRoom,
     btnJoin, dbJoin,
-    btnProfile, dbProfile
+    imgProfile, dbProfile
   ];
   const target = event.target as Node;
   // Hide all the dialog-boxes through the 'hidden' class
@@ -179,7 +187,7 @@ section?.addEventListener("click", event => {
 
 btnHost.addEventListener("click", () => {HTML.toggleClass(dbRoom, 'hidden');});
 btnJoin.addEventListener("click", () => {HTML.toggleClass(dbJoin, 'hidden');});
-btnProfile.addEventListener("click", () => {console.log(dbProfile);HTML.toggleClass(dbProfile, 'hidden');});
+imgProfile.addEventListener("click", () => {HTML.toggleClass(dbProfile, 'hidden');});
 
 btnRegister.addEventListener("click", handleRegister);
 btnLogin.addEventListener("click", handleLogin);

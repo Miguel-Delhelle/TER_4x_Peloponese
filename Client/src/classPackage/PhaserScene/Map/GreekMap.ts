@@ -3,7 +3,7 @@ import { Point } from "../../Math/Point";
 import { Terrain } from "./Terrain";
 import { FACTION, parseEnum } from "../../Entity/EFaction";
 import type { MainScene } from "../MainScene";
-import { mainScene, socket } from "../../..";
+import { HTML } from "../../..";
 import { Data } from "phaser";
 
 interface CityUIButton {
@@ -106,7 +106,7 @@ export class GreekMap{
             let tmpOurTile = new Tile(tileID, terrain, faction)
             this.dynamicMatrice[x][y] = tmpOurTile;
             if (dataProps.type === "Cities"){
-               this.initCitiesListener(tile,mainScene,tmpOurTile);
+               this.initCitiesListener(tile,HTML.mainScene,tmpOurTile);
             }
          }//else //this.dynamicMatrice[x][y] = null;
          //return null;
@@ -177,11 +177,11 @@ export class GreekMap{
       const title = document.getElementById("city-name")!;
       const content = document.getElementById("city-content")!;
 
-      socket!.emit("getUnits");
+      HTML.socket!.emit("getUnits");
 
       const categories = ["melee", "ranged", "mounted"];
       
-      socket.on("unitsList", (data: any) => {
+      HTML.socket!.on("unitsList", (data: any) => {
         let unitsHTML = "<h3>Unités recrutable :</h3>";
       
         categories.forEach((category) => {
