@@ -6,6 +6,7 @@ import type { GameRoom, Player } from ".";
 import io from "socket.io-client";
 import { startListenerSocket } from "./Network/ListenerSocket";
 
+type HTMLTextElement = HTMLParagraphElement|HTMLHeadingElement;
 // ----------------------------------------[ MainMenu ]----------------------------------------- //
 // |                                                                                           | //
 // +-------------------------------------------------------------------------------------------+ //
@@ -16,12 +17,14 @@ if(!section) throw Error("MainMenu does not exist...");
 
 const btnHost = section.querySelector(`#btn-host`) as HTMLButtonElement;
 const dbRoom = section.querySelector(`#db-room`) as HTMLDivElement;
-const txtRoom = dbRoom.querySelector(`#txt-room`) as HTMLParagraphElement;
-const selCity = dbRoom.querySelector(`#sel-city`) as HTMLSelectElement;
-const optCity = selCity.querySelectorAll('option') as NodeListOf<HTMLOptionElement>;
-const player1 = dbRoom.querySelector(`#player-1`) as HTMLUListElement;
-const player2 = dbRoom.querySelector(`#player-2`) as HTMLUListElement;
-const player3 = dbRoom.querySelector(`#player-3`) as HTMLUListElement;
+const txtRoom = dbRoom.querySelector(`#txt-room`) as HTMLTextElement;
+const divP1 = dbRoom.querySelector(`#div-p1`) as HTMLDivElement;
+const player1 = divP1.querySelector(`#player-1`) as HTMLTextElement;
+const divP2 = dbRoom.querySelector(`#div-p2`) as HTMLDivElement;
+const player2 = divP2.querySelector(`#player-2`) as HTMLTextElement;
+const divP3 = dbRoom.querySelector(`#div-p3`) as HTMLDivElement;
+const player3 = divP3.querySelector(`#player-3`) as HTMLTextElement;
+const players = dbRoom.querySelector(`#players`) as HTMLTextElement;
 const btnReady = dbRoom.querySelector(`#btn-ready`) as HTMLButtonElement;
 
 const btnJoin = section.querySelector(`#btn-join`) as HTMLButtonElement;
@@ -30,12 +33,12 @@ const inpRoom = dbJoin.querySelector(`#inp-room`) as HTMLInputElement;
 const btnJoinRoom = dbJoin.querySelector(`#btn-join-room`) as HTMLButtonElement;
 
 const imgProfile = section.querySelector(`#img-profile`) as HTMLImageElement;
-const txtProfile = section.querySelector(`#txt-username`) as HTMLHeadingElement;
+const txtProfile = section.querySelector(`#txt-username`) as HTMLTextElement;
 const dbProfile = section.querySelector(`#db-profile`) as HTMLDivElement;
 const inpMail = dbProfile.querySelector(`#inp-mail`) as HTMLInputElement;
 const inpUsername = dbProfile.querySelector(`#inp-username`) as HTMLInputElement;
 const inpPassword = dbProfile.querySelector(`#inp-password`) as HTMLInputElement;
-const txtError = dbProfile.querySelector(`#txt-error`) as HTMLParagraphElement;
+const txtError = dbProfile.querySelector(`#txt-error`) as HTMLTextElement;
 const btnLogin = dbProfile.querySelector(`#btn-login`) as HTMLButtonElement;
 const btnRegister = dbProfile.querySelector(`#btn-register`) as HTMLButtonElement;
 
@@ -122,7 +125,8 @@ async function handleLogin(): Promise<void> {
       HTML.socket = io(HTML.URI);
       if(HTML.socket) {
         HTML.socket.emit("loginOk",{idUser: data.id});
-        console.log(`Succesfully logged in as: ${HTML.currentUser}`);
+        HTML.currentUser = {username: HTML.currentUser, socket: HTML.socket};
+        console.log(`Succesfully logged in as: ${HTML.currentUser.username}`);
         HTML.toggleDisabled([btnHost, btnJoin], false);
         clearOnRegisterLogin(false);
         HTML.toggleClass(dbProfile, 'hidden');
@@ -154,17 +158,6 @@ function handleReady(): void {
     HTML.socket?.emit("isReadyToPlay", {player: playerName, city: ''});
   }*/
   if([player1, player2, player3].every(p => p.getAttribute('data-player') && p.getAttribute('data-city'))) HTML.startGame;
-}
-
-// ToDo!!
-function updateCitySelector(): void {
-  [player1, player2, player3].filter(p => p.getAttribute('data-player')!=txtProfile.textContent).forEach(p => {
-    if(p.hasAttribute('data-city')) {
-      optCity.forEach(opt => {
-        if(opt.textContent === p.getAttribute('data-city')) HTML.toggleDisabled(opt, true);
-      });
-    }
-  });
 }
 
 
@@ -203,9 +196,7 @@ function startEventListener(): void {
       HTML.socket?.emit("hostRoom", (roomInfo:string[]) => {
         HTML.currentRoom = {
           id: roomInfo[0],
-          player1: HTML.currentUser as Player|null,
-          player2: null,
-          player3: null
+          player1: HTML.currentUser as Player
         }
         updateRoomInfo(HTML.currentRoom);
       });
@@ -237,17 +228,37 @@ function startEventListener(): void {
 export function updateRoomInfo(data: GameRoom): void {
   try {
     txtRoom.textContent = data.id;
-    const 
-      p1: string|undefined = data.player1?.username,
-      p2: string|undefined = data.player2?.username,
-      p3: string|undefined = data.player3?.username
+    const
+      p1: Player|undefined = data.player1,
+      p2: Player|undefined = data.player2,
+      p3: Player|undefined = data.player3
     ;
-    const pad: number = Math.max(p1?p1.length:0, p2?p2.length:0, p3?p3.length:0);
-    player1.textContent = p1?`${p1.padEnd(pad)} -> ${data.player1?.faction ?? '[is selecting...]'}`:'';
-    player2.textContent = p2?`${p2.padEnd(pad)} -> ${data.player2?.faction ?? '[is selecting...]'}`:'';
-    player3.textContent = p3?`${p3.padEnd(pad)} -> ${data.player3?.faction ?? '[is selecting...]'}`:'';
+    players.textContent = "Players: ";
+    [p1,p2,p3].forEach(p => {
+      if(p) {
+        const u: string = p.username;
+        const f: string|undefined = p.faction;
+        players.textContent += `${u} `;
+        if(f) {
+          switch (f) {
+            case "ATHENS":
+              player1.textContent = u;
+              HTML.toggleClass(divP1,'disabled',true);
+              break;
+            case "SPARTA":
+              player2.textContent = u;
+              HTML.toggleClass(divP2,'disabled',true);
+              break;
+            case "THEBES":
+              player3.textContent = u;
+              HTML.toggleClass(divP3,'disabled',true);
+              break;
+            default:
+          }
+        }
+      }
+    })
   } catch(err) {
     console.log(err);
-    [player1, player2, player3].forEach(p => p.textContent = '');
   }
 }

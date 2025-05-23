@@ -84,8 +84,6 @@ export class GreekMap{
             {
                props = tile.tileset?.getTileProperties(tile.index);
                dataProps = tile.getTileData()!;
-               console.log(props);
-               console.log(dataProps);
 
             }
          //console.log(props);
@@ -122,6 +120,12 @@ export class GreekMap{
       const screenX = (worldX - cam.scrollX) * cam.zoom + cam.x;
       const screenY = (worldY - cam.scrollY) * cam.zoom + cam.y;
 
+      let parent: HTMLElement|null = document.querySelector(`#GameScene #tmp-cities`);
+      if (!parent) {
+        parent = document.createElement("div");
+        parent.setAttribute('id', 'tmp-cities');
+        document.querySelector("#GameScene")?.appendChild(parent);
+      }
       const button = document.createElement("button");
       button.innerText = "Gérer la cité";
       button.style.position = "absolute";
@@ -131,7 +135,7 @@ export class GreekMap{
       button.style.zIndex = "10";
       button.style.padding = "5px 10px";
 
-      document.body.appendChild(button);
+      parent.appendChild(button);
 
       button.addEventListener("click", () => {
          this.openCityPanel(phaserTile,ourTile);

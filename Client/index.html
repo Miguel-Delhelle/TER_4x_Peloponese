@@ -12,22 +12,24 @@
   <body>
     <section id="MainMenu" class="flex-col">
       <header class="flex-row flex-end">
-          <h2 id="txt-username" class="a-center text-center h-full text-lg mx-4"></h2>
-          <img id="img-profile" class="btn btn-primary p-0 h-full mx-2 scale-2" src="/res/img/profile.png"/>
+          <div class="flex-col flex-center as-center bl-thin clr-primary bg-none">
+            <h2 id="txt-username" class="mx-4"></h2>
+          </div>
+          <img id="img-profile" class="btn btn-round clr-primary p-0 h-full mx-2 scale-2" src="/res/img/profile.png"/>
       </header>
       
       <div class="flex-row h-full">
         <!-- Left side -->
         <div id="left-side" class="w-2_3 flex-col flex-start m-8">
-          <h1 id="game-title" class="relative top-0 m-4 flex-center h-1_2 text-gradient animate-breathe">GREECE<br>ANATOMY</h1>
-          <div class="flex-col gap-8 w-1_2 h-1_2">
-            <button id="btn-host" class="btn btn-primary text-3xl w-full">New Game</button>
-            <button id="btn-join" class="btn btn-primary text-3xl w-full">Join a Game</button>
-            <div id="db-join" class="flex-gap hidden container w-full mt-0 shadow-complement">
+          <h1 id="game-title" class="relative top-0 m-4 flex-center h-1_2 text-gradient clr-primary animate-breathe">GREECE<br>ANATOMY</h1>
+          <div class="flex-col gap-6 w-1_2 h-1_2">
+            <button id="btn-host" class="btn btn-round clr-primary text-3xl w-full p-4">New Game</button>
+            <button id="btn-join" class="btn btn-round clr-primary text-3xl w-full p-4">Join a Game</button>
+            <div id="db-join" class="flex-gap hidden container w-full mt-0 clr-secondary box-shadow">
               <label for="inp-room">Enter room code:</label>
-              <input id="inp-room" class="input w-full my-2" type="text" placeholder="paste your room code here" />
+              <input id="inp-room" class="w-full my-2" type="text" placeholder="paste your room code here" />
               <div class="flex-row flex-end">
-                <button id="btn-join-room" class="btn btn-primary w-1_2">Join</button>
+                <button id="btn-join-room" class="btn btn-round clr-primary w-1_2">Join</button>
                 </div>
             </div>
           </div>
@@ -35,32 +37,43 @@
         
         <!-- Right side -->
         <div id="right-side" class="w-1_3 flex-col mt-hf-1_3">
-          <div id="db-profile" class="hidden container relative top-0 m-0 bt-0 br-0">
+          <div id="db-profile" class="hidden container clr-secondary relative h-content top-0 p-4 m-0 bt-0 br-0">
             <input id="inp-mail" class="input w-full my-2" type="email" placeholder="Email" />
             <input id="inp-username" class="input w-full my-2" type="text" placeholder="Username" />
             <input id="inp-password" class="input w-full my-2" type="password" placeholder="Password" />
             <p id="txt-error" class="hidden error m-2"></p>
             <div class="flex-row">
-              <button id="btn-register" class="btn btn-primary w-1_2 mx-2">Register</button>
-              <button id="btn-login" class="btn btn-primary w-1_2 mx-2">Login</button>
+              <button id="btn-register" class="btn btn-round clr-primary w-1_2 mx-2">Register</button>
+              <button id="btn-login" class="btn btn-round clr-primary w-1_2 mx-2">Login</button>
             </div>
           </div>
           
-          <div id="db-room" class="hidden container w-full p-4 m-2 shadow-complement">
-            <p id="txt-room"></p>
-            <select id="sel-city" class="input w-full my-2">
-            </select>
-            <div class="flex-row gap-2">
-              <ul id="player-1">1</ul>
-              <ul id="player-2">2</ul>
-              <ul id="player-3">3</ul>
+          <div id="db-room" class="hidden container flex-col gap-2 w-full h-content p-4 mx-0 my-4 box-shadow clr-secondary">
+            <h4 id="txt-room"></h4>
+            <div id="db-select-city" class="flex-row">
+              <div id="div-p1" theme="ATHENS" class="btn p-0 m-0 clr-primary bg-none flex-col flex-center scale-5 spotlight">
+                <h2 class="fc clr-complement bg-none">Athens</h2>
+                <img class="disp-block" src="/res/img/_ATHENS.png">
+                <p id="player-1" class="absolute">Waiting...</p>
+              </div>
+              <div id="div-p2" theme="SPARTA" class="btn p-0 m-0 clr-primary bg-none flex-col flex-center scale-5 spotlight">
+                <h2 class="fc clr-complement bg-none">Sparta</h2>
+                <img class="disp-block" src="/res/img/_SPARTA.png">
+                <p id="player-2" class="absolute">Waiting...</p>
+              </div>
+              <div id="div-p3" theme="THEBES" class="btn p-0 m-0 clr-primary bg-none flex-col flex-center scale-5 spotlight">
+                <h2 class="fc clr-complement bg-none">Thebes</h2>
+                <img class="disp-block" src="/res/img/_THEBES.png">
+                <p id="player-3" class="absolute">Waiting...</p>
+              </div>
             </div>
-            <button id="btn-ready" class="btn btn-primary">Ready</button>
+            <p id="players">Players: </p>
+            <button id="btn-ready" class="btn btn-round as-center clr-primary w-1_2 mx-2">Ready</button>
           </div>
         </div>
       </div>
       
-      <img id="img-mascot" class="scale-10" src="/res/img/athena.png"/>
+      <img id="img-mascot" class="scale-10 zi-4096" src="/res/img/athena.png"/>
       
       <footer class="flex-row">
         <p>KARADENIZ Feyza</p>
@@ -72,6 +85,100 @@
     
     <section id="GameScene" class="hidden flex-col">
       <div id="game"></div>
+      <header class="flex-row h-hf-2_3 clr-secondary">
+        <!-- LEFT SIDE: Player Info -->
+        <div class="flex-row flex-center gap-4 w-1_3 p-4">
+          <!-- Player Medallion -->
+          <div class="flex-col flex-center">
+            <div class="text-center mb-2">
+              <span class="font-title text-lg text-gradient">Leonidas</span>
+            </div>
+            <div class="medallion hud-interactive glow-pulse">
+              <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=👑" alt="Player Avatar">
+            </div>
+          </div>
+          <!-- City & Round Info -->
+          <div class="flex-col flex-center gap-2 ml-4">
+            <div class="text-center">
+              <div class="font-title text-xl text-gradient-light">Sparta</div>
+              <div class="text-sm text-dark">City State</div>
+            </div>
+            <div class="container text-center p-2">
+              <div class="text-lg font-bold">Round 15</div>
+              <div class="text-xs">Spring 425 BC</div>
+            </div>
+          </div>
+        </div>
+        <!-- CENTER: Resources -->
+        <div class="flex-row flex-center gap-2 w-1_3 p-2">
+          <!-- Wood Resource -->
+          <div class="trapeze flex-col flex-center p-3 hud-interactive">
+            <div class="resource-icon">
+              <img src="https://via.placeholder.com/32x32/8B4513/FFFFFF?text=🌲" alt="Wood">
+            </div>
+            <div class="text-center">
+              <div class="value-large text-light">1,250 / 2,000</div>
+              <div class="value-small text-ok">+45/turn</div>
+            </div>
+          </div>
+          <!-- Stone Resource -->
+          <div class="trapeze flex-col flex-center p-3 hud-interactive">
+            <div class="resource-icon">
+              <img src="https://via.placeholder.com/32x32/808080/FFFFFF?text=🗿" alt="Stone">
+            </div>
+            <div class="text-center">
+              <div class="value-large text-light">850 / 1,500</div>
+              <div class="value-small text-ok">+30/turn</div>
+            </div>
+          </div>
+          <!-- Iron Resource -->
+          <div class="trapeze flex-col flex-center p-3 hud-interactive">
+            <div class="resource-icon">
+              <img src="https://via.placeholder.com/32x32/696969/FFFFFF?text=⚔️" alt="Iron">
+            </div>
+            <div class="text-center">
+              <div class="value-large text-light">320 / 800</div>
+              <div class="value-small text-ok">+15/turn</div>
+            </div>
+          </div>
+          <!-- Food Resource -->
+          <div class="trapeze flex-col flex-center p-3 hud-interactive">
+            <div class="resource-icon">
+              <img src="https://via.placeholder.com/32x32/FFD700/000000?text=🌾" alt="Food">
+            </div>
+            <div class="text-center">
+              <div class="value-large text-light">2,100 / 3,000</div>
+              <div class="value-small text-ok">+80/turn</div>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT SIDE: Population & Money -->
+        <div class="flex-col flex-center gap-4 w-1_3 p-4">
+          <!-- Population Info -->
+          <div class="flex-row flex-center gap-3 container p-3 hud-interactive">
+            <div class="info-icon">
+              <img src="https://via.placeholder.com/40x40/4169E1/FFFFFF?text=👥" alt="Population">
+            </div>
+            <div class="flex-col">
+              <div class="value-large text-light">Population: 4,850</div>
+              <div class="value-small text-dark">Citizens: 3,200 | Soldiers: 1,650</div>
+              <div class="value-tiny text-ok">Available: 1,547</div>
+            </div>
+          </div>
+          <!-- Money Info -->
+          <div class="flex-row flex-center gap-3 container p-3 hud-interactive">
+            <div class="info-icon">
+              <img src="https://via.placeholder.com/40x40/FFD700/000000?text=💰" alt="Money">
+            </div>
+            <div class="flex-col">
+              <div class="value-large text-light">Treasury: 12,500</div>
+              <div class="value-small text-ok">Income: +350/turn</div>
+              <div class="value-tiny text-error">Expenses: -120/turn</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <footer class="flex-row"></footer>
       <!-- City panel -->
       <div id="city-panel" class="city-panel">
         <button id="city-panel-close" class="city-panel-close">×</button>
@@ -97,12 +204,16 @@
       </div>
     </section>
     
-    <section id="LoadingScreen" class="hidden flex-col animate-breathe bg-blur-5">
-      <img src="/res/img/loading.gif" class="flex-center" alt="Loading..." />
-      <h1 class="text-4xl text-center text-gradient-dark font-title my-2">Loading...</h1>
+    <section id="LoadingScreen" class="hidden flex-col w-screen h-screen bg-blur-5">
+      <img src="/res/img/loading.gif" class="as-center" alt="Loading..." />
+      <h1 class="text-4xl text-center text-gradient clr-secondary font-title my-2 animate-breathe">Loading...</h1>
     </section>
     
-    <section id="AlertMessage" class="hidden flex-col bg-blur-5">
+    <section id="AlertMessage" class="hidden flex-col flex-center bg-blur-5">
+      <div id="db-alert" class="absolute as-center w-1_3 h-1_2 container p-0">
+        <div class="flex-row flex-end bc-secondary bg-secondary bb-normal bb p-0 h-hf-1_5">
+        </div>
+      </div>
     </section>
     
     <script type="module" src="/src/index.ts"></script>

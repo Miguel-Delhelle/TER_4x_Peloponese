@@ -20,14 +20,14 @@ export type HTMLDisablingElement =
 export type Player = {
   username: string,
   socket: SocketIOClient.Socket,
-  faction: string|null,
+  faction?: string,
 }
 
 export type GameRoom = {
   id: string,
-  player1: Player|null,
-  player2: Player|null,
-  player3: Player|null,
+  player1?: Player,
+  player2?: Player,
+  player3?: Player,
 }
 
 type HTML = {
@@ -35,8 +35,8 @@ type HTML = {
   readonly defaultUser: string,
   readonly mainScene: MainScene,
   socket: SocketIOClient.Socket|null,
-  currentUser: Player|string|null,
-  currentRoom: GameRoom|string|null,
+  currentUser?: Player|string,
+  currentRoom?: GameRoom|string,
 
   toggleDisabled: (
     HTMLElements: HTMLDisablingElement|HTMLDisablingElement[]|NodeListOf<HTMLDisablingElement>, 
@@ -59,8 +59,6 @@ export const HTML: HTML = {
   defaultUser: "[Not connected...]",
   mainScene: new MainScene(),
   socket: null,
-  currentUser: null,
-  currentRoom: null,
 
   toggleDisabled: (
     HTMLElements: HTMLDisablingElement|HTMLDisablingElement[]|NodeListOf<HTMLDisablingElement>, 
