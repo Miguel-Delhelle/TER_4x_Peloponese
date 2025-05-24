@@ -84,101 +84,55 @@
     </section>
     
     <section id="GameScene" class="hidden flex-col">
-      <div id="game"></div>
-      <header class="flex-row h-hf-2_3 clr-secondary">
+      <header class="flex-row h-hf-2_3 bc clr-primary box-shadow">
         <!-- LEFT SIDE: Player Info -->
-        <div class="flex-row flex-center gap-4 w-1_3 p-4">
-          <!-- Player Medallion -->
+        <div class="flex-row flex-start gap-2 w-1_3 h-full p-2 bc b-thin">
           <div class="flex-col flex-center">
-            <div class="text-center mb-2">
-              <span class="font-title text-lg text-gradient">Leonidas</span>
-            </div>
-            <div class="medallion hud-interactive glow-pulse">
-              <img src="https://via.placeholder.com/80x80/8B4513/FFFFFF?text=👑" alt="Player Avatar">
-            </div>
+            <h5>Username</h5>
+            <img id="img-profile" class="btn btn-round clr-primary p-0 h-full mx-2 scale-2" src="/res/img/profile.png"/>
           </div>
-          <!-- City & Round Info -->
-          <div class="flex-col flex-center gap-2 ml-4">
-            <div class="text-center">
-              <div class="font-title text-xl text-gradient-light">Sparta</div>
-              <div class="text-sm text-dark">City State</div>
-            </div>
-            <div class="container text-center p-2">
-              <div class="text-lg font-bold">Round 15</div>
-              <div class="text-xs">Spring 425 BC</div>
-            </div>
+          <div class="flex-col flex-center gap-2 w-2_3">
+            <h2 class="w-full bc bb-thin clr-secondary bg-none p-2 text-center">City Name</h2>
+            <p class="w-full p-2 text-center">Round .../...</p>
           </div>
         </div>
         <!-- CENTER: Resources -->
-        <div class="flex-row flex-center gap-2 w-1_3 p-2">
-          <!-- Wood Resource -->
-          <div class="trapeze flex-col flex-center p-3 hud-interactive">
-            <div class="resource-icon">
-              <img src="https://via.placeholder.com/32x32/8B4513/FFFFFF?text=🌲" alt="Wood">
-            </div>
-            <div class="text-center">
-              <div class="value-large text-light">1,250 / 2,000</div>
-              <div class="value-small text-ok">+45/turn</div>
+        <div class="flex-row flex-center gap-2 w-1_3 h-full p-2 bc b-thin">
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
             </div>
           </div>
-          <!-- Stone Resource -->
-          <div class="trapeze flex-col flex-center p-3 hud-interactive">
-            <div class="resource-icon">
-              <img src="https://via.placeholder.com/32x32/808080/FFFFFF?text=🗿" alt="Stone">
-            </div>
-            <div class="text-center">
-              <div class="value-large text-light">850 / 1,500</div>
-              <div class="value-small text-ok">+30/turn</div>
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
             </div>
           </div>
-          <!-- Iron Resource -->
-          <div class="trapeze flex-col flex-center p-3 hud-interactive">
-            <div class="resource-icon">
-              <img src="https://via.placeholder.com/32x32/696969/FFFFFF?text=⚔️" alt="Iron">
-            </div>
-            <div class="text-center">
-              <div class="value-large text-light">320 / 800</div>
-              <div class="value-small text-ok">+15/turn</div>
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
             </div>
           </div>
-          <!-- Food Resource -->
-          <div class="trapeze flex-col flex-center p-3 hud-interactive">
-            <div class="resource-icon">
-              <img src="https://via.placeholder.com/32x32/FFD700/000000?text=🌾" alt="Food">
-            </div>
-            <div class="text-center">
-              <div class="value-large text-light">2,100 / 3,000</div>
-              <div class="value-small text-ok">+80/turn</div>
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
             </div>
           </div>
         </div>
         <!-- RIGHT SIDE: Population & Money -->
-        <div class="flex-col flex-center gap-4 w-1_3 p-4">
-          <!-- Population Info -->
-          <div class="flex-row flex-center gap-3 container p-3 hud-interactive">
-            <div class="info-icon">
-              <img src="https://via.placeholder.com/40x40/4169E1/FFFFFF?text=👥" alt="Population">
-            </div>
-            <div class="flex-col">
-              <div class="value-large text-light">Population: 4,850</div>
-              <div class="value-small text-dark">Citizens: 3,200 | Soldiers: 1,650</div>
-              <div class="value-tiny text-ok">Available: 1,547</div>
-            </div>
-          </div>
-          <!-- Money Info -->
-          <div class="flex-row flex-center gap-3 container p-3 hud-interactive">
-            <div class="info-icon">
-              <img src="https://via.placeholder.com/40x40/FFD700/000000?text=💰" alt="Money">
-            </div>
-            <div class="flex-col">
-              <div class="value-large text-light">Treasury: 12,500</div>
-              <div class="value-small text-ok">Income: +350/turn</div>
-              <div class="value-tiny text-error">Expenses: -120/turn</div>
-            </div>
-          </div>
+        <div class="flex-row flex-end gap-2 w-1_3 h-full p-2 bc b-thin">
         </div>
       </header>
-      <footer class="flex-row"></footer>
+      <div id="game"></div>
+      <footer class="flex-row h-hf-1_3 bc clr-primary box-shadow"></footer>
       <!-- City panel -->
       <div id="city-panel" class="city-panel">
         <button id="city-panel-close" class="city-panel-close">×</button>
