@@ -1,0 +1,218 @@
+:root {
+  --clr-menu-input: #fff9e4;
+  --clr-menu-window: #e8d4b2;
+  --clr-menu-iborder: #b99d6c;
+  --clr-menu-wborder: #816738;
+
+  --ftc-primary: #50391c;
+  --ftc-primary-accent: #1b1002;
+  --ftc-secondary: var(--clr-menu-input);
+  --ftc-secondary-accent: var(--clr-menu-iborder);
+
+  --fts-title: bold 5em 'Ancient Geek', sans-serif;
+  --fts-text: 1em 'TaraType', sans-serif;
+  --fts-icon: 2em 'Greek Mythology', sans-serif;
+
+  --fth-button: 1.5em;
+
+  --pdg-button: auto;
+  
+  --mgn-button: 10px;
+  --mgn-text: 10px;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font: var(--fts-text);
+  color: var(--ftc-primary);
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  background: url('/res/img/main-menu_1.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  width: 100%;
+  height: 95vh;
+}
+
+footer {
+  bottom: 0;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--clr-menu-window);
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.left-panel {
+  width: 66%;
+  height: 95vh;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.right-panel {
+  width: 34%;
+  height: 95vh;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+#game-title {
+  width: 100%;
+  height: 50%;
+  font-size: 5em;
+  margin-bottom: 5%;
+  color: var(--ftc-primary-accent);
+  font: var(--fts-title);
+}
+
+.big-btn {
+  font-size: var(--fth-button);
+}
+
+button.round {
+  border-radius: 40px;
+  padding: auto;
+  height: 80px;
+  margin: 10px 0;
+  background-color: var(--clr-menu-input);
+  box-shadow: 0px 0px 20px 5px var(--clr-menu-input);
+  color: var(--ftc-primary);
+  font-weight: bold;
+  border: 2px solid var(--clr-menu-iborder);
+  cursor: pointer;
+  z-index: 2;
+}
+
+button.round:hover {
+  background: linear-gradient(to bottom, var(--clr-menu-input), var(--clr-menu-window));
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--clr-menu-input);
+  color: var(--ftc-primary);
+}
+
+#btn-join {
+  margin-bottom: 0;
+}
+
+.room-code {
+  display: flex;
+  flex-direction: column;
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+  border: 1px solid var(--clr-menu-wborder);
+  border-radius: 8px;
+  padding: 10px;
+  padding-top: 40px;
+  background-color: var(--clr-menu-window);
+  transform: translateY(-40px);
+  visibility: hidden;
+  z-index: 1;
+}
+
+.room-code.active {
+  max-height: 200px;
+  visibility: visible;
+}
+
+.room-code p, .room-code input, #btn-ok {
+  margin: 10px 0;
+}
+
+#btn-ok {
+  width: 50%;
+  align-self: center;
+  box-shadow: 0px 0px 10px 1px var(--clr-menu-input);
+}
+
+.user-info {
+  width: 100%;
+  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#username {
+  text-align: right;
+  margin-right: 10px;
+  color: var(--ftc-primary-accent);
+  font-size: 1.5em;
+}
+
+#profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: var(--clr-menu-window);
+  border: none;
+  color: var(--ftc-secondary);
+  font: var(--fts-icon);
+  cursor: pointer;
+}
+
+.modal.active {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px;
+  padding: 20px;
+  background-color: var(--clr-menu-window);
+  border-radius: 10px;
+  border: 1px solid var(--clr-menu-wborder);
+  gap: 10px;
+}
+
+.modal.active .buttons-row {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.modal.active button {
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 1px var(--clr-menu-input);
+  cursor: pointer;
+}
+
+.modal {
+  display: none;
+}
+
+.main-btn {
+  width: 50%;
+}

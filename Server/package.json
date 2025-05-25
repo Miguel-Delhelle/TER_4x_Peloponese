@@ -1,24 +1,27 @@
 {
-  "name": "express-typescript-eslint-prettier-template",
-  "version": "1.0.0",
-  "description": "An Express.js template with TypeScript, ESLint and Prettier",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc",
-    "start": "node dist/index.js "
-  },
-  "keywords": [],
-  "author": "Gabriel Drouin",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^5.1.0"
-  },
-  "devDependencies": {
-    "@tsconfig/node22": "^22.0.1",
-    "@types/express": "^5.0.1",
-    "@types/node": "^22.15.14",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3"
-  }
+   "name": "GREEK ANATOM",
+   "version": "0.0.1",
+   "description": "Server Greek ANATOMIC",
+   "type": "commonjs",
+   "devDependencies": {
+      "@types/node": "^22.13.10",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.8.2"
+   },
+   "dependencies": {
+      "@types/express": "^5.0.1",
+      "bcrypt": "^6.0.0",
+      "express": "^5.1.0",
+      "pg": "^8.14.1",
+      "reflect-metadata": "^0.2.2",
+      "socket.io": "^4.8.1",
+      "sqlite3": "^5.1.7",
+      "typeorm": "0.3.23"
+   },
+   "scripts": {
+      "dev": "ts-node src/index.ts",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "build": "npx tsc",
+      "start": "node dist/index.js "
+   }
 }

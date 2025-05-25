@@ -1,13 +1,13 @@
 /* intégrer le code dans /src, /controllers */
 
 import * as EasyStar from 'easystarjs';
-import easystarjs from 'easystarjs';
-import Phaser from "phaser";
+//import easystarjs from 'easystarjs';
+//import Phaser from "phaser";
 import { MainScene } from "../PhaserScene/MainScene";
 
-import { ToolsController } from "../Controller/ToolsController.ts";
+/*import { ToolsController } from "../Controller/ToolsController.ts";
 import { Unit } from "../Entity/units/Unit.ts";
-import { MapController } from "../Controller/MapController.ts";
+import { MapController } from "../Controller/MapController.ts"; */
 
 
 export class Pathfinding {
