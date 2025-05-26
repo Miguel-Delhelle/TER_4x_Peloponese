@@ -14,6 +14,10 @@ import { DecorateAcknowledgementsWithMultipleResponses, DefaultEventsMap } from 
 import { createProxyMiddleware } from "http-proxy-middleware";
 import unitsData from "./data/Units.json";
 import { GreekMapModel } from "./MapModel/GreekMapModel";
+import { HostedRooms } from "./socket/HostedRooms";
+import { GameRoom } from "./socket/GameRoom";
+import { SocketIO } from "./socket/SocketIo";
+import { Player } from "./entity/User/Player";
 
 export var listUsersConnected:Map<string,UserConnected> = new Map();
 
@@ -143,33 +147,25 @@ try {
 
 
 // Web Socket
-
-var hostedRooms: string[] = [];
-const maxPlayer: number = 3;
-
-function setRoomID(length: number = 8, alphabet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'): string {
-  let s: string = '';
-  for (let i = 0; i<length; i++) {s+=alphabet.charAt(Math.floor(Math.random()*alphabet.length));}
-  return s;
-}
+export var hostedRooms: HostedRooms = new HostedRooms();
 
 io.on("connection", (socket) => {
 
-
-  let idSocket = socket.id;
+  let idSocket: string = socket.id;
+  let socketIO: SocketIO = new SocketIO(socket);
   
   socket.on("loginOk",async ({idUser}) => {
     try{
-    let user:User = await AppDataSource.manager.findOneBy(User, {id: idUser});
-    console.log(user._username,"s'est connecté !!");
-    socket.data.user = user;    
-    let userCon:UserConnected = new UserConnected(user,socket);
-    listUsersConnected.set((idSocket),userCon);
-    listUsersConnected.forEach(element => {
-      console.log(element._username,element.id,element._mail)
-    });
+      let user: User = await AppDataSource.manager.findOneBy(User, {id: idUser});
+      console.log(user._username,"s'est connecté !!");
+      socket.data.user = user;
+      const userCon: UserConnected = UserConnected.fromUser(user,socketIO);
+      listUsersConnected.set((idSocket),userCon);
+      listUsersConnected.forEach(element => {
+        console.log(element._username,element.id,element._mail)
+      });
     }catch(error){
-    console.error(error);
+      console.error(error);
     }
   });
 
@@ -199,19 +195,36 @@ io.on("connection", (socket) => {
   });
 
   socket.on("hostRoom", async (callback) => { // Set { <socket.id> }
-    let idGame: string;
-    while(!idGame || hostedRooms.includes(idGame)) {
-      idGame = setRoomID();
-    }
-    hostedRooms.push(idGame);
-    socket.join(idGame);
-    socket.data.roomIdHosted = idGame;
-    socket.data.inRoom = idGame;
-    //console.log(idGame);
-    //console.log(await getUserInRoom(idGame));
-    callback(await getRoomInfo(idGame));
+    const room: GameRoom = hostedRooms.addRoom(socketIO.player);
+    const roomID: string = room.id;
+    socket.join(roomID);
+    socket.data.roomIdHosted = roomID;
+    socket.data.inRoom = roomID;
+    callback(room);
+    //callback(await getRoomInfo(roomID));
   });
 
+  socket.on("joinRoom", async (roomID, callback) => {
+    try {
+      const room: GameRoom|null = hostedRooms.getRoomByID(roomID) as GameRoom|null;
+      if (!room) throw new Error("Incorrect room ID");
+      let player: Player;
+      if (socketIO.player instanceof UserConnected) {
+        player = Player.fromConnectedUser(socketIO.player);
+      } else {
+        player = socketIO.player;
+      }
+      room.addPlayer(player);
+      socket.join(roomID);
+      socket.data.inRoom = roomID;
+      callback(room);
+      console.log(`${socketIO.username} joined the room: `,room);
+      room.sendMessageToAll("playerJoined",room);
+    } catch(err) {
+      callback(err);
+    }
+  });
+  /*
   socket.on("joinRoom", async ({roomId},callback) => {
     try {
       if(await isRoomFull(roomId)) throw new Error(`Oh no, the room '${roomId}' is already full!`);
@@ -227,7 +240,7 @@ io.on("connection", (socket) => {
       callback(err);
     }
 
-  })
+  })*/
 
   socket.on("getRoomInfo", async (idGame:string) => {
     let tabInfo:string[] = await getRoomInfo(idGame);
@@ -263,17 +276,6 @@ async function getRoomInfo(idRoom:string):Promise<string[]>{
     tabInfo.push(username);
   });
   return tabInfo;
-}
-
-async function isRoomFull(idRoom: string): Promise<boolean|Error> {
-  try {
-    if (!hostedRooms.includes(idRoom)) throw new Error(`The room ${idRoom} does not exist...`);
-    let socketsInRoom: RemoteSocket<DecorateAcknowledgementsWithMultipleResponses<DefaultEventsMap>, any>[] = await io.in(idRoom).fetchSockets();
-    return socketsInRoom.length === maxPlayer;
-  } catch(err) {
-    console.log('Error: \n',err.message);
-    throw err;
-  }
 }
 
 async function getUserInRoom(idRoom:string):Promise<UserConnected[]>{

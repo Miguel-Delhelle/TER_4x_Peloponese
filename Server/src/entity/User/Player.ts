@@ -1,18 +1,23 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
-import { User } from "./User";
 import { UserConnected } from "./UserConnected";
+import { FACTION } from "../../MapModel/EFaction";
+import { GameRoom } from "../../socket/GameRoom";
 
 
-export class Player {
+export class Player extends UserConnected {
 
-   public user:UserConnected;
-   public faction:string;
-   public room:string;
+  private _faction: FACTION;
 
-   constructor(user: UserConnected, faction: string, room: string) {
-      this.user = user;
-      this.faction = faction;
-      this.room = room;
-    }
+  constructor(user: UserConnected) {
+    super(user,user.socket);
+    user.socket.player = this;
+    Object.assign(this, user);
+  }
+
+  get faction(): FACTION {return this._faction;}
+  set faction(faction: FACTION) {this._faction = faction;}
+
+  public static fromConnectedUser(user: UserConnected): Player {
+    return new Player(user);
+  }
 
 }

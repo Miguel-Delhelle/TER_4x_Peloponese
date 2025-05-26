@@ -160,6 +160,31 @@ function handleReady(): void {
   if([player1, player2, player3].every(p => p.getAttribute('data-player') && p.getAttribute('data-city'))) HTML.startGame;
 }
 
+async function handleCharacterPick(event: Event): Promise<void> {
+  let pick: HTMLDivElement;
+  let play: HTMLParagraphElement;
+  let unpick: HTMLDivElement[] = [divP1,divP2,divP3];
+  let unplay: HTMLParagraphElement[] = [player1,player2,player3];
+  if(event.target as Node === divP1 as Node) {
+    pick = divP1;
+    unpick = [divP2,divP3];
+    play = player1;
+    unplay = [player2,player3]
+  } else if(event.target as Node === divP2 as Node) {
+    pick = divP2;
+    unpick = [divP1,divP3];
+    play = player2;
+    unplay = [player1,player3]
+  } else if(event.target as Node === divP3 as Node) {
+    pick = divP3;
+    unpick = [divP1,divP2];
+    play = player3;
+    unplay = [player1,player2]
+  } else return;
+  play.textContent = (HTML.currentUser as Player).username;
+  HTML.toggleClass(unpick,'disabled',true);
+}
+
 
 // +-------------------------------------------------------------------------------------------+ //
 //                                -  -- Block-EventListener --  -                                //
@@ -191,19 +216,16 @@ imgMascot.addEventListener("click", HTML.startGame);
 
 function startEventListener(): void {
 
-  btnHost.addEventListener("click", async () => {
+  async function handleHost(): Promise<void> {
     if(!dbRoom.classList.contains('hidden')) {
-      HTML.socket?.emit("hostRoom", (roomInfo:string[]) => {
-        HTML.currentRoom = {
-          id: roomInfo[0],
-          player1: HTML.currentUser as Player
-        }
-        updateRoomInfo(HTML.currentRoom);
+      HTML.socket?.emit("hostRoom", (roomInfo: GameRoom) => {
+        HTML.currentRoom = roomInfo;
+        updateRoomInfo(roomInfo);
       });
     }
-  });
+  }
 
-  btnJoinRoom.addEventListener("click", async () => {
+  async function handleJoin(): Promise<void> {
     HTML.socket?.emit("joinRoom", { roomId: inpRoom.value }, (response:GameRoom|Error) => {
       try {
         if(response instanceof Error) throw response;
@@ -214,8 +236,16 @@ function startEventListener(): void {
         console.log(err);
         alert(err);
       }
-    })
-  });
+    });
+  }
+
+  btnHost.addEventListener("click", handleHost);
+
+  btnJoinRoom.addEventListener("click", handleJoin);
+
+  [divP1,divP2,divP3].forEach(btn => {
+    btn.addEventListener("click", e => {handleCharacterPick(e);});
+  })
   
   btnReady.addEventListener("click", handleReady);
 
@@ -228,13 +258,9 @@ function startEventListener(): void {
 export function updateRoomInfo(data: GameRoom): void {
   try {
     txtRoom.textContent = data.id;
-    const
-      p1: Player|undefined = data.player1,
-      p2: Player|undefined = data.player2,
-      p3: Player|undefined = data.player3
-    ;
+    const playersInRoom: Player[] = data.players;
     players.textContent = "Players: ";
-    [p1,p2,p3].forEach(p => {
+    playersInRoom.forEach(p => {
       if(p) {
         const u: string = p.username;
         const f: string|undefined = p.faction;

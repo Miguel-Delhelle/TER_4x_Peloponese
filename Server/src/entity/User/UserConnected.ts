@@ -1,18 +1,23 @@
 import { Socket } from "socket.io";
 import { User } from "./User";
 import { io } from "../..";
+import { SocketIO } from "../../socket/SocketIo";
 
-export class UserConnected extends User{
+export class UserConnected extends User {
 
-   private socket:any;
+  private _socket: SocketIO;
 
-   constructor(user:User,socket:Socket){
-      super(user._mail,user._username,undefined,user._id);
-      this.socket;
-   }
+  constructor(user:User,socket:SocketIO) {
+    super(user._mail,user._username,undefined,user._id);
+    this._socket = socket;
+    this._socket.player = this;
+    Object.assign(this, user);
+  }
 
-   public getSocket():Socket{      
-      return this.socket;
-   }
+  get socket(): SocketIO {return this._socket;}
+
+  public static fromUser(user: User, socket: SocketIO): UserConnected {
+    return new UserConnected(user, socket);
+  }
 
 }

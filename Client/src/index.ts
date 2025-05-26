@@ -25,9 +25,7 @@ export type Player = {
 
 export type GameRoom = {
   id: string,
-  player1?: Player,
-  player2?: Player,
-  player3?: Player,
+  players: Player[],
 }
 
 type HTML = {
