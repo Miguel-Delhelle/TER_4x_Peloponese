@@ -128,14 +128,15 @@ server.listen(port, () => {
 
 
 async function hashedPassword(clearPassword:string):Promise<string> {
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(clearPassword, salt);
+  //const salt = await bcrypt.genSalt(10);
+  const hashedPassword = clearPassword //await bcrypt.hash(clearPassword, salt);
   return hashedPassword;
 };
 
 async function verifyPassword(clearPassword, hashedPassword) {
 try {
-    const match = await bcrypt.compare(clearPassword, hashedPassword);
+    //const match = await bcrypt.compare(clearPassword, hashedPassword);
+    const match = (clearPassword === hashedPassword);
     return match; // Retourne true si les mots de passe correspondent, false sinon
 } catch (error) {
     throw new Error('Erreur lors de la vérification du mot de passe');

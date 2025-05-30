@@ -29,7 +29,9 @@ export var roomOfUser:string;
 export var hasSocket:boolean = false;
 export var hasRoom:boolean = false;
 export var unitOfPlayer:Unit[] = [];
-const URI = "http://localhost:3000";
+const URI = "https://ter.delweb.fr";
+
+socket = io(URI);
 
 
 btnProfile.addEventListener("click", () => {toggleModal(modal)});
@@ -93,7 +95,6 @@ async function postLogin(): Promise<Response> {
     try {
       const data = await res.json();
       user.textContent = data.username;
-      socket = io(URI);
       socket.emit("loginOk",{idUser: data.id})
       console.log("socket établie");
       hasSocket = true;
