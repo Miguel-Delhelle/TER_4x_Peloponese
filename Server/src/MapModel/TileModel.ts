@@ -1,5 +1,5 @@
 import { Point } from "./Point";
-import { FACTION } from "./EFaction";
+import { FACTION } from "../../../Common/src/utils/EFaction";
 import type { Terrain } from "./TerrainModel";
 
 export class Tile{

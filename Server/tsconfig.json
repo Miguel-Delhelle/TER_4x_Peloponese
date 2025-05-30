@@ -6,6 +6,9 @@
       "target": "es2021",
       "module": "commonjs",
       "moduleResolution": "node",
+      "paths": {
+        "@Common/*": ["../Common/src/*"]
+      },
       "outDir": "./build",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,

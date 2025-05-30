@@ -1,5 +1,5 @@
 import { UserConnected } from "./UserConnected";
-import { FACTION } from "../../MapModel/EFaction";
+import { FACTION } from "../../../../Common/src/utils/EFaction";
 import { GameRoom } from "../../socket/GameRoom";
 
 
