@@ -1,13 +1,11 @@
 import { FACTION } from '../utils/EFaction';
 import { IGameRoom } from './network';
-import { AnySocket } from "../types/common";
+import { Socket } from 'socket.io';
 
 export interface IUser {
 
-  id: number;
-  mail: string;
-  username: string;
-  hashedPassword?: string;
+  get username(): string;
+  get mail(): string;
 
   toString(): string;
 
@@ -15,10 +13,12 @@ export interface IUser {
 
 export interface IPlayer extends IUser {
 
-  socket: AnySocket;
-  room: IGameRoom;
-  isReady: boolean;
-  faction: FACTION;
+  get socket(): Socket;
+  get room(): IGameRoom;
+  get faction(): FACTION;
+  get isReady(): boolean;
+  set isReady(value: boolean);
+  set faction(faction: FACTION);
 
   initListener(): void;
 

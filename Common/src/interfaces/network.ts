@@ -3,16 +3,15 @@ import { ITile } from './map';
 import { IPlayer } from './users';
 
 export interface IGameRoom {
-  
-  id: string;
-  players: IPlayer[];
-  status: GameStatus;
-  createdOn: Date;
+
+  get id(): string;
+  get players(): IPlayer[];
+  get status(): GameStatus;
 
   isFull(): boolean;
   allSockets(): AnySocket[];
   addPlayer(player: IPlayer): number|Error;
-  sendMessageToAll(ev: string, ...args: any[]): void;
+  //sendMessageToAll(ev: string, ...args: any[]): void;
   sendMessageTo(socket: AnySocket|AnySocket[], ev: string, ...args: any[]): void;
 
 }
@@ -29,8 +28,11 @@ export interface IServerToClientEvents {
 
 export interface IClientToServerEvents {
   
-  'join-room': (roomId: string, playerName: string) => void;
-  'leave-room': () => void;
+  'login': (id: number) => void;
+  'room-host': () => IGameRoom;
+  'room-join': (id: string, player: IPlayer) => IGameRoom;
+  'room-leave': (id: string, player: IPlayer) => boolean;
+
   'ready': () => void;
   'move-player': (tile: ITile) => void;
   
