@@ -47,7 +47,7 @@ export class PathFinder {
         const { x, y } = current;
 
         if (x === endX && y === endY) {
-            // Reconstitue le chemin
+            // Reconsitution du chemin
             const path = [];
             let cx = x, cy = y;
             while (cameFrom[cy][cx]) {
