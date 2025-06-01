@@ -1,7 +1,7 @@
 import type { Point } from "../../Math/Point";
 import { FACTION } from "../../Entity/EFaction";
 import type { Terrain } from "./Terrain";
-import { mainScene } from "../../..";
+import { HTML } from "../../..";
 
 export class Tile{
 
@@ -28,7 +28,7 @@ export class Tile{
    }
    
    public get _phaserTile(){
-      return mainScene._map.getTileAt(this.id._x,this.id._y);
+      return HTML.mainScene._map.getTileAt(this.id.x,this.id.y);
    }
 
 
