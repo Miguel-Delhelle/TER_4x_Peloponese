@@ -327,7 +327,7 @@ export class MainScene extends Phaser.Scene{
 		this.setMapSizeYpx();
 		this.ourMap = new GreekMap(this.map);
 
-		const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
+		//const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
 		this.setMarker();
 		this.pathFinder = new PathFinder(this.map, this.layers);
 
