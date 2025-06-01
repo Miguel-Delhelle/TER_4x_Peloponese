@@ -7,7 +7,7 @@ import { Database } from "sqlite3";
 import * as bcrypt from 'bcrypt';
 import { Server } from 'socket.io';
 import { createServer } from "http";
-import { IClientToServerEvents,IServerToClientEvents } from "common";
+import { IClientToServerEvents,IServerToClientEvents, IUser } from "common";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import { GreekMapModel } from "./MapModel/GreekMapModel";
 import { GameSocketHandler } from "./socket/GameSocketHandler";
@@ -19,12 +19,12 @@ var mapOfRoom:GreekMapModel; //Qu'une pour l'instant pour le test mais va falloi
 const app = express();
 const port = "3000";
 
-const db = new Database('greekAnatomy.sqlite');
+const db = new Database('GreeceAnatomy.sqlite');
 AppDataSource.initialize().then(async () => {
   console.log("Loading users from the database...");
-  const users = await AppDataSource.manager.find(User);
-  console.log("Loaded users: ", users);
-}).catch(error => console.log(error));
+  const users: User[] = await AppDataSource.manager.find(User);
+  console.log("Registered users in database: ", users);
+}).catch(error => console.error(error));
 
 const server = createServer(app);
 export const io = new Server<IClientToServerEvents,IServerToClientEvents>(server, {
@@ -37,36 +37,52 @@ new GameSocketHandler(io);
 
 app.use(express.json());
 
-app.post('/api/register', async function(req,response){
-  let mail:string = req.body.mail;
-  let username:string = req.body.username;
-  let password:string = req.body.password;
+app.post('/api/register', async (req,response) => {
+  try {
+    const mail: string = req.body.mail;
+    const username: string = req.body.username;
+    const password: string = req.body.password;
+    const user: User = new User(mail, username, await hashedPassword(password));
 
-  let userRegister:User = new User(mail,username,await hashedPassword(password));
-
-  await AppDataSource.manager.save(userRegister);
-
-  response.status(200).json("Inscription réussi");
+    await AppDataSource.manager.save(user);
+    response.status(200).json({
+      msg: "Successfully registered",
+      data: user as IUser,
+    });
+  } catch(err) {
+    response.status(500).json({
+      error: "Incorrect input for registration (false)",
+      mail: req.body.mail?true:false,
+      username: req.body.username?true:false,
+      password: req.body.password?true:false,
+    });
+  }
 });
 
 app.post('/api/login', async function(req,response) {
-let mailReq = req.body.mail;
-let password = req.body.password;
+  try {
+    const mail: string = req.body.mail;
+    const password: string = req.body.password;
+    const user = await AppDataSource.manager.findOneBy(User, {mail: mail});
 
-try {
-  let userLogin = await AppDataSource.manager.findOneBy(User, {mail: mailReq});
-  let passwordOk:boolean = await verifyPassword(password, userLogin.hashedPassword);
-
-  if (passwordOk){
-    delete userLogin.hashedPassword;
-    response.status(200).json(userLogin);
-  } else {
-    response.status(403).json({ error: "Mot de passe invalide"});
+    if (await verifyPassword(password, user.hashedPassword)) {
+      delete user.hashedPassword;
+      response.status(200).json({
+        msg: "Successfully logged in",
+        data: user as IUser,
+      });
+    } else {
+      response.status(403).json({
+        error: "Invalid password",
+      });
+    }
+  } catch (err) {
+    response.status(500).json({
+      error: "Incorrect input for login (false)",
+      mail: req.body.mail?true:false,
+      password: req.body.password?true:false,
+    });
   }
-} catch (error) {
-  response.status(500).json({ error: "Erreur" });
-}
-
 });
 
 if (process.env.NODE_ENV !== 'production') {
@@ -86,21 +102,20 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 server.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Greece Anatomy's server listening on port ${port}`);
 });
 
 
-async function hashedPassword(clearPassword:string):Promise<string> {
+async function hashedPassword(clearPassword: string): Promise<string> {
   const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(clearPassword, salt);
+  const hashedPassword: string = await bcrypt.hash(clearPassword, salt);
   return hashedPassword;
 }
 
-async function verifyPassword(clearPassword, hashedPassword) {
+async function verifyPassword(clearPassword: string, hashedPassword: string): Promise<boolean> {
   try {
-      const match = await bcrypt.compare(clearPassword, hashedPassword);
-      return match; // Retourne true si les mots de passe correspondent, false sinon
-  } catch (error) {
-      throw new Error('Erreur lors de la vérification du mot de passe');
+    return await bcrypt.compare(clearPassword, hashedPassword);
+  } catch (err) {
+    throw new Error('An error occured when checking the password');
   }
 }
