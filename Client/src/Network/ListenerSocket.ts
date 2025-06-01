@@ -1,9 +1,14 @@
 import { HTML } from "..";
 import { updateRoomInfo } from "../scp_mainMenu";
-import type { GameRoom } from "..";
+import type { IGameRoom } from "common";
 
+
+/*
 export function startListenerSocket(): void {
-  HTML.socket?.on("playerJoined", (response: GameRoom) => {
+
+  HTML.socket?.on("player-joined", (response:IGameRoom) => {
     updateRoomInfo(response);
   })
 }
+
+*/

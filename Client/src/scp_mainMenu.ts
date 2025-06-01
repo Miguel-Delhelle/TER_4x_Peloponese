@@ -1,9 +1,10 @@
 
 //                                      -  -- Imports --  -                                      //
 import { HTML } from ".";
-import { FACTION, printMessage, type IGameRoom,type IPlayer, type ResponseLogin, type ResponseRegister } from "common";
+import { FACTION, type IGameRoom,type IPlayer, type ResponseLogin, type ResponseRegister } from "common";
+import { printMessage } from "common";
 import { io } from "socket.io-client";
-import { startListenerSocket } from "./Network/ListenerSocket";
+//import { startListenerSocket } from "./Network/ListenerSocket";
 
 type HTMLTextElement = HTMLParagraphElement|HTMLHeadingElement;
 // ----------------------------------------[ MainMenu ]----------------------------------------- //
@@ -135,7 +136,7 @@ async function handleLogin(): Promise<void> {
           clearOnRegisterLogin(false);
           HTML.toggleClass(dbProfile, 'hidden');
           startEventListener();
-          startListenerSocket();
+          //startListenerSocket();
         } else {
           printMessage("An error occurred during the login verification...",'warn');
         }

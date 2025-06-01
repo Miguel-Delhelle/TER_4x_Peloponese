@@ -5,8 +5,9 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+    "baseUrl": ".",
     "paths": {
-      "@Common/*": ["../Common/src/*"]
+      "common/*": ["../Common/src/*"]
     },
 
     /* Bundler mode */
@@ -24,6 +25,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/classPackage/PhaserScene/Map/GreekMap.ts"],
+  "include": ["src"],
   "exclude": ["*src/assets/**/*.tsx"]
 }

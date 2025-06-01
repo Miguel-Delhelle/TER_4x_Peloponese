@@ -1,7 +1,7 @@
-export * from './interfaces/common';
-export * from './interfaces/map';
-export * from './interfaces/network';
-export * from './interfaces/users';
+export type * from './interfaces/common';
+export type * from './interfaces/map';
+export type * from './interfaces/network';
+export type * from './interfaces/users';
 
 export * from './types/common';
 
