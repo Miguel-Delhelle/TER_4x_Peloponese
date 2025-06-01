@@ -3,10 +3,10 @@
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
-import Phaser, { Math } from 'phaser';
-import Easystar from 'easystarjs';
+import Phaser from 'phaser';
 import { GreekMap } from './Map/GreekMap';
 import { HTML } from '../..';
+import { PathFinder } from '../Controller/Pathfinding';
 
 
 
@@ -31,8 +31,9 @@ export class MainScene extends Phaser.Scene{
 
 	private gameSound!:Phaser.Sound.BaseSound;
 	private clickSound!:Phaser.Sound.BaseSound;
-	private pathfinder!:Easystar.js;
 	private grid:number[][] = [];
+	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+	private pathFinder!: PathFinder;
 
 	/*
 	* +--+---------------------------------------------{ Class Separator }---------------------------------------------+--+ *
@@ -309,8 +310,17 @@ export class MainScene extends Phaser.Scene{
 		this.ourMap = new GreekMap(this.map);
 
 		this.setMarker();
-	}
+		this.pathFinder = new PathFinder(this.map, this.layers);
 
+		// TEST PATH FINDING
+		const result = this.pathFinder.findPathAStar(33, 20, 462, 63);
+		if (result) {
+			this.drawPath(result.path);
+			console.log("Chemin trouvé :", result.path, "Coût :", result.cost);
+		} else {
+			console.log("Aucun chemin trouvé !");
+}
+	}
 
 	private setupEvent(): void {
 		this.mapController = new MapController(this);
@@ -332,8 +342,54 @@ export class MainScene extends Phaser.Scene{
 				this.clickSound.play();
 			}
 		});
+
 	}
 
+
+	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
+
+	public drawMapGridLines(
+		lineWidth: number,
+		color: number,
+		alpha?: number
+	): Phaser.GameObjects.Graphics {
+		const graphics = this.add.graphics();
+		graphics.lineStyle(lineWidth, color, alpha);
+		const tileWidth = this.map.tileWidth;
+		const tileHeight = this.map.tileHeight;
+		const mapWidth = this.map.width;
+		const mapHeight = this.map.height;
+		// Draw vertical grid lines
+		for (let x = 0; x <= mapWidth; x++) {
+			graphics.moveTo(x * tileWidth, 0);
+			graphics.lineTo(x * tileWidth, mapHeight * tileHeight);
+		}
+		// Draw horizontal grid lines
+		for (let y = 0; y <= mapHeight; y++) {
+			graphics.moveTo(0, y * tileHeight);
+			graphics.lineTo(mapWidth * tileWidth, y * tileHeight);
+		}
+		return graphics.strokePath();
+	}
+
+	public drawPath(path: { x: number, y: number }[], color: number = 0xff0000): void {
+    const graphics = this.add.graphics();
+    graphics.lineStyle(4, color, 1);
+
+    for (let i = 0; i < path.length - 1; i++) {
+        const from = path[i];
+        const to = path[i + 1];
+        const tileWidth = this.map.tileWidth;
+        const tileHeight = this.map.tileHeight;
+        const fromX = from.x * tileWidth + tileWidth / 2;
+        const fromY = from.y * tileHeight + tileHeight / 2;
+        const toX = to.x * tileWidth + tileWidth / 2;
+        const toY = to.y * tileHeight + tileHeight / 2;
+        graphics.moveTo(fromX, fromY);
+        graphics.lineTo(toX, toY);
+    }
+    graphics.strokePath();
+}
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 
@@ -373,6 +429,7 @@ export class MainScene extends Phaser.Scene{
 		const tile: Phaser.Tilemaps.Tile = this.getFirstTileAt(tileX, tileY, layer)!;
 		let properties: Object = tile.properties;
 		Object.assign(properties, {ID: tile.index}, tile.getTileData());
+		console.log("x: ",tileX,"y: ",tileY);
 		if (tile) return properties;
 	}
 }

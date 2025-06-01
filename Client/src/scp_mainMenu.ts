@@ -127,7 +127,7 @@ async function handleLogin(): Promise<void> {
       txtProfile.textContent = data.user!.username;
       HTML.toggleClass(txtProfile, 'disabled', false);
       HTML.socket = io(HTML.URI);
-      HTML.socket.emit("login", data.user!.mail, (response) => {
+      HTML.socket.emit("login", data.user!.mail, (response:any) => {
         if(response.ok) {
           HTML.currentUser = response.user as IPlayer;
           printMessage(`Succesfully logged in as: ${HTML.currentUser.username}`,'info');
@@ -225,7 +225,7 @@ function startEventListener(): void {
 
   async function handleHost(): Promise<void> {
     if(!dbRoom.classList.contains('hidden')) {
-      HTML.socket?.emit("room-host", (response) => {
+      HTML.socket?.emit("room-host", (response:any) => {
         if(response.ok) {
           HTML.currentRoom = response.room as IGameRoom;
           updateRoomInfo(HTML.currentRoom);
@@ -237,7 +237,7 @@ function startEventListener(): void {
   }
 
   async function handleJoin(): Promise<void> {
-    HTML.socket?.emit("room-join", inpRoom.value, (response) => {
+    HTML.socket?.emit("room-join", inpRoom.value, (response:any) => {
       try {
         if(response.ok) {
           HTML.currentRoom = response.room as IGameRoom;

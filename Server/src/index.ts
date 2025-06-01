@@ -9,12 +9,9 @@ import { Server } from 'socket.io';
 import { createServer } from "http";
 import { IClientToServerEvents,IServerToClientEvents, IUser, ResponseLogin, ResponseRegister } from "common";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { GreekMapModel } from "./MapModel/GreekMapModel";
 import { GameSocketHandler } from "./socket/GameSocketHandler";
 
 //export var listUsersConnected:Map<string,UserConnected> = new Map();
-
-var mapOfRoom:GreekMapModel; //Qu'une pour l'instant pour le test mais va falloir crée une SDD pour stocker plusieurs matrice côté serveur.
 
 const app = express();
 const port = "3000";
