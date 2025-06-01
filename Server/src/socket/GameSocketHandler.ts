@@ -1,18 +1,15 @@
-import { Socket, Server } from "socket.io";
-import { IClientToServerEvents, IGameRoom, IPlayer, IServerToClientEvents, getDate, printMessage } from "common";
+import { SocketIOServer,ServerIO } from "common";
+import { IGameRoom, IPlayer, printMessage } from "common";
 import { GameRoom } from "./GameRoom";
 import { Player } from "../entity/User/Player";
 import { User } from "../entity/User/User";
 import { AppDataSource } from "../data-source";
 
-export type ServerIO = Server<IClientToServerEvents, IServerToClientEvents>;
-export type SocketIO = Socket<IClientToServerEvents, IServerToClientEvents>;
-
 export class GameSocketHandler {
 
   private _io: ServerIO;
   private _rooms: Map<string,GameRoom> = new Map();
-  private _users: Map<Socket,Player> = new Map();
+  private _users: Map<SocketIOServer,Player> = new Map();
   private static ROOMID_LENGTH: number = 8;
   private static ROOMID_ALPHABET: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -25,10 +22,10 @@ export class GameSocketHandler {
 
   get rooms(): Map<string,GameRoom> {return this._rooms;}
 
-  get users(): Map<Socket,Player> {return this._users;}
+  get users(): Map<SocketIOServer,Player> {return this._users;}
 
   private setupSocketHandler(): void {
-    this._io.on("connection", (socket: SocketIO) => {
+    this._io.on("connection", (socket: SocketIOServer) => {
       const idSocket: string = socket.id;
 
       socket.on("disconnect", (reason) => {
@@ -48,15 +45,16 @@ export class GameSocketHandler {
         }
       });
       
-      socket.on("login", async (id: number) => {
+      socket.on("login", async (mail: string, callback) => {
         try {
-          const user: User = await AppDataSource.manager.findOneBy(User, {id: id});
+          const user: User = await AppDataSource.manager.findOneBy(User, {mail: mail});
           const player: Player = new Player(user, socket);
           this._users.set(socket,player);
           printMessage(`${user.username} connected`,'info');
+          callback({ok: true, user: player});
         } catch(err) {
           console.error(err);
-          return;
+          callback({ok: false});
         }
       });
 

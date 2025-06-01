@@ -1,9 +1,8 @@
 
 //                                      -  -- Imports --  -                                      //
 import { HTML } from ".";
-import type { GameRoom, Player } from ".";
-//import { Player } from "./classPackage/Player/player";
-import io from "socket.io-client";
+import { FACTION, printMessage, type IGameRoom,type IPlayer, type ResponseLogin, type ResponseRegister } from "common";
+import { io } from "socket.io-client";
 import { startListenerSocket } from "./Network/ListenerSocket";
 
 type HTMLTextElement = HTMLParagraphElement|HTMLHeadingElement;
@@ -51,7 +50,7 @@ export function startMainMenu(): void {
 
 // ToDo!!
 function initMainMenu(): void {
-  txtProfile.textContent = HTML.currentUser as string|null;
+  txtProfile.textContent = HTML.currentUser?.username ?? HTML.defaultUser;
   HTML.toggleClass(txtProfile, 'disabled', true);
   HTML.toggleDisabled([btnHost, btnJoin], true);
 } initMainMenu();
@@ -91,11 +90,18 @@ async function handleRegister(): Promise<void> {
       password: inpPassword.value
     })
   });
-  if (res.ok) {
-    alert(`Welcome on board ${inpUsername.value} !`);
-  }
-  else {
-    alert(`An error occured during your registration..`);
+  const data: ResponseRegister = await res.json();
+  if (res.status===200) {
+    alert(`${data.msg}\nWelcome on board ${data.user?.username} !`);
+  } else if(res.status===500) {
+    alert([
+      `ERROR: ${data.error}`,
+      "See below for more information:",
+      data.mail?"  MISSING -> mail":null,
+      data.username?"  MISSING -> username":null,
+      data.password?"  MISSING -> password":null,
+      !(data.mail||data.username||data.password)?"  SERVER -> Internal Server error":null,
+    ].filter(Boolean).join('\n'));
   }
   clearOnRegisterLogin(true);
 }
@@ -115,33 +121,34 @@ async function handleLogin(): Promise<void> {
       password: inpPassword.value
     })
   });
-  if (res.ok) {
+  const data: ResponseLogin = await res.json();
+  if (res.status===200) {
     try {
-      const data = await res.json();
-      HTML.currentUser = data.username as string;
-
-      txtProfile.textContent = HTML.currentUser;
+      txtProfile.textContent = data.user!.username;
       HTML.toggleClass(txtProfile, 'disabled', false);
       HTML.socket = io(HTML.URI);
-      if(HTML.socket) {
-        HTML.socket.emit("loginOk",{idUser: data.id});
-        HTML.currentUser = {username: HTML.currentUser, socket: HTML.socket};
-        console.log(`Succesfully logged in as: ${HTML.currentUser.username}`);
-        HTML.toggleDisabled([btnHost, btnJoin], false);
-        clearOnRegisterLogin(false);
-        HTML.toggleClass(dbProfile, 'hidden');
-        startEventListener();
-        startListenerSocket();
-      }
-    } catch (error) {
+      HTML.socket.emit("login", data.user!.mail, (response) => {
+        if(response.ok) {
+          HTML.currentUser = response.user as IPlayer;
+          printMessage(`Succesfully logged in as: ${HTML.currentUser.username}`,'info');
+          HTML.toggleDisabled([btnHost, btnJoin], false);
+          clearOnRegisterLogin(false);
+          HTML.toggleClass(dbProfile, 'hidden');
+          startEventListener();
+          startListenerSocket();
+        } else {
+          printMessage("An error occurred during the login verification...",'warn');
+        }
+      });
+    } catch (err) {
       clearOnRegisterLogin(true);
-      errorOnRegisterLogin({mail: true, password: true});
-      console.error(error);
+      errorOnRegisterLogin({mail: true, username: false, password: true});
+      printMessage(err as string,'error');
     }
   } else {
-    txtProfile.textContent = HTML.currentUser as string|null ?? HTML.defaultUser;
+    txtProfile.textContent = HTML.currentUser?.username ?? HTML.defaultUser;
     clearOnRegisterLogin(true);
-    errorOnRegisterLogin({mail: true, password: true});
+    errorOnRegisterLogin({mail: true, username: false, password: true});
   }
 }
 
@@ -181,7 +188,7 @@ async function handleCharacterPick(event: Event): Promise<void> {
     play = player3;
     unplay = [player1,player2]
   } else return;
-  play.textContent = (HTML.currentUser as Player).username;
+  play.textContent = (HTML.currentUser as IPlayer).username;
   HTML.toggleClass(unpick,'disabled',true);
 }
 
@@ -218,20 +225,26 @@ function startEventListener(): void {
 
   async function handleHost(): Promise<void> {
     if(!dbRoom.classList.contains('hidden')) {
-      HTML.socket?.emit("hostRoom", (roomInfo: GameRoom) => {
-        HTML.currentRoom = roomInfo;
-        updateRoomInfo(roomInfo);
+      HTML.socket?.emit("room-host", (response) => {
+        if(response.ok) {
+          HTML.currentRoom = response.room as IGameRoom;
+          updateRoomInfo(HTML.currentRoom);
+        } else {
+          printMessage("An error occurred when creating a room...",'warn');
+        }
       });
     }
   }
 
   async function handleJoin(): Promise<void> {
-    HTML.socket?.emit("joinRoom", { roomId: inpRoom.value }, (response:GameRoom|Error) => {
+    HTML.socket?.emit("room-join", inpRoom.value, (response) => {
       try {
-        if(response instanceof Error) throw response;
-        HTML.toggleClass(dbJoin, 'hidden', true);
-        HTML.toggleClass(dbRoom, 'hidden', false);
-        updateRoomInfo(response);
+        if(response.ok) {
+          HTML.currentRoom = response.room as IGameRoom;
+          HTML.toggleClass(dbJoin, 'hidden', true);
+          HTML.toggleClass(dbRoom, 'hidden', false);
+          updateRoomInfo(HTML.currentRoom);
+        }
       } catch(err) {
         console.log(err);
         alert(err);
@@ -255,27 +268,27 @@ function startEventListener(): void {
 // -------------------------------------------[ END ]------------------------------------------- //
 }
 
-export function updateRoomInfo(data: GameRoom): void {
+export function updateRoomInfo(data: IGameRoom): void {
   try {
     txtRoom.textContent = data.id;
-    const playersInRoom: Player[] = data.players;
+    const playersInRoom: IPlayer[] = data.players;
     players.textContent = "Players: ";
     playersInRoom.forEach(p => {
       if(p) {
         const u: string = p.username;
-        const f: string|undefined = p.faction;
+        const f: FACTION = p.faction;
         players.textContent += `${u} `;
         if(f) {
           switch (f) {
-            case "ATHENS":
+            case FACTION.ATHENS:
               player1.textContent = u;
               HTML.toggleClass(divP1,'disabled',true);
               break;
-            case "SPARTA":
+            case FACTION.SPARTA:
               player2.textContent = u;
               HTML.toggleClass(divP2,'disabled',true);
               break;
-            case "THEBES":
+            case FACTION.THEBES:
               player3.textContent = u;
               HTML.toggleClass(divP3,'disabled',true);
               break;

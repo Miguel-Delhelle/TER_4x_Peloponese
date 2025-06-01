@@ -9,10 +9,10 @@
     "build": "tsc",
     "preview": "vite preview"
   },
-  "devDependencies": {
+  "dependencies": {
     "typescript": "~5.8.3",
     "socket.io": "^4.8.1",
-    "@types/socket.io-client": "^1.4.36",
+    "socket.io-client": "^4.8.1",
     "vite": "^6.3.5"
   }
 }
