@@ -19,6 +19,13 @@ var mapOfRoom:GreekMapModel; //Qu'une pour l'instant pour le test mais va falloi
 const app = express();
 const port = "3000";
 
+const db = new Database('greekAnatomy.sqlite');
+AppDataSource.initialize().then(async () => {
+  console.log("Loading users from the database...");
+  const users = await AppDataSource.manager.find(User);
+  console.log("Loaded users: ", users);
+}).catch(error => console.log(error));
+
 const server = createServer(app);
 export const io = new Server<IClientToServerEvents,IServerToClientEvents>(server, {
   cors: {
@@ -26,18 +33,9 @@ export const io = new Server<IClientToServerEvents,IServerToClientEvents>(server
     methods: ['GET', 'POST']
   }
 });
-app.use(express.json());
 new GameSocketHandler(io);
 
-
-const db = new Database('greekAnatomy.sqlite');
-
-AppDataSource.initialize().then(async () => {
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
-
-}).catch(error => console.log(error))
+app.use(express.json());
 
 app.post('/api/register', async function(req,response){
   let mail:string = req.body.mail;
