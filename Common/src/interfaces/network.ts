@@ -10,7 +10,6 @@ export interface IGameRoom {
 
   isFull(): boolean;
   allSockets(): AnySocket[];
-  addPlayer(player: IPlayer): number|Error;
   //sendMessageToAll(ev: string, ...args: any[]): void;
   sendMessageTo(socket: AnySocket|AnySocket[], ev: string, ...args: any[]): void;
 
@@ -29,9 +28,9 @@ export interface IServerToClientEvents {
 export interface IClientToServerEvents {
   
   'login': (id: number) => void;
-  'room-host': () => IGameRoom;
-  'room-join': (id: string, player: IPlayer) => IGameRoom;
-  'room-leave': (id: string, player: IPlayer) => boolean;
+  'room-host': (callback: (response: {ok: boolean, room?: IGameRoom}) => void) => void;
+  'room-join': (id: string, callback: (response: {ok: boolean, room?: IGameRoom}) => void) => void;
+  'room-leave': (id: string, callback: (response: {ok: boolean}) => void) => void;
 
   'ready': () => void;
   'move-player': (tile: ITile) => void;
