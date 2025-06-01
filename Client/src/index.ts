@@ -1,224 +1,107 @@
+
+//                                      -  -- Imports --  -                                      //
+
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
-import io from "socket.io-client";
-import { startListenerSocket } from "./Network/ListenerSocket";
-import type { Unit } from "./classPackage/Entity/Unit";
+import { startMainMenu } from "./scp_mainMenu";
+//import { Player } from "./classPackage/Player/player";
 
+// +-------------------------------------------------------------------------------------------+ //
+//                                       -  -- Types --  -                                       //
 
-const btnJoin = document.getElementById("btn-join") as HTMLButtonElement;
-const btnHost = document.getElementById("btn-host") as HTMLButtonElement;
-const roomCodeDiv = document.querySelector(".room-code") as HTMLDivElement;
-const btnProfile = document.getElementById("profile") as HTMLButtonElement;
-const modal = document.querySelector(".modal") as HTMLDivElement;
-const btnRegister = document.getElementById('btn-register') as HTMLButtonElement;
-const btnLogin = document.getElementById('btn-login') as HTMLButtonElement;
-const inpMail = document.getElementById('mail') as HTMLInputElement;
-const inpUsername = document.getElementById('pseudo') as HTMLInputElement;
-const inpPassword = document.getElementById('password') as HTMLInputElement;
-const inpRoom = document.getElementById('room-code') as HTMLInputElement;
-const user = document.getElementById('username') as HTMLParagraphElement;
-const modalHost = document.getElementById("modalHost") as HTMLDivElement;
-const btnStartGame = document.getElementById("StartGame") as HTMLButtonElement;
-const loadingModal = document.getElementById("loadingModal") as HTMLDivElement;
+export type HTMLDisablingElement = 
+  HTMLButtonElement|
+  HTMLFieldSetElement|
+  HTMLInputElement|
+  HTMLOptGroupElement|
+  HTMLOptionElement|
+  HTMLSelectElement|
+  HTMLTextAreaElement;
 
-//btnJoin.addEventListener("click", () => {toggleModal(roomCodeDiv)});
-
-//var idUserConnected:number;
-
-export var socket:SocketIOClient.Socket;
-export var roomOfUser:string;
-export var hasSocket:boolean = false;
-export var hasRoom:boolean = false;
-export var unitOfPlayer:Unit[] = [];
-const URI = "http://localhost:3000";
-
-
-btnProfile.addEventListener("click", () => {toggleModal(modal)});
-document.addEventListener("click", e => {
-  if (
-    !btnJoin.contains(e.target as Node) &&
-    !btnProfile.contains(e.target as Node) &&
-    !roomCodeDiv.contains(e.target as Node) &&
-    !modal.contains(e.target as Node)
-  ) {
-    e.stopPropagation();
-    toggleModal(roomCodeDiv, false);
-    toggleModal(modal, false);
-  }
-});
-
-function toggleModal(obj: HTMLElement, value?: boolean): boolean {
-  obj.classList.toggle('active', value);
-  return obj.classList.contains('active');
-}
-function toggleDisplay(obj: HTMLElement, value?: boolean): boolean {
-  obj.classList.toggle('hidden', value);
-  return obj.classList.contains('hidden');
+export type Player = {
+  username: string,
+  socket: SocketIOClient.Socket,
+  faction?: string,
 }
 
-async function postRegister(): Promise<Response> {
-  const res: Response = await fetch(`/api/register`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      mail: inpMail.value,
-      username: inpUsername.value,
-      password: inpPassword.value
-    })
-  });
-  if (res.ok) {
-    alert(`Welcome on board ${inpUsername.value} !`);
-    await postLogin();
-  }
-  else alert(`An error occured during your registration..`);
-  return res;
+export type GameRoom = {
+  id: string,
+  player1?: Player,
+  player2?: Player,
+  player3?: Player,
 }
 
-btnRegister.addEventListener("click", postRegister);
+type HTML = {
+  readonly URI: string,
+  readonly defaultUser: string,
+  readonly mainScene: MainScene,
+  socket: SocketIOClient.Socket|null,
+  currentUser?: Player|string,
+  currentRoom?: GameRoom|string,
 
-async function postLogin(): Promise<Response> {
-  const res: Response = await fetch(`/api/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      mail: inpMail.value,
-      password: inpPassword.value
-    })
-  });
-  if (res.ok) {
-    
-    try {
-      const data = await res.json();
-      user.textContent = data.username;
-      socket = io(URI);
-      socket.emit("loginOk",{idUser: data.id})
-      console.log("socket établie");
-      hasSocket = true;
-      console.log("Connected: ",hasSocket,"\nOn: ",socket);
-      toggleModal(modal, false);
-      btnHost.disabled = false;
-      btnJoin.disabled = false;
-
-  } catch (error) {
-    console.error(error);
-  }
-   
-    
-  } else user.textContent = '';
-  if (hasSocket){
-    startListenerSocket();
-  }
-  return res;
+  toggleDisabled: (
+    HTMLElements: HTMLDisablingElement|HTMLDisablingElement[]|NodeListOf<HTMLDisablingElement>, 
+    value?: boolean
+  ) => void,
+  toggleClass: (
+    HTMLElements: HTMLElement|HTMLElement[]|NodeListOf<HTMLElement>,
+    className: string|string[],
+    value?: boolean
+  ) => void,
+  startGame: () => void,
 }
 
-btnLogin.addEventListener("click", postLogin);
 
+// +-------------------------------------------------------------------------------------------+ //
+//                                      -  -- Exports --  -                                      //
 
-window.addEventListener("DOMContentLoaded",start);
+export const HTML: HTML = {
+  URI: "http://localhost:3000",
+  defaultUser: "[Not connected...]",
+  mainScene: new MainScene(),
+  socket: null,
 
-function start(){
-  console.log("start lancé");
-  //btnHost.disabled = false;
-  //btnJoin.disabled = false;
-
-    btnHost.addEventListener("click", async () => {
-      toggleDisplay(modalHost);
-      socket.emit("hostRoom", (roomInfo:string[]) => {
-        roomDisplay(roomInfo);
-        hasRoom = true;
-      });
+  toggleDisabled: (
+    HTMLElements: HTMLDisablingElement|HTMLDisablingElement[]|NodeListOf<HTMLDisablingElement>, 
+    value?: boolean
+  ): void => {
+    if(!(HTMLElements instanceof Array) && !(HTMLElements instanceof NodeList)) HTMLElements = [HTMLElements];
+    HTMLElements.forEach(obj => {
+      //value = value ?? !obj.disabled;
+      //obj.disabled = value;
+      obj.classList.toggle('disabled', value);
     });
-    
-    btnJoin.addEventListener("click", () => {
-      toggleModal(roomCodeDiv);
+  },
+  toggleClass: (
+    HTMLElements: HTMLElement|HTMLElement[]|NodeListOf<HTMLElement>,
+    className: string|string[],
+    value?: boolean
+  ): void => {
+    if(HTMLElements instanceof HTMLElement) HTMLElements = [HTMLElements];
+    if(!(className instanceof Array)) className = [className];
+    HTMLElements.forEach(obj => {
+      className.forEach(cn => {
+        obj.classList.toggle(cn, value);
+      })
     });
+  },
+  startGame: (): void => {
+    const loadingScreen: HTMLElement|null = document.querySelector(`#LoadingScreen`);
+    if(loadingScreen) HTML.toggleClass(loadingScreen, 'hidden', false);
     
-    
-    
-    
-    let btnJoinRoomValid:HTMLElement = document.getElementById("btn-joinRoomValid")!;
-    
-    btnJoinRoomValid.addEventListener("click", () => {
-      let valueRoomCode:string = (document.getElementById("room-code") as HTMLInputElement)!.value ;
-      toggleDisplay(modalHost);
-
-      socket.emit("joinRoom", { roomId: valueRoomCode }, (response:string[]) => {
-          console.log("l'information recu en callback est: ",response);
-          hasRoom = true;
-          roomDisplay(response);
-        })
-      });
-
-      
-  
-}
-
-function toggleDisable(obj: HTMLButtonElement|HTMLFieldSetElement|HTMLInputElement|HTMLOptGroupElement|HTMLOptionElement|HTMLSelectElement|HTMLTextAreaElement, value?: boolean): boolean {
-  obj.disabled = value?value:!obj.disabled;
-  return obj.disabled;
-}
-
-
-
-
-
-
-
-export function roomDisplay(dataOfRoom:string[]):void{
-  let idGameHTML:HTMLElement = document.getElementById("idGame")!;
-  try {
-  idGameHTML.innerHTML = dataOfRoom[0];
-  let player1:HTMLElement = document.getElementById("Player1")!;
-  let player2:HTMLElement = document.getElementById("Player2")!;
-  player1.innerHTML = `Joueur 1: ${dataOfRoom[1]}`;
-  player2.innerHTML = `Joueur 2: ${dataOfRoom[2]}`;
-  let player3:HTMLElement = document.getElementById("Player3")!;
-  player3.innerHTML = `Joueur 3: ${dataOfRoom[3]}`;
-  } catch (error) {
-    console.error(error);
-  }
-// Les données sont toujours [0] = roomId [1] = joueur 1 roomId[2] = joueur 2 .. etc 
-
-}
-
-
-
-// pinia singleton
-// vuex
-
-// Modal Host
-export var mainScene:MainScene = new MainScene();
-
-
-const btnDevLaunchGame:HTMLButtonElement = (document.getElementById("DEV_LAUNCH_GAME") as HTMLButtonElement)!;
-
-function manageStartGame(){
-  const loadingModal = document.getElementById("loadingModal");
-  const mainMenu = document.getElementById("mainMenu");
-  if (loadingModal) loadingModal.classList.remove("hidden");
-
-  startGame();
-}
-
-btnDevLaunchGame.addEventListener("click", manageStartGame);
-btnStartGame.addEventListener("click", manageStartGame);
-
-function startGame(){
-
     const config:Phaser.Types.Core.GameConfig = {
-        type: Phaser.AUTO,
-        width: window.innerWidth,
-        height: window.innerHeight,
-        parent: 'game',
-        pixelArt: true
-      };
-    
-    
-      var __game:Phaser.Game = new Phaser.Game(config);
-      __game.scene.add('mainScene', mainScene, true);
-
-
+      type: Phaser.AUTO,
+      width: window.innerWidth,
+      height: window.innerHeight,
+      parent: 'game',
+      pixelArt: true
+    };
+    var game: Phaser.Game = new Phaser.Game(config);
+    game.scene.add('mainScene', HTML.mainScene, true);
+  }
 }
+
+
+// +-------------------------------------------------------------------------------------------+ //
+//                                  -  -- Initialisation --  -                                   //
+
+document.addEventListener("DOMContentLoaded", startMainMenu);

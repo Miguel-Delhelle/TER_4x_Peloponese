@@ -3,9 +3,10 @@
 //import mapPng from '/mapTiled/Tileset/MiniWorldSprites/AllMiniWorldSprites.png'
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
-import Phaser from 'phaser';
+import Phaser, { Math } from 'phaser';
 import Easystar from 'easystarjs';
 import { GreekMap } from './Map/GreekMap';
+import { HTML } from '../..';
 
 
 
@@ -20,7 +21,7 @@ export class MainScene extends Phaser.Scene{
 	private mapController!: MapController;
 	private toolsController!: ToolsController;
 	private marker!: Phaser.GameObjects.Sprite;
-	 private static markerDefaultID: number | string = 91;
+	private static markerDefaultID: number | string = 91;
 	private layers: Phaser.Tilemaps.TilemapLayer[] = [];
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 	private mapSizeXpx!: number;
@@ -28,7 +29,6 @@ export class MainScene extends Phaser.Scene{
 	private tilesets: Map<string,Phaser.Tilemaps.Tileset> = new Map<string,Phaser.Tilemaps.Tileset>();
 	private spritesets: string[] = [];
 
-	private controls!:Phaser.Cameras.Controls.FixedKeyControl;
 	private gameSound!:Phaser.Sound.BaseSound;
 	private clickSound!:Phaser.Sound.BaseSound;
 	private pathfinder!:Easystar.js;
@@ -278,28 +278,10 @@ export class MainScene extends Phaser.Scene{
 		this.clickSound = this.sound.add('clickSound', { volume: 0.8 });
 		this.gameSound.play();
 
-		const cursors = this.input.keyboard!.createCursorKeys();
-		const controlConfig = {
-			camera: this.cameras.main,
-			left: cursors.left,
-			right: cursors.right,
-			up: cursors.up,
-			down: cursors.down,
-			speed: 1.0,
-			zoomIn: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_SUBTRACT),
-			zoomOut: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.NUMPAD_ADD),
-			zoomSpeed: 0.015
-		};
-		this.controls = new Phaser.Cameras.Controls.FixedKeyControl(controlConfig);
-		let gameHtml:HTMLElement = document.getElementById("game")!;
-      let mainMenu:HTMLElement = document.getElementById("mainMenu")!;
-
-      gameHtml.classList.toggle("hidden",false);
-      mainMenu.classList.toggle("hidden",true);
-	  
-	  const loadingModal = document.getElementById("loadingModal");
-		if (loadingModal) loadingModal.classList.add("hidden");
-		mainMenu.classList.remove("blur");
+		let gameScene: HTMLElement = document.getElementById("GameScene") as HTMLElement;
+    let mainMenu: HTMLElement = document.getElementById("MainMenu") as HTMLElement;
+    let loadingScreen: HTMLElement = document.getElementById("LoadingScreen") as HTMLElement;
+    HTML.toggleClass([gameScene,mainMenu,loadingScreen],'hidden');
 	}
 
 
@@ -307,7 +289,7 @@ export class MainScene extends Phaser.Scene{
 
 	public update (tile:any, delta:any): void {
 		this.updateMarkerPosition();
-		this.controls.update(delta);
+		this._mapController.controls.update(delta);
 		this.ourMap.updateCityButtons(this);
 	}
 
@@ -326,7 +308,6 @@ export class MainScene extends Phaser.Scene{
 		this.setMapSizeYpx();
 		this.ourMap = new GreekMap(this.map);
 
-		//const mapGrid: Phaser.GameObjects.Graphics = this.drawMapGridLines(1, Phaser.Display.Color.GetColor(23, 23, 23), 0.25);
 		this.setMarker();
 	}
 
@@ -351,33 +332,6 @@ export class MainScene extends Phaser.Scene{
 				this.clickSound.play();
 			}
 		});
-	}
-
-
-	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
-
-	public drawMapGridLines(
-		lineWidth: number,
-		color: number,
-		alpha?: number
-	): Phaser.GameObjects.Graphics {
-		const graphics = this.add.graphics();
-		graphics.lineStyle(lineWidth, color, alpha);
-		const tileWidth = this.map.tileWidth;
-		const tileHeight = this.map.tileHeight;
-		const mapWidth = this.map.width;
-		const mapHeight = this.map.height;
-		// Draw vertical grid lines
-		for (let x = 0; x <= mapWidth; x++) {
-			graphics.moveTo(x * tileWidth, 0);
-			graphics.lineTo(x * tileWidth, mapHeight * tileHeight);
-		}
-		// Draw horizontal grid lines
-		for (let y = 0; y <= mapHeight; y++) {
-			graphics.moveTo(0, y * tileHeight);
-			graphics.lineTo(mapWidth * tileWidth, y * tileHeight);
-		}
-		return graphics.strokePath();
 	}
 
 

@@ -109,11 +109,9 @@ if (process.env.NODE_ENV !== 'production') {
     })
   );
 }else{
-
   app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname,"..","..","Client","dist","index.html"));
   });
-
   app.use(express.static(path.resolve(__dirname, "../../Client/dist")));
 }
 
@@ -147,6 +145,7 @@ try {
 // Web Socket
 
 var hostedRooms: string[] = [];
+const maxPlayer: number = 3;
 
 function setRoomID(length: number = 8, alphabet: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'): string {
   let s: string = '';
@@ -194,29 +193,39 @@ io.on("connection", (socket) => {
     socket.emit("unitsList", unitsData);
   });
 
-  socket.on("hostRoom",async(callback) => { // Set { <socket.id> }
-    let idGame:string = setRoomID()
+  socket.on("getUnits", () => {
+    console.log("quelqu'un essaye de récupérer les unités")
+    socket.emit("unitsList", unitsData);
+  });
+
+  socket.on("hostRoom", async (callback) => { // Set { <socket.id> }
+    let idGame: string;
+    while(!idGame || hostedRooms.includes(idGame)) {
+      idGame = setRoomID();
+    }
     hostedRooms.push(idGame);
-    socket.data.roomIdHosted = idGame;
     socket.join(idGame);
+    socket.data.roomIdHosted = idGame;
     socket.data.inRoom = idGame;
     //console.log(idGame);
     //console.log(await getUserInRoom(idGame));
     callback(await getRoomInfo(idGame));
-  
-  })
+  });
 
   socket.on("joinRoom", async ({roomId},callback) => {
-    socket.join(roomId);
-    socket.data.inRoom = roomId;
-    let infoRoom:string[] = await getRoomInfo(roomId);
-    console.log("l'information envoyé en callback est: ",infoRoom); 
-    callback(infoRoom);
-    console.log(infoRoom);
-    
-    io.to(roomId).emit("playerJoined", {
-      tabOfRoomInfo: infoRoom
-    });
+    try {
+      if(await isRoomFull(roomId)) throw new Error(`Oh no, the room '${roomId}' is already full!`);
+      socket.join(roomId);
+      socket.data.inRoom = roomId;
+      let infoRoom:string[] = await getRoomInfo(roomId);
+      callback(infoRoom);
+      console.log(infoRoom);
+      io.to(roomId).emit("playerJoined", {
+        tabOfRoomInfo: infoRoom
+      });
+    } catch(err) {
+      callback(err);
+    }
 
   })
 
@@ -256,12 +265,21 @@ async function getRoomInfo(idRoom:string):Promise<string[]>{
   return tabInfo;
 }
 
+async function isRoomFull(idRoom: string): Promise<boolean|Error> {
+  try {
+    if (!hostedRooms.includes(idRoom)) throw new Error(`The room ${idRoom} does not exist...`);
+    let socketsInRoom: RemoteSocket<DecorateAcknowledgementsWithMultipleResponses<DefaultEventsMap>, any>[] = await io.in(idRoom).fetchSockets();
+    return socketsInRoom.length === maxPlayer;
+  } catch(err) {
+    console.log('Error: \n',err.message);
+    throw err;
+  }
+}
+
 async function getUserInRoom(idRoom:string):Promise<UserConnected[]>{
   try {
-    let socketsInRoom:RemoteSocket<DecorateAcknowledgementsWithMultipleResponses<DefaultEventsMap>, any>[] = await io.in(idRoom).fetchSockets();
-
-    let idSocketsInRoom:string[] = [];
-
+    let socketsInRoom: RemoteSocket<DecorateAcknowledgementsWithMultipleResponses<DefaultEventsMap>, any>[] = await io.in(idRoom).fetchSockets();
+    let idSocketsInRoom: string[] = [];
     socketsInRoom.forEach(e => {
       
       let remoteSocketId:string = e.id;

@@ -1,29 +1,29 @@
-import { mainScene} from "../..";
+import { HTML } from "../..";
 
 
 export class Point{
-   private x:number
-   private y:number
+  private _x: number;
+  private _y: number;
 
-   constructor(x:number,y:number){
-      this.x = x;
-      this.y = y;
-   }
+  constructor(x: number=0, y: number=0){
+    this._x = x;
+    this._y = y;
+  }
 
-   public get _x(){return this.x}
-   public get _y(){return this.y}
-   public set _x(newX:number){this.x = newX;}
-   public set _y(newY:number){this.y = newY;}
+  public get x(){return this._x}
+  public get y(){return this._y}
+  public set x(x:number){this._x = x;}
+  public set y(y:number){this._y = y;}
 
-   public get _Tile():Phaser.Tilemaps.Tile{
-      return mainScene._map.getTileAt(this._x,this._y)!;
-   }
+  public getTileAt(nonNull?: boolean, layer?: string|number|Phaser.Tilemaps.TilemapLayer): Phaser.Tilemaps.Tile|null {
+    return HTML.mainScene._map.getTileAt(this.x, this.y, nonNull, layer);
+  }
 
-   public equals(that:Point):boolean{
-      if ((this.x === that.x) && (this.y === that.y)){
-         return true;
-      }
-      else return false;
-   }
+  public equals(that:Point):boolean{
+    if ((this.x === that.x) && (this.y === that.y)){
+        return true;
+    }
+    else return false;
+  }
 
 }

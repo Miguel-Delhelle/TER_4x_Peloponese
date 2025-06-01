@@ -6,97 +6,170 @@
     <title>Greece Anatomy Game</title>
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/ancient-geek">
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/greek-mythology">
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/trajan">
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/taratype">
-    <link rel="stylesheet" href="/src/index.css" />
+    <link rel="stylesheet" href="/src/index.css">
   </head>
   <body>
-    <div id="game" class="hidden">
-      <div id="scene"></div>
-      <!-- Le panneau latéral -->
-        <div id="city-panel" class="city-panel">
-          <button id="city-panel-close" class="city-panel-close">×</button>
-          <h2 id="city-name">Ville</h2>
-          <div id="city-content">
-            <!-- Ici tu injecteras dynamiquement les infos de la cité -->
+    <section id="MainMenu" class="flex-col">
+      <header class="flex-row flex-end">
+          <div class="flex-col flex-center as-center bl-thin clr-primary bg-none">
+            <h2 id="txt-username" class="mx-4"></h2>
           </div>
-        </div>
-
-      <div id="toolBarBox" class="ui hidden">
-      <div id ="subTool" class ="container">
-          <div id = "test" class = "item">Option1</div>
-          <div id = "test2" class = "item">Option2</div>
-          <div id = "test3" class = "item">Option3</div>
-          <div id = "test4" class = "item">Option3</div>
-          <div id = "test5" class = "item">Option3</div>
-
-      </div>
-      <div id="toolsBar" class="container">
-          <div id = "build" class = "item">Construire</div>
-          <div id = "recruit" class = "item">Recruter</div>
-          <div id = "stats" class = "item">Voir unités</div>
-      </div>
-    </div>
-  </div>
-    <div id="mainMenu">
-      <div class="main columns">
-        <div class="left-panel rows">
-          <h1 id="game-title" class="title">GREECE<br>ANATOMY</h1>
-          <div class="main-btn rows" style="margin-top: 10%">
-            <button id="btn-host" class="big-btn round">New Game</button>
-          </div>
-          <div class="main-btn rows join-container">
-            <button id="btn-join" class="big-btn round">Join a Game</button>
-            <div class="room-code">
-              <p>Enter room code:</p>
-              <input id="room-code" type="text" placeholder="paste your room code here" />
-              <button id="btn-joinRoomValid" class="small-btn round">OK</button>
+          <img id="img-profile" class="btn btn-round clr-primary p-0 h-full mx-2 scale-2" src="/res/img/profile.png"/>
+      </header>
+      
+      <div class="flex-row h-full">
+        <!-- Left side -->
+        <div id="left-side" class="w-2_3 flex-col flex-start m-8">
+          <h1 id="game-title" class="relative top-0 m-4 flex-center h-1_2 text-gradient clr-primary animate-breathe">GREECE<br>ANATOMY</h1>
+          <div class="flex-col gap-6 w-1_2 h-1_2">
+            <button id="btn-host" class="btn btn-round clr-primary text-3xl w-full p-4">New Game</button>
+            <button id="btn-join" class="btn btn-round clr-primary text-3xl w-full p-4">Join a Game</button>
+            <div id="db-join" class="flex-gap hidden container w-full mt-0 clr-secondary box-shadow">
+              <label for="inp-room">Enter room code:</label>
+              <input id="inp-room" class="w-full my-2" type="text" placeholder="paste your room code here" />
+              <div class="flex-row flex-end">
+                <button id="btn-join-room" class="btn btn-round clr-primary w-1_2">Join</button>
+                </div>
             </div>
           </div>
         </div>
-        <div class="right-panel rows">
-          <div class="columns user-info">
-            <p id="username">Not connected...</p>
-            <button id="profile" class="round">"</button>
-          </div>
-          <div class="modal">
-            <input id="mail" type="email" placeholder="Email" />
-            <input id="pseudo" type="text" placeholder="Pseudo" />
-            <input id="password" type="password" placeholder="Password" />
-            <div class="columns buttons-row">
-              <button id="btn-register" class="small-btn round">Register</button>
-              <button id="btn-login" class="small-btn round">Login</button>
+        
+        <!-- Right side -->
+        <div id="right-side" class="w-1_3 flex-col mt-hf-1_3">
+          <div id="db-profile" class="hidden container clr-secondary relative h-content top-0 p-4 m-0 bt-0 br-0">
+            <input id="inp-mail" class="input w-full my-2" type="email" placeholder="Email" />
+            <input id="inp-username" class="input w-full my-2" type="text" placeholder="Username" />
+            <input id="inp-password" class="input w-full my-2" type="password" placeholder="Password" />
+            <p id="txt-error" class="hidden error m-2"></p>
+            <div class="flex-row">
+              <button id="btn-register" class="btn btn-round clr-primary w-1_2 mx-2">Register</button>
+              <button id="btn-login" class="btn btn-round clr-primary w-1_2 mx-2">Login</button>
             </div>
           </div>
-          <div id="modalHost" class="dialog-box hidden">
-            <label id="idGame"></label>
-            <select>
-              <option>ATHENES</option>
-              <option>THEBES</option>
-              <option>SPARTE</option>
-            </select>
-            <div>
-                <ul id="Player1">1</ul>
-                <ul id="Player2">2</ul>
-                <ul id="Player3">3</ul>
+          
+          <div id="db-room" class="hidden container flex-col gap-2 w-full h-content p-4 mx-0 my-4 box-shadow clr-secondary">
+            <h4 id="txt-room"></h4>
+            <div id="db-select-city" class="flex-row">
+              <div id="div-p1" theme="ATHENS" class="btn p-0 m-0 clr-primary bg-none flex-col flex-center scale-5 spotlight">
+                <h2 class="fc clr-complement bg-none">Athens</h2>
+                <img class="disp-block" src="/res/img/_ATHENS.png">
+                <p id="player-1" class="absolute">Waiting...</p>
+              </div>
+              <div id="div-p2" theme="SPARTA" class="btn p-0 m-0 clr-primary bg-none flex-col flex-center scale-5 spotlight">
+                <h2 class="fc clr-complement bg-none">Sparta</h2>
+                <img class="disp-block" src="/res/img/_SPARTA.png">
+                <p id="player-2" class="absolute">Waiting...</p>
+              </div>
+              <div id="div-p3" theme="THEBES" class="btn p-0 m-0 clr-primary bg-none flex-col flex-center scale-5 spotlight">
+                <h2 class="fc clr-complement bg-none">Thebes</h2>
+                <img class="disp-block" src="/res/img/_THEBES.png">
+                <p id="player-3" class="absolute">Waiting...</p>
+              </div>
             </div>
-            <button id="StartGame" class="small-btn">Ready</button>
+            <p id="players">Players: </p>
+            <button id="btn-ready" class="btn btn-round as-center clr-primary w-1_2 mx-2">Ready</button>
           </div>
         </div>
       </div>
-      <button id="DEV_LAUNCH_GAME">DEV_LAUNCH_GAME</button>
-      <footer>
-        <span>KARADENIZ Feyza</span>
-        <span>PHILIP Luna</span>
-        <span>DELHELLE Miguel</span>
-        <span>ROSIER Mathis</span>
+      
+      <img id="img-mascot" class="scale-10 zi-4096" src="/res/img/athena.png"/>
+      
+      <footer class="flex-row">
+        <p>KARADENIZ Feyza</p>
+        <p>PHILIP Luna</p>
+        <p>DELHELLE Miguel</p>
+        <p>ROSIER Mathis</p>
       </footer>
-    </div>
+    </section>
+    
+    <section id="GameScene" class="hidden flex-col">
+      <header class="flex-row h-hf-2_3 bc clr-primary box-shadow">
+        <!-- LEFT SIDE: Player Info -->
+        <div class="flex-row flex-start gap-2 w-1_3 h-full p-2 bc b-thin">
+          <div class="flex-col flex-center">
+            <h5>Username</h5>
+            <img id="img-profile" class="btn btn-round clr-primary p-0 h-full mx-2 scale-2" src="/res/img/profile.png"/>
+          </div>
+          <div class="flex-col flex-center gap-2 w-2_3">
+            <h2 class="w-full bc bb-thin clr-secondary bg-none p-2 text-center">City Name</h2>
+            <p class="w-full p-2 text-center">Round .../...</p>
+          </div>
+        </div>
+        <!-- CENTER: Resources -->
+        <div class="flex-row flex-center gap-2 w-1_3 h-full p-2 bc b-thin">
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
+            </div>
+          </div>
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
+            </div>
+          </div>
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
+            </div>
+          </div>
+          <div class="flex-col flex-center">
+            <img/>
+            <div class="flex-row flex-center">
+              <p>Quantity: <span>128</span> / <span>500</span></p>
+              <p>Gain: <span>+26</span> / round</p>
+            </div>
+          </div>
+        </div>
+        <!-- RIGHT SIDE: Population & Money -->
+        <div class="flex-row flex-end gap-2 w-1_3 h-full p-2 bc b-thin">
+        </div>
+      </header>
+      <div id="game"></div>
+      <footer class="flex-row h-hf-1_3 bc clr-primary box-shadow"></footer>
+      <!-- City panel -->
+      <div id="city-panel" class="city-panel">
+        <button id="city-panel-close" class="city-panel-close">×</button>
+        <h2 id="city-name" class="text-xl font-title">Ville</h2>
+        <div id="city-content">
+          <!-- Dynamic city info will be injected here -->
+        </div>
+      </div>
 
-    <script script type="module" src="/src/index.ts"></script>
-    <div id="loadingModal" class=" rows hidden">
-      <img src="/res/img/loading.gif" alt="Loading..." />
-      <h1 class="title">Loading...</h1>
-    </div>
+      <div id="toolBarBox" class="hidden">
+        <div id="subTool" class="container flex-row">
+            <div id="test" class="p-2">Option1</div>
+            <div id="test2" class="p-2">Option2</div>
+            <div id="test3" class="p-2">Option3</div>
+            <div id="test4" class="p-2">Option4</div>
+            <div id="test5" class="p-2">Option5</div>
+        </div>
+        <div id="toolsBar" class="container flex-row">
+          <div id="build" class="p-2">Construire</div>
+          <div id="recruit" class="p-2">Recruter</div>
+          <div id="stats" class="p-2">Voir unités</div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="LoadingScreen" class="hidden flex-col w-screen h-screen bg-blur-5">
+      <img src="/res/img/loading.gif" class="as-center" alt="Loading..." />
+      <h1 class="text-4xl text-center text-gradient clr-secondary font-title my-2 animate-breathe">Loading...</h1>
+    </section>
+    
+    <section id="AlertMessage" class="hidden flex-col flex-center bg-blur-5">
+      <div id="db-alert" class="absolute as-center w-1_3 h-1_2 container p-0">
+        <div class="flex-row flex-end bc-secondary bg-secondary bb-normal bb p-0 h-hf-1_5">
+        </div>
+      </div>
+    </section>
+    
+    <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
