@@ -27,7 +27,7 @@ export interface IServerToClientEvents {
 
 export interface IClientToServerEvents {
   
-  'login': (id: number) => void;
+  'login': (mail: string, callback: (response: {ok: boolean, user?: IPlayer}) => void) => void;
   'room-host': (callback: (response: {ok: boolean, room?: IGameRoom}) => void) => void;
   'room-join': (id: string, callback: (response: {ok: boolean, room?: IGameRoom}) => void) => void;
   'room-leave': (id: string, callback: (response: {ok: boolean}) => void) => void;

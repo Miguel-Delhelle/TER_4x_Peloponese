@@ -1,50 +1,44 @@
 
 //                                      -  -- Imports --  -                                      //
 
+import type { SocketIOClient } from "common";
 import { MainScene } from "./classPackage/PhaserScene/MainScene";
 import { startMainMenu } from "./scp_mainMenu";
-//import { Player } from "./classPackage/Player/player";
+import type { IPlayer, IGameRoom } from "common";
 
 // +-------------------------------------------------------------------------------------------+ //
 //                                       -  -- Types --  -                                       //
 
-export type HTMLDisablingElement = 
-  HTMLButtonElement|
-  HTMLFieldSetElement|
-  HTMLInputElement|
-  HTMLOptGroupElement|
-  HTMLOptionElement|
-  HTMLSelectElement|
-  HTMLTextAreaElement;
+const TAA_HTMLDisablingElement = [
+  HTMLButtonElement,
+  HTMLFieldSetElement,
+  HTMLInputElement,
+  HTMLOptGroupElement,
+  HTMLOptionElement,
+  HTMLSelectElement,
+  HTMLTextAreaElement,
+] as const;
+export type HTMLDisablingElement = InstanceType<typeof TAA_HTMLDisablingElement[number]>;
+export type anyHTMLDisablingElement =
+  | HTMLDisablingElement
+  | HTMLDisablingElement[]
+  | NodeListOf<HTMLDisablingElement>;
 
-export type Player = {
-  username: string,
-  socket: SocketIOClient.Socket,
-  faction?: string,
-}
-
-export type GameRoom = {
-  id: string,
-  players: Player[],
-}
+export type anyHTMLElement =
+  HTMLElement|
+  HTMLElement[]|
+  NodeListOf<HTMLElement>;
 
 type HTML = {
   readonly URI: string,
   readonly defaultUser: string,
   readonly mainScene: MainScene,
-  socket: SocketIOClient.Socket|null,
-  currentUser?: Player|string,
-  currentRoom?: GameRoom|string,
+  socket?: SocketIOClient,
+  currentUser?: IPlayer,
+  currentRoom?: IGameRoom,
 
-  toggleDisabled: (
-    HTMLElements: HTMLDisablingElement|HTMLDisablingElement[]|NodeListOf<HTMLDisablingElement>, 
-    value?: boolean
-  ) => void,
-  toggleClass: (
-    HTMLElements: HTMLElement|HTMLElement[]|NodeListOf<HTMLElement>,
-    className: string|string[],
-    value?: boolean
-  ) => void,
+  toggleDisabled: (HTMLElements: anyHTMLElement, value?: boolean) => void,
+  toggleClass: (HTMLElements: anyHTMLElement, className: string|string[], value?: boolean) => void,
   startGame: () => void,
 }
 
@@ -56,24 +50,18 @@ export const HTML: HTML = {
   URI: "http://localhost:3000",
   defaultUser: "[Not connected...]",
   mainScene: new MainScene(),
-  socket: null,
 
-  toggleDisabled: (
-    HTMLElements: HTMLDisablingElement|HTMLDisablingElement[]|NodeListOf<HTMLDisablingElement>, 
-    value?: boolean
-  ): void => {
-    if(!(HTMLElements instanceof Array) && !(HTMLElements instanceof NodeList)) HTMLElements = [HTMLElements];
+  toggleDisabled: (HTMLElements: anyHTMLElement, value?: boolean): void => {
+    if(HTMLElements instanceof HTMLElement) HTMLElements = [HTMLElements];
     HTMLElements.forEach(obj => {
-      //value = value ?? !obj.disabled;
-      //obj.disabled = value;
+      if(TAA_HTMLDisablingElement.some(e => obj instanceof e)) {
+        value = value ?? !(obj as HTMLDisablingElement).disabled;
+        (obj as HTMLDisablingElement).disabled = value;
+      }
       obj.classList.toggle('disabled', value);
     });
   },
-  toggleClass: (
-    HTMLElements: HTMLElement|HTMLElement[]|NodeListOf<HTMLElement>,
-    className: string|string[],
-    value?: boolean
-  ): void => {
+  toggleClass: (HTMLElements: anyHTMLElement, className: string|string[], value?: boolean): void => {
     if(HTMLElements instanceof HTMLElement) HTMLElements = [HTMLElements];
     if(!(className instanceof Array)) className = [className];
     HTMLElements.forEach(obj => {

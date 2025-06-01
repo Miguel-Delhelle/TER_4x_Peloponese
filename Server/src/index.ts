@@ -7,7 +7,7 @@ import { Database } from "sqlite3";
 import * as bcrypt from 'bcrypt';
 import { Server } from 'socket.io';
 import { createServer } from "http";
-import { IClientToServerEvents,IServerToClientEvents, IUser } from "common";
+import { IClientToServerEvents,IServerToClientEvents, IUser, ResponseLogin, ResponseRegister } from "common";
 import { createProxyMiddleware } from "http-proxy-middleware";
 import { GreekMapModel } from "./MapModel/GreekMapModel";
 import { GameSocketHandler } from "./socket/GameSocketHandler";
@@ -47,15 +47,15 @@ app.post('/api/register', async (req,response) => {
     await AppDataSource.manager.save(user);
     response.status(200).json({
       msg: "Successfully registered",
-      data: user as IUser,
-    });
+      user: user as IUser,
+    } as ResponseRegister);
   } catch(err) {
     response.status(500).json({
-      error: "Incorrect input for registration (false)",
+      error: "Missing input for registration (false) or internal server error",
       mail: req.body.mail?true:false,
       username: req.body.username?true:false,
       password: req.body.password?true:false,
-    });
+    } as ResponseRegister);
   }
 });
 
@@ -69,19 +69,19 @@ app.post('/api/login', async function(req,response) {
       delete user.hashedPassword;
       response.status(200).json({
         msg: "Successfully logged in",
-        data: user as IUser,
-      });
+        user: user as IUser,
+      } as ResponseLogin);
     } else {
       response.status(403).json({
         error: "Invalid password",
-      });
+      } as ResponseLogin);
     }
   } catch (err) {
     response.status(500).json({
-      error: "Incorrect input for login (false)",
+      error: "Missing input for login (false) or internal server error",
       mail: req.body.mail?true:false,
       password: req.body.password?true:false,
-    });
+    } as ResponseLogin);
   }
 });
 
