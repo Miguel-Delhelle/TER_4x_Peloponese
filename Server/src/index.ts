@@ -60,7 +60,7 @@ app.post('/api/login', async function(req,response) {
   try {
     const mail: string = req.body.mail;
     const password: string = req.body.password;
-    const user = await AppDataSource.manager.findOneBy(User, {mail: mail});
+    const user = await AppDataSource.manager.findOneBy(User, {_mail: mail});
 
     if (await verifyPassword(password, user.hashedPassword)) {
       delete user.hashedPassword;
@@ -74,6 +74,7 @@ app.post('/api/login', async function(req,response) {
       } as ResponseLogin);
     }
   } catch (err) {
+    console.log(err);
     response.status(500).json({
       error: "Missing input for login (false) or internal server error",
       mail: req.body.mail?true:false,

@@ -8,7 +8,7 @@ export class User implements IUser,ClassManipulation {
   private _id: number;
 
   @Column({ unique: true })
-  private _mail: string;
+  public _mail: string;
 
   @Column()
   private _username: string;
