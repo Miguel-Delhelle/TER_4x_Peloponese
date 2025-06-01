@@ -1,18 +1,57 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
+import { FACTION, IPlayer, IGameRoom, ClassManipulation } from "common";
+import { GameRoom } from "../../socket/GameRoom";
+import { Socket } from "socket.io";
 import { User } from "./User";
-import { UserConnected } from "./UserConnected";
 
 
-export class Player {
+export class Player extends User implements IPlayer,ClassManipulation {
 
-   public user:UserConnected;
-   public faction:string;
-   public room:string;
+  private _socket: Socket;
+  private _room: GameRoom;
+  private _isReady: boolean = false;
+  private _faction: FACTION = FACTION.OTHER;
+  private _from: User;
 
-   constructor(user: UserConnected, faction: string, room: string) {
-      this.user = user;
-      this.faction = faction;
-      this.room = room;
-    }
+  constructor(from: User, socket: Socket) {
+    super(from.mail, from.username);
+    this._from = from;
+    this._socket = socket;
+    Object.assign(this, from);
+  }
+
+  get socket(): Socket {return this._socket;}
+
+  get room(): IGameRoom {return this._room;}
+  set room(room: GameRoom) {this._room = room;}
+
+  get isReady(): boolean {return this._isReady;}
+  set isReady(value: boolean) {this._isReady = value;}
+
+  get faction(): FACTION {return this._faction;}
+  set faction(faction: FACTION) {this._faction = faction;}
+
+  public toString(): string {
+    const user: string = this._from.toString();
+    return "Player("+
+      [
+        user,
+        "socket: "+this.socket,
+        "room: "+this.room,
+        "isReady: "+this.isReady,
+        "faction: "+this.faction,
+      ].join(", ")+")"
+    ;
+  }
+
+  public toJSON(includePrivate: boolean = false): Object {
+    const user: Object = this._from.toJSON(includePrivate);
+    return {
+      ...user,
+      socket: this.socket,
+      room: this.room,
+      isReady: this.isReady,
+      faction: this.faction,
+    };
+  }
 
 }

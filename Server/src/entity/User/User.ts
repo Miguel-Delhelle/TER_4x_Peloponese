@@ -1,45 +1,60 @@
+import { ClassManipulation, IUser } from "common"
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @Entity()
-export class User {
+export class User implements IUser,ClassManipulation {
 
-    @PrimaryGeneratedColumn()
-    public id: number
+  @PrimaryGeneratedColumn()
+  private _id: number;
 
-    @Column({ unique: true })
-    public mail:string
+  @Column({ unique: true })
+  private _mail: string;
 
-    @Column()
-    public username:string
+  @Column()
+  private _username: string;
 
-    @Column()
-    public hashedPassword?:string
- 
-    public constructor (mail:string,username:string,password:string = "default",id?:number){
-        this.mail = mail;
-        this.username = username;
-        this.hashedPassword = password;
-        if ((id !== undefined) && (id !== null)){this.id = id}
-    }
- 
- 
-    public get _hashedPassword(){
-       return this.hashedPassword;
-    }
- 
-    public get _username(){
-       return this.username;
-    }
- 
-    public get _id(){
-       return this.id;
-    }
-    public get _mail(){
-       return this.mail;
-    }
+  @Column()
+  private _hashedPassword?: string;
 
-    public toString(){
-      return `mail : ${this.mail}, username: ${this.username}, id: ${this.id}`
-    }
+  public constructor (mail: string, username: string, password: string = "default", id?: number){
+      this._mail = mail;
+      this._username = username;
+      this._hashedPassword = password;
+      if (id) this._id = id;
+  }
+
+  get id(): number {return this._id;}
+
+  get mail(): string {return this._mail;}
+
+  get username(): string {return this._username;}
+
+  get hashedPassword(): string {return this._hashedPassword;}
+  set hashedPassword(value: string) {this._hashedPassword = value;}
+
+  public toString(): string {
+    return "User("+
+      [
+        "id: "+this.id,
+        "mail: "+this.mail,
+        "username: "+this.username,
+      ].join(", ")+")"
+    ;
+  }
+
+  public toJSON(includePrivate: boolean = false): Object {
+    return includePrivate?
+      {
+        id: this.id,
+        mail: this.mail,
+        username: this.username,
+        hashedPassword: this.hashedPassword,
+      }:
+      {
+        id: this.id,
+        mail: this.mail,
+        username: this.username,
+      };
+  }
 
 }

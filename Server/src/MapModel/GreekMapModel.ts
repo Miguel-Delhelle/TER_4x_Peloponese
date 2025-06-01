@@ -1,7 +1,9 @@
 import { Tile } from "./TileModel";
 import { Point } from "./Point";
 import { Terrain } from "./TerrainModel";
-import { FACTION } from "./EFaction";
+import { IClientToServerEvents } from "common";
+import { IGameRoom } from "common";
+
 
 export class GreekMapModel{
    

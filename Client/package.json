@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "common": "file:../Common",
     "cors": "^2.8.5",
     "easystarjs": "^0.4.4",
     "phaser": "^3.88.2",
