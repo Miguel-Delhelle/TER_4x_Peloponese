@@ -7,7 +7,7 @@ import { FACTION } from "common";
 export class Melee extends Unit{
 
 
-   constructor(id:string,faction:FACTION,coordonnee:Tile,
+   constructor(id:string,faction:string,coordonnee:Tile,
          typeAnimation:TypeAnimation,spriteSheet:string[],
          northAnim:AnimID[],westAnim:AnimID[],southAnim:AnimID[],eastAnim:AnimID[],pv:number = 100){
       

@@ -4,7 +4,7 @@ import { FACTION } from "common";
 
 export interface IEntity{
    id:string;
-   faction:FACTION;
+   faction:string;
    coordonnee:Tile;   
 
    spawn():void;

@@ -7,9 +7,9 @@ export class Tile{
 
    public id:Point;
    public terrain:Terrain;
-   public faction:FACTION;
+   public faction:string;
 
-   constructor(id: Point, terrain: Terrain, faction:FACTION = FACTION.WILDERNESS) {
+   constructor(id: Point, terrain: Terrain, faction:string = "Wilderness") {
       this.id = id;
       this.terrain = terrain;
       this.faction = faction
