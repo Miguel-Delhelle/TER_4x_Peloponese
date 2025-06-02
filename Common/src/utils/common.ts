@@ -16,7 +16,7 @@ import { ConsoleOutputType } from "../types/common";
  * - `hh`:    Hours, zero-padded (00-23)
  * - `mm`:    Minutes, zero-padded (00-59)
  * - `ss`:    Seconds, zero-padded (00-59)
- * - `ms`:    Milliseconds (0-999)
+ * - `ms`:    Milliseconds (000-999)
  * 
  * @returns {string} The formatted date string
  * 
@@ -40,7 +40,7 @@ export function getDate(date: Date = new Date(), format: string = "YYYY/MM/DD-hh
     hh: date.getHours().toString().padStart(2,'0'),
     mm: date.getMinutes().toString().padStart(2,'0'),
     ss: date.getSeconds().toString().padStart(2,'0'),
-    ms: date.getMilliseconds().toString(),
+    ms: date.getMilliseconds().toString().padEnd(3, '0'),
   }
   Object.entries(config).forEach(([key, value]) => {
     format = format.replace(

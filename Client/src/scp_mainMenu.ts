@@ -4,7 +4,7 @@ import { HTML } from ".";
 import { FACTION, type IGameRoom,type IPlayer, type ResponseLogin, type ResponseRegister } from "common";
 import { printMessage } from "common";
 import { io } from "socket.io-client";
-//import { startListenerSocket } from "./Network/ListenerSocket";
+import { startListenerSocket } from "./Network/ListenerSocket";
 
 type HTMLTextElement = HTMLParagraphElement|HTMLHeadingElement;
 // ----------------------------------------[ MainMenu ]----------------------------------------- //
@@ -19,12 +19,12 @@ const btnHost = section.querySelector(`#btn-host`) as HTMLButtonElement;
 const dbRoom = section.querySelector(`#db-room`) as HTMLDivElement;
 const txtRoom = dbRoom.querySelector(`#txt-room`) as HTMLTextElement;
 const divP1 = dbRoom.querySelector(`#div-p1`) as HTMLDivElement;
-const player1 = divP1.querySelector(`#player-1`) as HTMLTextElement;
+const txtplayer1 = divP1.querySelector(`#player-1`) as HTMLTextElement;
 const divP2 = dbRoom.querySelector(`#div-p2`) as HTMLDivElement;
-const player2 = divP2.querySelector(`#player-2`) as HTMLTextElement;
+const txtplayer2 = divP2.querySelector(`#player-2`) as HTMLTextElement;
 const divP3 = dbRoom.querySelector(`#div-p3`) as HTMLDivElement;
-const player3 = divP3.querySelector(`#player-3`) as HTMLTextElement;
-const players = dbRoom.querySelector(`#players`) as HTMLTextElement;
+const txtplayer3 = divP3.querySelector(`#player-3`) as HTMLTextElement;
+const txtplayers = dbRoom.querySelector(`#players #players-list`) as HTMLSpanElement;
 const btnReady = dbRoom.querySelector(`#btn-ready`) as HTMLButtonElement;
 
 const btnJoin = section.querySelector(`#btn-join`) as HTMLButtonElement;
@@ -128,15 +128,15 @@ async function handleLogin(): Promise<void> {
       txtProfile.textContent = data.user!.username;
       HTML.toggleClass(txtProfile, 'disabled', false);
       HTML.socket = io(HTML.URI);
-      HTML.socket.emit("login", data.user!.mail, async (response:any) => {
-        if(await response.ok) {
+      HTML.socket.emit("login", data.user!.mail, (response:any) => {
+        if(response.ok) {
           HTML.currentUser = response.user as IPlayer;
           printMessage(`Succesfully logged in as: ${HTML.currentUser.username}`,'info');
           HTML.toggleDisabled([btnHost, btnJoin], false);
           clearOnRegisterLogin(false);
           HTML.toggleClass(dbProfile, 'hidden');
           startEventListener();
-          //startListenerSocket();
+          startListenerSocket();
         } else {
           printMessage("An error occurred during the login verification...",'warn');
           console.log(response);
@@ -166,29 +166,29 @@ function handleReady(): void {
     playerSpot.attributes.removeNamedItem('data-city');
     HTML.socket?.emit("isReadyToPlay", {player: playerName, city: ''});
   }*/
-  if([player1, player2, player3].every(p => p.getAttribute('data-player') && p.getAttribute('data-city'))) HTML.startGame;
+  if([txtplayer1, txtplayer2, txtplayer3].every(p => p.getAttribute('data-player') && p.getAttribute('data-city'))) HTML.startGame;
 }
 
-async function handleCharacterPick(event: Event): Promise<void> {
+function handleCharacterPick(event: Event): void {
   let pick: HTMLDivElement;
   let play: HTMLParagraphElement;
   let unpick: HTMLDivElement[] = [divP1,divP2,divP3];
-  let unplay: HTMLParagraphElement[] = [player1,player2,player3];
+  let unplay: HTMLParagraphElement[] = [txtplayer1,txtplayer2,txtplayer3];
   if(event.target as Node === divP1 as Node) {
     pick = divP1;
     unpick = [divP2,divP3];
-    play = player1;
-    unplay = [player2,player3]
+    play = txtplayer1;
+    unplay = [txtplayer2,txtplayer3]
   } else if(event.target as Node === divP2 as Node) {
     pick = divP2;
     unpick = [divP1,divP3];
-    play = player2;
-    unplay = [player1,player3]
+    play = txtplayer2;
+    unplay = [txtplayer1,txtplayer3]
   } else if(event.target as Node === divP3 as Node) {
     pick = divP3;
     unpick = [divP1,divP2];
-    play = player3;
-    unplay = [player1,player2]
+    play = txtplayer3;
+    unplay = [txtplayer1,txtplayer2]
   } else return;
   play.textContent = (HTML.currentUser as IPlayer).username;
   HTML.toggleClass(unpick,'disabled',true);
@@ -208,7 +208,7 @@ section?.addEventListener("click", event => {
   // Hide all the dialog-boxes through the 'hidden' class
   if(triggerElements.every(e => !e.contains(target))) {
     event.stopPropagation();
-    HTML.toggleClass([dbRoom, dbJoin, dbProfile], 'hidden', true);
+    HTML.toggleClass([dbJoin, dbProfile], 'hidden', true);
   }
 });
 
@@ -225,9 +225,10 @@ imgMascot.addEventListener("click", HTML.startGame);
 
 function startEventListener(): void {
 
-  async function handleHost(): Promise<void> {
+  function handleHost(): void {
     if(!dbRoom.classList.contains('hidden')) {
-      HTML.socket?.emit("room-host", async (response:any) => {
+      btnHost.textContent = "Leave Room";
+      HTML.socket?.emit("room-host", (response:any) => {
         if(response.ok) {
           HTML.currentRoom = response.room as IGameRoom;
           updateRoomInfo(HTML.currentRoom);
@@ -235,18 +236,28 @@ function startEventListener(): void {
           printMessage("An error occurred when creating a room...",'warn');
         }
       });
+    } else if(HTML.currentRoom) {
+      btnHost.textContent = "New Game";
+      HTML.socket?.emit("room-leave", HTML.currentRoom.id, (response) => {
+        //toDo!!
+        if(response.ok) {
+          console.log("you left the room");
+        }
+      });
     }
   }
 
-  async function handleJoin(): Promise<void> {
-    HTML.socket?.emit("room-join", inpRoom.value, async (response:any) => {
+  function handleJoin(): void {
+    HTML.socket?.emit("room-join", inpRoom.value, (response) => {
       try {
         if(response.ok) {
           HTML.currentRoom = response.room as IGameRoom;
           HTML.toggleClass(dbJoin, 'hidden', true);
           HTML.toggleClass(dbRoom, 'hidden', false);
+          btnHost.textContent = "Leave Room";
           updateRoomInfo(HTML.currentRoom);
         }
+        if(response.error) alert(response.error);
       } catch(err) {
         console.log(err);
         alert(err);
@@ -270,28 +281,28 @@ function startEventListener(): void {
 // -------------------------------------------[ END ]------------------------------------------- //
 }
 
+const sep: string = ', ';
 export function updateRoomInfo(data: IGameRoom): void {
   try {
     txtRoom.textContent = data.id;
     const playersInRoom: IPlayer[] = data.players;
-    players.textContent = "Players: ";
+    txtplayers.textContent = playersInRoom.map(p => p.username).join(sep);
     playersInRoom.forEach(p => {
       if(p) {
         const u: string = p.username;
         const f: FACTION = p.faction;
-        players.textContent += `${u} `;
         if(f) {
           switch (f) {
             case FACTION.ATHENS:
-              player1.textContent = u;
+              txtplayer1.textContent = u;
               HTML.toggleClass(divP1,'disabled',true);
               break;
             case FACTION.SPARTA:
-              player2.textContent = u;
+              txtplayer2.textContent = u;
               HTML.toggleClass(divP2,'disabled',true);
               break;
             case FACTION.THEBES:
-              player3.textContent = u;
+              txtplayer3.textContent = u;
               HTML.toggleClass(divP3,'disabled',true);
               break;
             default:
@@ -302,4 +313,21 @@ export function updateRoomInfo(data: IGameRoom): void {
   } catch(err) {
     console.log(err);
   }
+}
+
+export function addPlayer(player: IPlayer): void {
+  txtplayers.textContent += sep+player.username;
+}
+
+export function removePlayer(player: IPlayer): boolean {
+  const name: string = player.username;
+  if(txtplayers.textContent?.includes(name)) {
+    txtplayers.textContent = txtplayers.textContent
+      .split(sep)
+      .map(p => p.trim())
+      .filter(p => p!=name)
+      .join(sep);
+    return true;
+  }
+  return false;
 }

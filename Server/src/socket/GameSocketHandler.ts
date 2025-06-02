@@ -77,21 +77,24 @@ export class GameSocketHandler {
           const player: Player = this._users.get(socket);
           if(room) {
             if(room.addPlayer(player)) {
+              if(this.io.to(room.id).emit("player-joined", player.serialize() as IPlayer)) // -> Notify the room of the joining player
+                callback({ok: true, room: room.serialize() as IGameRoom});
+              else
+                callback({ok: true, room: room.serialize() as IGameRoom, error: "The server did not successfully informed the room of your arrival"});
               socket.join(room.id);
               printMessage(`${player.username} (id: ${player.id}) joined the room ${room.id} (${room.players.length}/${GameRoom.ROOM_MAXPLAYER} players), see below the room data:`,'info');
               console.log(room);
-              callback({ok: true, room: room.serialize() as IGameRoom});
             } else {
               printMessage(`${player.username} (id: ${player.id}) tried to join the room ${room.id} but the room is already full (${room.players.length}/${GameRoom.ROOM_MAXPLAYER} players)`,'error');
-              callback({ok: false, room: room.serialize() as IGameRoom});
+              callback({ok: false, error: `${room.id} is already full (max player: ${GameRoom.ROOM_MAXPLAYER})`});
             }
           } else {
-            printMessage(`${player.username} (id: ${player.id}) tried to join a non-existing room (${room.id})`,'error');
-            callback({ok: false});
+            printMessage(`${player.username} (id: ${player.id}) tried to join a non-existing room (${id})`,'error');
+            callback({ok: false, error: `${id}: Invalid room ID`});
           }
         } catch(err) {
           console.error(err);
-          callback({ok: false});
+          callback({ok: false, error: `An error occured joining the room ${id}`});
         }
       });
 
@@ -103,16 +106,26 @@ export class GameSocketHandler {
             socket.leave(room.id);
             printMessage(`${player.username} (id: ${player.id}) left the room ${room.id} (${room.players.length}/${GameRoom.ROOM_MAXPLAYER} players), see below the room data:`,'info');
             console.log(room);
-            callback({ok: true});
+            if(this.io.to(room.id).emit("player-left", player.serialize() as IPlayer)) // -> Notify the room of the leaving player
+              callback({ok: true});
+            else
+              callback({ok: true, error: "The server did not successfully informed the room of your departure"});
           } else {
-            printMessage(`${player.username} (id: ${player.id}) couldn't be removed from the room ${room.id}`,'error');
-            callback({ok: false});
+            printMessage(`${player.username} (id: ${player.id}) couldn't be removed from the room ${id}`,'error');
+            callback({ok: false, error: `Could not be able to remove you from ${id}`});
           }
         } catch(err) {
           console.error(err);
-          callback({ok: false});
+          callback({ok: false, error: `An error occured leaving the room ${id}`});
         }
       });
+
+      /*
+      socket.on("getUnits", () => {
+        console.log("quelqu'un essaye de récupérer les unités")
+        socket.emit("unitsList", unitsData);
+      });
+      */
 
     });
   }
