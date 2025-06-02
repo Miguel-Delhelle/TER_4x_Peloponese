@@ -4,13 +4,10 @@ import { IPlayer } from './users';
 
 export interface IGameRoom {
 
-  get id(): string;
-  get players(): IPlayer[];
-  get status(): GameStatus;
+  id: string;
+  players: IPlayer[];
+  status: GameStatus;
 
-  isFull(): boolean;
-  allSockets(): AnySocket[];
-  //sendMessageToAll(ev: string, ...args: any[]): void;
   sendMessageTo(socket: AnySocket|AnySocket[], ev: string, ...args: any[]): void;
 
 }

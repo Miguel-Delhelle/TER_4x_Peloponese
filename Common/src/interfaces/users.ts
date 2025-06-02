@@ -4,18 +4,15 @@ import { Socket } from 'socket.io';
 
 export interface IUser {
 
-  get username(): string;
-  get mail(): string;
+  username: string;
+  mail: string;
 
 }
 
 export interface IPlayer extends IUser {
 
-  get socket(): Socket;
-  get room(): IGameRoom;
-  get faction(): FACTION;
-  get isReady(): boolean;
-  set isReady(value: boolean);
-  set faction(faction: FACTION);
+  roomID: string|undefined;
+  faction: FACTION;
+  isReady: boolean;
 
 }

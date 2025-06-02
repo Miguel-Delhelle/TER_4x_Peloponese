@@ -21,8 +21,10 @@ export class Player extends User implements IPlayer,ClassManipulation {
 
   get socket(): Socket {return this._socket;}
 
-  get room(): IGameRoom {return this._room;}
+  get room(): GameRoom {return this._room;}
   set room(room: GameRoom) {this._room = room;}
+
+  get roomID(): string|undefined {return this._room?.id;}
 
   get isReady(): boolean {return this._isReady;}
   set isReady(value: boolean) {this._isReady = value;}
@@ -52,6 +54,16 @@ export class Player extends User implements IPlayer,ClassManipulation {
       isReady: this.isReady,
       faction: this.faction,
     };
+  }
+
+  public serialize(): Object {
+    const user: Object = this._from.serialize();
+    return {
+      ...user,
+      roomID: this.roomID,
+      faction: this.faction,
+      isReady: this.isReady,
+    }
   }
 
 }

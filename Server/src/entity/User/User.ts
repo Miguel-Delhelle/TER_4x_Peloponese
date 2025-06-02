@@ -5,32 +5,23 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 export class User implements IUser,ClassManipulation {
 
   @PrimaryGeneratedColumn()
-  private _id: number;
+  public id: number;
 
   @Column({ unique: true })
-  public _mail: string;
+  public mail: string;
 
   @Column()
-  private _username: string;
+  public username: string;
 
   @Column()
-  private _hashedPassword?: string;
+  public hashedPassword?: string;
 
   public constructor (mail: string, username: string, password: string = "default", id?: number){
-      this._mail = mail;
-      this._username = username;
-      this._hashedPassword = password;
-      if (id) this._id = id;
+      this.mail = mail;
+      this.username = username;
+      this.hashedPassword = password;
+      if (id) this.id = id;
   }
-
-  get id(): number {return this._id;}
-
-  get mail(): string {return this._mail;}
-
-  get username(): string {return this._username;}
-
-  get hashedPassword(): string {return this._hashedPassword;}
-  set hashedPassword(value: string) {this._hashedPassword = value;}
 
   public toString(): string {
     return "User("+
@@ -55,6 +46,13 @@ export class User implements IUser,ClassManipulation {
         mail: this.mail,
         username: this.username,
       };
+  }
+
+  public serialize(): Object {
+    return {
+      mail: this.mail,
+      username: this.username,
+    }
   }
 
 }

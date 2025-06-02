@@ -51,7 +51,7 @@ export class GameSocketHandler {
           const player: Player = new Player(user, socket);
           this._users.set(socket,player);
           printMessage(`${user.username} connected`,'info');
-          callback({ok: true, user: player});
+          callback({ok: true, user: player.serialize() as IPlayer});
         } catch(err) {
           console.error(err);
           callback({ok: false});
@@ -61,10 +61,10 @@ export class GameSocketHandler {
       socket.on("room-host", (callback) => {
         try {
           const player: Player = this._users.get(socket);
-          const room: IGameRoom = this.addRoom(player);
+          const room: GameRoom = this.addRoom(player);
           socket.join(room.id);
           printMessage(`The room ${room.id} has been created, hosted by ${player.username}`,'info')
-          callback({ok: true, room: room});
+          callback({ok: true, room: room.serialize() as IGameRoom});
         } catch(err) {
           console.error(err);
           callback({ok: false});
@@ -80,10 +80,10 @@ export class GameSocketHandler {
               socket.join(room.id);
               printMessage(`${player.username} (id: ${player.id}) joined the room ${room.id} (${room.players.length}/${GameRoom.ROOM_MAXPLAYER} players), see below the room data:`,'info');
               console.log(room);
-              callback({ok: true, room: room});
+              callback({ok: true, room: room.serialize() as IGameRoom});
             } else {
               printMessage(`${player.username} (id: ${player.id}) tried to join the room ${room.id} but the room is already full (${room.players.length}/${GameRoom.ROOM_MAXPLAYER} players)`,'error');
-              callback({ok: false, room: room});
+              callback({ok: false, room: room.serialize() as IGameRoom});
             }
           } else {
             printMessage(`${player.username} (id: ${player.id}) tried to join a non-existing room (${room.id})`,'error');
@@ -123,7 +123,7 @@ export class GameSocketHandler {
     return s;
   }
 
-  public addRoom(host: Player): IGameRoom {
+  public addRoom(host: Player): GameRoom {
     let id: string;
     while(!id || this.rooms.has(id)) id = this.setRoomID();
     const room: GameRoom = new GameRoom(id);

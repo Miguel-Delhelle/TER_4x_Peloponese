@@ -128,8 +128,8 @@ async function handleLogin(): Promise<void> {
       txtProfile.textContent = data.user!.username;
       HTML.toggleClass(txtProfile, 'disabled', false);
       HTML.socket = io(HTML.URI);
-      HTML.socket.emit("login", data.user!.mail, (response:any) => {
-        if(response.ok) {
+      HTML.socket.emit("login", data.user!.mail, async (response:any) => {
+        if(await response.ok) {
           HTML.currentUser = response.user as IPlayer;
           printMessage(`Succesfully logged in as: ${HTML.currentUser.username}`,'info');
           HTML.toggleDisabled([btnHost, btnJoin], false);
@@ -139,6 +139,7 @@ async function handleLogin(): Promise<void> {
           //startListenerSocket();
         } else {
           printMessage("An error occurred during the login verification...",'warn');
+          console.log(response);
         }
       });
     } catch (err) {
@@ -226,7 +227,7 @@ function startEventListener(): void {
 
   async function handleHost(): Promise<void> {
     if(!dbRoom.classList.contains('hidden')) {
-      HTML.socket?.emit("room-host", (response:any) => {
+      HTML.socket?.emit("room-host", async (response:any) => {
         if(response.ok) {
           HTML.currentRoom = response.room as IGameRoom;
           updateRoomInfo(HTML.currentRoom);
@@ -238,7 +239,7 @@ function startEventListener(): void {
   }
 
   async function handleJoin(): Promise<void> {
-    HTML.socket?.emit("room-join", inpRoom.value, (response:any) => {
+    HTML.socket?.emit("room-join", inpRoom.value, async (response:any) => {
       try {
         if(response.ok) {
           HTML.currentRoom = response.room as IGameRoom;

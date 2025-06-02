@@ -60,7 +60,7 @@ app.post('/api/login', async function(req,response) {
   try {
     const mail: string = req.body.mail;
     const password: string = req.body.password;
-    const user = await AppDataSource.manager.findOneBy(User, {_mail: mail});
+    const user = await AppDataSource.manager.findOneBy(User, {mail: mail});
 
     if (await verifyPassword(password, user.hashedPassword)) {
       delete user.hashedPassword;

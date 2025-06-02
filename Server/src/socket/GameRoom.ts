@@ -1,7 +1,7 @@
 import { Player } from "../entity/User/Player";
 import { io } from "..";
 import { Socket } from "socket.io";
-import { ClassManipulation, GameStatus, IGameRoom, getDate } from "common";
+import { ClassManipulation, GameStatus, IGameRoom, IPlayer, getDate } from "common";
 
 export class GameRoom implements IGameRoom,ClassManipulation {
 
@@ -85,6 +85,16 @@ export class GameRoom implements IGameRoom,ClassManipulation {
         players: this.players,
         status: this.status,
       };
+  }
+
+  public serialize(): Object {
+    let players: IPlayer[] = [];
+    this.players.forEach(p => players.push(p.serialize() as IPlayer));
+    return {
+      id: this.id,
+      players: players,
+      status: this.status,
+    }
   }
 
 }
