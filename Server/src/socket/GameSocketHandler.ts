@@ -1,8 +1,8 @@
 import { SocketIOServer,ServerIO } from "common";
 import { IGameRoom, IPlayer, printMessage } from "common";
 import { GameRoom } from "./GameRoom";
-import { Player } from "../entity/User/Player";
-import { User } from "../entity/User/User";
+import { Player } from "../User/Player";
+import { User } from "../User/User";
 import { AppDataSource } from "../data-source";
 
 export class GameSocketHandler {

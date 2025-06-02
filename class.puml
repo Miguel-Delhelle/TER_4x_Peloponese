@@ -1,0 +1,104 @@
+@startuml
+
+package Common {
+  package interface {
+      interface ClassManipulation
+      interface Comparable
+
+      package Network {
+         interface IGameRoom
+         interface IServerToClientEvents
+         interface IClientToServerEvents
+      }
+
+      package User {
+         interface IUser
+         interface IPlayer
+      }
+
+      package Type{
+         enum FACTION
+      }
+
+  }
+}
+
+package Client {
+
+   package Main{
+      interface HTML <<Type TS>>
+      interface TAA_HTMLDisablingElement <<Type TS>>
+      interface anyHTMLDisablingElement <<Type TS>>
+      interface anyHTMLElement <<Type TS>>
+   }
+
+   package MainMenu{
+      interface HTMLTextElement <<Type TS>>
+      
+   }
+
+   package Controller {
+      class MapController <<singleton>>
+      class PathFinder <<singleton>>
+      class ToolsController <<singleton>>
+
+   }
+   
+   package Entity {
+      interface IAnimated
+      interface IEntity
+      class Unit
+      class Melee
+      class Mounted
+      class Range
+
+      Melee --|> Unit
+      Mounted --|> Unit
+      Range --|> Unit
+      Unit --|> IEntity
+      Unit --|> IAnimated
+
+      PathFinder "1"-- "0.*" Unit: Trouve le chemin >
+
+   }
+   
+   package Math{
+      class Point
+   }
+   
+   package Map{
+      class GreekMap <<singleton>>
+      class Terrain
+      class Tile
+
+      GreekMap "1"--> "1.*" Tile: "Contient plusieurs Tile" >
+      Tile "1" --> "1" Terrain: "Contient un terrain" >
+      Unit "0.*" -- "1" Tile: "Est sur" >
+      Tile "1" --> "1" Point: "A pour coordonnée" >
+   }
+   
+   package PhaserScene{
+      class MainScene <<singleton>>
+      MainScene "1" --> "1" GreekMap: "Contient une" >
+      MainScene "1" --> "1" ToolsController: "Contient une" >
+      MainScene "1" --> "1" MapController: "Contient une" >
+
+   }
+
+}
+
+
+package Server {
+  package User{
+   class User
+   class Player
+  }
+  package Socket{
+   class GameRoom
+   class GameSocketHandler
+  }
+  class data-source
+
+}
+
+@enduml

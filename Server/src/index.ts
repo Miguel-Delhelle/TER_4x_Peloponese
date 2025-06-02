@@ -2,7 +2,7 @@ import "reflect-metadata";
 import express from "express";
 import path from "path";
 import { AppDataSource } from "./data-source"
-import { User } from "./entity/User/User"
+import { User } from "./User/User"
 import { Database } from "sqlite3";
 import * as bcrypt from 'bcrypt';
 import { Server } from 'socket.io';

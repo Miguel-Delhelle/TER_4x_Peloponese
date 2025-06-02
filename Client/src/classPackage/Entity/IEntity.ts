@@ -1,9 +1,10 @@
-import type { Tile } from "../PhaserScene/Map/Tile";
-import type { FACTION } from "./EFaction";
+import type { Tile } from "../../Map/Tile";
+import { FACTION } from "common";
+
 
 export interface IEntity{
    id:string;
-   faction:string;
+   faction:FACTION;
    coordonnee:Tile;   
 
    spawn():void;

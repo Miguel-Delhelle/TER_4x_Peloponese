@@ -4,7 +4,7 @@
 import { MapController } from '../Controller/MapController';
 import { ToolsController } from '../Controller/ToolsController';
 import Phaser from 'phaser';
-import { GreekMap } from './Map/GreekMap';
+import { GreekMap } from '../../Map/GreekMap';
 import { HTML } from '../..';
 import { PathFinder } from '../Controller/Pathfinding';
 

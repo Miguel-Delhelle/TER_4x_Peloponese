@@ -1,5 +1,5 @@
 import { Unit } from "./Unit";
-import { Tile} from "../PhaserScene/Map/Tile";
+import { Tile} from "../../Map/Tile";
 import type { AnimID } from "./IAnimated";
 import { TypeAnimation } from "./IAnimated";
 

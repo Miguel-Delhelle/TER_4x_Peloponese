@@ -1,5 +1,5 @@
-import type { Tile } from "../PhaserScene/Map/Tile";
-import { FACTION } from "./EFaction";
+import type { Tile } from "../../Map/Tile";
+import { FACTION } from "common";
 import type { AnimID, IAnimated, PointCardinal, TypeAnimation } from "./IAnimated";
 import type { IEntity } from "./IEntity";
 
@@ -7,7 +7,7 @@ import type { IEntity } from "./IEntity";
 export abstract class Unit implements IEntity, IAnimated {
   
    id: string;
-   faction: string;
+   faction: FACTION;
    coordonnee: Tile;
    typeAnimation: TypeAnimation;
    northAnim: AnimID[];
@@ -20,7 +20,7 @@ export abstract class Unit implements IEntity, IAnimated {
 
 
    constructor(
-      id:string,faction:string,coordonnee:Tile,
+      id:string,faction:FACTION,coordonnee:Tile,
 
       typeAnimation:TypeAnimation,spriteSheet:string[],
       northAnim:AnimID[],westAnim:AnimID[],southAnim:AnimID[],eastAnim:AnimID[],pv:number = 100){

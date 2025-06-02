@@ -1,4 +1,4 @@
-import { Player } from "../entity/User/Player";
+import { Player } from "../User/Player";
 import { io } from "..";
 import { Socket } from "socket.io";
 import { ClassManipulation, GameStatus, IGameRoom, IPlayer, getDate } from "common";
