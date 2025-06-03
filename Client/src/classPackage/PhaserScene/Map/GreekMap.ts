@@ -1,10 +1,10 @@
 import { Tile } from "./Tile";
 import { Point } from "../../Math/Point";
 import { Terrain } from "./Terrain";
-import { FACTION, parseEnum } from "../../Entity/EFaction";
 import type { MainScene } from "../MainScene";
 import { HTML } from "../../..";
 import { Data } from "phaser";
+import { FACTION } from "common";
 
 interface CityUIButton {
    phaserTile: Phaser.Tilemaps.Tile;
@@ -17,44 +17,66 @@ interface CityGroup {
    tiles: Phaser.Tilemaps.Tile[];
    centerTile: Phaser.Tilemaps.Tile;
    centerPosition: Point;
-   faction: string;
+   faction: FACTION;
 }
 
 export class GreekMap {
    public map: Phaser.Tilemaps.Tilemap;
    public dynamicMatrice: Tile[][] = [];
-   public staticMatrice: (Tile | null)[][] = [];
+   public staticMatrice: Tile[][] = [];
    public cityButtons: CityUIButton[] = [];
    public cityGroups: CityGroup[] = [];
    private processedCityTiles: Set<string> = new Set();
 
    private readonly CITY_INFLUENCE_RADIUS = 20;
-   private readonly LAYERS = {
-      MOUNTAINS: "Montains",
-      HILLS: "Hills",
-      LANDSCAPE: "Landscape",
-      UNITS: "Units",
-      BUILDINGS: "Buildings",
-      ROAD: "Road"
-   } as const;
+   private LAYERS: Phaser.Tilemaps.LayerData[];
 
    constructor(map: Phaser.Tilemaps.Tilemap) {
       this.map = map;
+      this.LAYERS = this.map.layers;
       this.initialize();
    }
 
    private initialize(): void {
-      this.initStaticMatrice();
-      this.initDynamicMatrice();
+      this.initMatrice('static') //this.initStaticMatrice();
+      this.initMatrice('dynamic'); //this.initDynamicMatrice();
       this.processCityGroups(); // Process cities after matrices are built
       // Uncomment these lines if needed for debugging
-      // downloadJSON(this.dynamicMatrice, "startDynamicMatrice.json");
-      // downloadJSON(this.staticMatrice, "startStaticMatrice.json");
+      //downloadJSON(this.dynamicMatrice, "startDynamicMatrice.json");
+      //downloadJSON(this.staticMatrice, "startStaticMatrice.json");
    }
 
-   public initStaticMatrice(): void {
-      const terrains: Terrain[] = [];
-      
+   public initMatrice(type: 'static'|'dynamic'): void {
+      let matrix = type==='static'?this.staticMatrice:this.dynamicMatrice;
+      for(let x=0;x<this.map.width;x++) {
+        if (!matrix[x]) matrix[x] = [];
+        for(let y=0; y<this.map.height;y++) {
+          this.LAYERS.filter(layer => layer.name.startsWith(type==='static'?'S_':'A_')).forEach(layer => {
+            const tile: Phaser.Tilemaps.Tile|null = this.map.getTileAt(x,y,false,layer.tilemapLayer);
+            if(tile) {
+              const props: any = tile.properties;
+              const terrain: Terrain = new Terrain(
+                layer.name,
+                props.IsBuildingEnabled,
+                props.IsFarmingEnabled,
+                props.IsSailingEnabled,
+                props.IsWalkingEnabled,
+                props.IsObstacle,
+                props.MovementCost
+              );
+              const faction = props.Faction
+                ? FACTION[props.Faction.toUpperCase() as keyof typeof FACTION]
+                : FACTION.WILDERNESS;
+              if(!matrix[x][y]) matrix[x][y] = new Tile(new Point(x,y),terrain,faction);
+              const staticTile: Tile = matrix[x][y];
+              staticTile.terrain.merge(terrain);
+            }
+          });
+        }
+      }
+    }
+    /*
+    public initStaticMatricer(): void {
       this.map.getLayer(this.LAYERS.MOUNTAINS)?.tilemapLayer.forEachTile(tile => {
          const x: number = tile.x;
          const y: number = tile.y;
@@ -108,7 +130,7 @@ export class GreekMap {
          
          let props: any;
          let dataProps: any;
-         let faction: string = "Wilderness";
+         let faction: FACTION = FACTION.WILDERNESS;
          
          if (tile) {
             props = tile.tileset?.getTileProperties(tile.index);
@@ -126,7 +148,7 @@ export class GreekMap {
             );
             
             // Handle faction assignment
-            faction = props.Faction ?? "Wilderness";
+            faction = props.Faction?FACTION[props.Faction.toUpperCase() as keyof typeof FACTION]:FACTION.WILDERNESS;
             
             const tmpOurTile = new Tile(tileID, terrain, faction);
             this.dynamicMatrice[x][y] = tmpOurTile;
@@ -141,7 +163,7 @@ export class GreekMap {
             }
          }
       });
-   }
+   }*/
 
    private processCityGroups(): void {
       const visitedTiles = new Set<string>();
@@ -163,7 +185,7 @@ export class GreekMap {
             // Get faction from any tile in the group
             const firstTile = cityTiles[0];
             const ourTile = this.dynamicMatrice[firstTile.x]?.[firstTile.y];
-            const faction = ourTile?._faction || "Unknown";
+            const faction = ourTile?._faction;
             
             const cityGroup: CityGroup = {
                tiles: cityTiles,
@@ -217,19 +239,11 @@ export class GreekMap {
    }
 
    private getCityTileAt(x: number, y: number): Phaser.Tilemaps.Tile | null {
-      // Try to get tile from different layers
-      let tile = this.map.getTileAt(x, y, false, this.LAYERS.UNITS);
+      const tile = this.map.getTileAt(x, y, false, this.LAYERS[this.LAYERS.length].tilemapLayer);
       if (tile && tile.index !== -1) {
          const dataProps:any = tile.getTileData();
          if (dataProps?.type === "Cities") return tile;
       }
-      
-      tile = this.map.getTileAt(x, y, false, this.LAYERS.BUILDINGS);
-      if (tile && tile.index !== -1) {
-         const dataProps:any = tile.getTileData();
-         if (dataProps?.type === "Cities") return tile;
-      }
-      
       return null;
    }
 
@@ -281,18 +295,13 @@ export class GreekMap {
       // Create the city button
       const button = document.createElement("button");
       button.innerText = "Gérer la cité";
+      button.classList.add("btn","as-center","clr-secondary");
       button.style.position = "absolute";
       button.style.left = `${screenX}px`;
       button.style.top = `${screenY}px`;
       button.style.transform = "translate(-50%, -100%)";
       button.style.zIndex = "10";
-      button.style.padding = "5px 10px";
       button.style.pointerEvents = 'auto';
-      button.style.backgroundColor = '#4CAF50';
-      button.style.color = 'white';
-      button.style.border = 'none';
-      button.style.borderRadius = '4px';
-      button.style.cursor = 'pointer';
 
       parent.appendChild(button);
 

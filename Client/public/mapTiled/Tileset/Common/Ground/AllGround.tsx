@@ -5,8 +5,10 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
    <property name="IsFarmingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="4"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Grass"/>
   </properties>
  </tile>
@@ -14,8 +16,10 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
    <property name="IsFarmingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="4"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Grass"/>
   </properties>
  </tile>
@@ -75,8 +79,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -86,8 +90,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -147,8 +151,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -158,8 +162,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -167,8 +171,10 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
    <property name="IsFarmingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="4"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Grass"/>
   </properties>
  </tile>
@@ -176,8 +182,10 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
    <property name="IsFarmingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="4"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Grass"/>
   </properties>
  </tile>
@@ -211,7 +219,11 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
- <tile id="21" type="Mountains"/>
+ <tile id="21" type="Mountains">
+  <properties>
+   <property name="IsObstacle" type="bool" value="false"/>
+  </properties>
+ </tile>
  <tile id="22" type="Mountains">
   <properties>
    <property name="IsConnected_East" type="bool" value="false"/>
@@ -228,8 +240,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -239,8 +251,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -274,7 +286,11 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
- <tile id="28" type="Hills"/>
+ <tile id="28" type="Hills">
+  <properties>
+   <property name="IsObstacle" type="bool" value="false"/>
+  </properties>
+ </tile>
  <tile id="29" type="Hills">
   <properties>
    <property name="IsConnected_East" type="bool" value="false"/>
@@ -291,8 +307,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -302,8 +318,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -311,8 +327,10 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
    <property name="IsFarmingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="5"/>
+   <property name="MovementCost" type="float" value="8"/>
    <property name="SubClass" value="Farmland"/>
   </properties>
  </tile>
@@ -320,8 +338,10 @@
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
    <property name="IsFarmingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="6"/>
+   <property name="MovementCost" type="float" value="10"/>
    <property name="SubClass" value="Farmland"/>
   </properties>
  </tile>
@@ -331,7 +351,7 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="10"/>
    <property name="SubClass" value="Stone"/>
   </properties>
@@ -342,7 +362,7 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="10"/>
    <property name="SubClass" value="Stone"/>
   </properties>
@@ -383,8 +403,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -394,8 +414,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -405,8 +425,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -416,8 +436,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -457,8 +477,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -468,24 +488,28 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="48" type="Terrain">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="6"/>
+   <property name="MovementCost" type="float" value="10"/>
    <property name="SubClass" value="Sand"/>
   </properties>
  </tile>
  <tile id="49" type="Terrain_Winter">
   <properties>
    <property name="IsBuildingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="10"/>
+   <property name="MovementCost" type="float" value="12"/>
    <property name="SubClass" value="Sand"/>
   </properties>
  </tile>
@@ -495,7 +519,7 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="10"/>
    <property name="SubClass" value="Stone"/>
   </properties>
@@ -506,7 +530,7 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="10"/>
    <property name="SubClass" value="Stone"/>
   </properties>
@@ -547,8 +571,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -558,8 +582,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -569,8 +593,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -580,8 +604,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -621,8 +645,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -632,22 +656,24 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="64" type="Terrain">
   <properties>
    <property name="IsFishingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="8"/>
    <property name="SubClass" value="Shore_1"/>
   </properties>
  </tile>
  <tile id="65" type="Terrain_Winter">
   <properties>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="false"/>
    <property name="IsWalkingEnabled" type="bool" value="true"/>
    <property name="MovementCost" type="float" value="14"/>
@@ -684,7 +710,11 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
- <tile id="69" type="Mountains"/>
+ <tile id="69" type="Mountains">
+  <properties>
+   <property name="IsObstacle" type="bool" value="false"/>
+  </properties>
+ </tile>
  <tile id="70" type="Mountains">
   <properties>
    <property name="IsConnected_East" type="bool" value="false"/>
@@ -701,8 +731,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -712,8 +742,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -747,7 +777,11 @@
    <property name="SubClass" value=""/>
   </properties>
  </tile>
- <tile id="76" type="Hills"/>
+ <tile id="76" type="Hills">
+  <properties>
+   <property name="IsObstacle" type="bool" value="false"/>
+  </properties>
+ </tile>
  <tile id="77" type="Hills">
   <properties>
    <property name="IsConnected_East" type="bool" value="false"/>
@@ -764,8 +798,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -775,22 +809,26 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="80" type="Terrain">
   <properties>
    <property name="IsFishingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="4"/>
    <property name="SubClass" value="Shore_2"/>
   </properties>
  </tile>
  <tile id="81" type="Terrain_Winter">
   <properties>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="6"/>
    <property name="SubClass" value="Shore_2"/>
   </properties>
@@ -851,8 +889,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -862,8 +900,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -923,8 +961,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -934,15 +972,17 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="96" type="Terrain">
   <properties>
    <property name="IsFishingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="2"/>
    <property name="SubClass" value="Shore_3"/>
   </properties>
@@ -950,7 +990,9 @@
  <tile id="97" type="Terrain_Winter">
   <properties>
    <property name="IsFishingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="2"/>
    <property name="SubClass" value="Shore_3"/>
   </properties>
@@ -961,8 +1003,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -972,8 +1014,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -983,8 +1025,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -994,8 +1036,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1005,8 +1047,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1016,8 +1058,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1027,8 +1069,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1038,8 +1080,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1049,8 +1091,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1060,8 +1102,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1071,8 +1113,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1082,8 +1124,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1093,8 +1135,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1104,15 +1146,17 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
  <tile id="112" type="Terrain">
   <properties>
    <property name="IsFishingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="1"/>
    <property name="SubClass" value="Deep Sea"/>
   </properties>
@@ -1120,7 +1164,9 @@
  <tile id="113" type="Terrain_Winter">
   <properties>
    <property name="IsFishingEnabled" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="IsSailingEnabled" type="bool" value="true"/>
+   <property name="IsWalkingEnabled" type="bool" value="false"/>
    <property name="MovementCost" type="float" value="1"/>
    <property name="SubClass" value="Deep Sea"/>
   </properties>
@@ -1131,8 +1177,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1142,8 +1188,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1153,8 +1199,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1164,8 +1210,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1175,8 +1221,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1186,8 +1232,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1197,8 +1243,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1208,8 +1254,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1219,8 +1265,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1230,8 +1276,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1241,8 +1287,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1252,8 +1298,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1263,8 +1309,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1274,8 +1320,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1305,8 +1351,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1316,8 +1362,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1327,8 +1373,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1338,8 +1384,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1349,8 +1395,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1360,8 +1406,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1371,8 +1417,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1382,8 +1428,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1393,8 +1439,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1404,8 +1450,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1415,8 +1461,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1426,8 +1472,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1437,8 +1483,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1448,8 +1494,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1479,8 +1525,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1490,8 +1536,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1501,8 +1547,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1512,8 +1558,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1523,8 +1569,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1534,8 +1580,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1545,8 +1591,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1556,8 +1602,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1567,8 +1613,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1578,8 +1624,8 @@
    <property name="IsConnected_North" type="bool" value="false"/>
    <property name="IsConnected_South" type="bool" value="false"/>
    <property name="IsConnected_West" type="bool" value="false"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1589,8 +1635,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1600,8 +1646,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1611,8 +1657,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1622,8 +1668,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="1"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-3"/>
    <property name="SubClass" value="Stone"/>
   </properties>
  </tile>
@@ -1633,8 +1679,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>
@@ -1644,8 +1690,8 @@
    <property name="IsConnected_North" type="bool" value="true"/>
    <property name="IsConnected_South" type="bool" value="true"/>
    <property name="IsConnected_West" type="bool" value="true"/>
-   <property name="IsWalkingEnabled" type="bool" value="true"/>
-   <property name="MovementCost" type="float" value="2.5"/>
+   <property name="IsObstacle" type="bool" value="false"/>
+   <property name="MovementCost" type="float" value="-1"/>
    <property name="SubClass" value="Dirt"/>
   </properties>
  </tile>

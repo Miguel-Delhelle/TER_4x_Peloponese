@@ -27,17 +27,18 @@ export class GameSocketHandler {
   private setupSocketHandler(): void {
     this._io.on("connection", (socket: SocketIOServer) => {
       const idSocket: string = socket.id;
+      let player: Player;
+      let room: GameRoom;
 
       socket.on("disconnect", (reason) => {
         try {
           socket.disconnect(true);
-          const user: Player = this._users.get(socket);
-          if(user && this._users.delete(socket)) {
-            if(user.room) {
-              socket.leave(user.room.id);
-              printMessage(`${user.username} (id: ${user.id}) left the room ${user.room.id} (${user.room.players.length}/${GameRoom.ROOM_MAXPLAYER} players)`,'warn');
+          if(player && this._users.delete(socket)) {
+            if(player.room) {
+              socket.leave(player.room.id);
+              printMessage(`${player.username} (id: ${player.id}) left the room ${player.room.id} (${player.room.players.length}/${GameRoom.ROOM_MAXPLAYER} players)`,'warn');
             }
-            printMessage(`${user.username} got disconnected, see below:\n  ${reason.toString()}`,'warn');
+            printMessage(`${player.username} got disconnected, see below:\n  ${reason.toString()}`,'warn');
           } else
             printMessage(`An unregistered user got disconnected, see below:\n  ${reason.toString()}`,'error');
         } catch(err) {
@@ -48,7 +49,7 @@ export class GameSocketHandler {
       socket.on("login", async (mail: string, callback) => {
         try {
           const user: User = await AppDataSource.manager.findOneBy(User, {mail: mail});
-          const player: Player = new Player(user, socket);
+          player = new Player(user, socket);
           this._users.set(socket,player);
           printMessage(`${user.username} connected`,'info');
           callback({ok: true, user: player.serialize() as IPlayer});
@@ -60,8 +61,7 @@ export class GameSocketHandler {
 
       socket.on("room-host", (callback) => {
         try {
-          const player: Player = this._users.get(socket);
-          const room: GameRoom = this.addRoom(player);
+          room = this.addRoom(player);
           socket.join(room.id);
           printMessage(`The room ${room.id} has been created, hosted by ${player.username}`,'info')
           callback({ok: true, room: room.serialize() as IGameRoom});
@@ -73,8 +73,7 @@ export class GameSocketHandler {
 
       socket.on("room-join", (id: string, callback) => {
         try {
-          const room: GameRoom = this.rooms.get(id);
-          const player: Player = this._users.get(socket);
+          room = this._rooms.get(id);
           if(room) {
             if(room.addPlayer(player)) {
               if(this.io.to(room.id).emit("player-joined", player.serialize() as IPlayer)) // -> Notify the room of the joining player
@@ -98,10 +97,8 @@ export class GameSocketHandler {
         }
       });
 
-      socket.on("room-leave", (id: string, callback) => {
+      socket.on("room-leave", (callback) => {
         try {
-          const player: Player = this._users.get(socket);
-          const room: GameRoom = this._rooms.get(id);
           if(player && room && room.removePlayer(player)) {
             socket.leave(room.id);
             printMessage(`${player.username} (id: ${player.id}) left the room ${room.id} (${room.players.length}/${GameRoom.ROOM_MAXPLAYER} players), see below the room data:`,'info');
@@ -111,13 +108,17 @@ export class GameSocketHandler {
             else
               callback({ok: true, error: "The server did not successfully informed the room of your departure"});
           } else {
-            printMessage(`${player.username} (id: ${player.id}) couldn't be removed from the room ${id}`,'error');
-            callback({ok: false, error: `Could not be able to remove you from ${id}`});
+            printMessage(`${player.username} (id: ${player.id}) couldn't be removed from the room ${room.id}`,'error');
+            callback({ok: false, error: `Could not be able to remove you from ${room.id}`});
           }
         } catch(err) {
           console.error(err);
-          callback({ok: false, error: `An error occured leaving the room ${id}`});
+          callback({ok: false, error: `An error occured leaving the room ${room.id}`});
         }
+      });
+
+      socket.on("player-update", (player) => {
+        Object.assign(this._users.get(socket))
       });
 
       /*

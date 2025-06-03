@@ -4,6 +4,9 @@
  <tile id="0" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -11,6 +14,9 @@
  <tile id="1" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -18,6 +24,9 @@
  <tile id="2" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -25,6 +34,9 @@
  <tile id="3" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -32,6 +44,9 @@
  <tile id="4" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -39,6 +54,9 @@
  <tile id="5" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -46,6 +64,9 @@
  <tile id="6" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -53,6 +74,9 @@
  <tile id="7" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -60,6 +84,9 @@
  <tile id="8" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -67,6 +94,9 @@
  <tile id="9" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -74,6 +104,9 @@
  <tile id="10" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -81,6 +114,9 @@
  <tile id="11" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -88,6 +124,9 @@
  <tile id="12" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Wall"/>
   </properties>
@@ -95,6 +134,9 @@
  <tile id="13" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Wall"/>
   </properties>
@@ -102,6 +144,9 @@
  <tile id="14">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -109,6 +154,9 @@
  <tile id="15">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -116,6 +164,9 @@
  <tile id="16">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -123,6 +174,9 @@
  <tile id="17">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -130,6 +184,9 @@
  <tile id="18">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -137,6 +194,9 @@
  <tile id="19" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -144,6 +204,9 @@
  <tile id="20" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -151,6 +214,9 @@
  <tile id="21" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -158,6 +224,9 @@
  <tile id="22" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -165,6 +234,9 @@
  <tile id="23" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -172,6 +244,9 @@
  <tile id="24" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -179,6 +254,9 @@
  <tile id="25" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -186,6 +264,9 @@
  <tile id="26" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -193,6 +274,9 @@
  <tile id="27" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -200,6 +284,9 @@
  <tile id="28" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -207,6 +294,9 @@
  <tile id="29" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -214,6 +304,9 @@
  <tile id="30" type="Cities">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -221,6 +314,9 @@
  <tile id="31" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Wall"/>
   </properties>
@@ -228,6 +324,9 @@
  <tile id="32" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Wall"/>
   </properties>
@@ -235,6 +334,9 @@
  <tile id="33">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -242,6 +344,9 @@
  <tile id="34">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -249,6 +354,9 @@
  <tile id="35">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -256,6 +364,9 @@
  <tile id="36">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -263,6 +374,9 @@
  <tile id="37">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -270,6 +384,9 @@
  <tile id="38" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -277,6 +394,9 @@
  <tile id="39" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -284,6 +404,9 @@
  <tile id="40" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -291,6 +414,9 @@
  <tile id="41" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -298,6 +424,9 @@
  <tile id="42" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -305,6 +434,9 @@
  <tile id="43" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -312,6 +444,9 @@
  <tile id="44" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -319,6 +454,9 @@
  <tile id="45" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -326,6 +464,9 @@
  <tile id="46" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -333,6 +474,9 @@
  <tile id="47" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -340,6 +484,9 @@
  <tile id="48" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -347,6 +494,9 @@
  <tile id="49" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -354,6 +504,9 @@
  <tile id="50">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -361,6 +514,9 @@
  <tile id="51">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -368,6 +524,9 @@
  <tile id="52">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -375,6 +534,9 @@
  <tile id="53">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -382,6 +544,9 @@
  <tile id="54">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -389,6 +554,9 @@
  <tile id="55">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -396,6 +564,9 @@
  <tile id="56">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -403,6 +574,9 @@
  <tile id="57" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -410,6 +584,9 @@
  <tile id="58" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -417,6 +594,9 @@
  <tile id="59" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -424,6 +604,9 @@
  <tile id="60" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -431,6 +614,9 @@
  <tile id="61" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -438,6 +624,9 @@
  <tile id="62" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -445,6 +634,9 @@
  <tile id="63" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -452,6 +644,9 @@
  <tile id="64" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -459,6 +654,9 @@
  <tile id="65" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -466,6 +664,9 @@
  <tile id="66" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -473,6 +674,9 @@
  <tile id="67" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -480,6 +684,9 @@
  <tile id="68" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -487,6 +694,9 @@
  <tile id="69">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -494,6 +704,9 @@
  <tile id="70">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -501,6 +714,9 @@
  <tile id="71">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -508,6 +724,9 @@
  <tile id="72">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -515,6 +734,9 @@
  <tile id="73">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -522,6 +744,9 @@
  <tile id="74">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -529,6 +754,9 @@
  <tile id="75">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -536,6 +764,9 @@
  <tile id="76" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -543,6 +774,9 @@
  <tile id="77" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -550,6 +784,9 @@
  <tile id="78" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -557,6 +794,9 @@
  <tile id="79" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -564,6 +804,9 @@
  <tile id="80" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -571,6 +814,9 @@
  <tile id="81" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -578,6 +824,9 @@
  <tile id="82" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -585,6 +834,9 @@
  <tile id="83" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -592,6 +844,9 @@
  <tile id="84" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -599,6 +854,9 @@
  <tile id="85" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -606,6 +864,9 @@
  <tile id="86" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -613,6 +874,9 @@
  <tile id="87" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -620,6 +884,9 @@
  <tile id="88">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -627,6 +894,9 @@
  <tile id="89">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -634,6 +904,9 @@
  <tile id="90">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -641,6 +914,9 @@
  <tile id="91">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -648,6 +924,9 @@
  <tile id="92">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -655,6 +934,9 @@
  <tile id="93">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -662,6 +944,9 @@
  <tile id="94">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -669,6 +954,9 @@
  <tile id="95" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -676,6 +964,9 @@
  <tile id="96" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -683,6 +974,9 @@
  <tile id="97" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -690,6 +984,9 @@
  <tile id="98" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -697,6 +994,9 @@
  <tile id="99" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -704,6 +1004,9 @@
  <tile id="100" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -711,6 +1014,9 @@
  <tile id="101" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -718,6 +1024,9 @@
  <tile id="102" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="1"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -725,6 +1034,9 @@
  <tile id="103" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -732,6 +1044,9 @@
  <tile id="104" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -739,6 +1054,9 @@
  <tile id="105" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -746,6 +1064,9 @@
  <tile id="106" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="2"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -753,6 +1074,9 @@
  <tile id="107">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -760,6 +1084,9 @@
  <tile id="108">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -767,6 +1094,9 @@
  <tile id="109">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -774,6 +1104,9 @@
  <tile id="110">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -781,6 +1114,9 @@
  <tile id="111">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -788,6 +1124,9 @@
  <tile id="112">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -795,6 +1134,9 @@
  <tile id="113">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -802,6 +1144,9 @@
  <tile id="114" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -809,6 +1154,9 @@
  <tile id="115" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -816,6 +1164,9 @@
  <tile id="116" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -823,6 +1174,9 @@
  <tile id="117" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -830,6 +1184,9 @@
  <tile id="118" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -837,6 +1194,9 @@
  <tile id="119" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -844,6 +1204,9 @@
  <tile id="120" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -851,6 +1214,9 @@
  <tile id="121" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -858,6 +1224,9 @@
  <tile id="122" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -865,6 +1234,9 @@
  <tile id="123" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -872,6 +1244,9 @@
  <tile id="124" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -879,6 +1254,9 @@
  <tile id="125" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -886,6 +1264,9 @@
  <tile id="126">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -893,6 +1274,9 @@
  <tile id="127">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -900,6 +1284,9 @@
  <tile id="128">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -907,6 +1294,9 @@
  <tile id="129">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -914,6 +1304,9 @@
  <tile id="130">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -921,6 +1314,9 @@
  <tile id="131">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -928,6 +1324,9 @@
  <tile id="132">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -935,6 +1334,9 @@
  <tile id="133" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -942,6 +1344,9 @@
  <tile id="134" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -949,6 +1354,9 @@
  <tile id="135" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -956,6 +1364,9 @@
  <tile id="136" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -963,6 +1374,9 @@
  <tile id="137" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -970,6 +1384,9 @@
  <tile id="138" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -977,6 +1394,9 @@
  <tile id="139" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -984,6 +1404,9 @@
  <tile id="140" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -991,6 +1414,9 @@
  <tile id="141" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -998,6 +1424,9 @@
  <tile id="142" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1005,6 +1434,9 @@
  <tile id="143" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1012,6 +1444,9 @@
  <tile id="144" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1019,6 +1454,9 @@
  <tile id="145">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1026,6 +1464,9 @@
  <tile id="146">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1033,6 +1474,9 @@
  <tile id="147">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1040,6 +1484,9 @@
  <tile id="148">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1047,6 +1494,9 @@
  <tile id="149">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1054,6 +1504,9 @@
  <tile id="150">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1061,6 +1514,9 @@
  <tile id="151">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1068,6 +1524,9 @@
  <tile id="152" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1075,6 +1534,9 @@
  <tile id="153" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1082,6 +1544,9 @@
  <tile id="154" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1089,6 +1554,9 @@
  <tile id="155" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1096,6 +1564,9 @@
  <tile id="156" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1103,6 +1574,9 @@
  <tile id="157" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1110,6 +1584,9 @@
  <tile id="158" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1117,6 +1594,9 @@
  <tile id="159" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1124,6 +1604,9 @@
  <tile id="160" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1131,6 +1614,9 @@
  <tile id="161" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1138,6 +1624,9 @@
  <tile id="162" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1145,6 +1634,9 @@
  <tile id="163" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1152,6 +1644,9 @@
  <tile id="164">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1159,6 +1654,9 @@
  <tile id="165">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1166,6 +1664,9 @@
  <tile id="166">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1173,6 +1674,9 @@
  <tile id="167">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1180,6 +1684,9 @@
  <tile id="168">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1187,6 +1694,9 @@
  <tile id="169">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1194,6 +1704,9 @@
  <tile id="170">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1201,6 +1714,9 @@
  <tile id="171" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1208,6 +1724,9 @@
  <tile id="172" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1215,6 +1734,9 @@
  <tile id="173" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1222,6 +1744,9 @@
  <tile id="174" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="3"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1229,6 +1754,9 @@
  <tile id="175" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1236,6 +1764,9 @@
  <tile id="176" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1243,6 +1774,9 @@
  <tile id="177" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1250,6 +1784,9 @@
  <tile id="178" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="4"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1257,6 +1794,9 @@
  <tile id="179" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1264,6 +1804,9 @@
  <tile id="180" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1271,6 +1814,9 @@
  <tile id="181" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1278,6 +1824,9 @@
  <tile id="182" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="5"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1285,6 +1834,9 @@
  <tile id="183">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1292,6 +1844,9 @@
  <tile id="184">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1299,6 +1854,9 @@
  <tile id="185">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1306,6 +1864,9 @@
  <tile id="186">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1313,6 +1874,9 @@
  <tile id="187">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1320,6 +1884,9 @@
  <tile id="188">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1327,6 +1894,9 @@
  <tile id="189">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1334,6 +1904,9 @@
  <tile id="190" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1341,6 +1914,9 @@
  <tile id="191" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1348,6 +1924,9 @@
  <tile id="192" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1355,6 +1934,9 @@
  <tile id="193" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1362,6 +1944,9 @@
  <tile id="194">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1369,6 +1954,9 @@
  <tile id="195">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1376,6 +1964,9 @@
  <tile id="196">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1383,6 +1974,9 @@
  <tile id="197">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1390,6 +1984,9 @@
  <tile id="198">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1397,6 +1994,9 @@
  <tile id="199">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1404,6 +2004,9 @@
  <tile id="200">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1411,6 +2014,9 @@
  <tile id="201">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1418,6 +2024,9 @@
  <tile id="202">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1425,6 +2034,9 @@
  <tile id="203">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1432,6 +2044,9 @@
  <tile id="204">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="false"/>
+   <property name="IsObstacle" type="bool" value="false"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1439,6 +2054,9 @@
  <tile id="205">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1446,6 +2064,9 @@
  <tile id="206">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1453,6 +2074,9 @@
  <tile id="207">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1460,6 +2084,9 @@
  <tile id="208">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1467,6 +2094,9 @@
  <tile id="209" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1474,6 +2104,9 @@
  <tile id="210" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1481,6 +2114,9 @@
  <tile id="211" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1488,6 +2124,9 @@
  <tile id="212" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1495,6 +2134,9 @@
  <tile id="213">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1502,6 +2144,9 @@
  <tile id="214">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1509,6 +2154,9 @@
  <tile id="215">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1516,6 +2164,9 @@
  <tile id="216">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1523,6 +2174,9 @@
  <tile id="217">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1530,6 +2184,9 @@
  <tile id="218">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1537,6 +2194,9 @@
  <tile id="219">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1544,6 +2204,9 @@
  <tile id="220">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1551,6 +2214,9 @@
  <tile id="221">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1558,6 +2224,9 @@
  <tile id="222">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1565,6 +2234,9 @@
  <tile id="223">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1572,6 +2244,9 @@
  <tile id="224">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1579,6 +2254,9 @@
  <tile id="225">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1586,6 +2264,9 @@
  <tile id="226">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1593,6 +2274,9 @@
  <tile id="227">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1600,6 +2284,9 @@
  <tile id="228" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1607,6 +2294,9 @@
  <tile id="229" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1614,6 +2304,9 @@
  <tile id="230" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1621,6 +2314,9 @@
  <tile id="231" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1628,6 +2324,9 @@
  <tile id="232">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1635,6 +2334,9 @@
  <tile id="233">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1642,6 +2344,9 @@
  <tile id="234">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1649,6 +2354,9 @@
  <tile id="235">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1656,6 +2364,9 @@
  <tile id="236">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1663,6 +2374,9 @@
  <tile id="237">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1670,6 +2384,9 @@
  <tile id="238">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1677,6 +2394,9 @@
  <tile id="239">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1684,6 +2404,9 @@
  <tile id="240">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1691,6 +2414,9 @@
  <tile id="241">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1698,6 +2424,9 @@
  <tile id="242">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1705,6 +2434,9 @@
  <tile id="243">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1712,6 +2444,9 @@
  <tile id="244">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1719,6 +2454,9 @@
  <tile id="245">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1726,6 +2464,9 @@
  <tile id="246">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1733,6 +2474,9 @@
  <tile id="247" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1740,6 +2484,9 @@
  <tile id="248" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1747,6 +2494,9 @@
  <tile id="249" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1754,6 +2504,9 @@
  <tile id="250" type="Defence">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="6"/>
    <property name="SubClass" value="Tower"/>
   </properties>
@@ -1761,6 +2514,9 @@
  <tile id="251">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1768,6 +2524,9 @@
  <tile id="252">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1775,6 +2534,9 @@
  <tile id="253">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1782,6 +2544,9 @@
  <tile id="254">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1789,6 +2554,9 @@
  <tile id="255">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="true"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1796,6 +2564,9 @@
  <tile id="256">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="true"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1803,6 +2574,9 @@
  <tile id="257">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="true"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1810,6 +2584,9 @@
  <tile id="258">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="true"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1817,6 +2594,9 @@
  <tile id="259">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1824,6 +2604,9 @@
  <tile id="260">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1831,6 +2614,9 @@
  <tile id="261">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1838,6 +2624,9 @@
  <tile id="262">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1845,6 +2634,9 @@
  <tile id="263">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1852,6 +2644,9 @@
  <tile id="264">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>
@@ -1859,6 +2654,9 @@
  <tile id="265">
   <properties>
    <property name="Faction" value="Other"/>
+   <property name="IsAnimated" type="bool" value="false"/>
+   <property name="IsInsertPoint" type="bool" value="true"/>
+   <property name="IsObstacle" type="bool" value="true"/>
    <property name="Level" type="int" value="0"/>
    <property name="SubClass" value=""/>
   </properties>

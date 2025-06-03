@@ -1,4 +1,4 @@
-import { AnySocket, GameStatus } from '../types/common';
+import { AnySocket, FACTION, GameStatus } from '../types/common';
 import { ITile } from './map';
 import { IPlayer } from './users';
 
@@ -27,9 +27,9 @@ export interface IClientToServerEvents {
   'login': (mail: string, callback: (response: {ok: boolean, user?: IPlayer, error?: string}) => void) => void;
   'room-host': (callback: (response: {ok: boolean, room?: IGameRoom, error?: string}) => void) => void;
   'room-join': (id: string, callback: (response: {ok: boolean, room?: IGameRoom, error?: string}) => void) => void;
-  'room-leave': (id: string, callback: (response: {ok: boolean, error?: string}) => void) => void;
+  'room-leave': (callback: (response: {ok: boolean, error?: string}) => void) => void;
+  'player-update': (player: IPlayer) => void;
 
-  'ready': () => void;
   'move-player': (tile: ITile) => void;
   
 }

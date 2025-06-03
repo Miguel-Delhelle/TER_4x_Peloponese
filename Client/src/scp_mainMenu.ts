@@ -238,7 +238,7 @@ function startEventListener(): void {
       });
     } else if(HTML.currentRoom) {
       btnHost.textContent = "New Game";
-      HTML.socket?.emit("room-leave", HTML.currentRoom.id, (response) => {
+      HTML.socket?.emit("room-leave", (response) => {
         //toDo!!
         if(response.ok) {
           console.log("you left the room");

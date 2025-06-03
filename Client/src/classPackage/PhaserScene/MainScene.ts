@@ -7,6 +7,7 @@ import Phaser from 'phaser';
 import { GreekMap } from './Map/GreekMap';
 import { HTML } from '../..';
 import { PathFinder } from '../Controller/Pathfinding';
+import { Point } from '../Math/Point';
 
 
 
@@ -231,7 +232,7 @@ export class MainScene extends Phaser.Scene{
 	*/
 
 	public preload(): void {
-		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/AncientGreece.json");
+		this.load.tilemapTiledJSON('map', "/mapTiled/Maps/AncientGreece2.json");
 		this.loadTilesets([
 			"/mapTiled/Tileset/Common/User Interface/AllUI.png",
 			"/mapTiled/Tileset/Common/Ground/AllGround.png",
@@ -304,22 +305,13 @@ export class MainScene extends Phaser.Scene{
 		this.map = this.make.tilemap({ key: 'map' });
 		this.setTilesets();
 		this.addAllTiledLayers();
-		this.addNewLayer('User Interface');
+		//this.addNewLayer('User Interface');
 		this.setMapSizeXpx();
 		this.setMapSizeYpx();
 		this.ourMap = new GreekMap(this.map);
 
 		this.setMarker();
-		this.pathFinder = new PathFinder(this.map, this.layers);
-
-		// TEST PATH FINDING
-		const result = this.pathFinder.findPathAStar(33, 20, 462, 63);
-		if (result) {
-			this.drawPath(result.path);
-			console.log("Chemin trouvé :", result.path, "Coût :", result.cost);
-		} else {
-			console.log("Aucun chemin trouvé !");
-}
+		this.pathFinder = new PathFinder(this.map, this.layers,this.ourMap);
 	}
 
 	private setupEvent(): void {
@@ -342,6 +334,40 @@ export class MainScene extends Phaser.Scene{
 				this.clickSound.play();
 			}
 		});
+
+    let isFinding: boolean = false;
+    let currentPath: any = null;
+    const section = document.getElementById("GameScene") as HTMLElement;
+    const btnPath = section.querySelector("#btn-path") as HTMLButtonElement;
+    const btnRecruit = section.querySelector("#btn-recruit") as HTMLButtonElement;
+    const btnBuild = section.querySelector("#btn-build") as HTMLButtonElement;
+
+    btnPath.addEventListener('click', () => {
+      if(isFinding) return;
+      if(currentPath instanceof Phaser.GameObjects.Graphics) currentPath.destroy();
+      isFinding=true;
+      let start: Point|null = null;
+      let end: Point|null = null;
+      console.log("Starting a new path finder:\nPlease select the starting tile on the map");
+      btnPath.textContent = "Pathfinding: Select a tile (path's start)";
+      this.input.on('pointerdown', () => {
+        if(!isFinding) return;
+        const cursor = this._pointer;
+        if(!start) {
+          start = new Point(cursor.x, cursor.y);
+          console.log("Please select the ending tile on the map");
+          btnPath.textContent = "Pathfinding: Select a tile (path's end)";
+        } else if(!end) {
+          end = new Point(cursor.x, cursor.y);
+          btnPath.textContent = "Pathfinding: Processing...";
+          const path = this.testPathfinding(start,end);
+          currentPath = path ?? currentPath;
+          console.log("End of the current path finder");
+          btnPath.textContent = "Pathfinding (test)";
+          start=null;end=null;isFinding=false;
+        }
+      });
+    });
 
 	}
 
@@ -372,7 +398,7 @@ export class MainScene extends Phaser.Scene{
 		return graphics.strokePath();
 	}
 
-	public drawPath(path: { x: number, y: number }[], color: number = 0xff0000): void {
+	public drawPath(path: { x: number, y: number }[], color: number = 0xff0000): Phaser.GameObjects.Graphics {
     const graphics = this.add.graphics();
     graphics.lineStyle(4, color, 1);
 
@@ -388,8 +414,38 @@ export class MainScene extends Phaser.Scene{
         graphics.moveTo(fromX, fromY);
         graphics.lineTo(toX, toY);
     }
-    graphics.strokePath();
-}
+    return graphics.strokePath();
+  }
+
+  public testPathfinding(start: Point, end: Point): Phaser.GameObjects.Graphics|null {
+    const startTile = this.ourMap.staticMatrice[start.x][start.y];
+    const endTile = this.ourMap.staticMatrice[end.x][end.y];
+    if (startTile.terrain.isObstacle || endTile.terrain.isObstacle) {
+      const err: string = "Impossible to initiate a path starting or ending on an obstacle, please try again";
+      console.error(err)
+      alert(err);
+      return null;
+    }
+    let mode: 'land'|'sea'|undefined;
+    if (startTile.terrain.isWalkingEnabled && endTile.terrain.isWalkingEnabled) mode='land';
+    if (startTile.terrain.isSailingEnabled && endTile.terrain.isSailingEnabled) mode='sea';
+    if (!mode) {
+      const err: string = "Impossible to initiate a path starting on land and ending into the ocean or the other way around, please try again";
+      console.error(err)
+      alert(err);
+      return null;
+    }
+    const result = this.pathFinder.findPathAStar(start.x, start.y, end.x, end.y,mode);
+    if (result) {
+			console.warn("A path has been found :", result.path, "Cost :", result.cost);
+			return this.drawPath(result.path);
+		} else {
+      const err: string = `There is no path between these 2 points: ${start} -> ${end}...`;
+			console.error(err);
+      alert(err);
+      return null;
+    }
+  }
 
 	//       +----------------------------------------{ $Section separator$ }----------------------------------------+     //
 

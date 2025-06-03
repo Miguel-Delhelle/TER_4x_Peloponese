@@ -1,15 +1,15 @@
 import type { Point } from "../../Math/Point";
-import { FACTION } from "../../Entity/EFaction";
 import type { Terrain } from "./Terrain";
 import { HTML } from "../../..";
+import { FACTION } from "common";
 
 export class Tile{
 
    public id:Point;
    public terrain:Terrain;
-   public faction:string;
+   public faction:FACTION;
 
-   constructor(id: Point, terrain: Terrain, faction:string = "Wilderness") {
+   constructor(id: Point, terrain: Terrain, faction:FACTION = FACTION.WILDERNESS) {
       this.id = id;
       this.terrain = terrain;
       this.faction = faction

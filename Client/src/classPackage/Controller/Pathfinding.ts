@@ -1,31 +1,37 @@
+import type { GreekMap } from "../PhaserScene/Map/GreekMap";
+import { Terrain } from "../PhaserScene/Map/Terrain";
+import type { Tile } from "../PhaserScene/Map/Tile";
 
 export class PathFinder {
     private grid: number[][] = [];
-    private landscapeLayer: Phaser.Tilemaps.TilemapLayer;
+    private landscapeLayer?: Phaser.Tilemaps.TilemapLayer;
 
-    constructor(private map: Phaser.Tilemaps.Tilemap, private layers: Phaser.Tilemaps.TilemapLayer[]) {
-        const width = map.width;
-        const height = map.height;
+    constructor(private map: Phaser.Tilemaps.Tilemap, private layers: Phaser.Tilemaps.TilemapLayer[], private greekMap: GreekMap) {
+      this.initGrid(greekMap);
+    }
 
-        this.grid = Array(height).fill(0).map(() => Array(width).fill(Infinity));
-        this.landscapeLayer = this.layers.find(l => l.name === 'Landscape')!;
-        if (this.landscapeLayer) {
-            for (let y = 0; y < height; y++) {
-                for (let x = 0; x < width; x++) {
-                    const tile = this.map.getTileAt(x, y, true, this.landscapeLayer);
-                    if (tile && tile.properties && tile.properties.IsWalkingEnabled) {
-                        this.grid[y][x] = tile.properties.MovementCost ?? 1;
-                    }
-                }
+    public initGrid(map: GreekMap): void {
+      const width = this.map.width;
+      const height = this.map.height;
+      this.grid = map.staticMatrice.map(line => line.map(tile => tile.terrain.movementCost as number));
+      /*
+      this.grid = Array(height).fill(0).map(() => Array(width).fill(Infinity));
+      this.landscapeLayer = this.layers.find(l => l.name.endsWith('Landscape'));
+      if (this.landscapeLayer) {
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            const tile = this.map.getTileAt(x, y, true, this.landscapeLayer);
+            if (tile && tile.properties && tile.properties.IsWalkingEnabled) {
+              this.grid[y][x] = tile.properties.MovementCost ?? 1;
             }
+          }
         }
+      }*/
     }
 
      /* ------------------------------------------- FINDPATH ------------------------------------------- */
 
-    public findPathAStar(
-    startX: number, startY: number, endX: number, endY: number
-): { path: { x: number, y: number }[], cost: number } | null {
+  public findPathAStar(startX: number, startY: number, endX: number, endY: number, mode: 'land'|'sea' = 'land'): { path: { x: number, y: number }[], cost: number } | null {
     const width = this.map.width;
     const height = this.map.height;
     const openSet: { x: number, y: number, g: number, f: number, parent?: { x: number, y: number } }[] = [];
@@ -74,10 +80,12 @@ export class PathFinder {
             const nx = neighbor.x, ny = neighbor.y;
             if (nx < 0 || nx >= width || ny < 0 || ny >= height) continue;
             if (closedSet[ny][nx]) continue;
-
-            const tile = this.map.getTileAt(nx, ny, true, this.layers.find(l => l.name === 'Landscape'));
-            if (!tile || !tile.properties || !tile.properties.IsWalkingEnabled) continue;
-
+            let tile: Terrain = this.greekMap.staticMatrice[nx][ny].terrain;
+            tile = Object.assign(new Terrain(""),tile);
+            const obj = this.greekMap.dynamicMatrice[nx][ny];
+            if(obj) tile.merge(obj.terrain);
+            //if (!tile || !tile.properties || !tile.properties.IsWalkingEnabled) continue;
+            if((mode==='land' && (!tile.isWalkingEnabled || tile.isObstacle)) || (mode==='sea' && (!tile.isSailingEnabled || tile.isObstacle))) continue;
             const tentative_gScore = gScore[y][x] + (this.grid[ny][nx] || 1);
             if (tentative_gScore < gScore[ny][nx]) {
                 cameFrom[ny][nx] = { x, y };

@@ -1,139 +1,20 @@
 {
-    "Map/SizeTest": {
-        "height": 4300,
-        "width": 2
-    },
-    "activeFile": "",
     "expandedProjectPaths": [
-        ".",
-        "Tileset/MiniWorldSprites/Buildings/Sparta",
-        "Tileset/MiniWorldSprites/Units/Ships",
-        "Tileset/MiniWorldSprites/Buildings/Athens",
-        "Tileset/MiniWorldSprites/Animals",
-        "Tileset/MiniWorldSprites/Buildings",
+        "Tileset",
+        "Tileset/MiniWorldSprites/Buildings/Others",
         "Tileset/MiniWorldSprites/Units",
         "Tileset/MiniWorldSprites",
-        "Tileset/MiniWorldSprites/Ground",
-        "Tileset/MiniWorldSprites/Nature",
-        "Tileset/MiniWorldSprites/Buildings/Thebes",
-        "Tileset/MiniWorldSprites/Units/Ships/Athens",
         "Maps",
-        "Tileset",
-        "Tileset/MiniWorldSprites/Buildings/Others"
+        "Tileset/MiniWorldSprites/Buildings/Sparta",
+        "Tileset/MiniWorldSprites/Nature",
+        "Tileset/MiniWorldSprites/Units/Ships/Athens",
+        "Tileset/MiniWorldSprites/Buildings/Thebes",
+        "Tileset/MiniWorldSprites/Ground",
+        "Tileset/MiniWorldSprites/Animals",
+        "Tileset/MiniWorldSprites/Buildings/Athens",
+        ".",
+        "Tileset/MiniWorldSprites/Units/Ships",
+        "Tileset/MiniWorldSprites/Buildings"
     ],
-    "fileStates": {
-        "Maps/AncientGreece.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 5,
-            "viewCenter": {
-                "x": 3904.545454545455,
-                "y": 4871.212121212121
-            }
-        },
-        "Maps/Test.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 5,
-            "viewCenter": {
-                "x": 960,
-                "y": 479
-            }
-        },
-        "Tileset/AllAssetsPreview.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Tileset/BoxSelector.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Tileset/Cliff.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Tileset/ColoredBuildingsPreview.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Tileset/Ground.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        },
-        "Tileset/MiniWorldSprites/AllMiniWorldSprites.tsx": {
-            "scaleInDock": 3,
-            "scaleInEditor": 0.75
-        },
-        "Tileset/MiniWorldSprites/Animals/AllAnimals.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 0.75
-        },
-        "Tileset/MiniWorldSprites/Buildings/Athens/Athens_Buildings.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 0.75
-        },
-        "Tileset/MiniWorldSprites/Buildings/Others/Others_Buildings.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 3
-        },
-        "Tileset/MiniWorldSprites/Buildings/Sparta/Sparta_Buildings.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 2
-        },
-        "Tileset/MiniWorldSprites/Buildings/Thebes/Thebes_Buildings.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 0.75
-        },
-        "Tileset/MiniWorldSprites/Ground/AllGround.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 4
-        },
-        "Tileset/MiniWorldSprites/Miscellaneous/AllMiscellaneous.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 4
-        },
-        "Tileset/MiniWorldSprites/Nature/AllNature.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 4
-        },
-        "Tileset/MiniWorldSprites/Units/Ships/Athens/Athens_Ships.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 2
-        },
-        "Tileset/Winter.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
-        }
-    },
-    "last.exportedFilePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Maps",
-    "last.imagePath": "//wsl.localhost/Ubuntu-24.04/home/elundriith/Documents/UM_TER/TER_4x_Peloponese/mapTiled/Tileset/MiniWorldSprites/Miscellaneous",
-    "map.fixedSize": false,
-    "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
-    "map.lastUsedFormat": "tmx",
-    "map.orientation": "1",
-    "map.renderOrder": "3",
-    "map.tileHeight": 16,
-    "map.tileWidth": 16,
-    "openFiles": [
-    ],
-    "project": "TER.tiled-project",
-    "property.type": "string",
-    "recentFiles": [
-        "Tileset/MiniWorldSprites/Buildings/Others/Others_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Sparta/Sparta_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Miscellaneous/AllMiscellaneous.tsx",
-        "Tileset/MiniWorldSprites/Nature/AllNature.tsx",
-        "Tileset/MiniWorldSprites/Ground/AllGround.tsx",
-        "Maps/AncientGreece.tmx",
-        "Tileset/MiniWorldSprites/Units/Ships/Athens/Athens_Ships.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Thebes/Thebes_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Buildings/Athens/Athens_Buildings.tsx",
-        "Tileset/MiniWorldSprites/Animals/AllAnimals.tsx",
-        "Maps/Test.tmx",
-        "Tileset/MiniWorldSprites/AllMiniWorldSprites.tsx"
-    ],
-    "resizeMap.removeObjects": false,
-    "tileset.lastUsedFormat": "tsx",
-    "tileset.tileSize": {
-        "height": 16,
-        "width": 16
-    }
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)"
 }
